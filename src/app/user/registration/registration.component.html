@@ -1,0 +1,52 @@
+<div class="row mt-4">
+    <!--
+    <div class="col md-6">
+        <div class="row" style="height:450px;">
+            <div class="col-md-12 my-auto side-header">
+                    <mat-icon class="mx-auto d-block">security</mat-icon>
+                    <h1>User Registration</h1>
+              <p><em>-Using <strong>Core Web Api</strong> and Angular 8 - </em></p>
+            </div>
+        </div>
+    </div>
+-->
+    <div class="col md-6">
+        <form [formGroup]="service.formModel" autocomplete="off" (submit)="onSubmit()">
+            <div class="form-group required">
+                <label>UserName</label>
+                <input class="form-control" formControlName="UserName" >
+                <label class="text-danger" *ngIf="service.formModel.get('UserName').touched && service.formModel.get('UserName').errors?.required">Campo obbligatorio</label>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input  class="form-control" formControlName="Email">
+                <label class="text-danger" *ngIf="service.formModel.get('Email').touched && service.formModel.get('Email').errors?.email">Campo Email invalido</label>
+            </div>
+            <div class="form-group">
+                <label>FullName</label>
+                <input  class="form-control" formControlName="FullName">
+            </div>
+            <div formGroupName="Passwords">
+                <div class="form-group required">
+                    <label>Password</label>
+                    <input type="password" class="form-control" formControlName="Password">
+                    <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.required">Campo obbligatorio.</label>
+                    <label class="text-danger" *ngIf="service.formModel.get('Passwords.Password').touched && service.formModel.get('Passwords.Password').errors?.minlength">Sono richiesti almeno 4 caratteri.</label>
+                </div>
+                <div class="form-group required">
+                    <label>Confirm Password</label>
+                    <input type="password"  class="form-control" formControlName="ConfirmPassword">
+                    <label class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.required">Campo obbligatorio.</label>
+                    <label class="text-danger" *ngIf="service.formModel.get('Passwords.ConfirmPassword').touched && service.formModel.get('Passwords.ConfirmPassword').errors?.passwordMismatch">La password di conferma non corrisponde.</label>
+                </div>
+            </div>
+            
+            <div class="form-row">
+                <div class="form-group col-md-8 offset-md-2">
+                    <button type="submit" class="btn btn-info btn-lg btn-block" [disabled]="!service.formModel.valid">Sign Up</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+</div>
