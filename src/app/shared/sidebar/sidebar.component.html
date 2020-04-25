@@ -27,6 +27,7 @@
             <mat-icon matListIcon>people_alt</mat-icon>
             <h3 matLine>ANAGRAFICA CLIENTI</h3>
           </mat-list-item>
+          
           <!--
           <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedOut$ | async" [routerLink]="['/login']">
             <mat-icon matListIcon>fingerprint</mat-icon>
@@ -37,23 +38,36 @@
             <h3 matLine>Logout</h3>
           </mat-list-item>
         -->
+          
+          <mat-list-item (click)="sidenav.close()" [routerLink]="['/login']" >
+            <mat-icon matListIcon>fingerprint</mat-icon>
+            <h3 matLine>Login</h3>
+          </mat-list-item>
+          <!--<mat-list-item (click)="sidenav.close(); onLogout()" *ngIf="isLoggedIn" [routerLink]="['/login']" ></mat-list-item>-->
+          <mat-list-item (click)="sidenav.close(); onLogout()" [routerLink]="['/login']" >
+            <mat-icon matListIcon>exit_to_app</mat-icon>
+            <h3 matLine>Logout</h3>
+          </mat-list-item>
+
+          
         </mat-list>
       </mat-nav-list>
     </mat-sidenav>
   
     <mat-toolbar color="primary">
       <div class="toolbar-tools">
-        <button mat-icon-button (click)="sidenav.open()">
+        <button mat-icon-button (click)="sidenav.open()"  style="cursor: pointer;" >
           <mat-icon>menu</mat-icon>
         </button>
-  
+          
         <div class="filler"></div>
-       <!-- 
+       
         <ng-container  *ngIf="(pictureUrl$ | async) as pictureUrl">
           <p class="HeaderText">{{UserName$ | async}} </p>
           <img class="user-avatar" [src]="pictureUrl">
         </ng-container>
-    -->
+    
+
         <!--
         <mat-icon color="black" (click)="sidenav.open()" style="cursor: pointer;">menu_open</mat-icon>
   

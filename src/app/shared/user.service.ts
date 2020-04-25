@@ -12,8 +12,9 @@ export class UserService {
 
   constructor(private fb: FormBuilder, private http: HttpClient) { }
 
-  readonly BaseURI = "https://localhost:44306/api";
-
+  //readonly BaseURI = "https://localhost:44306/api";
+  readonly BaseURI = "http://188.152.211.199/iQWApi/api";
+  
   formModel = this.fb.group(
       {
         UserName: ['', Validators.required],
