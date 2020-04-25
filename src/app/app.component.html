@@ -1,11 +1,5 @@
 
-<<<<<<< HEAD
-<!--
-=======
->>>>>>> b360b41b348d6aa215ded00b3294f74ffea81464
-<app-sidebar></app-sidebar>  
--->
-<app-sidebar [isLoggedIn]="false"></app-sidebar>  
+<app-sidebar (Event_isLoggedIn) = "getLoggedIn($event)"></app-sidebar>  
 
 <router-outlet></router-outlet>
 

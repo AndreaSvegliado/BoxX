@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 
 export class LoginComponent implements OnInit {
   
-  @Output() public Event_isLoggedIn= new EventEmitter();
+  @Output() public Event_isLoggedIn= new EventEmitter<boolean>();
   
   formModel={
     UserName:'',

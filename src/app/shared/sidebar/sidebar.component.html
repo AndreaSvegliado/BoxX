@@ -43,8 +43,8 @@
             <mat-icon matListIcon>fingerprint</mat-icon>
             <h3 matLine>Login</h3>
           </mat-list-item>
-          <!--<mat-list-item (click)="sidenav.close(); onLogout()" *ngIf="isLoggedIn" [routerLink]="['/login']" ></mat-list-item>-->
-          <mat-list-item (click)="sidenav.close(); onLogout()" [routerLink]="['/login']" >
+          <mat-list-item (click)="sidenav.close(); onLogout()" *ngIf="isLoggedIn" [routerLink]="['/login']" >
+          <!-- <mat-list-item (click)="sidenav.close(); onLogout()" [routerLink]="['/login']" > -->
             <mat-icon matListIcon>exit_to_app</mat-icon>
             <h3 matLine>Logout</h3>
           </mat-list-item>

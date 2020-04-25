@@ -13,10 +13,6 @@ import { Observable } from 'rxjs';
 export class SidebarComponent implements OnInit {
   
   //AS - eventEmitter
-  public user$: Observable<Object>;
-  public isLoggedIn$: Observable<boolean>;
-
-  @Output("loggedIn") loggedInEvent = new EventEmitter<Object>();
 
 
 
@@ -25,6 +21,7 @@ export class SidebarComponent implements OnInit {
 
 
   userDetails: Object;
+  isLoggedIn: boolean;
 
   //Versione Vasco: observable che si aggiorna in automatico al variare della variabile
   //AS: il dollaro indica che la variabile è un observable
@@ -42,29 +39,28 @@ export class SidebarComponent implements OnInit {
   ngOnInit() {
 
     console.log("---- onInit ----");
-
+    
     if(localStorage.getItem('token') != null){
       this.uService.getUserProfile().subscribe(
         res => {
           this.userDetails = res;
           console.log(this.userDetails);
-          //this.isLoggedIn = true;
-  
-          //console.log("MERDA!!!");
-          //console.log(this.isLoggedIn);
+          this.isLoggedIn  = true;
 
         },
         err => {
-          //this.isLoggedIn = false;
           console.log(err);
+          this.isLoggedIn = false;
         },
       );
-    } 
+    }  else {
+      this.isLoggedIn = false;
+    }
     
 
     //AS - eventEmitter
-    this.user$ =  this.uService.getUserProfile();
-    this.loggedInEvent.emit(this.userDetails);
+    //this.user$ =  this.uService.getUserProfile();
+    //this.loggedInEvent.emit(this.userDetails);
 
     //this.isLoggedIn$ = this.afAuth.authState.pipe(map(user => !!user));
     //console.log ("loggedin",this.isLoggedIn$);
@@ -80,6 +76,10 @@ export class SidebarComponent implements OnInit {
 
     localStorage.removeItem('token');
     this.router.navigate(['/user/login']);
+  }
+
+  getLoggedIn(event){
+    console.log("ciao", event);
   }
 
 }
