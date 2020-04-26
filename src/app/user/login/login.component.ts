@@ -2,11 +2,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatSnackBar, MatSnackBarConfig,MatSnackBarHorizontalPosition,MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html'
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
 
 export class LoginComponent implements OnInit {
@@ -15,11 +16,13 @@ export class LoginComponent implements OnInit {
     UserName:'',
     Password:''
   };
-    //constructor(private uService: UserService, private router:Router ) { 
-    constructor(private uService: UserService, private router:Router, private snackbar : MatSnackBar) { 
+  //constructor(private uService: UserService, private router:Router ) { 
+  constructor(private uService: UserService, private router:Router, private snackBar : MatSnackBar) { 
+
+    
   }
 
-  
+
 
   ngOnInit() {
     if(localStorage.getItem('token') != null){
@@ -36,7 +39,8 @@ export class LoginComponent implements OnInit {
       (res: any) => {
         localStorage.setItem('token', res.token);
         this.uService.changeLoggedIn(true);
-        this.snackbar.open("Login Corretta", "Benvenuto");
+        //this.snackbar.open("Login Corretta", "Benvenuto");
+        this.ShowMessage("Login Corretta", "Benvenuto");
         this.router.navigateByUrl('/home');
 
       },
@@ -44,13 +48,30 @@ export class LoginComponent implements OnInit {
         
         this.uService.changeLoggedIn(false);
         if(err.status== 400) {
-          this.snackbar.open("Utente o Password errati", "Riprova");
+          this.ShowMessage("Utente o Password errati", "Riprova");
         }
         else {
-          this.snackbar.open(err, "");
+          this.ShowMessage(err,"");
         }
       }
     );
+  }
+
+  ShowMessage(msg: string, title: string) {
+
+    let config = new MatSnackBarConfig();
+    config.verticalPosition  = 'bottom';
+    config.horizontalPosition = 'center';
+    config.duration = 2000;
+    //config.announcementMessage = "ciao";
+    //config.panelClass =  'ng-deep';
+
+
+    //config.extraClasses = this.addExtraClass ? ['test'] : undefined;
+    if(title != "")
+      this.snackBar.open(msg, title, config);  
+    else
+      this.snackBar.open(msg,null, config);  
   }
 }
 
