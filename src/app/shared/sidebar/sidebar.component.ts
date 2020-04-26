@@ -1,12 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Output, EventEmitter } from '@angular/core';
-
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-
-import { LoggedinService } from "../../user/service/loggedin.service";
-
 
 @Component({
   selector: 'app-sidebar',
@@ -26,31 +20,31 @@ export class SidebarComponent implements OnInit {
   //UserName$: Observable<string>;
 
   
-  constructor(private router: Router, private uService: UserService, private isLoggedInService: LoggedinService ) { }
+  constructor(private router: Router, private uService: UserService ) { }
 
   ngOnInit() {
 
     //su Init va a vedere se è LoggedIn (potrei usare il servizio solo?)
-    if(localStorage.getItem('token') != null){
-      this.uService.getUserProfile().subscribe(
-        res => {
-          this.userDetails = res;
-          console.log(this.userDetails);
-          this.isLoggedIn  = true;
+    // if(localStorage.getItem('token') != null){
+    //   this.uService.getUserProfile().subscribe(
+    //     res => {
+    //       this.userDetails = res;
+    //       console.log(this.userDetails);
+    //       this.isLoggedIn  = true;
 
-        },
-        err => {
-          console.log(err);
-          this.isLoggedIn = false;
-        },
-      );
-    }  else {
-      this.isLoggedIn = false;
-    }
+    //     },
+    //     err => {
+    //       console.log(err);
+    //       this.isLoggedIn = false;
+    //     },
+    //   );
+    // }  else {
+    //   this.isLoggedIn = false;
+    // }
     
     //voglio che sidebar sia istantaneamente aggiornata quanto cambia il valore di isLoggedIn
     //per questo faccio la subscribe all'observable rappresentato dal service
-    this.isLoggedInService.currentVal.subscribe(a => this.isLoggedIn = a)
+    this.uService.obsLoggedIn.subscribe(a => this.isLoggedIn = a)
     //AS - eventEmitter
     //this.user$ =  this.uService.getUserProfile();
     //this.loggedInEvent.emit(this.userDetails);
@@ -68,7 +62,7 @@ export class SidebarComponent implements OnInit {
     this.userDetails = null;
 
     localStorage.removeItem('token');
-    this.isLoggedInService.changeVal(false);
+    this.uService.changeLoggedIn(false);
     this.router.navigate(['/user/login']);
   }
 

@@ -2,8 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router';
-//import { ToastrService,  ToastrModule, ToastContainerModule  } from 'ngx-toastr';
-import { LoggedinService } from "../service/loggedin.service";
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -12,15 +11,15 @@ import { LoggedinService } from "../service/loggedin.service";
 
 export class LoginComponent implements OnInit {
   
-  //@Output() public Event_isLoggedIn= new EventEmitter<boolean>();
-  
   formModel={
     UserName:'',
     Password:''
   };
-    constructor(private service: UserService, private router:Router, private isLoggedInService: LoggedinService ) { 
-    //constructor(private service: UserService, private router:Router,  private toastr: ToastrService) { 
+    //constructor(private uService: UserService, private router:Router ) { 
+    constructor(private uService: UserService, private router:Router, private snackbar : MatSnackBar) { 
   }
+
+  
 
   ngOnInit() {
     if(localStorage.getItem('token') != null){
@@ -33,22 +32,25 @@ export class LoginComponent implements OnInit {
 
     console.log("Login: " + this.formModel.UserName);
 
-    this.service.Login(form.value).subscribe(
+    this.uService.Login(form.value).subscribe(
       (res: any) => {
         localStorage.setItem('token', res.token);
-        //this.Event_isLoggedIn.emit(true);
-        this.isLoggedInService.changeVal(true);
+        this.uService.changeLoggedIn(true);
+        this.snackbar.open("Login Corretta", "Benvenuto");
         this.router.navigateByUrl('/home');
+
       },
       err=> {
-        //this.Event_isLoggedIn.emit(false);
-        this.isLoggedInService.changeVal(false);
-        if(err.status== 400)
-          //this.toastr.error("Utente o password errati", "Autenticazione fallita");
-          console.log(err);
-        else
-          console.log(err);
+        
+        this.uService.changeLoggedIn(false);
+        if(err.status== 400) {
+          this.snackbar.open("Utente o Password errati", "Riprova");
+        }
+        else {
+          this.snackbar.open(err, "");
+        }
       }
     );
   }
 }
+
