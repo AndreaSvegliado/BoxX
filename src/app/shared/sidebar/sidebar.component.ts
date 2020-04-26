@@ -1,9 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Output, EventEmitter } from '@angular/core';
 
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+
+import { LoggedinService } from "../../user/service/loggedin.service";
+
 
 @Component({
   selector: 'app-sidebar',
@@ -12,14 +15,6 @@ import { Observable } from 'rxjs';
 })
 export class SidebarComponent implements OnInit {
   
-  //AS - eventEmitter
-
-
-
-  
-  //@Input() public isLoggedIn;     ///?????
-
-
   userDetails: Object;
   isLoggedIn: boolean;
 
@@ -31,15 +26,11 @@ export class SidebarComponent implements OnInit {
   //UserName$: Observable<string>;
 
   
-  constructor(private router: Router, private uService: UserService) {
-
-
-   }
+  constructor(private router: Router, private uService: UserService, private isLoggedInService: LoggedinService ) { }
 
   ngOnInit() {
 
-    console.log("---- onInit ----");
-    
+    //su Init va a vedere se è LoggedIn (potrei usare il servizio solo?)
     if(localStorage.getItem('token') != null){
       this.uService.getUserProfile().subscribe(
         res => {
@@ -57,7 +48,9 @@ export class SidebarComponent implements OnInit {
       this.isLoggedIn = false;
     }
     
-
+    //voglio che sidebar sia istantaneamente aggiornata quanto cambia il valore di isLoggedIn
+    //per questo faccio la subscribe all'observable rappresentato dal service
+    this.isLoggedInService.currentVal.subscribe(a => this.isLoggedIn = a)
     //AS - eventEmitter
     //this.user$ =  this.uService.getUserProfile();
     //this.loggedInEvent.emit(this.userDetails);
@@ -75,11 +68,12 @@ export class SidebarComponent implements OnInit {
     this.userDetails = null;
 
     localStorage.removeItem('token');
+    this.isLoggedInService.changeVal(false);
     this.router.navigate(['/user/login']);
   }
 
-  getLoggedIn(event){
-    console.log("ciao", event);
+  gotoUrl(url:string){
+    window.location.href=url;
   }
 
 }
