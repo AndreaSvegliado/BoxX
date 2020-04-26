@@ -154,3 +154,14 @@ input.ng-invalid.ng-touched,select.ng-invalid.ng-touched{
 @keyframes fadeinout {
   50% { opacity: 1; }
 }
+
+#sidenav {
+    width: 300px;
+}
+
+footer {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 10px;
+}

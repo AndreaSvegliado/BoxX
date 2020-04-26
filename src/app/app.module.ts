@@ -11,8 +11,6 @@ import { MaterialModule} from './modules/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-//import { ToastrModule, ToastContainerModule } from 'ngx-toastr';
-
 //AS
 import { UserComponent } from './user/user.component';
 import { RegistrationComponent } from './user/registration/registration.component'
@@ -30,7 +28,6 @@ import { HTTP_INTERCEPTORS} from '@angular/common/http';            //AS: refere
     FooterComponent,
     HeaderComponent,
     SidebarComponent,
-
     UserComponent,
     RegistrationComponent,
     LoginComponent,

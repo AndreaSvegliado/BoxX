@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup} from '@angular/forms';
-import { validateHorizontalPosition } from '@angular/cdk/overlay';
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 //import { environment } from 'src/environments/environment';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class UserService {
+
+  private BehaviourSubjectLoggedIn = new BehaviorSubject(false);
+  obsLoggedIn = this.BehaviourSubjectLoggedIn.asObservable();
 
   constructor(private fb: FormBuilder, private http: HttpClient) { }
 
@@ -56,7 +59,6 @@ export class UserService {
     return  this.http.post(this.BaseURI +'/ApplicationUser/Register', body );
   }
 
-
   Login(formData){
     //return this.http.post(environment.apiBaseURI +'/ApplicationUser/Login', formData );
     return this.http.post(this.BaseURI  +'/ApplicationUser/Login', formData );
@@ -74,4 +76,10 @@ export class UserService {
     //return this.http.get(environment.apiBaseURI + '/UserProfile', );
     return this.http.get(this.BaseURI  + '/UserProfile', );
   }
+
+  changeLoggedIn(val: boolean) {
+    this.BehaviourSubjectLoggedIn.next(val)
+    console.log ("user.service.ts - isLoggedIn viene impostato a "+ val)
+  }
+
 }
