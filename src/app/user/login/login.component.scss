@@ -1,11 +1,16 @@
 
-
-  ::_TEST ng-deep .mat-snack-bar-container{
-    color: #155724 !important;
-    background-color: #d4edda !important;
+  ::ng-deep snack-bar-container.error-class-brutto {
+    color: #1ed449 !important;
+    background-color: #9b2e92 !important;
     border-color: #c3e6cb !important;
-
   }
-  ::ng-deep .mat-simple-snackbar-action {
+
+  ::ng-deep .error-class .mat-simple-snackbar-action {
     color: red;
   }
+
+  ::ng-deep .mat-simple-snackbar-action {
+    color: greenyellow;
+  }
+
+

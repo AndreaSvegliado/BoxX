@@ -16,13 +16,10 @@ export class LoginComponent implements OnInit {
     UserName:'',
     Password:''
   };
-  //constructor(private uService: UserService, private router:Router ) { 
-  constructor(private uService: UserService, private router:Router, private snackBar : MatSnackBar) { 
 
+  constructor(private uService: UserService, private router:Router, private snackBar : MatSnackBar) { 
     
   }
-
-
 
   ngOnInit() {
     if(localStorage.getItem('token') != null){
@@ -37,38 +34,44 @@ export class LoginComponent implements OnInit {
 
     this.uService.Login(form.value).subscribe(
       (res: any) => {
-        localStorage.setItem('token', res.token);
-        this.uService.changeLoggedIn(true);
-        //this.snackbar.open("Login Corretta", "Benvenuto");
-        this.ShowMessage("Login Corretta", "Benvenuto");
-        this.router.navigateByUrl('/home');
+        //localStorage.setItem('token', res.token);
+        //localStorage.setItem('currentUser', JSON.stringify(res));
 
+        this.uService.changeLoggedIn(true);
+        
+        //this.ShowMessage("Login Corretta", "Benvenuto " + this.formModel.UserName, false);
+        this.ShowMessage("Login Corretta", "Benvenuto " + this.uService.userFullName, false);
+        
+        this.router.navigateByUrl('/home');
       },
       err=> {
         
         this.uService.changeLoggedIn(false);
         if(err.status== 400) {
-          this.ShowMessage("Utente o Password errati", "Riprova");
+          this.ShowMessage("Utente o Password errati", "Riprova",true);
         }
         else {
-          this.ShowMessage(err,"");
+          this.ShowMessage(err,"" , true);
         }
       }
     );
   }
 
-  ShowMessage(msg: string, title: string) {
+  ShowMessage(msg: string, title?: string, hasErrors: boolean= false ) {
 
     let config = new MatSnackBarConfig();
     config.verticalPosition  = 'bottom';
     config.horizontalPosition = 'center';
     config.duration = 2000;
-    //config.announcementMessage = "ciao";
-    //config.panelClass =  'ng-deep';
 
+    if(hasErrors){
+      config.panelClass =  ['error-class'];
+      console.log("ShowMessage: hasErrors");
+    }
+    //else
+    //  config.panelClass =  ['ng-deep'];
 
-    //config.extraClasses = this.addExtraClass ? ['test'] : undefined;
-    if(title != "")
+    if(title != null)
       this.snackBar.open(msg, title, config);  
     else
       this.snackBar.open(msg,null, config);  

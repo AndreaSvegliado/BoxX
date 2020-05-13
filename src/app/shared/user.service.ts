@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup} from '@angular/forms';
 import { HttpClient } from "@angular/common/http";
 //import { environment } from 'src/environments/environment';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { currentUser } from './../models/models';
+import { map } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +14,31 @@ import { BehaviorSubject } from 'rxjs';
 
 export class UserService {
 
-  private BehaviourSubjectLoggedIn = new BehaviorSubject(false);
+  private BehaviourSubjectLoggedIn = new BehaviorSubject<boolean>(false);
   obsLoggedIn = this.BehaviourSubjectLoggedIn.asObservable();
 
-  constructor(private fb: FormBuilder, private http: HttpClient) { }
+  private BehaviourSubjectcurrentUser : BehaviorSubject<currentUser>;
+  public obscurrentUser: Observable<currentUser>;
+  
+  public userFullName="TEST";
 
   //readonly BaseURI = "https://localhost:44306/api";
-  readonly BaseURI = "http://188.152.211.199/iQWApi/api";
+  //readonly BaseURI = "http://188.152.211.199/iQWApi/api";
+  readonly BaseURI = environment.apiBaseUrl;
   
+        //AS: dati ambiente
+        //let reqUrl = environment.apiBaseUrl;
+        
+  constructor(private fb: FormBuilder, private http: HttpClient) { 
+
+    //The BehaviorSubject holds the value that needs to be shared with other components
+    this.BehaviourSubjectcurrentUser = new BehaviorSubject<currentUser>(JSON.parse(localStorage.getItem('currentUser')));
+    this.obscurrentUser = this.BehaviourSubjectcurrentUser.asObservable();
+  }
+  public get currentUserValue(): currentUser {
+    return this.BehaviourSubjectcurrentUser.value;
+  }
+
   formModel = this.fb.group(
       {
         UserName: ['', Validators.required],
@@ -33,6 +54,82 @@ export class UserService {
     ) 
   });
 
+  //Login(userName: string, userPwd: string) {
+  Login(formData) {
+
+    console.log("DEBUG: User.service/Login");
+
+    //return this.http.post(this.BaseURI  +'/ApplicationUser/Login', formData );
+    
+    return this.http.post<any>(this.BaseURI  +'/ApplicationUser/Login', formData )
+      .pipe(map(user => {
+        if (user && user.token) {
+          // store user details in local storage to keep user logged in
+          localStorage.setItem('token', user.token);
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          
+          var currUser = JSON.parse(localStorage.getItem('currentUser'));
+
+          for (let prop in currUser ) {
+            if(prop == "fullname"){
+              //console.log(this.userDetails [prop]);
+              this.userFullName = currUser [prop];
+            }
+          }
+          console.log(this.userFullName);
+        
+          //this.changeLoggedIn(true);
+          this.BehaviourSubjectcurrentUser.next(user);
+        }     
+      return user;
+    }));
+  }
+
+  Logout(){
+    //console.log("DEBUG: User.service/Logout");
+    localStorage.removeItem('token');
+    localStorage.removeItem('currentUser');
+  }
+
+  Register()
+  {
+    var body = {
+      UserName: this.formModel.value.UserName,
+      Email: this.formModel.value.Email,
+      FullName: this.formModel.value.FullName,
+      Password: this.formModel.value.Passwords.Password
+    };
+    return  this.http.post(this.BaseURI +'/ApplicationUser/Register', body );
+  }
+
+
+
+//AS: VERIFICARE
+  getUserProfile(appUser: string){
+    //AS: sostituito da auth.interceptor
+    //var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+ localStorage.getItem('token')});
+    //return tokenHeader;
+
+    //return this.http.get(this.BaseURI + '/UserProfile', {headers: tokenHeader});
+    //headers : req.headers.set('Authorization', 'Bearer ' + localStorage.getItem('token)'))
+
+    //auth.interceptor
+    //return this.http.get(environment.apiBaseURI + '/UserProfile', );
+    //return this.http.get(this.BaseURI  + '/UserProfile', );
+    
+    //var localUser = localStorage.getItem('appUser');
+
+    //console.log("DEBUG -getUserProfile:" + this.BaseURI  + '/ApplicationUser/'+ localUser );
+    //return this.http.get(this.BaseURI  + '/ApplicationUser/' + this.formModel.value.UserName, );
+    return this.http.get(this.BaseURI  + '/ApplicationUser/' + appUser, );
+
+  }
+
+  changeLoggedIn(val: boolean) {
+    this.BehaviourSubjectLoggedIn.next(val)
+    //console.log ("user.service.ts - isLoggedIn viene impostato a "+ val)
+  }
+
   //AS: custom validator
   comparePasswords(fb: FormGroup )
   {
@@ -46,40 +143,4 @@ export class UserService {
         confirmPasswordCtrl.setErrors(null);
     }
   }
-
-  Register()
-  {
-    var body = {
-      UserName: this.formModel.value.UserName,
-      Email: this.formModel.value.Email,
-      FullName: this.formModel.value.FullName,
-      Password: this.formModel.value.Passwords.Password
-    };
-    //return  this.http.post(environment.apiBaseURI +'/ApplicationUser/Register', body );
-    return  this.http.post(this.BaseURI +'/ApplicationUser/Register', body );
-  }
-
-  Login(formData){
-    //return this.http.post(environment.apiBaseURI +'/ApplicationUser/Login', formData );
-    return this.http.post(this.BaseURI  +'/ApplicationUser/Login', formData );
-  }
-
-  getUserProfile(){
-    //AS: sostituito da auth.interceptor
-    //var tokenHeader = new HttpHeaders({'Authorization':'Bearer '+ localStorage.getItem('token')});
-    //return tokenHeader;
-
-    //return this.http.get(this.BaseURI + '/UserProfile', {headers: tokenHeader});
-    //headers : req.headers.set('Authorization', 'Bearer ' + localStorage.getItem('token)'))
-
-    //auth.interceptor
-    //return this.http.get(environment.apiBaseURI + '/UserProfile', );
-    return this.http.get(this.BaseURI  + '/UserProfile', );
-  }
-
-  changeLoggedIn(val: boolean) {
-    this.BehaviourSubjectLoggedIn.next(val)
-    console.log ("user.service.ts - isLoggedIn viene impostato a "+ val)
-  }
-
 }

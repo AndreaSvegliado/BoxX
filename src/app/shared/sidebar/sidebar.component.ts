@@ -9,8 +9,11 @@ import { Router } from '@angular/router';
 })
 export class SidebarComponent implements OnInit {
   
-  userDetails: Object;
+  opened = false;
+
   isLoggedIn: boolean;
+  userDetails: Object;
+  userFullName: string;
 
   //Versione Vasco: observable che si aggiorna in automatico al variare della variabile
   //AS: il dollaro indica che la variabile è un observable
@@ -23,28 +26,40 @@ export class SidebarComponent implements OnInit {
   constructor(private router: Router, private uService: UserService ) { }
 
   ngOnInit() {
-
-    //su Init va a vedere se è LoggedIn (potrei usare il servizio solo?)
-    // if(localStorage.getItem('token') != null){
-    //   this.uService.getUserProfile().subscribe(
-    //     res => {
-    //       this.userDetails = res;
-    //       console.log(this.userDetails);
-    //       this.isLoggedIn  = true;
-
-    //     },
-    //     err => {
-    //       console.log(err);
-    //       this.isLoggedIn = false;
-    //     },
-    //   );
-    // }  else {
-    //   this.isLoggedIn = false;
-    // }
-    
     //voglio che sidebar sia istantaneamente aggiornata quanto cambia il valore di isLoggedIn
     //per questo faccio la subscribe all'observable rappresentato dal service
-    this.uService.obsLoggedIn.subscribe(a => this.isLoggedIn = a)
+    this.uService.obsLoggedIn.subscribe(val => this.isLoggedIn = val)
+
+    if(localStorage.getItem('currentUser') != null){
+
+      this.userDetails = JSON.parse(localStorage.getItem('currentUser'));
+
+      for (let prop in this.userDetails ) {
+        if(prop == "fullname"){
+          //console.log(this.userDetails [prop]);
+          this.userFullName = this.userDetails [prop];
+          break;
+        }
+      }
+    }
+
+    /*
+    // Se presente un token valido, recupero i dati dell'utente
+    if(localStorage.getItem('appUser') != null){
+      console.log("sidebar/ngOnInt getUserProfile");
+      
+      this.uService.getUserProfile().subscribe(
+        res => {
+          this.userDetails = res;
+          console.log("sidebar-component\ngOnInt: ", this.userDetails);
+        },
+        err => {
+          console.log(err);
+        },
+      );
+    } 
+    */  
+
     //AS - eventEmitter
     //this.user$ =  this.uService.getUserProfile();
     //this.loggedInEvent.emit(this.userDetails);
@@ -61,13 +76,13 @@ export class SidebarComponent implements OnInit {
     //this.router.routeReuseStrategy.shouldReuseRoute = function(){return false;};
     this.userDetails = null;
 
-    localStorage.removeItem('token');
+    //localStorage.removeItem('token');
+    //localStorage.removeItem('currentUser');
+    this.uService.Logout();
+
     this.uService.changeLoggedIn(false);
     this.router.navigate(['/user/login']);
   }
 
-  gotoUrl(url:string){
-    window.location.href=url;
-  }
 
 }

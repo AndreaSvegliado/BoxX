@@ -14,14 +14,18 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):  boolean  {
+
+      //console.log("DEBUG: auth.guard");
+
       if(localStorage.getItem('token') != null){
-        console.log ("sono sul guard true");
+        //console.log ("Auth.guard/canActivate: True");
+        
         this.uService.changeLoggedIn(true);
         return true; 
       }
       else{
+        //Not logged: redirect to Login        
         this.router.navigate(['user/login']);  
-        console.log ("sono sul guard false");
         this.uService.changeLoggedIn(false);
         return false;
       }

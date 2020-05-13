@@ -1,33 +1,88 @@
+ 
 
-<mat-sidenav-container fullscreen >
-    <mat-sidenav #sidenav mode="over" id="sidenav">
+<mat-toolbar color="primary" >
+
+  <div class="toolbar-tools" *ngIf="isLoggedIn" >
+    <button mat-icon-button (click)="sidenav.open()" (click)="opened = !opened"  style="cursor: pointer;" >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <div class="filler"></div>
+
+    <!--
+    <ng-container  *ngIf="(pictureUrl$ | async) as pictureUrl">
+      <p class="HeaderText">{{UserName$ | async}} </p>
+      <img class="user-avatar" [src]="pictureUrl">
+    </ng-container>
+    -->
+  </div>
+  
+  <ng-container>
+    <!--<div class="navbar-dark text-white">-->
+      <a  *ngIf="isLoggedIn">{{userFullName}}</a> 
+  
+      <a class="navbar-dark text-white"></a>
+      <button class="btn btn-danger my-2 my-sm-0" *ngIf="isLoggedIn" (click)="onLogout()">Logout</button>
+    <!-- </div> -->
+  </ng-container>
+</mat-toolbar>
+
+
+<mat-sidenav-container  >
+    <mat-sidenav #sidenav mode="side" [opened]="opened" [class.close]="!opened" id="sidenav" >
       <mat-nav-list >
-        <mat-list>
-          <mat-list-item (click)="sidenav.close()" (click)="gotoUrl('http://www.steinerwaldorfpadova.it')" >
-            <mat-icon matListIcon>language</mat-icon>
-            <h3 matLine>SITO WEB</h3>
+        <!--
+          <a class="home-button" routerLink="/">
+            <img class="app-logo" src="https://bulma.io/images/bulma-logo.png" />
+          </a>
+        -->
+
+          <mat-divider class="navigation-divider"></mat-divider>
+
+          <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/home']">
+            <div class="item">
+              <button mat-icon-button>
+                <mat-icon mat-list-icon>home</mat-icon>
+              </button>
+              <a *ngIf="opened">Home</a>
+            </div>
           </mat-list-item>
-          <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/calendario']">
-            <mat-icon matListIcon>event</mat-icon>
-            <h3 matLine>CALENDARIO</h3>
+
+          <mat-list-item (click)= "sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/calendario']">
+            <div class="item">
+              <button mat-icon-button>
+                <mat-icon mat-list-icon>event</mat-icon>
+              </button>
+              <a *ngIf="opened">Calendario</a>
+            </div>
           </mat-list-item>
-          <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/anguniv2']">
-            <mat-icon matListIcon>subdirectory_arrow_right</mat-icon>
-            <h3 matLine>ANGUNIV2</h3>
-          </mat-list-item>
-          <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/batch']">
-            <mat-icon matListIcon>publish</mat-icon>
-            <h3 matLine>BATCH</h3>
-          </mat-list-item>
+
           <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/assistenza']">
-            <mat-icon matListIcon>build</mat-icon>
-            <h3 matLine>ASSISTENZA</h3>
+            <div class="item">
+              <button mat-icon-button>
+                <mat-icon mat-list-icon>build</mat-icon>
+              </button>
+              <a *ngIf="opened">Assistenza</a>
+            </div>
           </mat-list-item>
+
           <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/anagrafica clienti']">
-            <mat-icon matListIcon>people_alt</mat-icon>
-            <h3 matLine>ANAGRAFICA CLIENTI</h3>
+            <div class="item">
+              <button mat-icon-button>
+                <mat-icon mat-list-icon>people_alt</mat-icon>
+              </button>
+              <a *ngIf="opened">Clienti</a>
+            </div>
           </mat-list-item>
-          
+
+          <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/userDetails']">
+            <div class="item">
+              <button mat-icon-button>
+                <mat-icon mat-list-icon>people_alt</mat-icon>
+              </button>
+              <a *ngIf="opened">Dettaglio Utente</a>
+            </div>
+          </mat-list-item>
+    
           <!--
           <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedOut$ | async" [routerLink]="['/login']">
             <mat-icon matListIcon>fingerprint</mat-icon>
@@ -37,57 +92,61 @@
             <mat-icon matListIcon>exit_to_app</mat-icon>
             <h3 matLine>Logout</h3>
           </mat-list-item>
-        -->
-          
-          <mat-list-item (click)="sidenav.close()" *ngIf="!isLoggedIn" [routerLink]="['/login']" >
-            <mat-icon matListIcon>fingerprint</mat-icon>
-            <h3 matLine>Login</h3>
-          </mat-list-item>
-          <mat-list-item (click)="sidenav.close(); onLogout()" *ngIf="isLoggedIn" [routerLink]="['/login']" >
-          <!-- <mat-list-item (click)="sidenav.close(); onLogout()" [routerLink]="['/login']" > -->
-            <mat-icon matListIcon>exit_to_app</mat-icon>
-            <h3 matLine>Logout</h3>
+          -->
+          <mat-divider class="navigation-divider"></mat-divider>
+          <a class="nav-item nav-link">Link esterni</a>
+                   
+          <a href="http://www.steinerwaldorfpadova.it" target="_blank">
+            <mat-list-item (click)="sidenav.close()"   >
+              <mat-icon matListIcon>language</mat-icon>
+              <h3 matLine>SITO WEB DEL MENGA</h3>
+            </mat-list-item>
+          </a>
+        
+          <a href="https://jasonwatmore.com/post/2020/04/28/angular-9-user-registration-and-login-example-tutorial#app-module-ts" target="_blank">
+            <mat-list-item (click)="sidenav.close()"   >
+              <mat-icon matListIcon>language</mat-icon>
+              <h3 matLine *ngIf="opened">Jason Watmore</h3>
+            </mat-list-item>
+          </a>
+
+          <mat-divider class="navigation-divider"></mat-divider>
+
+          <mat-list-item (click)="sidenav.close(); onLogout()" *ngIf="!isLoggedIn" [routerLink]="['/login']">
+            <div class="item">
+              <button mat-icon-button>
+                <mat-icon mat-list-icon>fingerprint</mat-icon>
+              </button>
+              <a *ngIf="opened">Login</a>
+            </div>
           </mat-list-item>
 
-          
-        </mat-list>
+          <mat-list-item (click)="sidenav.close(); onLogout()" *ngIf="isLoggedIn" [routerLink]="['/login']">
+            <div class="item">
+              <button mat-icon-button>
+                <mat-icon mat-list-icon>exit_to_app</mat-icon>
+              </button>
+              <a *ngIf="opened">Logout</a>
+            </div>
+          </mat-list-item>
+
       </mat-nav-list>
     </mat-sidenav>
+    
+  <!-- 
+      <router-outlet></router-outlet>
+  -->
   
-    <mat-toolbar color="primary">
-      <div class="toolbar-tools">
-        <button mat-icon-button (click)="sidenav.open()"  style="cursor: pointer;" >
-          <mat-icon>menu</mat-icon>
-        </button>
-          
-        <div class="filler"></div>
-       
-        <!--
-        <ng-container  *ngIf="(pictureUrl$ | async) as pictureUrl">
-          <p class="HeaderText">{{UserName$ | async}} </p>
-          <img class="user-avatar" [src]="pictureUrl">
-        </ng-container>
-      -->
-
-        <!--
-        <mat-icon color="black" (click)="sidenav.open()" style="cursor: pointer;">menu_open</mat-icon>
+  <!-- OK quando autenticati, ma il login appare tutto a destra e il menu resta a visibile a sinistra-->
+    <mat-sidenav-content [class.close]="!opened">
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
   
-          <button mat-icon-button (click)="start.open('mouse')">
-              <mat-icon>menu</mat-icon>
-          </button>
-          <div class="filler"></div>
-          <ng-container *ngIf="(pictureUrl$ | async) as pictureUrl">
-              <img class="user-avatar" [src]="pictureUrl" >
-          </ng-container>
-        -->
-      </div>
-    </mat-toolbar>
-  
-  
-  
-    <!--<div class="container">  -->
-    <router-outlet></router-outlet>
-    <!-- </div> -->
-    <!-- <div *ngIf="isLoggedOut$ | async">Fai il login per avere accesso ai dati</div> -->
   </mat-sidenav-container>
-  
+ 
+  <!-- OK quando autenticati, ma il login appare sotto  
+  <router-outlet></router-outlet>
+  -->
+  <mat-toolbar color="grey">
+    © Tutti i diritti riservati: croficcivehself
+   </mat-toolbar>

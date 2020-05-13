@@ -19,7 +19,8 @@ import { UserService } from './shared/user.service';
 
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';            //AS: reference per chiamata a WS
-import { HTTP_INTERCEPTORS} from '@angular/common/http';            //AS: reference per gestione token JWT
+import { HTTP_INTERCEPTORS} from '@angular/common/http';
+import { UserDetailsComponent } from './components/user-details/user-details.component';            //AS: reference per gestione token JWT
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { HTTP_INTERCEPTORS} from '@angular/common/http';            //AS: refere
     UserComponent,
     RegistrationComponent,
     LoginComponent,
+    UserDetailsComponent,
   ],
   imports: [
     BrowserModule,
