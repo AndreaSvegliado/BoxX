@@ -9,6 +9,11 @@
     flex: 1;
   }
   
+  mat-sidenav-container {
+    display: flex;
+    flex-direction: column;
+  }
+
   /* 
    sidenav mini fix
    72px => 40px (button) + 16px(padding-left) + 16px(padding-right) 
@@ -18,6 +23,9 @@
     visibility: visible !important;
     transform: translate3d(calc(72px - 100%) , 0,0);
   }
+  
+
+
   .mat-drawer-content {
     margin-left: 72px;
   }
@@ -30,9 +38,13 @@
   }
 
 
+  .sidenav-container .sidenav .navigation-list {
+    padding-top: 30px;
+  }
+  .sidenav-container .sidenav .navigation-list {
+    padding-top: 30px;
+  }
   /*
-
-
 .sidenav-container {
     height: 100%;
   }

@@ -12,12 +12,15 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 
 const routes: Routes = [
   
+ 
   
   
-  { path:'home', component: DefaultComponent, canActivate:[AuthGuard]  },
+  { path:'default', component: DefaultComponent, canActivate:[AuthGuard]  },
+  //{ path:'home', component: DefaultComponent, canActivate:[AuthGuard]  },
   { path:'userDetails', component: UserDetailsComponent, canActivate:[AuthGuard]  },
   //...
-  
+
+
   { path:'' , redirectTo: 'user/login', pathMatch: 'full' },
   { path:'user', component: UserComponent, 
     children:[

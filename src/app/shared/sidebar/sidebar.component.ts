@@ -23,7 +23,10 @@ export class SidebarComponent implements OnInit {
   //UserName$: Observable<string>;
 
   
-  constructor(private router: Router, private uService: UserService ) { }
+  constructor(private router: Router, private uService: UserService ) {
+
+    
+   }
 
   ngOnInit() {
     //voglio che sidebar sia istantaneamente aggiornata quanto cambia il valore di isLoggedIn

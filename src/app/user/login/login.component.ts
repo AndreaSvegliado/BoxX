@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     if(localStorage.getItem('token') != null){
 
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/default');
     }
   }
 
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
         //this.ShowMessage("Login Corretta", "Benvenuto " + this.formModel.UserName, false);
         this.ShowMessage("Login Corretta", "Benvenuto " + this.uService.userFullName, false);
         
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/default');
       },
       err=> {
         
