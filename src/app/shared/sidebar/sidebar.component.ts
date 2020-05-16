@@ -24,17 +24,17 @@ export class SidebarComponent implements OnInit {
 
   
   constructor(private router: Router, private uService: UserService ) {
-
+    //Ho messo la routine nel constructor perchè ci passa mentre nell'onInit non passa se F5 su login!
     
-   }
+  }
 
   ngOnInit() {
-    //voglio che sidebar sia istantaneamente aggiornata quanto cambia il valore di isLoggedIn
-    //per questo faccio la subscribe all'observable rappresentato dal service
+    console.log("DEBUG: sidebar ngOnInit");
+    console.log(localStorage.getItem('currentUser'));
     this.uService.obsLoggedIn.subscribe(val => this.isLoggedIn = val)
 
     if(localStorage.getItem('currentUser') != null){
-
+      console.log("DEBUG: check currentUser sidebar ngOnInit");
       this.userDetails = JSON.parse(localStorage.getItem('currentUser'));
 
       for (let prop in this.userDetails ) {
@@ -45,6 +45,9 @@ export class SidebarComponent implements OnInit {
         }
       }
     }
+    //voglio che sidebar sia istantaneamente aggiornata quanto cambia il valore di isLoggedIn
+    //per questo faccio la subscribe all'observable rappresentato dal service
+
 
     /*
     // Se presente un token valido, recupero i dati dell'utente

@@ -1,6 +1,4 @@
- 
-
-<mat-toolbar color="primary" >
+<mat-toolbar class="topnavbar" color="primary" >
 
   <!-- Bottone apertura menu-->
   <div class="toolbar-tools" *ngIf="isLoggedIn"  >
@@ -13,8 +11,7 @@
   
   <!-- Nome utente loggato e bottone logout-->
   <ng-container *ngIf="isLoggedIn" > 
-      
-    <div  style="text-align: right; width:100%">
+    <div  class="navbar-container">
       <div  class="navbar-dark text-white" >
         <a style="font-size: medium;">{{userFullName}} </a> 
         <a class="navbar-dark text-white"> </a>
@@ -51,7 +48,7 @@
           <mat-list-item  [routerLink]="['/default']">
             <div class="item">
               <button mat-icon-button>
-                <mat-icon mat-list-icon>home</mat-icon>
+                <mat-icon mat-list-icon >home</mat-icon>
               </button>
               <a *ngIf="opened">Home</a>
             </div>
@@ -169,6 +166,6 @@
   <!-- OK quando autenticati, ma il login appare sotto  
   <router-outlet></router-outlet>
   -->
-  <mat-toolbar  color="grey" style="font-size: medium;">
+  <mat-toolbar  class="footernavbar" color="grey">
     © Tutti i diritti riservati: croficcivehself
   </mat-toolbar>

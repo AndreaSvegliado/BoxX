@@ -127,6 +127,7 @@ export class UserService {
 
   changeLoggedIn(val: boolean) {
     this.BehaviourSubjectLoggedIn.next(val)
+    
     //console.log ("user.service.ts - isLoggedIn viene impostato a "+ val)
   }
 
