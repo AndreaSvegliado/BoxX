@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import { UserService } from 'src/app/shared/user.service';
 import { Router } from '@angular/router';
 import {MatSnackBar, MatSnackBarConfig,MatSnackBarHorizontalPosition,MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
-
+import { SidebarComponent } from '../../shared/sidebar/sidebar.component'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     Password:''
   };
 
-  constructor(private uService: UserService, private router:Router, private snackBar : MatSnackBar) { 
+  constructor(private uService: UserService, private router:Router, private snackBar : MatSnackBar, private sidebar: SidebarComponent) { 
     
   }
 
@@ -41,6 +41,9 @@ export class LoginComponent implements OnInit {
         
         //this.ShowMessage("Login Corretta", "Benvenuto " + this.formModel.UserName, false);
         this.ShowMessage("Login Corretta", "Benvenuto " + this.uService.userFullName, false);
+        
+        //Forse fa schifo ma funziona
+        this.sidebar.ngOnInit();
         
         this.router.navigateByUrl('/default');
       },
