@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, Validators, FormGroup} from '@angular/forms';
 import { HttpClient } from "@angular/common/http";
-//import { environment } from 'src/environments/environment';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { currentUser } from './../models/models';
 import { map } from 'rxjs/operators';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+import { currentUser } from '../models/models';
 import { environment } from 'src/environments/environment';
 
 
@@ -20,7 +20,7 @@ export class UserService {
   private BehaviourSubjectcurrentUser : BehaviorSubject<currentUser>;
   public obscurrentUser: Observable<currentUser>;
   
-  public userFullName="TEST";
+  public userFullName="";
 
   //readonly BaseURI = "https://localhost:44306/api";
   //readonly BaseURI = "http://188.152.211.199/iQWApi/api";
@@ -34,9 +34,6 @@ export class UserService {
     //The BehaviorSubject holds the value that needs to be shared with other components
     this.BehaviourSubjectcurrentUser = new BehaviorSubject<currentUser>(JSON.parse(localStorage.getItem('currentUser')));
     this.obscurrentUser = this.BehaviourSubjectcurrentUser.asObservable();
-  }
-  public get currentUserValue(): currentUser {
-    return this.BehaviourSubjectcurrentUser.value;
   }
 
   formModel = this.fb.group(
@@ -102,6 +99,9 @@ export class UserService {
     return  this.http.post(this.BaseURI +'/ApplicationUser/Register', body );
   }
 
+  public get currentUserValue(): currentUser {
+    return this.BehaviourSubjectcurrentUser.value;
+  }
 
 
 //AS: VERIFICARE

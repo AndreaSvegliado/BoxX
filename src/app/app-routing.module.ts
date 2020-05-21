@@ -9,6 +9,7 @@ import { UserComponent } from './user/user.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { LoginComponent } from './user/login/login.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { TicketCardComponent } from './components/tickets/ticket-card/ticket-card.component';
 
 const routes: Routes = [
   
@@ -18,6 +19,8 @@ const routes: Routes = [
   { path:'default', component: DefaultComponent, canActivate:[AuthGuard]  },
   //{ path:'home', component: DefaultComponent, canActivate:[AuthGuard]  },
   { path:'userDetails', component: UserDetailsComponent, canActivate:[AuthGuard]  },
+
+  { path:'ticket-card', component: TicketCardComponent, canActivate:[AuthGuard]  },
   //...
 
 

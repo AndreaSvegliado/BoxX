@@ -1,0 +1,61 @@
+
+<!-- AS: tag con evento e accesso ai dati del component ts -->
+<!--
+<h1 (click)="onH1Click()">
+        Ticket: {{ demoTicket.n_ticket }}
+        del {{ demoTicket.data }}
+    </h1>
+-->
+<!-- AS: Esempio controllo con evento e binded value 
+per accedere alle variabili del ts si devono usare le parentesi quadre
+per poter essere richiamato all'interno dell'html o dal ts il controllo deve avere un nome (preceduto da #)
+
+vedi sul ts:
+onKeyUp(newValue: string) {
+    this.demoTicket.n_ticket = newValue;
+ }
+<input class="demo" (keyup)="onKeyUp(inputCtrlName.value)" [value]="demoTicket.n_ticket" #inputCtrlName>          
+-->
+
+
+<!-- AS: le due righe seguenti producono lo stesso risultato 
+ src={{ticket.iconURL}}
+ [src]="ticket.iconURL"
+
+ con la direttiva *ngIf="ticket.iconURL", l'immagine viene mostrata solo se  ticket.iconURL non è null
+ con la direttiva *ngIf="ticket" a livello di classe ticket-card, la div viene mostrata solo se l'oggetto "ticket" non è null
+ con la direttiva [ngClass] si può assegnare la classe in modo dinamico facendo riferimento ad un metodo (Conditional Class)
+ con la direttiva [ngStyle] si può assegnare la classe in modo dinamico facendo riferimento ad un metodo (Conditional Style)
+        es: [ngStyle]="ticketStyles()"
+-->
+
+
+<div class="ticket-card" *ngIf="ticket"  [ngClass]="ticketClasses()">
+
+    <div class="ticket-title">
+        {{ticket.n_Ticket}}
+    </div>
+    <div [ngSwitch]="ticket.tipoTicket">
+        <div class="ticket-tipo" *ngSwitchCase="'A'">Assistenza</div>
+        <div class="ticket-tipo" *ngSwitchCase="'I'">Installazione</div>    
+    </div>
+ 
+    <p></p>    
+     
+    <img width="300" alt="Logo" *ngIf="ticket.iconURL; else noImage"         
+        [src]="ticket.iconURL" >
+    
+     
+    <ng-template #noImage>
+        <p>No image is avaiable.</p>
+    </ng-template>
+
+    
+    <div class="ticket-Cliente">
+        {{ticket.cliente}} - {{ticket.ragsoc}}
+    </div>
+    
+    <p>TicketID: {{ticket.id}}</p>
+    <button  [routerLink]="['/ticket-details', ticket.id]">Open Ticket</button>
+</div>
+

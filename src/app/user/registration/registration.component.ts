@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/shared/user.service';
+import { UserService } from 'src/app/services/user.service';
 
 //import { keyframes } from '@angular/animations';
 //import { ToastrService } from 'ngx-toastr';

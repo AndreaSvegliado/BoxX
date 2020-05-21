@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 //import { CanActivate, CanActivateChild, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { CanActivate,  ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { UserService } from '../shared/user.service';
+import { UserService } from '../services/user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class AuthGuard implements CanActivate {
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot):  boolean  {
 
-      console.log("DEBUG: auth.guard");
+      //console.log("DEBUG: auth.guard");
 
       if(localStorage.getItem('token') != null){
         //console.log ("Auth.guard/canActivate: True");

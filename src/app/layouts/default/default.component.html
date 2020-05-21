@@ -1,6 +1,24 @@
 
 
 
-<p>default.component works!</p>
+<h4>Benvenuto a sto froscione !</h4>
+
+<!-- AS: per DEBUG -->
+<p>JSON </p>
+{{tickets | json}} 
+
+
+<div class="ticket-card">
+
+    <app-ticket-card *ngFor="let ticket of tickets" [ticket]="ticket">
+
+    </app-ticket-card>
+    <!--
+    <ticket-card *ngFor="let ticket of tickets" [ticket]="ticket">
+    </ticket-card>
+-->
+</div>
+
 
 <router-outlet></router-outlet>
+

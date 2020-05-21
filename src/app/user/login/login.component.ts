@@ -1,9 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { UserService } from 'src/app/shared/user.service';
+import { UserService } from 'src/app/services/user.service';
 import { Router } from '@angular/router';
 import {MatSnackBar, MatSnackBarConfig,MatSnackBarHorizontalPosition,MatSnackBarVerticalPosition} from '@angular/material/snack-bar';
 import { SidebarComponent } from '../../shared/sidebar/sidebar.component'
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -34,12 +35,8 @@ export class LoginComponent implements OnInit {
 
     this.uService.Login(form.value).subscribe(
       (res: any) => {
-        //localStorage.setItem('token', res.token);
-        //localStorage.setItem('currentUser', JSON.stringify(res));
 
         this.uService.changeLoggedIn(true);
-        
-        //this.ShowMessage("Login Corretta", "Benvenuto " + this.formModel.UserName, false);
         this.ShowMessage("Login Corretta", "Benvenuto " + this.uService.userFullName, false);
         
         //Forse fa schifo ma funziona
@@ -49,12 +46,15 @@ export class LoginComponent implements OnInit {
       },
       err=> {
         
+
         this.uService.changeLoggedIn(false);
         if(err.status== 400) {
           this.ShowMessage("Utente o Password errati", "Riprova",true);
         }
         else {
-          this.ShowMessage(err,"" , true);
+          console.log(err);
+          this.ShowMessage("Server Error: ", "Time-out" ,true);
+          //this.ShowMessage(err,"" , true);
         }
       }
     );
