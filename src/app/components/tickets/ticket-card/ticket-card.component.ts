@@ -46,6 +46,7 @@ export class TicketCardComponent implements OnInit, AfterViewInit, AfterContentI
 
 
   }
+  
   ticketClasses(){
     return  {
       'stato70': this.ticket.statoTicket=="70",

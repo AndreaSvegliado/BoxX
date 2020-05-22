@@ -20,15 +20,12 @@ export class UserService {
   private BehaviourSubjectcurrentUser : BehaviorSubject<currentUser>;
   public obscurrentUser: Observable<currentUser>;
   
-  public userFullName="";
+  public currUser : currentUser;
 
-  //readonly BaseURI = "https://localhost:44306/api";
   //readonly BaseURI = "http://188.152.211.199/iQWApi/api";
   readonly BaseURI = environment.apiBaseUrl;
   
-        //AS: dati ambiente
-        //let reqUrl = environment.apiBaseUrl;
-        
+      
   constructor(private fb: FormBuilder, private http: HttpClient) { 
 
     //The BehaviorSubject holds the value that needs to be shared with other components
@@ -57,25 +54,16 @@ export class UserService {
     console.log("DEBUG: User.service/Login");
 
     //return this.http.post(this.BaseURI  +'/ApplicationUser/Login', formData );
-    
-    return this.http.post<any>(this.BaseURI  +'/ApplicationUser/Login', formData )
+    //return this.http.post<any>(this.BaseURI  +'/ApplicationUser/Login', formData )
+    return this.http.post<currentUser>(this.BaseURI  +'/ApplicationUser/Login', formData )
       .pipe(map(user => {
         if (user && user.token) {
           // store user details in local storage to keep user logged in
           localStorage.setItem('token', user.token);
           localStorage.setItem('currentUser', JSON.stringify(user));
           
-          var currUser = JSON.parse(localStorage.getItem('currentUser'));
+          this.currUser = user;
 
-          for (let prop in currUser ) {
-            if(prop == "fullname"){
-              //console.log(this.userDetails [prop]);
-              this.userFullName = currUser [prop];
-            }
-          }
-          console.log(this.userFullName);
-        
-          //this.changeLoggedIn(true);
           this.BehaviourSubjectcurrentUser.next(user);
         }     
       return user;

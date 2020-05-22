@@ -17,9 +17,8 @@ ticket-card {
     background: lightskyblue;
    }
    .ticket-card.stato90 {
-    background: lightgrey;
+    background: greenyellow;
    }
-  
   
   .ticket-tipo1 {
     margin-top: 15px;
@@ -35,8 +34,6 @@ ticket-card {
     padding: 2px 3px;
     display: inline;
   }
-  
-  
   
   .ticket-card .ticket-title {
     font-size: 27px;

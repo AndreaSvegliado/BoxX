@@ -6,6 +6,8 @@ export const environment = {
   production: false,
   apiBaseUrl: "http://188.152.211.199/iQWApi/api"
 };
+
+
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.

@@ -1,8 +1,9 @@
 export interface currentUser {
-    fullName: string;
+    fullname: string;
     email: string;
-    userName: string;
+    username: string;
     badge: string;
+    token?: string;
 }
 
 export interface ticket {

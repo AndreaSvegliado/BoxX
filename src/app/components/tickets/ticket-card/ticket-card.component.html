@@ -1,11 +1,5 @@
 
-<!-- AS: tag con evento e accesso ai dati del component ts -->
-<!--
-<h1 (click)="onH1Click()">
-        Ticket: {{ demoTicket.n_ticket }}
-        del {{ demoTicket.data }}
-    </h1>
--->
+
 <!-- AS: Esempio controllo con evento e binded value 
 per accedere alle variabili del ts si devono usare le parentesi quadre
 per poter essere richiamato all'interno dell'html o dal ts il controllo deve avere un nome (preceduto da #)
@@ -30,7 +24,7 @@ onKeyUp(newValue: string) {
 -->
 
 
-<div class="ticket-card" *ngIf="ticket"  [ngClass]="ticketClasses()">
+<div style="margin: auto; margin-bottom: 20px;" class="ticket-card" *ngIf="ticket"  [ngClass]="ticketClasses()">
 
     <div class="ticket-title">
         {{ticket.n_Ticket}}

@@ -13,7 +13,7 @@
   <ng-container *ngIf="isLoggedIn" > 
     <div  class="navbar-container">
       <div  class="navbar-dark text-white" >
-        <a style="font-size: medium;">{{userFullName}} </a> 
+        <a style="font-size: medium;">{{currUser.fullname}} </a> 
         <a class="navbar-dark text-white"> </a>
         <button class="btn btn-danger my-2 my-sm-0" (click)="onLogout()">Logout</button>
       </div> 

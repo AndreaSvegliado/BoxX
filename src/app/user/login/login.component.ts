@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       (res: any) => {
 
         this.uService.changeLoggedIn(true);
-        this.ShowMessage("Login Corretta", "Benvenuto " + this.uService.userFullName, false);
+        this.ShowMessage("Login Corretta", "Benvenuto " + this.uService.currUser.fullname, false);
         
         //Forse fa schifo ma funziona
         this.sidebar.ngOnInit();
