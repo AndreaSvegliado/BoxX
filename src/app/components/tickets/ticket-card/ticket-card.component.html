@@ -31,15 +31,23 @@ onKeyUp(newValue: string) {
     
     <div class="ticket-title">
         <div class="col-md-4" >
-            {{ticket.n_Ticket}}     
+                 
         </div>
-        <div class="col-md-4">
-            <img src="../../../../assets/img/icona-mappa-maxi.png" alt="">
+        <div class="row">
+
+            <div class="col-4 offset-4">
+                {{ticket.n_Ticket}}
+            </div>
+            <div class="col-4 container-icona-mappa" >
+                <a href="{{'http://www.google.com/maps/place/' + ticket.customer.poi}}" target="_blank">
+                    <img class="icona-mappa" src="../../../../assets/img/icona-mappa-maxi.png" >
+                </a>
+            </div>
         </div>
     </div>
     <div class="ticket-data">
-        Data intervento: {{ticket.data1| date: 'dd/MM/yyyy'}}
-    </div>
+        Data: {{ticket.data1| date: 'dd/MM/yyyy'}}
+            </div>
     <div [ngSwitch]="ticket.tipoTicket">
         <div class="ticket-tipo" *ngSwitchCase="'A'">Assistenza</div>
         <div class="ticket-tipo" *ngSwitchCase="'I'">Installazione</div>    
