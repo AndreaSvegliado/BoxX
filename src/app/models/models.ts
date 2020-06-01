@@ -1,3 +1,5 @@
+import { Timestamp } from 'rxjs/internal/operators/timestamp';
+
 export interface currentUser {
     fullname: string;
     email: string;
@@ -12,8 +14,21 @@ export interface ticket {
     tipoTicket: string;
     statoTicket: string;
     badge: string;
-    tecnico:string;
-    cliente: string;
+    
+    data1: Date;
+    customerID: number;
+    customer: Customer;
+    poi: string;
+}
+
+export interface Customer {
+    id:number;
+    codice: string;
     ragsoc: string;
-    iconURL: string;
+    indirizzo: string;
+    citta: string;
+    prov: string;
+    nazione: string;
+    poi: string;
+
 }

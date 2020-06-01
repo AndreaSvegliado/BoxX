@@ -24,12 +24,8 @@ export class TicketService  {
    getTicketList(): Observable<ticket[]>
    {
 
-    if(localStorage.getItem('currentUser') != null){
-       
+    if(localStorage.getItem('currentUser') != null)
       this.currUser = JSON.parse(localStorage.getItem('currentUser'));
-console.log(this.currUser);
-
-    }
     
      //return this.http.get<Ticket[]>(environment.apiBaseURI + '/Ticket'); 
      //return this.http.get<Ticket[]>(environment.apiBaseURI + '/Ticket?badge=666');     //QUI: filtro per utente loggato!!!!

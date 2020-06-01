@@ -23,11 +23,22 @@ onKeyUp(newValue: string) {
         es: [ngStyle]="ticketStyles()"
 -->
 
-
+<!--
+<p>JSON </p>
+{{ticket.customer.indirizzo | json}} 
+-->
 <div style="margin: auto; margin-bottom: 20px;" class="ticket-card" *ngIf="ticket"  [ngClass]="ticketClasses()">
-
+    
     <div class="ticket-title">
-        {{ticket.n_Ticket}}
+        <div class="col-md-4" >
+            {{ticket.n_Ticket}}     
+        </div>
+        <div class="col-md-4">
+            <img src="../../../../assets/img/icona-mappa-maxi.png" alt="">
+        </div>
+    </div>
+    <div class="ticket-data">
+        Data intervento: {{ticket.data1| date: 'dd/MM/yyyy'}}
     </div>
     <div [ngSwitch]="ticket.tipoTicket">
         <div class="ticket-tipo" *ngSwitchCase="'A'">Assistenza</div>
@@ -36,20 +47,25 @@ onKeyUp(newValue: string) {
  
     <p></p>    
      
+    <!--
     <img width="300" alt="Logo" *ngIf="ticket.iconURL; else noImage"         
         [src]="ticket.iconURL" >
-    
+    -->
      
     <ng-template #noImage>
         <p>No image is avaiable.</p>
     </ng-template>
 
     
-    <div class="ticket-Cliente">
-        {{ticket.cliente}} - {{ticket.ragsoc}}
+    <div class="ticket-cliente">
+        {{ticket.customer.ragsoc}}
+        <br>
+        {{ticket.customer.indirizzo}}
+        
+        <!-- {{ticket.cliente}} - {{ticket.ragsoc}} -->
     </div>
     
-    <p>TicketID: {{ticket.id}}</p>
+    
     <button  [routerLink]="['/ticket-details', ticket.id]">Open Ticket</button>
 </div>
 

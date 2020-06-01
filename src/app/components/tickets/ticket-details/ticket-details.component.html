@@ -1,1 +1,132 @@
-<p>ticket-details works!</p>
+
+<!-- per vedere i dati in formato json:
+{{ ticket|json}}
+-->
+
+{{ ticket|json}}
+
+
+
+<p></p>
+
+<div>
+    <button  (click)="BackToHome()">Torna a Lista ticket</button>
+    <!--<button  [routerLink]="['/home']">Lista ticket</button>-->
+</div>
+
+<p></p>
+<!--
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th> 
+        <td> {{ticket.ID}}</td>
+        <th>Ticket</th>
+        <td> {{ticket.N_Ticket}}</td>
+        <th>Cliente</th>
+        <td> {{ticket.Ragsoc}}</td>
+        <th>Indirizzo</th>
+        <td> {{ticket.Indirizzo}}</td>
+        <th>Città</th>
+        <td> {{ticket.Citta}}</td>
+        <th>Stato</th>
+        <td> {{ticket.StatoTicket}}</td>
+    </tr>
+</table>
+
+<div class="card m-5" style="width:22rem">
+    <ul class="list-group">
+        <li class="list-group-item"><strong>ID: </strong>{{ticket.ID}}</li> 
+        <li class="list-group-item"><strong>Ticket: </strong>{{ticket.N_Ticket}}</li>
+        <li class="list-group-item"><strong>Cliente: </strong>{{ticket.Ragsoc}}</li>
+        <li class="list-group-item"><strong>Indirizzo: </strong>{{ticket.Indirizzo}}</li>
+        <li class="list-group-item"><strong>Città: </strong>{{ticket.Citta}}</li>
+        <li class="list-group-item"><strong>StatoTicket: </strong>{{ticket.StatoTicket}}</li>
+    </ul>
+</div>
+
+-->
+
+
+<div class="jumbotron">
+
+    <blockquote class="blockquote ml-5">
+        <h2 class="display-4 text-center">Dettaglio Ore Ticket</h2>
+        <footer class="blockquote-footer">
+            Inserire il dettaglio delle attività
+        </footer>
+    
+    </blockquote>
+
+    <div class="grid-table">
+        <div class="thead">
+            <div class="tr">
+                <div class="td">ID</div>
+                <div class="td">TicketID</div>
+                <div class="td">Data</div>
+                <div class="td">Mattino Start</div>
+                <div class="td">Mattino End</div>
+            </div>
+        </div>
+
+
+        
+        <div class="tbody">
+             
+            <!--<form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of timesheetForms.controls; let i=index;" (submit)="recordSubmit(fgroup)">-->
+            <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of timesheetForms.controls; let i=index;">
+
+                <div class="td">
+                    <input   class="form-control" formControlName="ID">
+                </div>
+                 <div class="td">
+                    <input   class="form-control" formControlName="TicketID">
+                </div>
+                <div class="td">
+                    <input   class="form-control" formControlName="Data">
+                </div> 
+                <div class="td">
+                    <input   class="form-control" formControlName="Mattino_Start">
+                </div>                 
+            </form> 
+    
+        </div>
+    </div>
+
+    <button class="btn btn-outline-dark" (click)="addRowForm()">
+        <mat-icon>add</mat-icon> 
+        Nuova riga
+    </button>        
+</div>    
+      <!--  
+
+            <div class="tbody">
+                <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of bankAccountForms.controls; let i=index;" (submit)="recordSubmit(fgroup)">
+                    <div class="td">
+                        <input   class="form-control" formControlName="accountNumber">
+                    </div>
+                    <div class="td">
+                        <input   class="form-control" formControlName="accountHolder">
+                    </div>
+                    <div class="td">
+                        <select   class="form-control" formControlName="bankID">  
+                            <option value="0">Select</option>
+                            <option *ngFor="let item of bankList" value="{{item.bankID}}">{{item.bankName}}</option>
+                        </select>
+                    </div>                                
+                    <div class="td">
+                        <input   class="form-control" formControlName="IFSC">  
+                    </div>   
+                    <div class="td">
+                        <button type="submit" class="btn btn-success" [disabled]="fgroup.invalid"
+                            [ngClass]="fgroup.get('bankAccountID').value==0?'btn-success':'btn-outline-dark'">
+                            <mat-icon>save_alt</mat-icon>
+                            {{fgroup.get('bankAccountID').value==0?'Submit':'Update'}}
+                        </button>
+                        <button class="btn btn-light ml-1" (click)="onDelete(fgroup.get('bankAccountID').value,i)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>                             
+                </form>
+            </div>
+        
+    -->

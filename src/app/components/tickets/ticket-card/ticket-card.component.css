@@ -1,6 +1,4 @@
-ticket-card {
-    display: block;
-  }
+  
   .ticket-card{
     max-width: 360px;
     margin-bottom: 40px;
@@ -10,6 +8,11 @@ ticket-card {
     box-shadow: 0 1px 16px 0 rgba(0, 0, 0, .2), 0 2px 8px 0 rgba(0, 0, 0, .14), 0 4px 8px -1px rgba(0, 0, 0, .12);
   }
   
+  .icona-mappa{
+    position: absolute;
+    right: 0px;
+  }
+
   .ticket-card.stato70 {
     background: white;
    }
@@ -34,7 +37,10 @@ ticket-card {
     padding: 2px 3px;
     display: inline;
   }
-  
+  .ticket-cliente {
+    margin-bottom: 10px;
+  }
+
   .ticket-card .ticket-title {
     font-size: 27px;
     font-weight: bold;

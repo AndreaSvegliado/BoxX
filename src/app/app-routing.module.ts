@@ -10,6 +10,7 @@ import { RegistrationComponent } from './user/registration/registration.componen
 import { LoginComponent } from './user/login/login.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { TicketCardComponent } from './components/tickets/ticket-card/ticket-card.component';
+import { TicketDetailsComponent } from './components/tickets/ticket-details/ticket-details.component';
 
 const routes: Routes = [
   
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path:'userDetails', component: UserDetailsComponent, canActivate:[AuthGuard]  },
 
   { path:'ticket-card', component: TicketCardComponent, canActivate:[AuthGuard]  },
+  { path:'ticket-details', component: TicketDetailsComponent, canActivate:[AuthGuard]  },
   //...
 
 
