@@ -9,6 +9,7 @@ import { UserComponent } from './user/user.component';
 import { RegistrationComponent } from './user/registration/registration.component';
 import { LoginComponent } from './user/login/login.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+
 import { TicketCardComponent } from './components/tickets/ticket-card/ticket-card.component';
 import { TicketDetailsComponent } from './components/tickets/ticket-details/ticket-details.component';
 
@@ -22,8 +23,9 @@ const routes: Routes = [
   { path:'userDetails', component: UserDetailsComponent, canActivate:[AuthGuard]  },
 
   { path:'ticket-card', component: TicketCardComponent, canActivate:[AuthGuard]  },
-  { path:'ticket-details', component: TicketDetailsComponent, canActivate:[AuthGuard]  },
+  { path:'ticket-details/:ID', component: TicketDetailsComponent, canActivate:[AuthGuard]},
   //...
+  //{path: '**', component: PageNotFoundComponent}
 
 
   { path:'' , redirectTo: 'user/login', pathMatch: 'full' },

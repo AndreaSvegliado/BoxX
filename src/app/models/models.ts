@@ -21,6 +21,20 @@ export interface ticket {
     poi: string;
 }
 
+export interface ticketDetail {
+    id: number;
+    ticketID: number;
+    causaleID: number;
+
+    /*
+    public DateTime Dt { get; set; }
+    public Nullable<TimeSpan> H_Ini { get; set; }
+    public Nullable<TimeSpan> H_End { get; set; }
+    public string Note { get; set; }
+    public virtual TicketCausale Causale { get; set; }*/
+}
+
+
 export interface Customer {
     id:number;
     codice: string;

@@ -20,7 +20,9 @@ import { UserService } from './services/user.service';
 
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { TicketCardComponent } from './components/tickets/ticket-card/ticket-card.component';
-import { TicketDetailsComponent } from './components/tickets/ticket-details/ticket-details.component';            //AS: reference per gestione token JWT
+import { TicketDetailsComponent } from './components/tickets/ticket-details/ticket-details.component';
+import { TicketDetailComponent } from './components/tickets/ticket-detail/ticket-detail.component';            //AS: reference per gestione token JWT
+import { TicketDetailListComponent } from './components/tickets/ticket-detail-list/ticket-detail-list.component';
 
 @NgModule({
   declarations: [
@@ -31,8 +33,11 @@ import { TicketDetailsComponent } from './components/tickets/ticket-details/tick
     RegistrationComponent,
     LoginComponent,
     UserDetailsComponent,
+    
     TicketCardComponent,
     TicketDetailsComponent,
+    TicketDetailComponent,
+    TicketDetailListComponent,
   ],
   imports: [
     BrowserModule,

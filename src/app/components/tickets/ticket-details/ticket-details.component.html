@@ -1,20 +1,41 @@
 
-<!-- per vedere i dati in formato json:
-{{ ticket|json}}
--->
-
-{{ ticket|json}}
-
-
-
-<p></p>
-
 <div>
-    <button  (click)="BackToHome()">Torna a Lista ticket</button>
+    <button class="ticket-button"  (click)="BackToHome()">Torna a Lista ticket</button>
     <!--<button  [routerLink]="['/home']">Lista ticket</button>-->
 </div>
 
-<p></p>
+
+
+<div class="jumbotron">
+    <h3 class="display-4 text-center">Dettaglio Ticket</h3>
+    <hr>
+    <div>
+        <h5>Ticked ID: {{mticketID}} </h5>  
+    </div>
+
+    <div class="row">
+        <div class="col-md-5">
+            <p>app-ticket-detail</p>
+            <app-ticket-detail></app-ticket-detail> 
+        </div>
+        <div class="col-md-7">
+            <p>app-ticket-detail-list</p>
+            <app-ticket-detail-list></app-ticket-detail-list> 
+        </div>
+    </div>
+
+</div>
+
+<!-- DA QUI IN POI E' LA VERSIONE VECCHIA -->
+
+
+ 
+
+<!--
+<div>
+    <button  (click)="BackToHome()">Torna a Lista ticket</button>
+</div>
+-->
 <!--
 <table class="table table-bordered">
     <tr>
@@ -44,7 +65,7 @@
     </ul>
 </div>
 
--->
+ 
 
 
 <div class="jumbotron">
@@ -68,11 +89,9 @@
             </div>
         </div>
 
-
-        
+    -->
+        <!--
         <div class="tbody">
-             
-            <!--<form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of timesheetForms.controls; let i=index;" (submit)="recordSubmit(fgroup)">-->
             <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of timesheetForms.controls; let i=index;">
 
                 <div class="td">
@@ -95,10 +114,12 @@
     <button class="btn btn-outline-dark" (click)="addRowForm()">
         <mat-icon>add</mat-icon> 
         Nuova riga
-    </button>        
-</div>    
-      <!--  
+    </button>   
+-->     
+  
 
+      <!--  
+</div>  
             <div class="tbody">
                 <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of bankAccountForms.controls; let i=index;" (submit)="recordSubmit(fgroup)">
                     <div class="td">

@@ -13,6 +13,7 @@ import {
 
 import { TicketService } from 'src/app/services/ticket.service';
 import{ ticket } from 'src/app/models/models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ticket-card',
@@ -29,7 +30,7 @@ export class TicketCardComponent implements OnInit, AfterViewInit, AfterContentI
   @Input()
     ticketIndex: number;
 
-  constructor(private ticketService: TicketService) { }
+  constructor(private router : Router, private ticketService: TicketService) { }
 
   ngOnInit(): void {
   }
@@ -54,6 +55,7 @@ export class TicketCardComponent implements OnInit, AfterViewInit, AfterContentI
       'stato90': this.ticket.statoTicket=="90",
       'ticket-card': true
     }
-}
+  }
+
 
 }
