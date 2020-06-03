@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TicketDetailService } from 'src/app/services/ticket-detail.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ticketDetail } from 'src/app/models/models';
 
 @Component({
   selector: 'app-ticket-detail-list',
@@ -8,11 +10,21 @@ import { TicketDetailService } from 'src/app/services/ticket-detail.service';
 })
 export class TicketDetailListComponent implements OnInit {
 
-  constructor(public ticketDetailService: TicketDetailService) { 
+  //NON FUNZIONA CASSO!!!!
+  //@Input() public iTicketID : string;
+  
+  //mticketID: string;
+  //public TicketID: number
+   ticketDetails:ticketDetail[];
 
-    //ATTENZIONE: devo passargli l'ID del tiket !
-    //this.ticketDetailService.getTicketDetailList();
-    //  .refreshList();
+  constructor(private route: ActivatedRoute, private router : Router, public ticketDetailService: TicketDetailService ) { 
+
+    let ID = this.route.snapshot.params['ID'];
+
+    this.ticketDetailService.getTicketDetailList(ID)
+    .subscribe(
+      res=>   this.ticketDetails = res as ticketDetail[]
+    );  
   }
 /*
   populateForm(objPaymentDetail: PaymentDetail){
