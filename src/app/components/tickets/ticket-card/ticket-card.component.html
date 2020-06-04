@@ -1,5 +1,3 @@
-
-
 <!-- AS: Esempio controllo con evento e binded value 
 per accedere alle variabili del ts si devono usare le parentesi quadre
 per poter essere richiamato all'interno dell'html o dal ts il controllo deve avere un nome (preceduto da #)
@@ -28,54 +26,49 @@ onKeyUp(newValue: string) {
 {{ticket.customer.indirizzo | json}} 
 -->
 
+<div style="margin: auto; margin-bottom: 20px;" class="ticket-card" *ngIf="ticket" [ngClass]="ticketClasses()">
 
-
-<div style="margin: auto; margin-bottom: 20px;" class="ticket-card" *ngIf="ticket"  [ngClass]="ticketClasses()">
-    
     <div class="ticket-title">
-
         <div class="row">
-
             <div class="col-4 offset-4">
                 {{ticket.n_Ticket}}
             </div>
-            <div class="col-4 container-icona-mappa"  *ngIf=ticket.customer.poi >
+            <div class="col-4 container-icona-mappa" *ngIf=ticket.customer.poi>
                 <a href="{{'http://www.google.com/maps/place/' + ticket.customer.poi}}" target="_blank">
-                    <img class="icona-mappa" src="../../../../assets/img/icona-mappa-maxi.png" >
+                    <img class="icona-mappa" src="../../../../assets/img/icona-mappa-maxi.png">
                 </a>
             </div>
         </div>
     </div>
-    
+
     <div class="ticket-data">
         Data: {{ticket.data1| date: 'dd/MM/yyyy'}}
-            </div>
-    <div [ngSwitch]="ticket.tipoTicket">
-        <div class="ticket-tipo" *ngSwitchCase="'A'">Assistenza</div>
-        <div class="ticket-tipo" *ngSwitchCase="'I'">Installazione</div>    
     </div>
- 
-    <p></p>    
-     
-    <!--
-    <img width="300" alt="Logo" *ngIf="ticket.iconURL; else noImage"         
-        [src]="ticket.iconURL" >
-    -->
-     
+
+    <div [ngSwitch]="ticket.tipoTicket">
+        <div class="ticket-tipo" *ngSwitchCase="'A'">
+            Assistenza
+        </div>
+        <div class="ticket-tipo" *ngSwitchCase="'I'">
+            Installazione
+        </div>
+    </div>
+
+    <!-- <img width="300" alt="Logo" *ngIf="ticket.iconURL; else noImage" [src]="ticket.iconURL" > -->
+
     <ng-template #noImage>
         <p>No image is avaiable.</p>
     </ng-template>
 
-    
     <div class="ticket-cliente">
         {{ticket.customer.ragsoc}}
         <br>
         {{ticket.customer.indirizzo}}
-        
         <!-- {{ticket.cliente}} - {{ticket.ragsoc}} -->
     </div>
-    
-    
-    <button class="ticket-button" [routerLink]="['/ticket-details', ticket.id]">Open Ticket</button>
-</div>
 
+    <button mat-flat-button class="ticket-button" [routerLink]="['/ticket-details', ticket.id]">
+        Open Ticket
+    </button>
+
+</div>

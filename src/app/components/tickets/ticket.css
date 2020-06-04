@@ -1,13 +1,27 @@
 .ticket-button {
-    margin-top: 20px;
-    height: 40px;
-    font-size: 20px;
-    background: #1a7ce7;
-    color: white;
-    border-radius: 4px;
-  }
+  margin-top: 20px;
+  height: 40px;
+  font-size: 20px;
+  background: #1a7ce7;
+  color: white;
+}
 
-  .input-group{
+.input-group {
+  margin-bottom: 10px;
+}
 
-    margin-bottom: 10px;
-  }
+.jumbotron {
+  padding-top: 10px;
+}
+
+.IDtext {
+  font-size: 16px;
+}
+
+.ora-inizio {
+  margin-right: 10px;
+}
+
+.group-data{
+  text-align: center;
+}

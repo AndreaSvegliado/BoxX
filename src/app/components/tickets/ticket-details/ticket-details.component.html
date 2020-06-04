@@ -1,33 +1,22 @@
-
 <div>
-    <button class="ticket-button"  (click)="BackToHome()">Torna a Lista ticket</button>
+    <button mat-flat-button class="ticket-button" (click)="BackToHome()">Torna a Lista Ticket</button>
     <!--<button  [routerLink]="['/home']">Lista ticket</button>-->
 </div>
 
-
-
 <div class="jumbotron">
-    <h3 class="display-4 text-center">Dettaglio Ticket</h3>
-    <hr>
-    <div>
-        <h5>Ticked ID: {{mticketID}} </h5>  
-    </div>
-
+    <h3 class="display-5 text-center">Dettaglio Ticket <span class="IDtext">[ID:{{mticketID}}]</span> </h3>
+    <!-- <h5>Ticked ID: {{mticketID}} </h5> -->
     <div class="row">
         <div class="col-md-5">
-            <app-ticket-detail></app-ticket-detail> 
+            <app-ticket-detail></app-ticket-detail>
         </div>
         <div class="col-md-7">
-            <app-ticket-detail-list ></app-ticket-detail-list> 
+            <app-ticket-detail-list></app-ticket-detail-list>
         </div>
     </div>
-
 </div>
 
 <!-- DA QUI IN POI E' LA VERSIONE VECCHIA -->
-
-
- 
 
 <!--
 <div>
@@ -88,7 +77,7 @@
         </div>
 
     -->
-        <!--
+<!--
         <div class="tbody">
             <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of timesheetForms.controls; let i=index;">
 
@@ -113,10 +102,10 @@
         <mat-icon>add</mat-icon> 
         Nuova riga
     </button>   
--->     
-  
+-->
 
-      <!--  
+
+<!--  
 </div>  
             <div class="tbody">
                 <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of bankAccountForms.controls; let i=index;" (submit)="recordSubmit(fgroup)">
