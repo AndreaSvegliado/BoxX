@@ -1,1 +1,133 @@
-<p>ticket-detail works!</p>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+    <input type="hidden" name="id" [value]="service.formData.id">
+        <div class="form-group">
+         
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text bg-white">
+                        <!-- 
+                        <mat-icon  [color] = "CardOwnerName.invalid && CardOwnerName.touched ? 'warn' : ''">perm_identity</mat-icon>                    
+                        -->
+                        <mat-icon>perm_identity</mat-icon>                    
+                    </div>
+                </div>
+                <input name="ticketID" #TicketID="ngModel" [(ngModel)]="service.formData.ticketID" 
+                    class="form-control" placeholder="TicketID" required>
+            </div>    
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text bg-white">
+                        <mat-icon >payment</mat-icon>
+                    </div>
+                </div>
+                <input name="causaleID" #Causale="ngModel" [(ngModel)]="service.formData.causaleID" 
+                    class="form-control" placeholder="Causale" required >
+            </div>    
+
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text bg-white">
+                        <mat-icon >event</mat-icon>
+                    </div>
+                </div>
+                <mat-form-field>                    
+                    <mat-label>Choose a date</mat-label> 
+                    <input matInput [matDatepicker]="picker"  #Data="ngModel"
+                        [(ngModel)]="service.formData.dt "
+                        name="dt"
+                        class="form-control" placeholder="Data" required >
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker   #picker >
+                       
+                    </mat-datepicker>
+                </mat-form-field>
+                <!--
+                <input name="dt" #Data="ngModel" [ngModel]="service.formData.dt | date: 'dd/MM/yyyy'" (ngModelChange)="service.formData.dt=$event" 
+                    class="form-control" placeholder="Data" required >
+                -->
+            </div>   
+
+    
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text bg-white">
+                        <mat-icon >timer</mat-icon>
+                    </div>
+                </div>
+                <input aria-label="default time" 
+                        [ngxTimepicker]="h_Ini" 
+                        [format]="24" 
+                        
+                        [value]="service.formData.h_Ini| date: 'HH:mm'"   
+                        class="form-control" placeholder="H_Ini">
+                <ngx-material-timepicker #h_Ini [defaultTime]="'08:00'"></ngx-material-timepicker>
+
+                <div class="input-group-prepend">
+                    <div class="input-group-text bg-white">
+                        <mat-icon >timer_off</mat-icon>
+                    </div>
+                </div>
+                <input aria-label="default time" 
+                    [ngxTimepicker]="h_End" 
+                    [format]="24" 
+                    [value]="service.formData.h_End| date: 'HH:mm'"   
+                    class="form-control" placeholder="H_End">
+                <ngx-material-timepicker #h_End   [format]="24" >   </ngx-material-timepicker>
+            </div>
+        </div>
+    
+      <!--
+
+        id: number;
+    ticketID: number;
+    causaleID: number;
+    causale: ticketCausale;
+    dt: Date;
+    h_Ini: string;
+    h_End: Time;
+    note;
+
+     <div class="form-row">
+         <div class="form-group col-md-7" >
+             <div class="input-group">
+                 <div class="input-group-prepend">
+                     <div class="input-group-text bg-white">
+                         <mat-icon  [color] = "ExpirationDate.invalid && ExpirationDate.touched ? 'warn' : ''">calendar_today</mat-icon>
+                     </div>
+                 </div>
+                 <input name="ExpirationDate" #ExpirationDate="ngModel" [(ngModel)]="service.formData.ExpirationDate"
+                       class="form-control" placeholder="MM/YY" required maxlength="5" minlength="5">
+             </div>    
+         </div>
+ 
+         <div class="form-group col-md-5">
+             <div class="input-group">
+                 <div class="input-group-prepend">
+                     <div class="input-group-text bg-white">
+                         <mat-icon  [color] = "CVV.invalid && CVV.touched ? 'warn' : ''">security</mat-icon>
+                     </div>
+                 </div>
+                 <input type="password" name="CVV" #CVV="ngModel" [(ngModel)]="service.formData.CVV"
+                       class="form-control" placeholder="CVV" required maxlength="3" minlength="3">
+             </div>    
+         </div>
+     </div>
+    -->
+     <div class="form-group">
+         <button class="btn btn-success btn-lg btn-block" [disabled]="form.invalid">
+             <!--    <i class="fas fa-database"></i> -->
+             Salva
+         </button>
+     </div>
+ 
+     <div class="form-group">
+         <button class="btn btn-success btn-lg btn-block"  (click)="resetForm(form)"  [disabled]="form.invalid">
+             <!--<mat-icon >add_circle_outline</mat-icon>-->
+             <!--<i class="fas fa-database"></i>-->
+             Nuovo
+         </button>
+     </div>
+ 
+ </form>
+ 

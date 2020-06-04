@@ -23,6 +23,12 @@ import { TicketCardComponent } from './components/tickets/ticket-card/ticket-car
 import { TicketDetailsComponent } from './components/tickets/ticket-details/ticket-details.component';
 import { TicketDetailComponent } from './components/tickets/ticket-detail/ticket-detail.component';            //AS: reference per gestione token JWT
 import { TicketDetailListComponent } from './components/tickets/ticket-detail-list/ticket-detail-list.component';
+import { MatNativeDateModule, MatInputModule} from '@angular/material';
+
+
+import {  DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+
 
 @NgModule({
   declarations: [
@@ -46,7 +52,11 @@ import { TicketDetailListComponent } from './components/tickets/ticket-detail-li
     MaterialModule,
     HttpClientModule,           //AS: reference per chiamata a WS
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatNativeDateModule,
+    MatInputModule,
+    NgxMaterialTimepickerModule,    //AS: TimePicker
+    NgxMaterialTimepickerModule.setLocale('it-IT')
   ],
   //providers: [],
   //AS: Injection per fare comunicare tra loro moduli diversi
@@ -55,7 +65,11 @@ import { TicketDetailListComponent } from './components/tickets/ticket-detail-li
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true
-    }],
+    },
+    { 
+      provide: MAT_DATE_LOCALE, useValue: 'it-IT' }
+  ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

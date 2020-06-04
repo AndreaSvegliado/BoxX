@@ -10,13 +10,13 @@
         <td>Note</td>
       </tr>
 
-      <tr *ngFor="let ticketDetail of ticketDetails">   
-        <td>{{ticketDetail.id}} </td>
-        <td>{{ticketDetail.causale.causaleDesc}} </td>
-        <td>{{ticketDetail.dt | date: 'dd/MM/yyyy'}} </td>
-        <td>{{ticketDetail.h_Ini | date:'HH:mm'}} </td>
-        <td>{{ticketDetail.h_End| date:'HH:mm'}} </td>
-        <td>{{ticketDetail.note}} </td>
+      <tr *ngFor="let objTicketDetail of ticketDetails">   
+        <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.id}} </td>
+        <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.causale.causaleDesc}} </td>
+        <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.dt | date: 'dd/MM/yyyy'}} </td>
+        <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.h_Ini | date:'HH:mm'}} </td>
+        <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.h_End| date:'HH:mm'}} </td>
+        <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.note}} </td>
         <!--
       
             <td (click)="populateForm(objPaymentDetail)"> {{objPaymentDetail.CardOwnerName}}</td> 

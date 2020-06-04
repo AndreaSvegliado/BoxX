@@ -26,14 +26,15 @@ export class TicketDetailListComponent implements OnInit {
       res=>   this.ticketDetails = res as ticketDetail[]
     );  
   }
-/*
-  populateForm(objPaymentDetail: PaymentDetail){
-    //this.service.formData=objPaymentDetail;
+
+  populateForm(objTicketDetail: ticketDetail){
+    //this.ticketDetailService.formData=objTicketDetail;
+    
     //per evitare che i dati del form aggiornino direttamente la griglia prima del POST:
     //assegno un nuovo oggetto clonato da quello passato come parametro
-    this.service.formData= Object.assign({}, objPaymentDetail);  
+    this.ticketDetailService.formData= Object.assign({}, objTicketDetail);  
   }
-  */
+  
   ngOnInit(): void {
   }
 
