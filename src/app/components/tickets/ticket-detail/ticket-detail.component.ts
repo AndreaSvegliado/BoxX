@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { TicketDetailService } from 'src/app/services/ticket-detail.service';
+import { ticketCausale } from 'src/app/models/models';
+import { TicketCausaliService } from 'src/app/services/ticket-causali.service';
 
 @Component({
   selector: 'app-ticket-detail',
@@ -10,7 +12,18 @@ import { TicketDetailService } from 'src/app/services/ticket-detail.service';
 })
 export class TicketDetailComponent implements OnInit {
 
-  constructor(public service: TicketDetailService) { }
+  ticketCausali:ticketCausale[];
+
+  constructor(public service: TicketDetailService, public serviceCausali: TicketCausaliService) { 
+
+    this.serviceCausali.getCausaliList()
+    .subscribe(
+      res=>   this.ticketCausali = res as ticketCausale[]
+      );  
+
+
+  }
+
 
   ngOnInit() {
     this.resetForm();
@@ -32,6 +45,8 @@ export class TicketDetailComponent implements OnInit {
        note: null
     }
   }
+
+
   onSubmit(form:NgForm){
     //form.value        //AS: oggetto in formato JSON contenente i campi del form
 
