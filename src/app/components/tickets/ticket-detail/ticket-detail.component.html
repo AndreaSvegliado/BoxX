@@ -22,6 +22,25 @@
                 <input name="causaleID" #Causale="ngModel" [(ngModel)]="service.formData.causaleID" class="form-control" placeholder="Causale" required>
             </div>    
 
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text bg-white">
+                        <mat-icon >payment</mat-icon>
+                    </div>
+                </div>
+                <!-- <input name="causaleID" #Causale="ngModel" [(ngModel)]="service.formData.causaleID" class="form-control" placeholder="Causale" required> -->
+                
+                <select   class="form-control" formControlName="cmbcausaleID">  
+                    <option value="0">Select</option>
+                    <!-- <option *ngFor="let item of causali" value="{{service.formData.causaleID}}">{{item.causaleID}}</option> -->
+                    <option  value="{{service.formData.causaleID}}"></option>  
+                </select>
+
+            </div>  
+
+   
+
+
             
             <div class="input-group group-data">
                 <!-- <div class="input-group-prepend">
@@ -47,7 +66,7 @@
                 <mat-form-field appearance="standard">
                     <mat-label>Data</mat-label>
                     <input matInput [matDatepicker]="picker" #Data="ngModel" [(ngModel)]="service.formData.dt " name="dt"
-                        placeholder="Data" [value]="date" required>
+                        placeholder="Data"  required>
                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                     <mat-datepicker #picker></mat-datepicker>
                 </mat-form-field>
@@ -118,6 +137,16 @@
                 </mat-form-field>
 
             </div>
+
+            <!-- Note -->
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text bg-white">
+                        <mat-icon>note</mat-icon>
+                    </div>
+                </div>
+                <input name="Note" #Note="ngModel" [(ngModel)]="service.formData.note" class="form-control" placeholder="Note">
+            </div>    
         </div>
     
       <!--
