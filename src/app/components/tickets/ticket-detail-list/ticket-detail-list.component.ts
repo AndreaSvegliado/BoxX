@@ -33,6 +33,7 @@ export class TicketDetailListComponent implements OnInit {
     //per evitare che i dati del form aggiornino direttamente la griglia prima del POST:
     //assegno un nuovo oggetto clonato da quello passato come parametro
     this.ticketDetailService.formData= Object.assign({}, objTicketDetail);  
+
   }
   
   ngOnInit(): void {

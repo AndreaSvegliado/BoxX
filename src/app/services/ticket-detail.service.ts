@@ -14,10 +14,10 @@ import { ticketDetail } from '../models/models';
 
 export class TicketDetailService {
 
-  formData:ticketDetail
+  formData:ticketDetail;
 
   constructor(private http: HttpClient) {
-    
+  
   }
 
   getTicketDetailList(ticketID): Observable<ticketDetail[]>

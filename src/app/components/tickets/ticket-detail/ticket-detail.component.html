@@ -75,6 +75,8 @@
                 <input name="causaleID" #Causale="ngModel" [(ngModel)]="service.formData.causaleID" class="form-control" placeholder="Causale" required>
             </div>    
 
+
+
             <div class="input-group row">
                 <mat-form-field class="col-lg-6 offset-lg-3 col-md-12" appearance="standard">
                     <mat-label>Data</mat-label>
@@ -95,9 +97,10 @@
                     [value]="service.formData.h_Ini| date: 'HH:mm'"   
                     class="form-control time-input"
                     placeholder=""
-                    disableClick="true">
+                   >
                     <ngx-material-timepicker #h_Ini [defaultTime]="'08:00'" ></ngx-material-timepicker>
                     <mat-icon class="icona-griglia" matSuffix>timer</mat-icon>
+                    <!-- <ngx-timepicker-field class="form-control" #h_Ini  ></ngx-timepicker-field> -->
                 </mat-form-field>
 
                 <mat-form-field class="col-lg-6 col-md-12" appearance="standard">
