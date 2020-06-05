@@ -1,7 +1,3 @@
-<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-    <input type="hidden" name="id" [value]="service.formData.id">
-        <div class="form-group">
-         
             <!-- <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text bg-white">
@@ -12,18 +8,6 @@
 
                 <input name="ticketID" #TicketID="ngModel" [(ngModel)]="service.formData.ticketID" class="form-control" placeholder="TicketID" required>
             </div> -->
-
-            <div class="input-group">
-                <div class="input-group-prepend">
-                    <div class="input-group-text bg-white">
-                        <mat-icon >payment</mat-icon>
-                    </div>
-                </div>
-                <input name="causaleID" #Causale="ngModel" [(ngModel)]="service.formData.causaleID" class="form-control" placeholder="Causale" required>
-            </div>    
-
-            
-            <div class="input-group group-data">
                 <!-- <div class="input-group-prepend">
                     <div class="input-group-text bg-white">
                         <mat-icon >event</mat-icon>
@@ -42,18 +26,6 @@
                     </mat-datepicker-toggle>
                     <mat-datepicker   #picker ></mat-datepicker>
                 </mat-form-field> -->
-
-
-                <mat-form-field appearance="standard">
-                    <mat-label>Data</mat-label>
-                    <input matInput [matDatepicker]="picker" #Data="ngModel" [(ngModel)]="service.formData.dt " name="dt"
-                        placeholder="Data" [value]="date" required>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-            </div>   
-            
-            <div class="input-group">
                 <!-- <div class="input-group-prepend">
                     <div class="input-group-text bg-white">
                         <mat-icon >timer</mat-icon>
@@ -69,22 +41,8 @@
                     <ngx-material-timepicker #h_Ini [defaultTime]="'08:00'"></ngx-material-timepicker>
                     <mat-icon matSuffix>timer</mat-icon>
                 </mat-form-field> -->
-                <mat-form-field class="ora-inizio" appearance="standard">
-                    <mat-label>Ora inizio</mat-label>
-                    <input matInput
-                    [ngxTimepicker]="h_Ini"
-                    [format]="24" 
-                    [value]="service.formData.h_Ini| date: 'HH:mm'"   
-                    class="form-control"
-                    placeholder="">
-                    <ngx-material-timepicker #h_Ini [defaultTime]="'08:00'"></ngx-material-timepicker>
-                    <mat-icon matSuffix>timer</mat-icon>
-                </mat-form-field>
 
-
-
-
-                <!-- <input aria-label="default time" 
+                              <!-- <input aria-label="default time" 
                         [ngxTimepicker]="h_Ini" 
                         [format]="24" 
                         
@@ -104,19 +62,56 @@
                     class="form-control" placeholder="H_End">
                 <ngx-material-timepicker #h_End   [format]="24" >   </ngx-material-timepicker> -->
 
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+    <input type="hidden" name="id" [value]="service.formData.id">
+        <div class="form-group">
+         
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text bg-white">
+                        <mat-icon >payment</mat-icon>
+                    </div>
+                </div>
+                <input name="causaleID" #Causale="ngModel" [(ngModel)]="service.formData.causaleID" class="form-control" placeholder="Causale" required>
+            </div>    
 
-                <mat-form-field appearance="standard">
+            <div class="input-group row">
+                <mat-form-field class="col-lg-6 offset-lg-3 col-md-12" appearance="standard">
+                    <mat-label>Data</mat-label>
+                    <input matInput [matDatepicker]="picker" #Data="ngModel" [(ngModel)]="service.formData.dt " name="dt"
+                        placeholder="Data" required>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </div>
+
+
+            <div class="input-group row">
+                <mat-form-field class="col-lg-6 col-md-12" appearance="standard">
+                    <mat-label>Ora inizio</mat-label>
+                    <input matInput
+                    [ngxTimepicker]="h_Ini"
+                    [format]="24" 
+                    [value]="service.formData.h_Ini| date: 'HH:mm'"   
+                    class="form-control time-input"
+                    placeholder=""
+                    disableClick="true">
+                    <ngx-material-timepicker #h_Ini [defaultTime]="'08:00'" ></ngx-material-timepicker>
+                    <mat-icon class="icona-griglia" matSuffix>timer</mat-icon>
+                </mat-form-field>
+
+                <mat-form-field class="col-lg-6 col-md-12" appearance="standard">
                     <mat-label>Ora Fine</mat-label>
                     <input matInput 
                     [ngxTimepicker]="h_End" 
                     [format]="24" 
                     [value]="service.formData.h_End| date: 'HH:mm'"   
-                    class="form-control"
-                    placeholder="">
+                    class="form-control time-input"
+                    placeholder=""
+                    disableClick="true">
                     <ngx-material-timepicker #h_End [defaultTime]="'08:00'"></ngx-material-timepicker>
-                    <mat-icon matSuffix>timer_off</mat-icon>
+                    <mat-icon class="icona-griglia" matSuffix>timer_off</mat-icon>
                 </mat-form-field>
-
             </div>
         </div>
     

@@ -25,3 +25,13 @@
 .group-data{
   text-align: center;
 }
+
+.icona-griglia {
+  color: rgb(100,100,100);
+  margin-right: 10px;
+}
+
+.time-input{
+  background-color: transparent;
+}
+
