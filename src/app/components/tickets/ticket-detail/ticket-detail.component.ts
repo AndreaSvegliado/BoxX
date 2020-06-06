@@ -20,17 +20,19 @@ export class CustomAdapter extends NgbDateAdapter<string> {
   fromModel(value: string | null): NgbDateStruct | null {
     if (value) {
       let date = value.split(this.DELIMITER);
+      console.log(parseInt(date[0], 10));
       return {
-        day : parseInt(date[0], 10),
+        day : parseInt(date[2], 10), //qui su stackblitz si trova parseInt(date[0], 10),....che non è il day
         month : parseInt(date[1], 10),
-        year : parseInt(date[2], 10)
+        year : parseInt(date[0], 10) //qui su stackblitz si trova parseInt(date[2], 10),....che non è il year
       };
     }
     return null;
   }
 
   toModel(date: NgbDateStruct | null): string | null {
-    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
+    return date ? date.year + this.DELIMITER + date.month + this.DELIMITER + date.day : null;
+    //return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null; era così...invertito
   }
 }
 

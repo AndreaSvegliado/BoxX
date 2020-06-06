@@ -2,7 +2,7 @@
     <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
 
         <input type="hidden" name="id" [value]="serviceDetails.formData.id">
-
+        <!--************************** COMBO CAUSALE ************************** -->
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -17,47 +17,34 @@
                 </select>
             </div>
         </div>
-
+        <!--**************************      DATA     ************************** -->
         <div class="form-group">
             <div class="input-group">
-                <mat-form-field class="input-group-prepend" appearance="standard">
-                    <mat-label>Data</mat-label>
-                    <input matInput [matDatepicker]="picker" #Data="ngModel" [(ngModel)]="serviceDetails.formData.dt"
-                        name="dt" placeholder="Data" required>
-                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                    <mat-datepicker #picker></mat-datepicker>
-                </mat-form-field>
-            </div>
-        </div>
-
-
-
-        <!--  INIZIO      -->
-        <!--<ngb-datepicker #d1 [(ngModel)]="serviceDetails.formData.dt" #c1="ngModel"></ngb-datepicker>-->
-
-
-        <!-- <button class="btn btn-sm btn-outline-primary">Select Today</button> -->
-
-
-        <div class="col-6">
-            <form class="form-inline">
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <div class="input-group-text bg-white">
-                                <mat-icon (click)="d2.toggle()">payment</mat-icon>
-                            </div>
-                        </div>
-                        <input class="form-control" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel"
-                            [(ngModel)]="serviceDetails.formData.dt" ngbDatepicker #d2="ngbDatepicker">
+                <div class="input-group-prepend">
+                    <div class="input-group-text bg-white">
+                        <mat-icon (click)="d2.toggle()">event</mat-icon>
                     </div>
                 </div>
-            </form>
+                <input class="date-input" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel" [(ngModel)]="serviceDetails.formData.dt"
+                    ngbDatepicker #d2="ngbDatepicker">
+            </div>
         </div>
+        <!--**************************   ORA INIZIO  ************************** -->
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text bg-white">
+                        <mat-icon>alarm</mat-icon>
+                    </div>
+                </div>
 
-
-
-        <!--  FINE      -->
+                <ngb-timepicker class="time-picker" [ngModel]="serviceDetails.formData.h_Ini| date: 'HH:mm'" 
+                (ngModelChange)="serviceDetails.formData.h_Ini=$event"
+                
+                ></ngb-timepicker>
+                <input type="text" [value]="serviceDetails.formData.h_Ini| date: 'HH:mm'">
+            </div>
+        </div>
 
         <div class="input-group">
             <mat-form-field class="input-group-prepend" appearance="standard">
@@ -68,10 +55,9 @@
 
                 <ngx-material-timepicker #h_Ini [defaultTime]="'08:00'"></ngx-material-timepicker>
                 <mat-icon class="icona-griglia" matSuffix>timer</mat-icon>
-                <!-- <ngx-timepicker-field class="form-control" #h_Ini  ></ngx-timepicker-field> -->
             </mat-form-field>
         </div>
-
+        <!--**************************    ORA FINE   ************************** -->
         <div class="input-group">
             <mat-form-field class="input-group-prepend" appearance="standard">
                 <mat-label>Ora Fine</mat-label>
@@ -83,21 +69,17 @@
                 <mat-icon class="icona-griglia" matSuffix>timer_off</mat-icon>
             </mat-form-field>
         </div>
-
-
-
-        <!-- Note -->
+        <!--**************************      NOTE     ************************** -->
         <div class="input-group">
             <div class="input-group-prepend">
                 <div class="input-group-text bg-white">
                     <mat-icon>note</mat-icon>
                 </div>
             </div>
-            <textarea name="Note" #Note="ngModel" [(ngModel)]="serviceDetails.formData.note" class="form-control"
+            <textarea name="Note" #Note="ngModel" [(ngModel)]="serviceDetails.formData.note" class="note-area form-control"
                 placeholder="Note"></textarea>
         </div>
-
-        <!-- Bottoni -->
+        <!--**************************    BOTTONI    ************************** -->
         <div class="input-group">
             <button class="btn btn-success btn-lg btn-block" [disabled]="form.invalid">
                 <mat-icon>save_alt</mat-icon>
@@ -113,3 +95,18 @@
 
     </form>
 </div>
+
+
+<!-- 
+*********INPUT DATA STILE MATERIAL**********    
+<div class="form-group">
+    <div class="input-group">
+        <mat-form-field class="input-group-prepend" appearance="standard">
+            <mat-label>Data</mat-label>
+            <input matInput [matDatepicker]="picker" #Data="ngModel" [(ngModel)]="serviceDetails.formData.dt"
+                name="dt" placeholder="Data" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+</div> -->

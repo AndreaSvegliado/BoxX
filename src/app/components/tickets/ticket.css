@@ -120,6 +120,38 @@
   background-color: transparent;
 }
 
+.time-picker {
+  border-style: solid;
+  width: 160px;
+  border-color: rgb(201, 201, 201);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0px 4px 4px 0px;
+  text-align: center;
+  padding-left: 7px;
+}
+
+.date-input{
+  width: 160px;
+  border-color: rgb(201, 201, 201);
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0px 4px 4px 0px;
+  text-align: center;
+
+}
+
+.note-area {
+  min-height: 50px;
+}
+
+.button.btn-btn-link.ng-start-inserted {
+  padding: 0px;
+}
+/* .input-group-text {
+  padding-left:5px;
+  padding-right: 5px;
+} */
 
  
 /* You can add global styles to this file, and also import other style files */
