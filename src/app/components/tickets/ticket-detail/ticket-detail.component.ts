@@ -1,15 +1,83 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Injectable } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { TicketDetailService } from 'src/app/services/ticket-detail.service';
 import { ticketCausale } from 'src/app/models/models';
 import { TicketCausaliService } from 'src/app/services/ticket-causali.service';
+import { NgbDateAdapter, NgbDateStruct, NgbDateParserFormatter, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+
+
+
+
+/*
+Questa prima parte (NgbDateAdapter) gestisce il collegamento con ngModel
+ */
+@Injectable()
+export class CustomAdapter extends NgbDateAdapter<string> {
+
+  readonly DELIMITER = '-';
+
+  fromModel(value: string | null): NgbDateStruct | null {
+    if (value) {
+      let date = value.split(this.DELIMITER);
+      return {
+        day : parseInt(date[0], 10),
+        month : parseInt(date[1], 10),
+        year : parseInt(date[2], 10)
+      };
+    }
+    return null;
+  }
+
+  toModel(date: NgbDateStruct | null): string | null {
+    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null;
+  }
+}
+
+/*
+Questa seconda parte (NgbDateParserFormatter) gestisce come la data inserita da tastiera viene gestita
+(cioè uno deve digitare 13/3/2020 e non 3/13/2020)
+ */
+
+@Injectable()
+export class CustomDateParserFormatter extends NgbDateParserFormatter {
+
+  readonly DELIMITER = '/';
+
+  parse(value: string): NgbDateStruct | null {
+    if (value) {
+      let date = value.split(this.DELIMITER);
+      return {
+        day : parseInt(date[0], 10),
+        month : parseInt(date[1], 10),
+        year : parseInt(date[2], 10)
+      };
+    }
+    return null;
+  }
+
+  format(date: NgbDateStruct | null): string {
+    return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : '';
+  }
+}
+
+
 
 @Component({
   selector: 'app-ticket-detail',
   templateUrl: './ticket-detail.component.html',
-  styleUrls: ['../ticket.css']
+  styleUrls: ['../ticket.css'],
+
+  providers: [
+    {provide: NgbDateAdapter, useClass: CustomAdapter},
+    {provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter}
+  ]
+
 })
+
+
+
+
 export class TicketDetailComponent implements OnInit {
 
   ticketCausali:ticketCausale[];
@@ -80,7 +148,7 @@ export class TicketDetailComponent implements OnInit {
     console.log("Update Record (TODO!!!)");
 
     
-    this.serviceDetails.putTicketDetail();
+    /*this.serviceDetails.putTicketDetail();
     /*
     this.serviceDetails.putTicketDetail().subscribe(
       res => { 
@@ -95,3 +163,14 @@ export class TicketDetailComponent implements OnInit {
 }
 
 
+export class NgbdDatepickerAdapter {
+
+  model1: string;
+  model2: string;
+
+  constructor(private ngbCalendar: NgbCalendar, private dateAdapter: NgbDateAdapter<string>) {}
+
+  get today() {
+    return this.dateAdapter.toModel(this.ngbCalendar.getToday())!;
+  }
+}
