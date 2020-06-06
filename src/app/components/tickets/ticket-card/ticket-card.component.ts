@@ -18,7 +18,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-ticket-card',
   templateUrl: './ticket-card.component.html',
-  styleUrls: ['./ticket-card.component.css']
+  styleUrls: ['../ticket.css']
 })
 export class TicketCardComponent implements OnInit, AfterViewInit, AfterContentInit {
 

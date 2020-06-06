@@ -14,7 +14,7 @@ export class TicketDetailComponent implements OnInit {
 
   ticketCausali:ticketCausale[];
 
-  constructor(public service: TicketDetailService, public serviceCausali: TicketCausaliService) { 
+  constructor(public serviceDetails: TicketDetailService, public serviceCausali: TicketCausaliService) { 
 
     this.serviceCausali.getCausaliList()
     .subscribe(
@@ -24,17 +24,15 @@ export class TicketDetailComponent implements OnInit {
 
   }
 
-
   ngOnInit() {
     this.resetForm();
-
   }
 
   resetForm(form?:NgForm){
     if(form!= null)
       form.resetForm();
       
-    this.service.formData ={
+    this.serviceDetails.formData ={
       id: 0,
       ticketID: 0,
       causaleID: 0,
@@ -42,7 +40,7 @@ export class TicketDetailComponent implements OnInit {
       dt: null,
       h_Ini: null,
       h_End: null,
-       note: null
+      note: null
     }
   }
 
@@ -50,10 +48,10 @@ export class TicketDetailComponent implements OnInit {
   onSubmit(form:NgForm){
     //form.value        //AS: oggetto in formato JSON contenente i campi del form
 
-    console.log(this.service.formData.id);
+    console.log(this.serviceDetails.formData.id);
 
     //if(form.value.PMid==0){
-    if(this.service.formData.id ==0){
+    if(this.serviceDetails.formData.id ==0){
       this.InsertRecord(form);
     }
     else{
@@ -62,8 +60,10 @@ export class TicketDetailComponent implements OnInit {
   }
 
   InsertRecord(form:NgForm){
-console.log("Insert Record (TODO!!!)");
+    
+    console.log("Insert Record (TODO!!!)");
 
+    
 /*
     this.service.postTicketDetail().subscribe(
       res => { 
@@ -75,18 +75,23 @@ console.log("Insert Record (TODO!!!)");
     )
   */
   }
+
   UpdateRecord(form:NgForm){
     console.log("Update Record (TODO!!!)");
 
+    
+    this.serviceDetails.putTicketDetail();
     /*
-    this.service.putTicketDetail().subscribe(
+    this.serviceDetails.putTicketDetail().subscribe(
       res => { 
         this.resetForm(form);
         //this.toastr.info('Record aggiornato correttamente', 'Payment Detail Register');
-        this.service.refreshList();
+        //this.serviceDetails.refreshList();
       },
       err => {console.log(err);  }
     )
     */
   }
 }
+
+

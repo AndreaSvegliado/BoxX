@@ -24,6 +24,19 @@ export class TicketDetailService {
   {
     return this.http.get<ticketDetail[]>(environment.apiBaseUrl + '/TicketDetails/GetByTicketID/' + ticketID); 
   }
+
+  postTicketDetail(){
+    return this.http.post( environment.apiBaseUrl   + '/TicketDetails',this.formData)  
+
+  }  
+  
+  putTicketDetail(){
+    return this.http.put( environment.apiBaseUrl  + '/TicketDetails/' + this.formData.id,this.formData)    
+  }
+
+  deleteTicketDetail(  id  ){
+    return this.http.delete(  environment.apiBaseUrl  + '/TicketDetails/' + id ) ;
+  }
 }
 
 
