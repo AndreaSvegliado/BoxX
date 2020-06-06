@@ -1,34 +1,33 @@
     
 <div class="ticket-detail"> 
-
-<table class="table table-hover">
-<!--  {{ticketDetails|json}} -->
-     
-      <tr >
-        <td>ID</td> 
-        <td>Causale</td>
-        <td>Data</td>
-        <td>Ora Inizio</td>
-        <td>Ora Fine</td>
-        <td>Note</td>
-      </tr>
-
-      <tr *ngFor="let objTicketDetail of ticketDetails">   
-        <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.id}} </td>
-        <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.causale.causaleDesc}} </td>
-        <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.dt | date: 'dd/MM/yyyy'}} </td>
-        <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.h_Ini | date:'HH:mm'}} </td>
-        <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.h_End| date:'HH:mm'}} </td>
-        <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.note}} </td>
-        <!--
+  <div class="table-responsive">  
+    <table  class="table table-hover">
+    <!--  {{ticketDetails|json}} -->
+      <thead>
+        <tr>
+          <th>ID</th> 
+          <th>Causale</th>
+          <th>Data</th>
+          <th>Ora Inizio</th>
+          <th>Ora Fine</th>
+          <th>Note</th>
+        </tr>
+      </thead>
       
-            <td (click)="populateForm(objPaymentDetail)"> {{objPaymentDetail.CardOwnerName}}</td> 
-            <td (click)="populateForm(objPaymentDetail)"> {{objPaymentDetail.CardNumber}}</td>
-            <td (click)="populateForm(objPaymentDetail)"> {{objPaymentDetail.ExpirationDate}}</td>
-            <td>
-                <mat-icon (click)="onDelete(objPaymentDetail.PMid)">delete</mat-icon>        
-            </td>
-          -->
-      </tr>
+      <tbody>
+        <tr *ngFor="let objTicketDetail of ticketDetails">   
+          <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.id}} </td>
+          <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.causale.causaleDesc}} </td>
+          <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.dt | date: 'dd/MM/yyyy'}} </td>
+          <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.h_Ini | date:'HH:mm'}} </td>
+          <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.h_End| date:'HH:mm'}} </td>
+          <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.note}} </td>
+    
+          <td>
+              <mat-icon (click)="onDelete(objTicketDetail.id)">delete</mat-icon>        
+          </td>
+        </tr>
+      </tbody>  
     </table>
+  </div>  
 </div>  
