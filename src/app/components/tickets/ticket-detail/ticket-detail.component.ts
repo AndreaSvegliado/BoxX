@@ -4,8 +4,7 @@ import { NgForm } from '@angular/forms';
 import { TicketDetailService } from 'src/app/services/ticket-detail.service';
 import { ticketCausale } from 'src/app/models/models';
 import { TicketCausaliService } from 'src/app/services/ticket-causali.service';
-import { NgbDateAdapter, NgbDateStruct, NgbDateParserFormatter, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
-
+import { NgbDateAdapter, NgbDateStruct, NgbDateParserFormatter, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -72,7 +71,8 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
 
   providers: [
     {provide: NgbDateAdapter, useClass: CustomAdapter},
-    {provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter}
+    {provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter},
+
   ]
 
 })
@@ -176,3 +176,5 @@ export class NgbdDatepickerAdapter {
     return this.dateAdapter.toModel(this.ngbCalendar.getToday())!;
   }
 }
+
+

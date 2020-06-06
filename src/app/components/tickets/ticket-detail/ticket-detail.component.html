@@ -25,8 +25,8 @@
                         <mat-icon (click)="d2.toggle()">event</mat-icon>
                     </div>
                 </div>
-                <input class="date-input" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel" [(ngModel)]="serviceDetails.formData.dt"
-                    ngbDatepicker #d2="ngbDatepicker">
+                <input class="date-input" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel"
+                    [(ngModel)]="serviceDetails.formData.dt" ngbDatepicker #d2="ngbDatepicker">
             </div>
         </div>
         <!--**************************   ORA INIZIO  ************************** -->
@@ -37,15 +37,25 @@
                         <mat-icon>alarm</mat-icon>
                     </div>
                 </div>
-
-                <ngb-timepicker class="time-picker" [ngModel]="serviceDetails.formData.h_Ini| date: 'HH:mm'" 
-                (ngModelChange)="serviceDetails.formData.h_Ini=$event"
-                
-                ></ngb-timepicker>
-                <input type="text" [value]="serviceDetails.formData.h_Ini| date: 'HH:mm'">
+                <ngb-timepicker class="time-picker" name="h_Ini"
+                    [ngModel]="serviceDetails.formData.h_Ini| date: 'HH:mm'"
+                    (ngModelChange)="serviceDetails.formData.h_Ini=$event"></ngb-timepicker>
             </div>
         </div>
-
+        <!--**************************   ORA FINE  ************************** -->
+        <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div class="input-group-text bg-white">
+                        <mat-icon>timer_off</mat-icon>
+                    </div>
+                </div>
+                <ngb-timepicker class="time-picker" name="h_End"
+                    [ngModel]="serviceDetails.formData.h_End| date: 'HH:mm'"
+                    (ngModelChange)="serviceDetails.formData.h_End=$event"></ngb-timepicker>
+            </div>
+        </div>
+        <!--**************************   ORA INIZIO  Material ****************** -->
         <div class="input-group">
             <mat-form-field class="input-group-prepend" appearance="standard">
                 <mat-label>Ora inizio</mat-label>
@@ -57,7 +67,7 @@
                 <mat-icon class="icona-griglia" matSuffix>timer</mat-icon>
             </mat-form-field>
         </div>
-        <!--**************************    ORA FINE   ************************** -->
+        <!--**************************    ORA FINE  Material  ************************** -->
         <div class="input-group">
             <mat-form-field class="input-group-prepend" appearance="standard">
                 <mat-label>Ora Fine</mat-label>
@@ -76,8 +86,8 @@
                     <mat-icon>note</mat-icon>
                 </div>
             </div>
-            <textarea name="Note" #Note="ngModel" [(ngModel)]="serviceDetails.formData.note" class="note-area form-control"
-                placeholder="Note"></textarea>
+            <textarea name="Note" #Note="ngModel" [(ngModel)]="serviceDetails.formData.note"
+                class="note-area form-control" placeholder="Note"></textarea>
         </div>
         <!--**************************    BOTTONI    ************************** -->
         <div class="input-group">
