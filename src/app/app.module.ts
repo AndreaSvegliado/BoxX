@@ -28,6 +28,7 @@ import { MatNativeDateModule, MatInputModule} from '@angular/material';
 
 import {  DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -58,7 +59,7 @@ import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
     MatNativeDateModule,
     MatInputModule,
     NgxMaterialTimepickerModule,    //AS: TimePicker
-    NgxMaterialTimepickerModule.setLocale('it-IT')
+    NgxMaterialTimepickerModule.setLocale('it-IT'), NgbModule
   ],
   //providers: [],
   //AS: Injection per fare comunicare tra loro moduli diversi
