@@ -27,6 +27,11 @@ export class TicketDetailListComponent implements OnInit {
     );  
   }
 
+  ngOnInit(): void {
+    //this.ticketDetailService.refreshList();
+  }
+
+  
   populateForm(objTicketDetail: ticketDetail){
     //this.ticketDetailService.formData=objTicketDetail;
     
@@ -36,7 +41,16 @@ export class TicketDetailListComponent implements OnInit {
 
   }
   
-  ngOnInit(): void {
+  onDelete(id: BigInteger){
+    if(confirm("Si conferma la cancellazione del record?")){
+      this.ticketDetailService.deleteTicketDetail(id)
+        .subscribe(res => {
+        //this.ticketDetailService.refreshList();
+        //this.toastr.warning('Record cancellato', 'Payment Detail Register');
+      },
+      err=> {
+        console.log(err);
+      });
+    }
   }
-
 }
