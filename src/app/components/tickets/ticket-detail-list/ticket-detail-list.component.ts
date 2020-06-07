@@ -26,18 +26,13 @@ export class TicketDetailListComponent implements OnInit {
     this.ticketID = this.route.snapshot.params['ID'];
     console.log("ANDREA");
     console.log(this.ticketID);
-    
 
     this.ticketDetailService.getTicketDetailList(this.ticketID)
-    .subscribe(
-      
-      res=>   {this.ticketDetails = res as ticketDetail[];
-      console.log ('aggiornamento in corso...');
-
-    }
+      .subscribe(
+        res=>   {this.ticketDetails = res as ticketDetail[];
+        console.log ('aggiornamento in corso...');
+        }
     );  
-
-
   }
 
   ngOnInit(): void {

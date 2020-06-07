@@ -41,14 +41,23 @@ export class TicketDetailService {
 
   refreshList(ticketID)
   {
+    console.log("RefreshList");
+
     //AS: niente return ??
      //this.http.get(  environment.apiBaseURI + '/PaymentDetail')
-     this.http.get(environment.apiBaseUrl+ '/TicketDetails/GetByTicketID/' + ticketID)
-    .toPromise()            //AS ???
-    .then(res => this.ticketList = res as ticketDetail[] );
+    this.http.get(environment.apiBaseUrl+ '/TicketDetails/GetByTicketID/' + ticketID)
+      .toPromise()            //AS ???
+      .then(res => {
+        this.ticketList = res as ticketDetail[] ,
+        console.log(res);     //AS: --> la lista è aggiornata
+      },
+      err => {
+        console.log(err); 
+      }
+    );
   }
 
 }
 
 
- 
+     
