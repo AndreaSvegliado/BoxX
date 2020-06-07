@@ -16,7 +16,6 @@
       </thead>
       
       <tbody>
-        <!-- AS: X NIK !!!!!!!!!   <tr *ngFor="let objTicketDetail of ticketDetails">   -->
         <tr *ngFor="let objTicketDetail of ticketDetailService.ticketList">            
           <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.id}} </td>
           <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.causale.causaleDesc}} </td>
@@ -26,7 +25,7 @@
           <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.note}} </td>
     
           <td>
-              <mat-icon (click)="onDelete(objTicketDetail.id)" color="warn">delete</mat-icon>        
+              <mat-icon (click)="onDelete(objTicketDetail.id)" color="warn" style="cursor: pointer;">delete</mat-icon>        
           </td>
         </tr>
       </tbody>  
