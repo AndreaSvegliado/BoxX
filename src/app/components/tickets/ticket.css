@@ -72,14 +72,19 @@
 
   margin-right: 5px;
   margin-left: 5px;
+  margin-top: 5px;
 }
 
 
 .ticket-detail-list {
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-top: 5px;
   background-color: white;
   border-radius: 4px;
   padding: 20px 10px;
   box-shadow: 0 1px 16px 0 rgba(0, 0, 0, .2), 0 2px 8px 0 rgba(0, 0, 0, .14), 0 4px 8px -1px rgba(0, 0, 0, .12);
+  min-height: 824px;
 }
 
 
