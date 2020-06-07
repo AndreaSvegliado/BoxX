@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <ngb-timepicker class="time-picker" name="h_Ini"
-                    [ngModel]="serviceDetails.formData.h_Ini| date: 'HH:mm'"
+                    [ngModel]="serviceDetails.formData.h_Ini| date: 'HH:mm', serviceDetails.formData.h_Ini| date: 'mm'"
                     (ngModelChange)="serviceDetails.formData.h_Ini=$event" [spinners]="spinners" (click)="toggleSpinners()" ></ngb-timepicker>
             </div>
         </div>

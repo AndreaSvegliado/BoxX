@@ -84,7 +84,7 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
 export class TicketDetailComponent implements OnInit {
 
   spinners = false;
-
+  time = {hour: 13, minute: 30};
   toggleSpinners() {
       this.spinners = !this.spinners;
   }
