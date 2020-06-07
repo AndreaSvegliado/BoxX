@@ -64,6 +64,11 @@
 .mat-icon-button {
   outline:0;
 }
+
+.exit-button {
+
+  padding: 7px 6px 0px 5px;
+}
   /*
 .sidenav-container {
     height: 100%;
