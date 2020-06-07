@@ -2,11 +2,17 @@ import { Component, OnInit, Injectable, ViewEncapsulation } from '@angular/core'
 import { NgForm } from '@angular/forms';
 
 import { TicketDetailService } from 'src/app/services/ticket-detail.service';
-import { ticketCausale } from 'src/app/models/models';
+import { ticketCausale, ticketDetail } from 'src/app/models/models';
 import { TicketCausaliService } from 'src/app/services/ticket-causali.service';
 import { NgbDateAdapter, NgbDateStruct, NgbDateParserFormatter, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import { DatePipe, NumberSymbol } from '@angular/common';
+import { stringify } from 'querystring';
 
 
+interface TimeStructure {
+  hour: number;
+  minute: number;
+}
 
 /*
 Questa prima parte (NgbDateAdapter) gestisce il collegamento con ngModel
@@ -85,11 +91,19 @@ export class TicketDetailComponent implements OnInit {
 
   spinners = false;
   time = {hour: 13, minute: 30};
+
+  convert2Int(oraStringa:string){
+    return oraStringa ? parseInt(oraStringa) : 0;
+  }
+
   toggleSpinners() {
       this.spinners = !this.spinners;
   }
 
+  timeFormat = new StringTimeFormat();
+
   ticketCausali:ticketCausale[];
+  ticketDetails:ticketDetail[];
 
   constructor(public serviceDetails: TicketDetailService, public serviceCausali: TicketCausaliService) { 
 
@@ -97,7 +111,10 @@ export class TicketDetailComponent implements OnInit {
     .subscribe(
       res=>   this.ticketCausali = res as ticketCausale[]
       );  
+    
 
+    //this.timechanged = new DatePipe('it-IT').transform(this.serviceDetails.formData.h_Ini, 'HH:mm');
+      
 
   }
 
@@ -169,8 +186,29 @@ export class TicketDetailComponent implements OnInit {
     )
     */
   }
+
+  // convert(Time) {
+  //   let Ora = "11";
+  //   let Min = "00";
+  //   let timeConvertito = {hour: Ora, minute: Min};
+  //   //let timeConvertito = Time +'aaa'
+  //   return timeConvertito;
+  // }
 }
 
+
+
+
+function pad(number): string {
+  return number < 10 ? `0${number}` : number;
+}
+
+function equal(t1: TimeStructure, t2: TimeStructure): boolean {
+  if (!t1) {
+    return !t2;
+  }
+  return (!t1 && !t2) || (t1 && t2 && t1.hour === t2.hour && t1.minute === t2.minute);
+}
 
 export class NgbdDatepickerAdapter {
 
@@ -184,3 +222,29 @@ export class NgbdDatepickerAdapter {
   }
 }
 
+
+class StringTimeFormat {
+  private currentValue: TimeStructure;
+
+  toStructure(timeAsString: string): TimeStructure {
+    if (!timeAsString) {
+      this.currentValue = null;
+    }
+    else {
+      const parts = timeAsString.split(':');
+      const newValue = {
+        hour: +parts[0],
+        minute: +parts[1]
+      };
+
+      if (!equal(this.currentValue, newValue)) {
+        this.currentValue = newValue;
+      }
+    }
+    return this.currentValue;
+  }
+
+  fromStructure(t: TimeStructure): string {
+    return t && `${pad(t.hour)}:${pad(t.minute)}}`;
+  }
+}

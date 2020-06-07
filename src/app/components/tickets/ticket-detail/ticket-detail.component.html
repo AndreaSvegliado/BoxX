@@ -31,16 +31,16 @@
         </div>
         <!--**************************   ORA INIZIO  ************************** -->
         <div class="form-group">
-            <div class="input-group" >
+            <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text bg-white">
-                        <mat-icon >
+                        <mat-icon (click)="toggleSpinners()">
                             alarm</mat-icon>
                     </div>
                 </div>
                 <ngb-timepicker class="time-picker" name="h_Ini"
-                    [ngModel]="serviceDetails.formData.h_Ini| date: 'HH:mm', serviceDetails.formData.h_Ini| date: 'mm'"
-                    (ngModelChange)="serviceDetails.formData.h_Ini=$event" [spinners]="spinners" (click)="toggleSpinners()" ></ngb-timepicker>
+                    [ngModel]="{hour: convert2Int(serviceDetails.formData.h_Ini| date: 'HH') , minute: convert2Int(serviceDetails.formData.h_Ini| date: 'mm')}"
+                    [spinners]="spinners" ></ngb-timepicker>
             </div>
         </div>
         <!--**************************   ORA FINE  ************************** -->
@@ -48,12 +48,12 @@
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text bg-white">
-                        <mat-icon>timer_off</mat-icon>
+                        <mat-icon (click)="toggleSpinners()">timer_off</mat-icon>
                     </div>
                 </div>
                 <ngb-timepicker class="time-picker" name="h_End"
-                    [ngModel]="serviceDetails.formData.h_End| date: 'HH:mm'"
-                    (ngModelChange)="serviceDetails.formData.h_End=$event"  [spinners]="spinners" (click)="toggleSpinners()" ></ngb-timepicker>
+                [ngModel]="{hour: convert2Int(serviceDetails.formData.h_End| date: 'HH') , minute: convert2Int(serviceDetails.formData.h_End| date: 'mm')}"
+                [spinners]="spinners"></ngb-timepicker>
             </div>
         </div>
         <!--**************************   ORA INIZIO  Material ****************** -->
