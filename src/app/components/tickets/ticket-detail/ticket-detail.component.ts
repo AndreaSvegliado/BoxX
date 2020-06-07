@@ -141,6 +141,7 @@ export class TicketDetailComponent implements OnInit {
   onSubmit(form:NgForm){
     //form.value        //AS: oggetto in formato JSON contenente i campi del form
 
+    console.log("Submit");
     console.log(this.serviceDetails.formData.id);
 
     //if(form.value.PMid==0){
@@ -181,7 +182,9 @@ export class TicketDetailComponent implements OnInit {
         this.serviceDetails.refreshList(this.serviceDetails.formData.ticketID);
         this.resetForm(form);
       },
-      err => {console.log(err);  }
+      err => {
+        console.log(err); 
+      }
     )
 
   }
