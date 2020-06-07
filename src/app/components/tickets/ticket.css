@@ -1,3 +1,5 @@
+
+
 .ticket-card {
   max-width: 360px;
   margin-bottom: 40px;
@@ -101,7 +103,7 @@
   margin-top: 8px;
   margin-left: 3px;
   margin-bottom: 10px;
-  
+  padding-left: 10px !important;
   font-size: 14px;
   background: #1a7ce7;
   color: white;
@@ -169,7 +171,10 @@ button{
 
 .note-area {
   min-height: 60px;
+  border: solid 1px !important;
+  border-color: rgb(201, 201, 201) !important;
 }
+
 
 
 
@@ -212,3 +217,14 @@ input.ng-valid{
 table tr:hover{
   cursor: pointer;
 } */
+
+
+/*.btn .btn-link .ng-star-inserted"><span class="chevron ngb-tp-chevron bottom"></span><span class="sr-only">Decrement hours</span></button>*/
+.ngb-tp > btn{padding:0 !important}
+
+
+
+.ngb-tp-input{
+  border: none !important;
+}
+
