@@ -78,7 +78,7 @@
 .ticket-detail-list {
   background-color: white;
   border-radius: 4px;
-  padding: 50px 0;
+  padding: 20px 10px;
   box-shadow: 0 1px 16px 0 rgba(0, 0, 0, .2), 0 2px 8px 0 rgba(0, 0, 0, .14), 0 4px 8px -1px rgba(0, 0, 0, .12);
 }
 
@@ -94,7 +94,7 @@
 
 .backtoticket-button {
   margin-top: 8px;
-  margin-left: 5px;
+  margin-left: 3px;
   margin-bottom: 10px;
   
   font-size: 14px;
@@ -104,6 +104,7 @@
 
 .backtoticket-container{
   text-align: left;
+
 }
 
 
@@ -162,8 +163,16 @@
   min-height: 60px;
 }
 
-.button.btn-btn-link.ng-start-inserted {
-  padding: 0px;
+
+
+.intestazione-container {
+  margin-top: 5px;
+  margin-left: 5px;
+  width: 99%;
+}
+
+.details-title{
+  margin-top:7px;
 }
 /* .input-group-text {
   padding-left:5px;
