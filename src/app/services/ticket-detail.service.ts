@@ -32,21 +32,18 @@ export class TicketDetailService {
   }  
   
   putTicketDetail(){
-    return this.http.put( environment.apiBaseUrl  + '/TicketDetails/' + this.formData.id,this.formData)    
+    return this.http.put( environment.apiBaseUrl  + '/TicketDetails/' + this.formData.id , this.formData)    
   }
 
   deleteTicketDetail(  id  ){
     return this.http.delete(  environment.apiBaseUrl  + '/TicketDetails/' + id ) ;
   }
 
-  refreshList(ticketID){
-
-    console.log("refreshList - ticketID :");
-    console.log(ticketID);
-    
+  refreshList(ticketID)
+  {
     //AS: niente return ??
      //this.http.get(  environment.apiBaseURI + '/PaymentDetail')
-     this.http.get(  environment.apiBaseUrl+ '/TicketDetails/GetByTicketID/' + ticketID)
+     this.http.get(environment.apiBaseUrl+ '/TicketDetails/GetByTicketID/' + ticketID)
     .toPromise()            //AS ???
     .then(res => this.ticketList = res as ticketDetail[] );
   }

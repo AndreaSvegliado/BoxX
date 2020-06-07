@@ -30,8 +30,14 @@ export class TicketDetailListComponent implements OnInit {
 
     this.ticketDetailService.getTicketDetailList(this.ticketID)
     .subscribe(
-      res=>   this.ticketDetails = res as ticketDetail[]
+      
+      res=>   {this.ticketDetails = res as ticketDetail[];
+      console.log ('aggiornamento in corso...');
+
+    }
     );  
+
+
   }
 
   ngOnInit(): void {
@@ -53,6 +59,7 @@ export class TicketDetailListComponent implements OnInit {
       this.ticketDetailService.deleteTicketDetail(id)
         .subscribe(res => {
         this.ticketDetailService.refreshList(this.ticketID);
+        
         //this.toastr.warning('Record cancellato', 'Payment Detail Register');
       },
       err=> {

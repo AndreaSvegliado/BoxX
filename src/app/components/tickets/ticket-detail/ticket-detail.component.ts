@@ -25,7 +25,7 @@ export class CustomAdapter extends NgbDateAdapter<string> {
   fromModel(value: string | null): NgbDateStruct | null {
     if (value) {
       let date = value.split(this.DELIMITER);
-      console.log(parseInt(date[0], 10));
+
       return {
         day : parseInt(date[2], 10), //qui su stackblitz si trova parseInt(date[0], 10),....che non è il day
         month : parseInt(date[1], 10),
@@ -80,7 +80,7 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
     {provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter},
 
   ],
-  encapsulation: ViewEncapsulation.None // <------
+  encapsulation: ViewEncapsulation.None // <------ serve per poter modificare css delle classi create da Angular
 
 })
 
@@ -90,7 +90,6 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
 export class TicketDetailComponent implements OnInit {
 
   spinners = false;
-  time = {hour: 13, minute: 30};
 
   convert2Int(oraStringa:string){
     return oraStringa ? parseInt(oraStringa) : 0;
@@ -171,29 +170,23 @@ export class TicketDetailComponent implements OnInit {
   }
 
   UpdateRecord(form:NgForm){
-    console.log("Update Record (TODO!!!)");
 
     
-    /*this.serviceDetails.putTicketDetail();
-    /*
+    //this.serviceDetails.putTicketDetail();
+    
     this.serviceDetails.putTicketDetail().subscribe(
       res => { 
-        this.resetForm(form);
         //this.toastr.info('Record aggiornato correttamente', 'Payment Detail Register');
-        //this.serviceDetails.refreshList();
+        console.log("TicketID da salvare: " + this.serviceDetails.formData.ticketID);
+        this.serviceDetails.refreshList(this.serviceDetails.formData.ticketID);
+        this.resetForm(form);
       },
       err => {console.log(err);  }
     )
-    */
+
   }
 
-  // convert(Time) {
-  //   let Ora = "11";
-  //   let Min = "00";
-  //   let timeConvertito = {hour: Ora, minute: Min};
-  //   //let timeConvertito = Time +'aaa'
-  //   return timeConvertito;
-  // }
+
 }
 
 
