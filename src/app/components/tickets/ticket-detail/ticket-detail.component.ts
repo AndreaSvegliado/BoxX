@@ -1,4 +1,4 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 import { TicketDetailService } from 'src/app/services/ticket-detail.service';
@@ -73,7 +73,8 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
     {provide: NgbDateAdapter, useClass: CustomAdapter},
     {provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter},
 
-  ]
+  ],
+  encapsulation: ViewEncapsulation.None // <------
 
 })
 
@@ -81,6 +82,12 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
 
 
 export class TicketDetailComponent implements OnInit {
+
+  spinners = false;
+
+  toggleSpinners() {
+      this.spinners = !this.spinners;
+  }
 
   ticketCausali:ticketCausale[];
 
@@ -176,5 +183,4 @@ export class NgbdDatepickerAdapter {
     return this.dateAdapter.toModel(this.ngbCalendar.getToday())!;
   }
 }
-
 

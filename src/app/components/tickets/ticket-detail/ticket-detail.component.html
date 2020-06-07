@@ -10,7 +10,7 @@
                         <mat-icon>list</mat-icon>
                     </div>
                 </div>
-                <select class="form-control" name="causaleID" placeholder="Causale" #Causale="ngModel"
+                <select class="form-control combo-causale" name="causaleID" placeholder="Causale" #Causale="ngModel"
                     [(ngModel)]="serviceDetails.formData.causaleID" required placeholder="Selezionare causale...">
                     <option value="0">Selezionare causale...</option>
                     <option *ngFor="let item of ticketCausali" value="{{item.id}}">{{item.causaleDesc}}</option>
@@ -34,12 +34,13 @@
             <div class="input-group" >
                 <div class="input-group-prepend">
                     <div class="input-group-text bg-white">
-                        <mat-icon>alarm</mat-icon>
+                        <mat-icon >
+                            alarm</mat-icon>
                     </div>
                 </div>
                 <ngb-timepicker class="time-picker" name="h_Ini"
                     [ngModel]="serviceDetails.formData.h_Ini| date: 'HH:mm'"
-                    (ngModelChange)="serviceDetails.formData.h_Ini=$event"></ngb-timepicker>
+                    (ngModelChange)="serviceDetails.formData.h_Ini=$event" [spinners]="spinners" (click)="toggleSpinners()" ></ngb-timepicker>
             </div>
         </div>
         <!--**************************   ORA FINE  ************************** -->
@@ -52,11 +53,11 @@
                 </div>
                 <ngb-timepicker class="time-picker" name="h_End"
                     [ngModel]="serviceDetails.formData.h_End| date: 'HH:mm'"
-                    (ngModelChange)="serviceDetails.formData.h_End=$event"></ngb-timepicker>
+                    (ngModelChange)="serviceDetails.formData.h_End=$event"  [spinners]="spinners" (click)="toggleSpinners()" ></ngb-timepicker>
             </div>
         </div>
         <!--**************************   ORA INIZIO  Material ****************** -->
-        <div class="input-group">
+        <!-- <div class="input-group">
             <mat-form-field class="input-group-prepend" appearance="standard">
                 <mat-label>Ora inizio</mat-label>
                 <input matInput [ngxTimepicker]="h_Ini" [format]="24"
@@ -66,9 +67,9 @@
                 <ngx-material-timepicker #h_Ini [defaultTime]="'08:00'"></ngx-material-timepicker>
                 <mat-icon class="icona-griglia" matSuffix>timer</mat-icon>
             </mat-form-field>
-        </div>
+        </div> -->
         <!--**************************    ORA FINE  Material  ************************** -->
-        <div class="input-group">
+        <!-- <div class="input-group">
             <mat-form-field class="input-group-prepend" appearance="standard">
                 <mat-label>Ora Fine</mat-label>
                 <input matInput [ngxTimepicker]="h_End" [format]="24"
@@ -78,7 +79,7 @@
                 <ngx-material-timepicker #h_End></ngx-material-timepicker>
                 <mat-icon class="icona-griglia" matSuffix>timer_off</mat-icon>
             </mat-form-field>
-        </div>
+        </div> -->
         <!--**************************      NOTE     ************************** -->
         <div class="input-group">
             <div class="input-group-prepend">
