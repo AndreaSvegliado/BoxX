@@ -1,26 +1,28 @@
-<mat-toolbar class="topnavbar" color="primary" >
+<mat-toolbar class="topnavbar" color="primary">
 
   <!-- Bottone apertura menu-->
-  <div class="toolbar-tools" *ngIf="isLoggedIn"  >
+  <div class="toolbar-tools" *ngIf="isLoggedIn">
     <!-- <button mat-icon-button (click)="sidenav.open()" (click)="opened = !opened"  style="cursor: pointer;" > -->
-    <button mat-icon-button   (click)="opened=!opened"  style="cursor: pointer;" > 
+    <button mat-icon-button (click)="openclose()" style="cursor: pointer;">
       <mat-icon>menu</mat-icon>
     </button>
     <div class="filler"></div>
   </div>
-  
-  <!-- Nome utente loggato e bottone logout-->
-  <ng-container *ngIf="isLoggedIn" > 
-    <div  class="navbar-container">
-      <div  class="navbar-dark text-white" >
-        <a style="font-size: medium;">{{currUser.fullname}} </a> 
-        <a class="navbar-dark text-white"> </a>
-        <button class="btn btn-danger my-2 my-sm-0 exit-button" (click)="onLogout()" title="Logout"><mat-icon mat-list-icon>exit_to_app</mat-icon></button>
-      </div> 
-    </div>
-  </ng-container> 
 
-    <!--
+  <!-- Nome utente loggato e bottone logout-->
+  <ng-container *ngIf="isLoggedIn">
+    <div class="navbar-container">
+      <div class="navbar-dark text-white">
+        <a style="font-size: medium;">{{currUser.fullname}} </a>
+        <a class="navbar-dark text-white"> </a>
+        <button class="btn btn-danger my-2 my-sm-0 exit-button" (click)="onLogout()" title="Logout">
+          <mat-icon mat-list-icon>exit_to_app</mat-icon>
+        </button>
+      </div>
+    </div>
+  </ng-container>
+
+  <!--
     <ng-container  *ngIf="(pictureUrl$ | async) as pictureUrl">
       <p class="HeaderText">{{UserName$ | async}} </p>
       <img class="user-avatar" [src]="pictureUrl">
@@ -30,69 +32,69 @@
 </mat-toolbar>
 
 
-<mat-sidenav-container   >
-    <!-- <mat-sidenav  *ngIf="isLoggedIn"  #sidenav mode="side" [opened]="opened" [class.close]="!opened" id="sidenav" > -->
-    <mat-sidenav  *ngIf="isLoggedIn"  #sidenav mode="side" [opened]="opened"  id="sidenav" >  
-      <mat-nav-list >
-        
-        <!--
+<mat-sidenav-container [hasBackdrop]="false">
+  <!-- <mat-sidenav  *ngIf="isLoggedIn"  #sidenav mode="side" [opened]="opened" [class.close]="!opened" id="sidenav" > -->
+  <mat-sidenav *ngIf="isLoggedIn" #sidenav [mode]="side_over" [opened]="opened" id="sidenav" disableClose>
+    <mat-nav-list>
+
+      <!--
           <a class="home-button" routerLink="/">
             <img class="app-logo" src="https://bulma.io/images/bulma-logo.png" />
           </a>
           <mat-divider class="navigation-divider"></mat-divider>
         -->
 
-          
 
-          <!-- <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/home']">-->
-          <mat-list-item  [routerLink]="['/default']">
-            <div class="item">
-              <button mat-icon-button>
-                <mat-icon mat-list-icon >view_agenda</mat-icon>
-              </button>
-              <a *ngIf="opened">Home</a>
-            </div>
-          </mat-list-item>
 
-          <!-- <mat-list-item (click)= "sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/calendario']">-->
-          <mat-list-item   [routerLink]="['/calendario']">
-            <div class="item">
-              <button mat-icon-button>
-                <mat-icon mat-list-icon>event</mat-icon>
-              </button>
-              <a *ngIf="opened">Calendario</a>
-            </div>
-          </mat-list-item>
+      <!-- <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/home']">-->
+      <mat-list-item [routerLink]="['/default']">
+        <div class="item" (click)="opencloseicon()">
+          <button mat-icon-button>
+            <mat-icon mat-list-icon>view_agenda</mat-icon>
+          </button>
+          <a class="a-sidenav" *ngIf="opened">Home</a>
+        </div>
+      </mat-list-item>
 
-          <mat-list-item  [routerLink]="['/assistenza']">
-            <div class="item">
-              <button mat-icon-button>
-                <mat-icon mat-list-icon>build</mat-icon>
-              </button>
-              <a *ngIf="opened">Assistenza</a>
-            </div>
-          </mat-list-item>
+      <!-- <mat-list-item (click)= "sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/calendario']">-->
+      <mat-list-item [routerLink]="['/calendario']">
+        <div class="item" (click)="opencloseicon()">
+          <button mat-icon-button>
+            <mat-icon mat-list-icon>event</mat-icon>
+          </button>
+          <a *ngIf="opened">Calendario</a>
+        </div>
+      </mat-list-item>
 
-          <mat-list-item [routerLink]="['/anagrafica clienti']">
-            <div class="item">
-              <button mat-icon-button>
-                <mat-icon mat-list-icon>people_alt</mat-icon>
-              </button>
-              <a *ngIf="opened">Clienti</a>
-            </div>
-          </mat-list-item>
+      <mat-list-item [routerLink]="['/assistenza']">
+        <div class="item" (click)="opencloseicon()">
+          <button mat-icon-button>
+            <mat-icon mat-list-icon>build</mat-icon>
+          </button>
+          <a *ngIf="opened">Assistenza</a>
+        </div>
+      </mat-list-item>
 
-          <!-- <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/userDetails']"></mat-list-item>-->
-          <mat-list-item [routerLink]="['/userDetails']">
-            <div class="item">
-              <button mat-icon-button>
-                <mat-icon mat-list-icon>people_alt</mat-icon>
-              </button>
-              <a *ngIf="opened">Dettaglio Utente</a>
-            </div>
-          </mat-list-item>
-    
-          <!--
+      <mat-list-item [routerLink]="['/anagrafica clienti']">
+        <div class="item" (click)="opencloseicon()">
+          <button mat-icon-button>
+            <mat-icon mat-list-icon>people_alt</mat-icon>
+          </button>
+          <a *ngIf="opened">Clienti</a>
+        </div>
+      </mat-list-item>
+
+      <!-- <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/userDetails']"></mat-list-item>-->
+      <mat-list-item [routerLink]="['/userDetails']">
+        <div class="item" (click)="opencloseicon()">
+          <button mat-icon-button>
+            <mat-icon mat-list-icon>people_alt</mat-icon>
+          </button>
+          <a *ngIf="opened">Dettaglio Utente</a>
+        </div>
+      </mat-list-item>
+
+      <!--
           <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedOut$ | async" [routerLink]="['/login']">
             <mat-icon matListIcon>fingerprint</mat-icon>
             <h3 matLine>Login</h3>
@@ -102,70 +104,100 @@
             <h3 matLine>Logout</h3>
           </mat-list-item>
           -->
-          <mat-divider class="navigation-divider"></mat-divider>
-          <a class="nav-item nav-link">Link esterni</a>
-                   
-          <a href="http://www.steinerwaldorfpadova.it" target="_blank">
-            <mat-list-item>
-              <div class="item"> 
-                <button mat-icon-button>
-                  <mat-icon matListIcon>language</mat-icon>
-                </button> 
-                <a *ngIf="opened">SITO WEB DEL MENGA</a>
-              </div>
-            </mat-list-item>
-          </a>
-        
-          <a href="https://jasonwatmore.com/post/2020/04/28/angular-9-user-registration-and-login-example-tutorial#app-module-ts" target="_blank">
-            <mat-list-item >
-              <div class="item"> 
-                <button mat-icon-button>
-                  <mat-icon matListIcon>language</mat-icon>
-                </button>
-                <a *ngIf="opened">Jason Watmore</a>
-                <!-- <h3 matLine>Jason Watmore</h3>-->
-              </div>
-            </mat-list-item>
-          </a>
+      <mat-divider class="navigation-divider"></mat-divider>
+      <a class="nav-item nav-link">Link esterni</a>
 
-          <mat-divider class="navigation-divider"></mat-divider>
+      <a href="http://www.steinerwaldorfpadova.it" target="_blank">
+        <mat-list-item>
+          <div class="item" (click)="opencloseicon()">
+            <button mat-icon-button>
+              <mat-icon matListIcon>language</mat-icon>
+            </button>
+            <a *ngIf="opened">SITO WEB DEL MENGA</a>
+          </div>
+        </mat-list-item>
+      </a>
 
-          <mat-list-item (click)="onLogout()" *ngIf="!isLoggedIn" [routerLink]="['/login']">
-            <div class="item">
-              <button mat-icon-button>
-                <mat-icon mat-list-icon>fingerprint</mat-icon>
-              </button>
-              <a *ngIf="opened">Login</a>
-            </div>
-          </mat-list-item>
+      <a href="https://jasonwatmore.com/post/2020/04/28/angular-9-user-registration-and-login-example-tutorial#app-module-ts"
+        target="_blank">
+        <mat-list-item>
+          <div class="item" (click)="opencloseicon()">
+            <button mat-icon-button>
+              <mat-icon matListIcon>language</mat-icon>
+            </button>
+            <a *ngIf="opened">Jason Watmore</a>
+            <!-- <h3 matLine>Jason Watmore</h3>-->
+          </div>
+        </mat-list-item>
+      </a>
 
-          <mat-list-item (click)="onLogout()" *ngIf="isLoggedIn" [routerLink]="['/login']">
-            <div class="item">
-              <button mat-icon-button>
-                <mat-icon mat-list-icon>exit_to_app</mat-icon>
-              </button>
-              <a *ngIf="opened">Logout</a>
-            </div>
-          </mat-list-item>
+      <mat-divider class="navigation-divider"></mat-divider>
 
-      </mat-nav-list>
-    </mat-sidenav>
-    
+      <mat-list-item (click)="onLogout()" *ngIf="!isLoggedIn" [routerLink]="['/login']">
+        <div class="item" (click)="opencloseicon()">
+          <button mat-icon-button>
+            <mat-icon mat-list-icon>fingerprint</mat-icon>
+          </button>
+          <a *ngIf="opened">Login</a>
+        </div>
+      </mat-list-item>
+
+      <mat-list-item (click)="onLogout()" *ngIf="isLoggedIn" [routerLink]="['/login']">
+        <div class="item" (click)="opencloseicon()">
+          <button mat-icon-button>
+            <mat-icon mat-list-icon>exit_to_app</mat-icon>
+          </button>
+          <a *ngIf="opened">Logout</a>
+        </div>
+      </mat-list-item>
+
+
+      <!--
+        <mat-list-item>
+        <div class="item" (click)="changeModalita()">
+          <button mat-icon-button>
+            <mat-icon mat-list-icon>{{iconaCheck}}</mat-icon>
+          </button>
+          <a *ngIf="opened">Sidebar Mode</a>
+        </div>
+      </mat-list-item>
+      -->
+
+
+    </mat-nav-list>
+  </mat-sidenav>
+
   <!-- 
       <router-outlet></router-outlet>
   -->
-  
+
   <!-- OK quando autenticati, ma il login appare tutto a destra e il menu resta a visibile a sinistra-->
-    <!-- <mat-sidenav-content   [class.close]="!opened">-->
-      <mat-sidenav-content>
-      <router-outlet></router-outlet>
-    </mat-sidenav-content>
-  
-  </mat-sidenav-container>
- 
-  <!-- OK quando autenticati, ma il login appare sotto  
+  <!-- <mat-sidenav-content   [class.close]="!opened">-->
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
+
+<!-- OK quando autenticati, ma il login appare sotto  
   <router-outlet></router-outlet>
   -->
-  <mat-toolbar  class="footernavbar" color="grey">
-    © Tutti i diritti riservati: croficcivehself
-  </mat-toolbar>
+<mat-toolbar class="footernavbar row" color="grey">
+
+    <div class="col-6" >
+      <div class="row" (click)="changeSide_Over()">
+        <mat-icon mat-list-icon class="icona-sidenavmode">{{iconaCheck}}</mat-icon>
+        <span class="text-sidenavmode">Menu sopra la pagina</span>
+      </div>
+      <div class="row" (click)="changeFix()">
+        <mat-icon mat-list-icon class="icona-sidenavmode">{{iconaCheck2}}</mat-icon>
+        <span class="text-sidenavmode">Menu sempre aperto</span>
+      </div>
+    </div>
+
+    <div class="col-6 footer-copyright">
+      © Tutti i diritti riservati
+    </div>
+
+
+</mat-toolbar>

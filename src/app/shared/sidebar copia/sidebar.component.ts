@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { currentUser } from 'src/app/models/models';
-import { TransitionCheckState } from '@angular/material';
 
 @Component({
   selector: 'app-sidebar',
@@ -12,12 +11,10 @@ import { TransitionCheckState } from '@angular/material';
 export class SidebarComponent implements OnInit {
   
   opened = false;
-  side_over = "side";
-  fix_notfix ="notfix";
+
   isLoggedIn: boolean;
   currUser: currentUser;
-  iconaCheck = "radio_button_unchecked";
-  iconaCheck2 = "radio_button_unchecked";
+  
   //Versione Vasco: observable che si aggiorna in automatico al variare della variabile
   //AS: il dollaro indica che la variabile è un observable
   //isLoggedIn$: Observable<boolean>;
@@ -62,63 +59,4 @@ export class SidebarComponent implements OnInit {
     this.uService.changeLoggedIn(false);
     this.router.navigate(['/user/login']);
   }
-
-  changeSide_Over () {
-    if (this.side_over == "side") {
-      this.side_over = "over";
-      this.iconaCheck = "check_circle";
-    } else {
-      this.side_over = "side";
-      this.iconaCheck = "radio_button_unchecked";
-    }
-  }
-
-  changeFix () {
-    console.log("fixnotfix prima di cambiarlo"+this.fix_notfix);
-    if (this.fix_notfix == "notfix") {
-      this.fix_notfix = "fix";
-      this.iconaCheck2 = "check_circle";
-      //quando fisso il menu devo sempre mettere a lato
-      this.side_over = "side";
-      this.iconaCheck = "radio_button_unchecked";
-
-      this.opened = true;
-      console.log("fixnotfix dopo averlo cambiato"+this.fix_notfix);
-    } else {
-      this.fix_notfix = "notfix";
-      this.iconaCheck2 = "radio_button_unchecked";
-      this.opened = false;
-      console.log("fixnotfix dopo averlo cambiato"+this.fix_notfix);
-    }
-  }
-
-  openclose () {
-    console.log("openclose prima di cambiare :"+this.fix_notfix);
-    console.log("opened"+this.opened);
-    if (this.opened == true) {
-      if (this.fix_notfix=="fix") {
-        //non deve fare nulla
-      } else {
-        this.opened = false;
-      }
-    } else {
-      if (this.fix_notfix=="fix") {
-        //non dovrebbe mai trovarsi in questa situazione
-      } else {
-        console.log("chiuso e notfix");
-        this.opened = true;
-      }
-    }
-  }
-
-  opencloseicon () {
-    if (this.opened == true) {
-      if (this.fix_notfix=="fix") {
-        //non deve fare nulla
-      } else {
-        this.opened = false;
-      }
-    }
-  }
-
 }
