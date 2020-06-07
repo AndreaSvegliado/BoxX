@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
   ShowMessage(msg: string, title?: string, hasErrors: boolean= false ) {
 
     let config = new MatSnackBarConfig();
-    config.verticalPosition  = 'top';
+    config.verticalPosition  = 'bottom';
     config.horizontalPosition = 'center';
     config.duration = 2000;
 
