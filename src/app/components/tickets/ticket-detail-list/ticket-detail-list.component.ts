@@ -13,22 +13,29 @@ export class TicketDetailListComponent implements OnInit {
   //NON FUNZIONA CASSO!!!!
   //@Input() public iTicketID : string;
   
-  //mticketID: string;
+  ticketID;
   //public TicketID: number
-   ticketDetails:ticketDetail[];
+
+  ticketDetails:ticketDetail[];
 
   constructor(private route: ActivatedRoute, private router : Router, public ticketDetailService: TicketDetailService ) { 
 
     let ID = this.route.snapshot.params['ID'];
+    //this.ticketID = ID;
 
-    this.ticketDetailService.getTicketDetailList(ID)
+    this.ticketID = this.route.snapshot.params['ID'];
+    console.log("ANDREA");
+    console.log(this.ticketID);
+    
+
+    this.ticketDetailService.getTicketDetailList(this.ticketID)
     .subscribe(
       res=>   this.ticketDetails = res as ticketDetail[]
     );  
   }
 
   ngOnInit(): void {
-    //this.ticketDetailService.refreshList();
+    this.ticketDetailService.refreshList(this.ticketID);
   }
 
   
@@ -45,7 +52,7 @@ export class TicketDetailListComponent implements OnInit {
     if(confirm("Si conferma la cancellazione del record?")){
       this.ticketDetailService.deleteTicketDetail(id)
         .subscribe(res => {
-        //this.ticketDetailService.refreshList();
+        this.ticketDetailService.refreshList(this.ticketID);
         //this.toastr.warning('Record cancellato', 'Payment Detail Register');
       },
       err=> {

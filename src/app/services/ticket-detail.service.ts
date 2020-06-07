@@ -15,6 +15,7 @@ import { ticketDetail } from '../models/models';
 export class TicketDetailService {
 
   formData:ticketDetail;
+  ticketList: ticketDetail[];
 
   constructor(private http: HttpClient) {
   
@@ -37,6 +38,19 @@ export class TicketDetailService {
   deleteTicketDetail(  id  ){
     return this.http.delete(  environment.apiBaseUrl  + '/TicketDetails/' + id ) ;
   }
+
+  refreshList(ticketID){
+
+    console.log("refreshList - ticketID :");
+    console.log(ticketID);
+    
+    //AS: niente return ??
+     //this.http.get(  environment.apiBaseURI + '/PaymentDetail')
+     this.http.get(  environment.apiBaseUrl+ '/TicketDetails/GetByTicketID/' + ticketID)
+    .toPromise()            //AS ???
+    .then(res => this.ticketList = res as ticketDetail[] );
+  }
+
 }
 
 
