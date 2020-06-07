@@ -1,16 +1,13 @@
 
-
 :host {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-:host > mat-sidenav-container.mat-sidenav-container  {
-  flex: 1;
-} 
-
-
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  :host > mat-sidenav-container.mat-sidenav-container  {
+    flex: 1;
+  }
   
   /*mat-sidenav-container {
     display: flex;
@@ -24,49 +21,28 @@
   
   .mat-drawer {
     visibility: visible !important;
-    background-color: rgba(0,0,0,0.8);
-    color: white;
+    transform: translate3d(calc(72px - 100%) , 0,0);
   }
   
-  @media screen and (min-width: 600px) {
-    .mat-drawer {
-      transform: translate3d(calc(72px - 100%) , 0,0);
-    }
-  }
-
   .navbar-container {
     text-align: right;
     width:100%;
   }
 
-  mat-sidenav{
-    color: white;
-  }
 
-  .mat-nav-list a{
-    color: white;
+  .mat-drawer-content {
+    margin-left: 72px;
   }
-
-  mat-divider {
-    border-color: white;
-  }
-
   
-  @media screen and (min-width: 600px) {
-    .mat-drawer-content {
-      margin-left: 72px;
-    }
-  }
   /* mat nav list items fix */
   
   .item {
-    flex: 1; /*questo fa sì che l'icona sia allineata a destra quando chiuso*/
-    text-align: right;
+    flex: 1; text-align: right
   }
-
   .mat-drawer.mat-drawer-opened .item {
     text-align: left;
   }
+
 
   .sidenav-container .sidenav .navigation-list {
     padding-top: 30px;
@@ -87,9 +63,7 @@
 
 .mat-icon-button {
   outline:0;
-  color: white;
 }
-
 
 .exit-button {
 

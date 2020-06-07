@@ -80,7 +80,7 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
     {provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter},
 
   ],
-  encapsulation: ViewEncapsulation.None // <------ serve per poter modificare css delle classi create da Angular
+  //encapsulation: ViewEncapsulation.None // <------ serve per poter modificare css delle classi create da Angular
 
 })
 
