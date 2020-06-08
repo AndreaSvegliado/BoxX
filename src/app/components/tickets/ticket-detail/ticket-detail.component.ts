@@ -137,9 +137,10 @@ export class TicketDetailComponent implements OnInit {
   onSubmit(form:NgForm){
     //form.value        //AS: oggetto in formato JSON contenente i campi del form
 
+    /*
     console.log("Submit");
     console.log(this.serviceDetails.formData.id);
-
+    */
     //if(form.value.PMid==0){
     if(this.serviceDetails.formData.id ==0){
       this.InsertRecord(form);
@@ -168,8 +169,8 @@ export class TicketDetailComponent implements OnInit {
 
   UpdateRecord(form:NgForm){
     
-    console.log(this.serviceDetails.formData);
-    
+    console.log("Update Record");
+
     this.serviceDetails.putTicketDetail().subscribe(
       res => { 
         
@@ -182,6 +183,10 @@ export class TicketDetailComponent implements OnInit {
         console.log(err); 
       }
     )
+  }
+
+  CausaleID_toNumber(){
+    this.serviceDetails.formData.causaleID = + this.serviceDetails.formData.causaleID;
   }
 }
 

@@ -2,19 +2,25 @@
     <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
 
         <input type="hidden" name="id" [value]="serviceDetails.formData.id">
+
         <!--************************** COMBO CAUSALE ************************** -->
         <div class="form-group">
-            <div class="input-group">
+            <div class="input-group" dataType="numeric" type="number">
                 <div class="input-group-prepend">
                     <div class="input-group-text bg-white">
                         <mat-icon>list</mat-icon>
                     </div>
                 </div>
-                <select  dataType="numeric" type="number" class="form-control combo-causale" name="causaleID" placeholder="Causale" #Causale="ngModel"
-                    [(ngModel)]=serviceDetails.formData.causaleID required placeholder="Selezionare causale...">
-                    <option dataType="numeric" type="number" value=0>Selezionare causale...</option>
+                <select dataType="numeric" type="number" 
+                    class="form-control combo-causale" name="causaleID" placeholder="--Selezionare--" #Causale="ngModel"
+                    [(ngModel)]="serviceDetails.formData.causaleID"   
+                    (ngModelChange)="CausaleID_toNumber()"
+                    required>
+                    <option dataType="numeric" type="number" value=0>--Selezionare--</option>
 
-                    <!-- AS: ERRORE API: per qualche motivo causaleID diventa una stringa !!!!-->
+                    <!-- AS: ERRORE API: per qualche motivo causaleID diventa una stringa SOLO se modificato !!!!
+                    FIX: evento toNumber per fare il cast a number
+                    -->
                     
                     <option dataType="numeric" type="number" *ngFor="let item of ticketCausali" value={{item.id}}>{{item.causaleDesc}}</option>
                 </select>
@@ -23,17 +29,8 @@
 
         <!-- Errore da inspect:
 {id: 12, ticketID: 1, causaleID: "5", dt: "2020-06-02T00:00:00", h_Ini: "2020-06-03T08:00:00", …}
-causale: {id: 3, causaleDesc: "Attesa"}
-causaleID: "5"
-dt: "2020-06-02T00:00:00"
-h_End: "2020-06-03T08:00:00"
-h_Ini: "2020-06-03T08:00:00"
-id: 12
-note: "ab"
-ticketID: 1
-__proto__: Object
-
         -->
+
         <!--**************************      DATA     ************************** -->
         <div class="form-group">
             <div class="input-group">
