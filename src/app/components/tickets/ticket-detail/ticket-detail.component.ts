@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 import { TicketDetailService } from 'src/app/services/ticket-detail.service';
 import { ticketCausale, ticketDetail } from 'src/app/models/models';
 import { TicketCausaliService } from 'src/app/services/ticket-causali.service';
-import { NgbDateAdapter, NgbDateStruct, NgbDateParserFormatter, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateAdapter, NgbDateStruct, NgbDateParserFormatter, NgbCalendar, NgbTimeAdapter, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe, NumberSymbol } from '@angular/common';
 import { stringify } from 'querystring';
 import { DateAdapter } from '@angular/material';
@@ -15,8 +15,12 @@ interface TimeStructure {
   minute: number;
 }
 
-/*
+/* *******************************        DATE ADAPTER         *********************
 Questa prima parte (NgbDateAdapter) gestisce il collegamento con ngModel
+Verrà injectato
+Il date adapter che si chiama CustomAdapter viene qui definito
+poi viene inserito nei provider del component come {provide: NgbDateAdapter, useClass: CustomAdapter},
+
  */
 @Injectable()
 export class CustomAdapter extends NgbDateAdapter<string> {
@@ -41,8 +45,8 @@ export class CustomAdapter extends NgbDateAdapter<string> {
     //return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null; era così...invertito
   }
 }
-
-/*
+/* *******************************   FINE DATE ADAPTER         *********************
+/* *******************************       DATE PARSER           *********************
 Questa seconda parte (NgbDateParserFormatter) gestisce come la data inserita da tastiera viene gestita
 (cioè uno deve digitare 13/3/2020 e non 3/13/2020)
  */
@@ -58,8 +62,6 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
       return {
         day : parseInt(date[0], 10),
         month : parseInt(date[1], 10),
-        //day : pad( (date[0])),
-        //month : pad((date[1])),
         year : parseInt(date[2],10)
       };
     }
@@ -70,8 +72,58 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
     return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : '';
   }
 }
+/* *******************************      FINE DATE PARSER       *********************/
 
 
+/* *******************************      FUNZIONI ACCESSORIE    *********************/
+function pad(number): string {
+  return number < 10 ? `0${number}` : number;
+}
+
+function equal(t1: TimeStructure, t2: TimeStructure): boolean {
+  if (!t1) {
+    return !t2;
+  }
+  return (!t1 && !t2) || (t1 && t2 && t1.hour === t2.hour && t1.minute === t2.minute);
+}
+/* *******************************    FINE FUNZIONI ACCESSORIE  *********************/
+
+// MA QUESTA PARTE SERVE??? MI PARE DI NO???
+// export class NgbdDatepickerAdapter {
+
+//   model1: string;
+//   model2: string;
+
+//   constructor(private ngbCalendar: NgbCalendar, private dateAdapter: NgbDateAdapter<string>) {}
+
+//   get today() {
+//     return this.dateAdapter.toModel(this.ngbCalendar.getToday())!;
+//   }
+// }
+
+/* *******************************         TIME ADAPTER        *********************/
+
+@Injectable()
+  export class NgbTimeStringAdapter extends NgbTimeAdapter<string> {
+
+    fromModel(value: string| null): NgbTimeStruct | null {
+      if (!value) {
+        return null;
+      }
+      const split = value.split(':');
+      return {
+        hour: parseInt(split[0], 10),
+        minute: parseInt(split[1], 10),
+        second: parseInt(split[2], 10)
+      };
+    }
+
+    toModel(time: NgbTimeStruct | null): string | null {
+      return time != null ? `${pad(time.hour)}:${pad(time.minute)}:${pad(time.second)}` : null;
+    }
+  }
+
+/* *******************************      FINE TIME ADAPTER      *********************/
 
 @Component({
   selector: 'app-ticket-detail',
@@ -81,14 +133,11 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
   providers: [
     {provide: NgbDateAdapter, useClass: CustomAdapter},
     {provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter},
-
+    //{provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter}
   ],
   //encapsulation: ViewEncapsulation.None // <------ serve per poter modificare css delle classi create da Angular
 
 })
-
-
-
 
 export class TicketDetailComponent implements OnInit {
 
@@ -102,7 +151,7 @@ export class TicketDetailComponent implements OnInit {
       this.spinners = !this.spinners;
   }
 
-  timeFormat = new StringTimeFormat();
+  //timeFormat = new StringTimeFormat();
 
   ticketCausali:ticketCausale[];
   ticketDetails:ticketDetail[];
@@ -113,7 +162,6 @@ export class TicketDetailComponent implements OnInit {
     .subscribe(
       res=> this.ticketCausali = res as ticketCausale[]
       );  
-    //this.timechanged = new DatePipe('it-IT').transform(this.serviceDetails.formData.h_Ini, 'HH:mm');
   }
 
   ngOnInit() {
@@ -179,7 +227,6 @@ export class TicketDetailComponent implements OnInit {
         //this.toastr.info('Record aggiornato correttamente', 'Payment Detail Register');
         this.serviceDetails.refreshList(this.serviceDetails.formData.ticketID);
         this.resetForm(form);
-
       },
       err => {
         console.log(err); 
@@ -193,54 +240,3 @@ export class TicketDetailComponent implements OnInit {
 }
 
 
-
-
-function pad(number): string {
-  return number < 10 ? `0${number}` : number;
-}
-
-function equal(t1: TimeStructure, t2: TimeStructure): boolean {
-  if (!t1) {
-    return !t2;
-  }
-  return (!t1 && !t2) || (t1 && t2 && t1.hour === t2.hour && t1.minute === t2.minute);
-}
-
-export class NgbdDatepickerAdapter {
-
-  model1: string;
-  model2: string;
-
-  constructor(private ngbCalendar: NgbCalendar, private dateAdapter: NgbDateAdapter<string>) {}
-
-  get today() {
-    return this.dateAdapter.toModel(this.ngbCalendar.getToday())!;
-  }
-}
-
-
-class StringTimeFormat {
-  private currentValue: TimeStructure;
-
-  toStructure(timeAsString: string): TimeStructure {
-    if (!timeAsString) {
-      this.currentValue = null;
-    }
-    else {
-      const parts = timeAsString.split(':');
-      const newValue = {
-        hour: +parts[0],
-        minute: +parts[1]
-      };
-
-      if (!equal(this.currentValue, newValue)) {
-        this.currentValue = newValue;
-      }
-    }
-    return this.currentValue;
-  }
-
-  fromStructure(t: TimeStructure): string {
-    return t && `${pad(t.hour)}:${pad(t.minute)}}`;
-  }
-}
