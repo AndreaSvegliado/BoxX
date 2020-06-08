@@ -218,7 +218,17 @@ table tr:hover{
 
 
 /*.btn .btn-link .ng-star-inserted"><span class="chevron ngb-tp-chevron bottom"></span><span class="sr-only">Decrement hours</span></button>*/
-.ngb-tp > btn{padding:0 !important}
+.btn-group-lg {
+  padding: 0px!important;
+}
+
+.btn-title {
+  margin-top: 5px !important;
+}
+
+.btn {
+  height: 40px;
+}
 
 
 

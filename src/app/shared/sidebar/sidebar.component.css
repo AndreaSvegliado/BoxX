@@ -110,6 +110,14 @@
   font-weight: normal;
   /*padding-top: 10px;*/
 }
+
+mat-list-item-content {
+  height: 20px!important;
+}
+mat-list-item {
+  font-family: Titillium Web, sans-serif !important; 
+}
+
   /*
 .sidenav-container {
     height: 100%;

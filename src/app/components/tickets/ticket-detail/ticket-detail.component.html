@@ -1,6 +1,5 @@
 <div class="ticket-detail">
     <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
-
         <input type="hidden" name="id" [value]="serviceDetails.formData.id">
         <!--************************** COMBO CAUSALE ************************** -->
         <div class="form-group">
@@ -56,30 +55,6 @@
                 [spinners]="spinners"></ngb-timepicker>
             </div>
         </div>
-        <!--**************************   ORA INIZIO  Material ****************** -->
-        <!-- <div class="input-group">
-            <mat-form-field class="input-group-prepend" appearance="standard">
-                <mat-label>Ora inizio</mat-label>
-                <input matInput [ngxTimepicker]="h_Ini" [format]="24"
-                    [value]="serviceDetails.formData.h_Ini| date: 'HH:mm'" class="form-control time-input"
-                    placeholder="__:__" maxlength="5" minlength="5">
-
-                <ngx-material-timepicker #h_Ini [defaultTime]="'08:00'"></ngx-material-timepicker>
-                <mat-icon class="icona-griglia" matSuffix>timer</mat-icon>
-            </mat-form-field>
-        </div> -->
-        <!--**************************    ORA FINE  Material  ************************** -->
-        <!-- <div class="input-group">
-            <mat-form-field class="input-group-prepend" appearance="standard">
-                <mat-label>Ora Fine</mat-label>
-                <input matInput [ngxTimepicker]="h_End" [format]="24"
-                    [value]="serviceDetails.formData.h_End| date: 'HH:mm'" class="form-control time-input"
-                    placeholder="__:__" maxlength="5" minlength="5">
-
-                <ngx-material-timepicker #h_End></ngx-material-timepicker>
-                <mat-icon class="icona-griglia" matSuffix>timer_off</mat-icon>
-            </mat-form-field>
-        </div> -->
         <!--**************************      NOTE     ************************** -->
         <div class="input-group">
             <div class="input-group-prepend">
@@ -93,20 +68,39 @@
         <!--**************************    BOTTONI    ************************** -->
         <div class="input-group">
             <button class="btn btn-success btn-lg btn-block" [disabled]="form.invalid">
-                <mat-icon>save_alt</mat-icon>
-                Salva
+                <div class="row btn-title">
+                    <div class="col-1">
+                        <mat-icon>save_alt</mat-icon>
+                    </div>
+                    <div class="col-10">
+                        Salva
+                    </div>
+                </div>
             </button>
         </div>
         <div class="input-group">
             <button class="btn btn-success btn-lg btn-block" (click)="resetForm(form)" [disabled]="form.invalid">
-                <mat-icon>playlist_add</mat-icon>
-                Nuovo
+                <div class="row btn-title">
+                    <div class="col-1">
+                        <mat-icon>playlist_add</mat-icon>
+                    </div>
+                    <div class="col-10">
+                        Nuovo
+                    </div>
+                </div>
             </button>
         </div>
 
         <div class="input-group">
             <button class="btn btn-success btn-lg btn-block"  [disabled]="form.invalid">
-                refresh
+                <div class="row btn-title">
+                    <div class="col-1">
+                        <mat-icon>refresh</mat-icon>
+                    </div>
+                    <div class="col-10">
+                        Refresh
+                    </div>
+                </div>
             </button>
         </div>
 
