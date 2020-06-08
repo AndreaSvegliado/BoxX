@@ -29,7 +29,6 @@ import { MatNativeDateModule, MatInputModule} from '@angular/material';
 import {  DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbdDatepickerAdapter } from './shared/date-adapter/date-adapter';
 
 
 
@@ -48,9 +47,6 @@ import { NgbdDatepickerAdapter } from './shared/date-adapter/date-adapter';
     TicketDetailComponent,
     TicketDetailListComponent,
     
-    NgbdDatepickerAdapter,
-
-    
   ],
   imports: [
 
@@ -67,7 +63,7 @@ import { NgbdDatepickerAdapter } from './shared/date-adapter/date-adapter';
     NgxMaterialTimepickerModule.setLocale('it-IT'), NgbModule
   ],
   exports:[
-    NgbdDatepickerAdapter,
+    //NgbdDatepickerAdapter,
   ],
   //providers: [],
   //AS: Injection per fare comunicare tra loro moduli diversi
@@ -79,7 +75,7 @@ import { NgbdDatepickerAdapter } from './shared/date-adapter/date-adapter';
     { 
       provide: MAT_DATE_LOCALE, useValue: 'it-IT' }
   ],
-  bootstrap: [AppComponent, NgbdDatepickerAdapter]
+  bootstrap: [AppComponent]
 })
 
 export class AppModule { }

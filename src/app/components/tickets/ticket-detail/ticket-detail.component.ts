@@ -7,6 +7,7 @@ import { TicketCausaliService } from 'src/app/services/ticket-causali.service';
 import { NgbDateAdapter, NgbDateStruct, NgbDateParserFormatter, NgbCalendar} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe, NumberSymbol } from '@angular/common';
 import { stringify } from 'querystring';
+import { DateAdapter } from '@angular/material';
 
 
 interface TimeStructure {
@@ -36,7 +37,7 @@ export class CustomAdapter extends NgbDateAdapter<string> {
   }
 
   toModel(date: NgbDateStruct | null): string | null {
-    return date ? date.year + this.DELIMITER + date.month + this.DELIMITER + date.day : null;
+    return date ? date.year + this.DELIMITER + pad( date.month) + this.DELIMITER + pad( date.day) : null;
     //return date ? date.day + this.DELIMITER + date.month + this.DELIMITER + date.year : null; era così...invertito
   }
 }
@@ -57,7 +58,9 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
       return {
         day : parseInt(date[0], 10),
         month : parseInt(date[1], 10),
-        year : parseInt(date[2], 10)
+        //day : pad( (date[0])),
+        //month : pad((date[1])),
+        year : parseInt(date[2],10)
       };
     }
     return null;
@@ -173,7 +176,6 @@ export class TicketDetailComponent implements OnInit {
 
     this.serviceDetails.putTicketDetail().subscribe(
       res => { 
-        
         //this.toastr.info('Record aggiornato correttamente', 'Payment Detail Register');
         this.serviceDetails.refreshList(this.serviceDetails.formData.ticketID);
         this.resetForm(form);

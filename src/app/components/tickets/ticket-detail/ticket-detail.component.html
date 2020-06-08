@@ -14,6 +14,7 @@
                     class="form-control combo-causale" name="causaleID" placeholder="--Selezionare--" #Causale="ngModel"
                     [(ngModel)]="serviceDetails.formData.causaleID"   
                     (ngModelChange)="CausaleID_toNumber()"
+                    
                     required>
                     <option dataType="numeric" type="number" value=0>--Selezionare--</option>
 
@@ -39,9 +40,11 @@
                     </div>
                 </div>
                 <input class="date-input" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel"
-                    [(ngModel)]="serviceDetails.formData.dt" ngbDatepicker #d2="ngbDatepicker">
+                    [(ngModel)]="serviceDetails.formData.dt " 
+                    ngbDatepicker #d2="ngbDatepicker">
             </div>
         </div>
+
         <!--**************************   ORA INIZIO  ************************** -->
         <div class="form-group">
             <div class="input-group">
