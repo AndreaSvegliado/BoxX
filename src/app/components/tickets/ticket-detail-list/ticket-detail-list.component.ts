@@ -20,16 +20,19 @@ export class TicketDetailListComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private router : Router, public ticketDetailService: TicketDetailService ) { 
 
+    let ID = this.route.snapshot.params['ID'];
+    //this.ticketID = ID;
+
     this.ticketID = this.route.snapshot.params['ID'];
-  
-    /*
+    console.log("ANDREA");
+    console.log(this.ticketID);
+
     this.ticketDetailService.getTicketDetailList(this.ticketID)
       .subscribe(
         res=>   {this.ticketDetails = res as ticketDetail[];
         console.log ('aggiornamento in corso...');
         }
     );  
-    */
   }
 
   ngOnInit(): void {
@@ -38,9 +41,12 @@ export class TicketDetailListComponent implements OnInit {
 
   
   populateForm(objTicketDetail: ticketDetail){
+    //this.ticketDetailService.formData=objTicketDetail;
+    
     //per evitare che i dati del form aggiornino direttamente la griglia prima del POST:
     //assegno un nuovo oggetto clonato da quello passato come parametro
     this.ticketDetailService.formData= Object.assign({}, objTicketDetail);  
+
   }
   
   onDelete(id: BigInteger){
@@ -48,6 +54,7 @@ export class TicketDetailListComponent implements OnInit {
       this.ticketDetailService.deleteTicketDetail(id)
         .subscribe(res => {
         this.ticketDetailService.refreshList(this.ticketID);
+        
         //this.toastr.warning('Record cancellato', 'Payment Detail Register');
       },
       err=> {
