@@ -3,7 +3,7 @@
   <!-- Bottone apertura menu-->
   <div class="toolbar-tools" *ngIf="isLoggedIn">
     <!-- <button mat-icon-button (click)="sidenav.open()" (click)="opened = !opened"  style="cursor: pointer;" > -->
-    <button mat-icon-button (click)="opened=!opened" style="cursor: pointer;">
+    <button mat-icon-button (click)="openclose()" style="cursor: pointer;">
       <mat-icon>menu</mat-icon>
     </button>
     <div class="filler"></div>
@@ -34,7 +34,7 @@
 
 <mat-sidenav-container [hasBackdrop]="false">
   <!-- <mat-sidenav  *ngIf="isLoggedIn"  #sidenav mode="side" [opened]="opened" [class.close]="!opened" id="sidenav" > -->
-  <mat-sidenav *ngIf="isLoggedIn" #sidenav mode="over" [opened]="opened" id="sidenav" disableClose>
+  <mat-sidenav *ngIf="isLoggedIn" #sidenav [mode]="side_over" [opened]="opened" id="sidenav" disableClose>
     <mat-nav-list>
 
       <!--
@@ -48,7 +48,7 @@
 
       <!-- <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/home']">-->
       <mat-list-item [routerLink]="['/default']">
-        <div class="item" (click)="opened=false">
+        <div class="item" (click)="opencloseicon()">
           <button mat-icon-button>
             <mat-icon mat-list-icon>view_agenda</mat-icon>
           </button>
@@ -58,7 +58,7 @@
 
       <!-- <mat-list-item (click)= "sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/calendario']">-->
       <mat-list-item [routerLink]="['/calendario']">
-        <div class="item" (click)="opened=false">
+        <div class="item" (click)="opencloseicon()">
           <button mat-icon-button>
             <mat-icon mat-list-icon>event</mat-icon>
           </button>
@@ -67,7 +67,7 @@
       </mat-list-item>
 
       <mat-list-item [routerLink]="['/assistenza']">
-        <div class="item" (click)="opened=false">
+        <div class="item" (click)="opencloseicon()">
           <button mat-icon-button>
             <mat-icon mat-list-icon>build</mat-icon>
           </button>
@@ -76,7 +76,7 @@
       </mat-list-item>
 
       <mat-list-item [routerLink]="['/anagrafica clienti']">
-        <div class="item" (click)="opened=false">
+        <div class="item" (click)="opencloseicon()">
           <button mat-icon-button>
             <mat-icon mat-list-icon>people_alt</mat-icon>
           </button>
@@ -86,7 +86,7 @@
 
       <!-- <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/userDetails']"></mat-list-item>-->
       <mat-list-item [routerLink]="['/userDetails']">
-        <div class="item" (click)="opened=false">
+        <div class="item" (click)="opencloseicon()">
           <button mat-icon-button>
             <mat-icon mat-list-icon>people_alt</mat-icon>
           </button>
@@ -109,7 +109,7 @@
 
       <a href="http://www.steinerwaldorfpadova.it" target="_blank">
         <mat-list-item>
-          <div class="item" (click)="opened=false">
+          <div class="item" (click)="opencloseicon()">
             <button mat-icon-button>
               <mat-icon matListIcon>language</mat-icon>
             </button>
@@ -121,7 +121,7 @@
       <a href="https://jasonwatmore.com/post/2020/04/28/angular-9-user-registration-and-login-example-tutorial#app-module-ts"
         target="_blank">
         <mat-list-item>
-          <div class="item" (click)="opened=false">
+          <div class="item" (click)="opencloseicon()">
             <button mat-icon-button>
               <mat-icon matListIcon>language</mat-icon>
             </button>
@@ -134,7 +134,7 @@
       <mat-divider class="navigation-divider"></mat-divider>
 
       <mat-list-item (click)="onLogout()" *ngIf="!isLoggedIn" [routerLink]="['/login']">
-        <div class="item" (click)="opened=false">
+        <div class="item" (click)="opencloseicon()">
           <button mat-icon-button>
             <mat-icon mat-list-icon>fingerprint</mat-icon>
           </button>
@@ -143,13 +143,26 @@
       </mat-list-item>
 
       <mat-list-item (click)="onLogout()" *ngIf="isLoggedIn" [routerLink]="['/login']">
-        <div class="item" (click)="opened=false">
+        <div class="item" (click)="opencloseicon()">
           <button mat-icon-button>
             <mat-icon mat-list-icon>exit_to_app</mat-icon>
           </button>
           <a *ngIf="opened">Logout</a>
         </div>
       </mat-list-item>
+
+
+      <!--
+        <mat-list-item>
+        <div class="item" (click)="changeModalita()">
+          <button mat-icon-button>
+            <mat-icon mat-list-icon>{{iconaCheck}}</mat-icon>
+          </button>
+          <a *ngIf="opened">Sidebar Mode</a>
+        </div>
+      </mat-list-item>
+      -->
+
 
     </mat-nav-list>
   </mat-sidenav>
@@ -169,6 +182,22 @@
 <!-- OK quando autenticati, ma il login appare sotto  
   <router-outlet></router-outlet>
   -->
-<mat-toolbar class="footernavbar" color="grey">
-  © Tutti i diritti riservati: croficcivehself
+<mat-toolbar class="footernavbar row" color="grey">
+
+    <div class="col-6" >
+      <div class="row" (click)="changeSide_Over()">
+        <mat-icon mat-list-icon class="icona-sidenavmode">{{iconaCheck}}</mat-icon>
+        <span class="text-sidenavmode">Menu sopra la pagina</span>
+      </div>
+      <div class="row" (click)="changeFix()">
+        <mat-icon mat-list-icon class="icona-sidenavmode">{{iconaCheck2}}</mat-icon>
+        <span class="text-sidenavmode">Menu sempre aperto</span>
+      </div>
+    </div>
+
+    <div class="col-6 footer-copyright">
+      © Tutti i diritti riservati
+    </div>
+
+
 </mat-toolbar>
