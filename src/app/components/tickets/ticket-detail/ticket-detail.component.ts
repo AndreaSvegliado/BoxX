@@ -108,13 +108,9 @@ export class TicketDetailComponent implements OnInit {
 
     this.serviceCausali.getCausaliList()
     .subscribe(
-      res=>   this.ticketCausali = res as ticketCausale[]
+      res=> this.ticketCausali = res as ticketCausale[]
       );  
-    
-
     //this.timechanged = new DatePipe('it-IT').transform(this.serviceDetails.formData.h_Ini, 'HH:mm');
-      
-
   }
 
   ngOnInit() {
@@ -171,25 +167,22 @@ export class TicketDetailComponent implements OnInit {
   }
 
   UpdateRecord(form:NgForm){
-
     
-    //this.serviceDetails.putTicketDetail();
+    console.log(this.serviceDetails.formData);
     
     this.serviceDetails.putTicketDetail().subscribe(
       res => { 
+        
         //this.toastr.info('Record aggiornato correttamente', 'Payment Detail Register');
-        console.log("TicketID da salvare: " + this.serviceDetails.formData.ticketID);
         this.serviceDetails.refreshList(this.serviceDetails.formData.ticketID);
         this.resetForm(form);
+
       },
       err => {
         console.log(err); 
       }
     )
-
   }
-
-
 }
 
 

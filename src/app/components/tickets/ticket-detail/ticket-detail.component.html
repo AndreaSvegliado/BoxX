@@ -9,13 +9,30 @@
                         <mat-icon>list</mat-icon>
                     </div>
                 </div>
-                <select class="form-control combo-causale" name="causaleID" placeholder="Causale" #Causale="ngModel"
-                    [(ngModel)]="serviceDetails.formData.causaleID" required placeholder="Selezionare causale...">
-                    <option value="0">Selezionare causale...</option>
-                    <option *ngFor="let item of ticketCausali" value="{{item.id}}">{{item.causaleDesc}}</option>
+                <select  dataType="numeric" type="number" class="form-control combo-causale" name="causaleID" placeholder="Causale" #Causale="ngModel"
+                    [(ngModel)]=serviceDetails.formData.causaleID required placeholder="Selezionare causale...">
+                    <option dataType="numeric" type="number" value=0>Selezionare causale...</option>
+
+                    <!-- AS: ERRORE API: per qualche motivo causaleID diventa una stringa !!!!-->
+                    
+                    <option dataType="numeric" type="number" *ngFor="let item of ticketCausali" value={{item.id}}>{{item.causaleDesc}}</option>
                 </select>
             </div>
         </div>
+
+        <!-- Errore da inspect:
+{id: 12, ticketID: 1, causaleID: "5", dt: "2020-06-02T00:00:00", h_Ini: "2020-06-03T08:00:00", …}
+causale: {id: 3, causaleDesc: "Attesa"}
+causaleID: "5"
+dt: "2020-06-02T00:00:00"
+h_End: "2020-06-03T08:00:00"
+h_Ini: "2020-06-03T08:00:00"
+id: 12
+note: "ab"
+ticketID: 1
+__proto__: Object
+
+        -->
         <!--**************************      DATA     ************************** -->
         <div class="form-group">
             <div class="input-group">
@@ -90,6 +107,7 @@
                 </div>
             </button>
         </div>
+<<<<<<< HEAD
 
         <div class="input-group">
             <button class="btn btn-success btn-lg btn-block"  [disabled]="form.invalid">
@@ -104,6 +122,8 @@
             </button>
         </div>
 
+=======
+>>>>>>> d7769f9023ffd5ea93858a37bd4e046ed9e28217
     </form>
 </div>
 

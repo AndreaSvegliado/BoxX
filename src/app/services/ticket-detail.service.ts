@@ -28,10 +28,12 @@ export class TicketDetailService {
 
   postTicketDetail(){
     return this.http.post( environment.apiBaseUrl   + '/TicketDetails',this.formData)  
-
   }  
   
   putTicketDetail(){
+    console.log("PUT"+ this.formData.ticketID);
+    console.log(this.formData);
+    
     return this.http.put( environment.apiBaseUrl  + '/TicketDetails/' + this.formData.id , this.formData)    
   }
 
@@ -43,13 +45,10 @@ export class TicketDetailService {
   {
     console.log("RefreshList");
 
-    //AS: niente return ??
-     //this.http.get(  environment.apiBaseURI + '/PaymentDetail')
     this.http.get(environment.apiBaseUrl+ '/TicketDetails/GetByTicketID/' + ticketID)
       .toPromise()            //AS ???
       .then(res => {
-        this.ticketList = res as ticketDetail[] ,
-        console.log(res);     //AS: --> la lista è aggiornata
+        this.ticketList = res as ticketDetail[] 
       },
       err => {
         console.log(err); 
