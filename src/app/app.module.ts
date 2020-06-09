@@ -29,6 +29,7 @@ import { MatNativeDateModule, MatInputModule} from '@angular/material';
 import {  DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 
 
 
@@ -46,6 +47,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     TicketDetailsComponent,
     TicketDetailComponent,
     TicketDetailListComponent,
+    
+    SnackbarComponent,
     
   ],
   imports: [
