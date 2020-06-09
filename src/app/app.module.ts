@@ -30,7 +30,7 @@ import {  DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/materia
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-
+import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +46,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     TicketDetailsComponent,
     TicketDetailComponent,
     TicketDetailListComponent,
+    
+    SnackbarComponent,
     
   ],
   imports: [
