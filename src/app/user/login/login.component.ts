@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   };
 
   constructor(private uService: UserService, private router:Router, private snackBar : MatSnackBar, private sidebar: SidebarComponent) { 
-    
+  //constructor(private uService: UserService, private router:Router, private snackBar : ToasterComponent, private sidebar: SidebarComponent) { 
   }
 
   ngOnInit() {
@@ -60,8 +60,8 @@ export class LoginComponent implements OnInit {
     );
   }
 
+  
   ShowMessage(msg: string, title?: string, hasErrors: boolean= false ) {
-
     let config = new MatSnackBarConfig();
     config.verticalPosition  = 'bottom';
     config.horizontalPosition = 'center';
@@ -79,5 +79,6 @@ export class LoginComponent implements OnInit {
     else
       this.snackBar.open(msg,null, config);  
   }
+  
 }
 

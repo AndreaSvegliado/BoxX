@@ -7,7 +7,7 @@ import { TicketCausaliService } from 'src/app/services/ticket-causali.service';
 import { NgbDateAdapter, NgbDateStruct, NgbDateParserFormatter, NgbCalendar, NgbTimeAdapter, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe, NumberSymbol } from '@angular/common';
 import { stringify } from 'querystring';
-import { DateAdapter } from '@angular/material';
+import { DateAdapter, MatSnackBarConfig, MatSnackBar } from '@angular/material';
 
 
 interface TimeStructure {
@@ -154,7 +154,7 @@ export class TicketDetailComponent implements OnInit {
   ticketCausali:ticketCausale[];
   ticketDetails:ticketDetail[];
 
-  constructor(public serviceDetails: TicketDetailService, public serviceCausali: TicketCausaliService) { 
+  constructor(  private snackBar : MatSnackBar, public serviceDetails: TicketDetailService, public serviceCausali: TicketCausaliService) { 
 
     this.serviceCausali.getCausaliList()
     .subscribe(
@@ -225,9 +225,12 @@ export class TicketDetailComponent implements OnInit {
         //this.toastr.info('Record aggiornato correttamente', 'Payment Detail Register');
         this.serviceDetails.refreshList(this.serviceDetails.formData.ticketID);
         this.resetForm(form);
+        
+        this.ShowMessage("Record aggiornato");
       },
       err => {
         console.log(err); 
+        this.ShowMessage("Errore nel salvataggio", "Bravo merlo", true);
       }
     )
   }
@@ -235,6 +238,73 @@ export class TicketDetailComponent implements OnInit {
   CausaleID_toNumber(){
     this.serviceDetails.formData.causaleID = + this.serviceDetails.formData.causaleID;
   }
+  
+  // snackbar
+  ShowMessage(msg: string, title?: string, hasErrors: boolean= false ) {
+    let config = new MatSnackBarConfig();
+    config.verticalPosition  = 'bottom';
+    config.horizontalPosition = 'center';
+    config.duration = 2000;
+
+    if(hasErrors){
+      config.panelClass =  ['error-class'];
+      console.log("ShowMessage: hasErrors");
+    }
+    //else
+    //  config.panelClass =  ['ng-deep'];
+
+    if(title != null)
+      this.snackBar.open(msg, title, config);  
+    else
+      this.snackBar.open(msg,null, config);  
+  }
 }
 
 
+
+
+ 
+
+export class NgbdDatepickerAdapter {
+
+  model1: string;
+  model2: string;
+
+  constructor(private ngbCalendar: NgbCalendar, private dateAdapter: NgbDateAdapter<string>) {}
+
+  get today() {
+    return this.dateAdapter.toModel(this.ngbCalendar.getToday())!;
+  }
+}
+
+
+class StringTimeFormat {
+  private currentValue: TimeStructure;
+
+  toStructure(timeAsString: string): TimeStructure {
+    if (!timeAsString) {
+      this.currentValue = null;
+    }
+    else {
+      const parts = timeAsString.split(':');
+      const newValue = {
+        hour: +parts[0],
+        minute: +parts[1]
+      };
+
+      if (!equal(this.currentValue, newValue)) {
+        this.currentValue = newValue;
+      }
+    }
+    return this.currentValue;
+  }
+
+  fromStructure(t: TimeStructure): string {
+    return t && `${pad(t.hour)}:${pad(t.minute)}}`;
+  }
+
+
+
+
+  
+}
