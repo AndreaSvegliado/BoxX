@@ -265,16 +265,7 @@ export class TicketDetailComponent implements OnInit {
 
 
 
-function pad(number): string {
-  return number < 10 ? `0${number}` : number;
-}
-
-function equal(t1: TimeStructure, t2: TimeStructure): boolean {
-  if (!t1) {
-    return !t2;
-  }
-  return (!t1 && !t2) || (t1 && t2 && t1.hour === t2.hour && t1.minute === t2.minute);
-}
+ 
 
 export class NgbdDatepickerAdapter {
 
