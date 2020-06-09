@@ -13,7 +13,7 @@ export class TicketDetailsComponent implements OnInit {
 
   mticketID: string;
 
-  constructor( private route: ActivatedRoute, private router : Router) { }
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     let ID = this.route.snapshot.params['ID'];
@@ -24,7 +24,7 @@ export class TicketDetailsComponent implements OnInit {
 
   }
 
-  BackToHome(){
+  BackToHome() {
     this.router.navigate(['/default']);
 
     // per tornare alla home l'ID del ticket corrente (ed eventualmetne evidenziarlo)
@@ -35,14 +35,16 @@ export class TicketDetailsComponent implements OnInit {
 
 
 
-  
+
   // dragMoved(event: CdkDragMove) {
   //   this.position = `> Position X: ${event.pointerPosition.x} - Y: ${event.pointerPosition.y}`;
   //   //console.log (this.position);
   // }
 
 
-  
+
+
+  //**************************SNAP..NON FUNZIONA MOLTO BENE***************************/
   @ViewChild('divdetail') divDetail: ElementRef;
   @ViewChild('divdetaillist') divDetailList: ElementRef;
 
@@ -50,40 +52,34 @@ export class TicketDetailsComponent implements OnInit {
   tr3dDetailList;
 
   dragEndedDetail(event: CdkDragEnd) {
-      //let xDetail = this.tr3dDetail;
-      //let xDetailList = this.tr3dDetailList;
-      let xDetail = this.divDetail.nativeElement.getBoundingClientRect().x
-      let xDetailList = this.divDetailList.nativeElement.getBoundingClientRect().x
-      let wDetail = this.divDetail.nativeElement.offsetWidth
-      let wDetailList = this.divDetailList.nativeElement.offsetWidth
-      console.log("xDetail " + xDetail);
-      console.log("wDetail " + wDetail);
-      console.log("xDetailList " + xDetailList);
-      console.log("wDetailList " + wDetailList);
-      console.log("------------------");
-      event.source._dragRef.reset();
-      if (xDetail >= xDetailList) {
-        console.log ("swap => perchè xDetail= "+xDetail +" > xDetailist= "+xDetailList);
-        //swap
+    //let xDetail = this.tr3dDetail;
+    //let xDetailList = this.tr3dDetailList;
+    let xDetail = this.divDetail.nativeElement.getBoundingClientRect().x
+    let xDetailList = this.divDetailList.nativeElement.getBoundingClientRect().x
+    let wDetail = this.divDetail.nativeElement.offsetWidth
+    let wDetailList = this.divDetailList.nativeElement.offsetWidth
+    console.log("xDetail " + xDetail);
+    console.log("wDetail " + wDetail);
+    console.log("xDetailList " + xDetailList);
+    console.log("wDetailList " + wDetailList);
+    console.log("------------------");
+    event.source._dragRef.reset();
+    if (xDetail >= xDetailList) {
+      console.log("swap => perchè xDetail= " + xDetail + " > xDetailist= " + xDetailList);
+      //swap
 
-        this.tr3dDetail = wDetailList;
-        this.tr3dDetailList = - wDetail;
+      this.tr3dDetail = wDetailList;
+      this.tr3dDetailList = - wDetail;
 
-      } else {
-        console.log ("swap <= perchè xDetail= "+xDetail +" < xDetailist= "+xDetailList);
-        //swap
+    } else {
+      console.log("swap <= perchè xDetail= " + xDetail + " < xDetailist= " + xDetailList);
+      //swap
 
-        this.tr3dDetail = 0;
-        this.tr3dDetailList = 0;
-
-        this.divDetail.nativeElement.style.transform = 'none'
-        this.divDetailList.nativeElement.style.transform = 'none'
-        
-        //this.tr3dDetail = 0;
-        //this.tr3dDetailList = 0;
-      }
+      this.tr3dDetail = 0;
+      this.tr3dDetailList = 0;
+    }
   }
-  
+
 
 
 
@@ -127,7 +123,7 @@ export class TicketDetailsComponent implements OnInit {
   addRowForm(){
 
   }
-  
+
   addTimesheetForm(){
     this.timesheetForms.push(this.fb.group({
       ID : [0],
@@ -137,7 +133,7 @@ export class TicketDetailsComponent implements OnInit {
       Andata_End: ['', Validators.required]
     }))
   }
- 
+
 
 }
 */
