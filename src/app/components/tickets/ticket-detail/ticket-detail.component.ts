@@ -73,8 +73,6 @@ export class CustomDateParserFormatter extends NgbDateParserFormatter {
   }
 }
 /* *******************************      FINE DATE PARSER       *********************/
-
-
 /* *******************************      FUNZIONI ACCESSORIE    *********************/
 function pad(number): string {
   return number < 10 ? `0${number}` : number;

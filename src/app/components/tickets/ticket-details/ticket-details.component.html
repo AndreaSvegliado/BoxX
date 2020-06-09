@@ -12,12 +12,14 @@
             <h3 class="display-5 details-title text-center">Dettaglio Ticket <span class="IDtext">[TicketID:{{mticketID}}]</span> </h3>
         </div>
     </div>    
-        <div class="row no-gutters">
-            <div class="col-lg-3 col-md-12">
+        <div class="row no-gutters "  >
+            <!--  [ngClass]="{'flex-row-reverse' : posinversa}" -->
+            <div class="col-lg-3 col-md-12" cdkDrag cdkDragLockAxis="x"  [ngStyle]="{'transform': 'translate3d(' + tr3dDetail + 'px, 0px, 0px)'}" (cdkDragEnded)="dragEndedDetail($event)" #divdetail>
+                <!-- (cdkDragMoved)="dragMoved($event)" -->
                 <app-ticket-detail></app-ticket-detail>
             </div>
-            <div class="col-lg-9 col-md-12">
-                <app-ticket-detail-list></app-ticket-detail-list>
+            <div class="col-lg-9 col-md-12 test" cdkDrag cdkDragLockAxis="x"  [ngStyle]="{'transform': 'translate3d(' + tr3dDetailList + 'px, 0px, 0px)'}" (cdkDragEnded)="dragEndedDetail($event)" #divdetaillist>
+                <app-ticket-detail-list ></app-ticket-detail-list>
             </div>
         </div>
 
