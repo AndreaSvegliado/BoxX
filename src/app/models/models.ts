@@ -29,8 +29,8 @@ export interface ticketDetail {
     causaleID: number;
     causale: ticketCausale;
     dt: Date;
-    h_Ini: string;
-    h_End: Time;
+    h_Ini: Date;
+    h_End: Date;
     note;
     //public Nullable<TimeSpan> H_Ini { get; set; }
     //public Nullable<TimeSpan> H_End { get; set; }
@@ -51,3 +51,4 @@ export interface Customer {
     poi: string;
 
 }
+

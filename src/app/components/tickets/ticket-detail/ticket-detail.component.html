@@ -56,7 +56,9 @@
                 </div>
                 <ngb-timepicker class="time-picker" name="h_Ini"
                     [ngModel]="{hour: convert2Int(serviceDetails.formData.h_Ini| date: 'HH') , minute: convert2Int(serviceDetails.formData.h_Ini| date: 'mm')}"
+                    
                     [spinners]="spinners" ></ngb-timepicker>
+                    <!--(ngModelChange)="serviceDetails.formData.h_Ini = $event"-->
             </div>
         </div>
         <!--**************************   ORA FINE  ************************** -->
