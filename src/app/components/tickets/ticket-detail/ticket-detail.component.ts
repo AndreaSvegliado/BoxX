@@ -8,6 +8,7 @@ import { NgbDateAdapter, NgbDateStruct, NgbDateParserFormatter, NgbCalendar, Ngb
 import { DatePipe, NumberSymbol } from '@angular/common';
 import { stringify } from 'querystring';
 import { DateAdapter, MatSnackBarConfig, MatSnackBar } from '@angular/material';
+import { isNull } from 'util';
 
 
 interface TimeStructure {
@@ -23,7 +24,7 @@ poi viene inserito nei provider del component come {provide: NgbDateAdapter, use
 
  */
 @Injectable()
-export class CustomAdapter extends NgbDateAdapter<string> {
+export class CustomDateAdapter extends NgbDateAdapter<string> {
 
   readonly DELIMITER = '-';
 
@@ -46,6 +47,7 @@ export class CustomAdapter extends NgbDateAdapter<string> {
   }
 }
 /* *******************************   FINE DATE ADAPTER         *********************
+
 /* *******************************       DATE PARSER           *********************
 Questa seconda parte (NgbDateParserFormatter) gestisce come la data inserita da tastiera viene gestita
 (cioè uno deve digitare 13/3/2020 e non 3/13/2020)
@@ -104,13 +106,20 @@ function equal(t1: TimeStructure, t2: TimeStructure): boolean {
 /* *******************************         TIME ADAPTER        *********************/
 
 @Injectable()
-  export class NgbTimeStringAdapter extends NgbTimeAdapter<string> {
+  export class CustomTimeAdapter extends NgbTimeAdapter<string> {
+
+    readonly DELIMITER = ':';
 
     fromModel(value: string| null): NgbTimeStruct | null {
+      
       if (!value) {
         return null;
       }
-      const split = value.split(':');
+
+      //1900-02-01T07:02:00 --> split per ottenere l'ora dalla data
+      const split1 = value.split("T");
+      const split = split1[1].split(this.DELIMITER);
+      
       return {
         hour: parseInt(split[0], 10),
         minute: parseInt(split[1], 10),
@@ -119,7 +128,8 @@ function equal(t1: TimeStructure, t2: TimeStructure): boolean {
     }
 
     toModel(time: NgbTimeStruct | null): string | null {
-      return time != null ? `${pad(time.hour)}:${pad(time.minute)}:${pad(time.second)}` : null;
+      //return time != null ? `${pad(time.hour)}:${pad(time.minute)}:${pad(time.second)}` : null;
+      return time != null ?  `1900-01-01T${pad(time.hour)}:${pad(time.minute)}:00` : null;
     }
   }
 
@@ -131,9 +141,9 @@ function equal(t1: TimeStructure, t2: TimeStructure): boolean {
   styleUrls: ['../ticket.css'],
 
   providers: [
-    {provide: NgbDateAdapter, useClass: CustomAdapter},
+    {provide: NgbDateAdapter, useClass: CustomDateAdapter},
     {provide: NgbDateParserFormatter, useClass: CustomDateParserFormatter},
-    //{provide: NgbTimeAdapter, useClass: NgbTimeStringAdapter}
+    {provide: NgbTimeAdapter, useClass: CustomTimeAdapter}
   ],
   //encapsulation: ViewEncapsulation.None // <------ serve per poter modificare css delle classi create da Angular
 
@@ -238,9 +248,11 @@ export class TicketDetailComponent implements OnInit {
   }
 
   CausaleID_toNumber(){
+    console.log("-------------- AS ------------------");
+    console.log(this.serviceDetails.formData.causaleID);
     this.serviceDetails.formData.causaleID = + this.serviceDetails.formData.causaleID;
-  }
-  
+  } 
+
   // snackbar
   ShowMessage(msg: string, title?: string, hasErrors: boolean= false ) {
     let config = new MatSnackBarConfig();

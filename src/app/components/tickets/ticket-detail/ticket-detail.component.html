@@ -11,25 +11,15 @@
                     </div>
                 </div>
                 <select dataType="numeric" type="number" 
-                    class="form-control combo-causale" name="causaleID" placeholder="--Selezionare--" #Causale="ngModel"
+                    class="form-control combo-causale" name="causaleID" placeholder="--Selezionare--" #Causale="ngModel" required
                     [(ngModel)]="serviceDetails.formData.causaleID"   
-                    (ngModelChange)="CausaleID_toNumber()"
-                    
-                    required>
+                    (ngModelChange)="CausaleID_toNumber()">
+<!-- AS: ERRORE API: per qualche motivo causaleID diventa una stringa SOLO se modificato !!!! FIX: evento toNumber per fare il cast a number    -->
                     <option dataType="numeric" type="number" value=0>--Selezionare--</option>
-
-                    <!-- AS: ERRORE API: per qualche motivo causaleID diventa una stringa SOLO se modificato !!!!
-                    FIX: evento toNumber per fare il cast a number
-                    -->
-                    
                     <option dataType="numeric" type="number" *ngFor="let item of ticketCausali" value={{item.id}}>{{item.causaleDesc}}</option>
                 </select>
             </div>
         </div>
-
-        <!-- Errore da inspect:
-{id: 12, ticketID: 1, causaleID: "5", dt: "2020-06-02T00:00:00", h_Ini: "2020-06-03T08:00:00", …}
-        -->
 
         <!--**************************      DATA     ************************** -->
         <div class="form-group">
@@ -50,18 +40,24 @@
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text bg-white">
-                        <mat-icon (click)="toggleSpinners()">
-                            alarm</mat-icon>
+                        <mat-icon (click)="toggleSpinners()">alarm</mat-icon>
                     </div>
                 </div>
+                <!--
                 <ngb-timepicker class="time-picker" name="h_Ini"
                     [ngModel]="{hour: convert2Int(serviceDetails.formData.h_Ini| date: 'HH') , minute: convert2Int(serviceDetails.formData.h_Ini| date: 'mm')}"
-                    
-                    [spinners]="spinners" ></ngb-timepicker>
-                    <!--(ngModelChange)="serviceDetails.formData.h_Ini = $event"-->
+                    (ngModelChange)="fireOnChange($event)">
+                    [spinners]="spinners" >
+                </ngb-timepicker> -->
+                <ngb-timepicker class="time-picker" name="h_Ini"
+                    [(ngModel)]="serviceDetails.formData.h_Ini"
+                    [spinners]="spinners" >
+                </ngb-timepicker>
+                
             </div>
         </div>
         <!--**************************   ORA FINE  ************************** -->
+       
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -70,10 +66,12 @@
                     </div>
                 </div>
                 <ngb-timepicker class="time-picker" name="h_End"
-                [ngModel]="{hour: convert2Int(serviceDetails.formData.h_End| date: 'HH') , minute: convert2Int(serviceDetails.formData.h_End| date: 'mm')}"
-                [spinners]="spinners"></ngb-timepicker>
+                    [(ngModel)]="serviceDetails.formData.h_End"
+                    [spinners]="spinners" >
+                </ngb-timepicker>
             </div>
         </div>
+    
         <!--**************************      NOTE     ************************** -->
         <div class="input-group">
             <div class="input-group-prepend">
