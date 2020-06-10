@@ -3,25 +3,46 @@
 
 <div class="ticket-details">
     <div class="row intestazione-container">
-        <div class="col-md-3 backtoticket-container">
+        <div class="col-md-12 backtoticket-container">
             <button mat-flat-button class="backtoticket-button" (click)="BackToHome()">
                 <mat-icon>view_agenda</mat-icon> Lista Ticket
             </button>
+            <button mat-flat-button class="backtoticket-button" (click)="BackToHome()">
+                <mat-icon>view_agenda</mat-icon> Conferma
+            </button>
+            <button mat-flat-button class="backtoticket-button" (click)="BackToHome()">
+                <mat-icon>view_agenda</mat-icon> Stampa
+            </button>
         </div>
-        <div class="col-md-6">
-            <h3 class="display-5 details-title text-center">Dettaglio Ticket <span
-                    class="IDtext">[TicketID:{{mticketID}}]</span> </h3>
-        </div>
+
+
     </div>
+    <div class="col-md-6">
+        <h3 class="display-5 details-title text-center">Dettaglio Ticket 
+            <span class="IDtext">[TicketID:{{mticketID}}]</span> 
+        </h3>
+    </div>
+    <!--
+    <app-ticket-card [ticket]="1"></app-ticket-card>
+    -->
+
     <div class="row no-gutters ">
         <!--  [ngClass]="{'flex-row-reverse' : posinversa}" -->
-        <div class="col-lg-3 col-md-12" cdkDrag cdkDragLockAxis="x"
+        <div class="col-lg-3 col-md-12" cdkDrag1 cdkDragLockAxis="x"
             [ngStyle]="{'transform': 'translate3d(' + tr3dDetail + 'px, 0px, 0px)'}"
             (cdkDragEnded)="dragEndedDetail($event)" #divdetail>
             <!-- (cdkDragMoved)="dragMoved($event)" -->
+            <!--
+            <div class="example-handle" cdkDragHandle>
+                <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
+                  <path d="M0 0h24v24H0z" fill="none"></path>
+                </svg>
+            </div>
+        -->
             <app-ticket-detail></app-ticket-detail>
         </div>
-        <div class="col-lg-9 col-md-12 test" cdkDrag cdkDragLockAxis="x"
+        <div class="col-lg-9 col-md-12 test" cdkDrag1 cdkDragLockAxis="x"
             [ngStyle]="{'transform': 'translate3d(' + tr3dDetailList + 'px, 0px, 0px)'}"
             (cdkDragEnded)="dragEndedDetail($event)" #divdetaillist>
             <app-ticket-detail-list></app-ticket-detail-list>

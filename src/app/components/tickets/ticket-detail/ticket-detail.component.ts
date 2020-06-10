@@ -87,19 +87,7 @@ function equal(t1: TimeStructure, t2: TimeStructure): boolean {
   return (!t1 && !t2) || (t1 && t2 && t1.hour === t2.hour && t1.minute === t2.minute);
 }
 /* *******************************    FINE FUNZIONI ACCESSORIE  *********************/
-
-// MA QUESTA PARTE SERVE??? MI PARE DI NO???
-// export class NgbdDatepickerAdapter {
-
-//   model1: string;
-//   model2: string;
-
-//   constructor(private ngbCalendar: NgbCalendar, private dateAdapter: NgbDateAdapter<string>) {}
-
-//   get today() {
-//     return this.dateAdapter.toModel(this.ngbCalendar.getToday())!;
-//   }
-// }
+ 
 
 /* *******************************         TIME ADAPTER        *********************/
 
@@ -173,16 +161,16 @@ export class TicketDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.resetForm();
+    this.resetForm(null);
   }
 
-  resetForm(form?:NgForm){
+  resetForm( form?:NgForm  ){
     if(form!= null)
       form.resetForm();
       
     this.serviceDetails.formData ={
       id: 0,
-      ticketID: 0,
+      ticketID: this.serviceDetails.ticketID ,
       causaleID: 0,
       causale:null,
       dt: null,
@@ -190,6 +178,8 @@ export class TicketDetailComponent implements OnInit {
       h_End: null,
       note: null
     }
+    //Attenzione: serve per inibire la submit del form nel caso di nuovo record
+    return false;
   }
 
 
@@ -211,28 +201,24 @@ export class TicketDetailComponent implements OnInit {
 
   InsertRecord(form:NgForm){
     
-    console.log("Insert Record (TODO!!!)");
-
-    
-/*
-    this.service.postTicketDetail().subscribe(
+    this.serviceDetails.postTicketDetail().subscribe(
       res => { 
+        this.serviceDetails.refreshList(this.serviceDetails.formData.ticketID);
         this.resetForm(form);
-        //this.toastr.success('Record inserito correttamente', 'Payment Detail Register');
-        this.service.refreshList();
+
+        this.ShowMessage("Record inserito");
       },
-      err => {console.log(err);  }
+      err => {
+        console.log(err); 
+        this.ShowMessage("Errore nel salvataggio", "", true);
+       }
     )
-  */
   }
 
   UpdateRecord(form:NgForm){
     
-    console.log("Update Record");
-
     this.serviceDetails.putTicketDetail().subscribe(
       res => { 
-        //this.toastr.info('Record aggiornato correttamente', 'Payment Detail Register');
         this.serviceDetails.refreshList(this.serviceDetails.formData.ticketID);
         this.resetForm(form);
         
@@ -246,8 +232,6 @@ export class TicketDetailComponent implements OnInit {
   }
 
   CausaleID_toNumber(){
-    console.log("-------------- AS ------------------");
-    console.log(this.serviceDetails.formData.causaleID);
     this.serviceDetails.formData.causaleID = + this.serviceDetails.formData.causaleID;
   } 
 
@@ -276,47 +260,3 @@ export class TicketDetailComponent implements OnInit {
 
 
  
-
-export class NgbdDatepickerAdapter {
-
-  model1: string;
-  model2: string;
-
-  constructor(private ngbCalendar: NgbCalendar, private dateAdapter: NgbDateAdapter<string>) {}
-
-  get today() {
-    return this.dateAdapter.toModel(this.ngbCalendar.getToday())!;
-  }
-}
-
-
-class StringTimeFormat {
-  private currentValue: TimeStructure;
-
-  toStructure(timeAsString: string): TimeStructure {
-    if (!timeAsString) {
-      this.currentValue = null;
-    }
-    else {
-      const parts = timeAsString.split(':');
-      const newValue = {
-        hour: +parts[0],
-        minute: +parts[1]
-      };
-
-      if (!equal(this.currentValue, newValue)) {
-        this.currentValue = newValue;
-      }
-    }
-    return this.currentValue;
-  }
-
-  fromStructure(t: TimeStructure): string {
-    return t && `${pad(t.hour)}:${pad(t.minute)}}`;
-  }
-
-
-
-
-  
-}

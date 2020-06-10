@@ -15,6 +15,7 @@ import { ticketDetail } from '../models/models';
 export class TicketDetailService {
 
   formData:ticketDetail;
+  ticketID: number;
   ticketList: ticketDetail[];
 
   constructor(private http: HttpClient) {
@@ -23,10 +24,14 @@ export class TicketDetailService {
 
   getTicketDetailList(ticketID): Observable<ticketDetail[]>
   {
+    this.ticketID = ticketID;
     return this.http.get<ticketDetail[]>(environment.apiBaseUrl + '/TicketDetails/GetByTicketID/' + ticketID); 
   }
 
   postTicketDetail(){
+    console.log("POST"+ this.formData.ticketID);
+    console.log(this.formData);
+    
     return this.http.post( environment.apiBaseUrl   + '/TicketDetails',this.formData)  
   }  
   
@@ -45,6 +50,7 @@ export class TicketDetailService {
   {
     console.log("RefreshList");
 
+    this.ticketID = ticketID;
     this.http.get(environment.apiBaseUrl+ '/TicketDetails/GetByTicketID/' + ticketID)
       .toPromise()            //AS ???
       .then(res => {

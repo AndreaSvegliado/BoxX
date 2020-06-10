@@ -1,6 +1,7 @@
 <div class="ticket-detail" >
     <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
         <input type="hidden" name="id" [value]="serviceDetails.formData.id">
+        <input type="hidden" name="TicketID" [value]="serviceDetails.formData.ticketID">
 
         <!--************************** COMBO CAUSALE ************************** -->
         <div class="form-group">
@@ -96,7 +97,7 @@
             </button>
         </div>
         <div class="input-group">
-            <button class="btn btn-success btn-lg btn-block" (click)="resetForm(form)" [disabled]="form.invalid">
+            <button class="btn btn-success btn-lg btn-block" (click)="resetForm(form)" [disabled]="form.invalid" >
                 <div class="row btn-title">
                     <div class="col-1">
                         <mat-icon>playlist_add</mat-icon>
