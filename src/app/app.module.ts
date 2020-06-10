@@ -29,9 +29,8 @@ import { MatNativeDateModule, MatInputModule} from '@angular/material';
 import {  DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
-
-
 
 @NgModule({
   declarations: [
@@ -63,7 +62,8 @@ import { SnackbarComponent } from './shared/snackbar/snackbar.component';
     MatNativeDateModule,
     MatInputModule,
     NgxMaterialTimepickerModule,    //AS: TimePicker
-    NgxMaterialTimepickerModule.setLocale('it-IT'), NgbModule
+    NgxMaterialTimepickerModule.setLocale('it-IT'), NgbModule,
+    DragDropModule
   ],
   exports:[
     //NgbdDatepickerAdapter,
