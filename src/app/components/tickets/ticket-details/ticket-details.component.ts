@@ -1,6 +1,9 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CdkDragDrop, moveItemInArray, CdkDragMove, CdkDragEnd } from '@angular/cdk/drag-drop';
+import { MatSnackBarConfig, MatSnackBar } from '@angular/material';
+import { TicketService } from 'src/app/services/ticket.service';
+import { ticket } from 'src/app/models/models';
 
 @Component({
   selector: 'app-ticket-details',
@@ -12,19 +15,22 @@ import { CdkDragDrop, moveItemInArray, CdkDragMove, CdkDragEnd } from '@angular/
 export class TicketDetailsComponent implements OnInit {
 
   mticketID: string;
+  objTicket: ticket;
 
-  constructor(private route: ActivatedRoute, private router: Router) { }
+  constructor(private snackBar : MatSnackBar,private route: ActivatedRoute, private router: Router, private ticketService: TicketService) { }
 
   ngOnInit() {
     let ID = this.route.snapshot.params['ID'];
     this.mticketID = ID;
 
-    //this.ticketService.getTicketDetail(ID).subscribe(t =>{  
-    //  this.ticket = t;
+    this.ticketService.getTicket(this.mticketID)
+    .subscribe(
+      res=>   this.objTicket = res as ticket
+    ); 
 
   }
 
-  BackToHome() {
+  Back() {
     this.router.navigate(['/default']);
 
     // per tornare alla home l'ID del ticket corrente (ed eventualmetne evidenziarlo)
@@ -33,15 +39,40 @@ export class TicketDetailsComponent implements OnInit {
 
   }
 
+  Confirm() {
+    //this.router.navigate(['/default']);
+    this.ShowMessage("Sta calma che teo digo", "Che Gusto?", true);
+  }
 
 
+  Print() {
+    //this.router.navigate(['/default']);
+    this.ShowMessage("Funzione non abilitata", "Esticazzi", true);
+  }
 
   // dragMoved(event: CdkDragMove) {
   //   this.position = `> Position X: ${event.pointerPosition.x} - Y: ${event.pointerPosition.y}`;
   //   //console.log (this.position);
   // }
 
+  ShowMessage(msg: string, title?: string, hasErrors: boolean= false ) {
+    let config = new MatSnackBarConfig();
+    config.verticalPosition  = 'bottom';
+    config.horizontalPosition = 'center';
+    config.duration = 2000;
 
+    if(hasErrors){
+      config.panelClass =  ['error-class'];
+      console.log("ShowMessage: hasErrors");
+    }
+    //else
+    //  config.panelClass =  ['ng-deep'];
+
+    if(title != null)
+      this.snackBar.open(msg, title, config);  
+    else
+      this.snackBar.open(msg,null, config);  
+  }
 
 
   //**************************SNAP..NON FUNZIONA MOLTO BENE***************************/

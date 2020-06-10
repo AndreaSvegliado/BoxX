@@ -42,7 +42,6 @@ export class TicketCardComponent implements OnInit, AfterViewInit, AfterContentI
   onOpenTicketClick(){
     console.log("ticket component - clicked " );
     //console.log(this.ticket);
-
     //console.log(this.ticket);
 
 

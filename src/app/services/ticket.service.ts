@@ -24,6 +24,10 @@ export class TicketService  {
     return this.http.get<ticket[]>(environment.apiBaseUrl + '/Ticket?badge=' + this.currUser.badge);     
 
   }
+
+  getTicket(ticket: string){
+    return this.http.get(environment.apiBaseUrl  + '/Ticket/' + ticket );
+  }
 }
 
 
