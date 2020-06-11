@@ -109,7 +109,6 @@
 
 .topbuttons-container{
   text-align: right;
-
 }
 
 
@@ -176,14 +175,9 @@ button{
 
 
 
-.intestazione-container {
-  margin-top: 5px;
-  margin-left: 5px;
-  width: 98%;
-}
-
 .details-title{
   margin-top:7px;
+  
 }
 /* .input-group-text {
   padding-left:5px;
@@ -237,12 +231,12 @@ table tr:hover{
 }
 
 .inputmidi {
-  width: 110px;
+  width: 100px;
   text-align: center;
 }
 
 .inputmaxi {
-  width: 320px;
+  width: 300px;
   text-align: center;
 }
 
@@ -255,6 +249,8 @@ table tr:hover{
 .row-cards {
   max-width: 500px;
   margin: auto;
+  /*border: 1px solid rgb(201, 201, 201);*/
+  border-radius: 4px;
 }
 
 .card1, .card2 {
@@ -262,4 +258,8 @@ table tr:hover{
   border: 1px solid grey;
   border-radius: 4px; 
 
+}
+
+.icona-list {
+  font-size: 13px;
 }
