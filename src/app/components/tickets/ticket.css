@@ -97,7 +97,7 @@
   color: white;
 }
 
-.backtoticket-button {
+.topbutton-button {
   margin-top: 8px;
   margin-left: 3px;
   margin-bottom: 10px;
@@ -107,8 +107,8 @@
   color: white;
 }
 
-.backtoticket-container{
-  text-align: left;
+.topbuttons-container{
+  text-align: right;
 
 }
 
@@ -231,4 +231,35 @@ table tr:hover{
 }
 
 
+.inputmini {
+  width: 40px;
+  text-align: center;
+}
 
+.inputmidi {
+  width: 110px;
+  text-align: center;
+}
+
+.inputmaxi {
+  width: 320px;
+  text-align: center;
+}
+
+.center {
+  text-align: center !important;
+}
+
+
+
+.row-cards {
+  max-width: 500px;
+  margin: auto;
+}
+
+.card1, .card2 {
+
+  border: 1px solid grey;
+  border-radius: 4px; 
+
+}

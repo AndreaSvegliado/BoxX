@@ -162,6 +162,14 @@
         </div>
       </mat-list-item>
       -->
+      <mat-list-item class="last-item"(click)="changeFix()">
+        <div class="item" (click)="opencloseicon()">
+          <button mat-icon-button>
+            <mat-icon mat-list-icon class="icona-sidenavmode">{{iconaCheck2}}</mat-icon>
+          </button>
+          <a *ngIf="opened">Menu sempre aperto</a>
+        </div>
+      </mat-list-item>
 
 
     </mat-nav-list>
@@ -184,20 +192,20 @@
   -->
 <mat-toolbar class="footernavbar row" color="grey">
 
-    <div class="col-6" >
-      <div class="row" (click)="changeSide_Over()">
-        <mat-icon mat-list-icon class="icona-sidenavmode">{{iconaCheck}}</mat-icon>
-        <span class="text-sidenavmode">Menu sopra la pagina</span>
-      </div>
-      <div class="row" (click)="changeFix()">
-        <mat-icon mat-list-icon class="icona-sidenavmode">{{iconaCheck2}}</mat-icon>
-        <span class="text-sidenavmode">Menu sempre aperto</span>
-      </div>
+  <!-- <div class="col-6">
+    <div class="row" (click)="changeSide_Over()">
+      <mat-icon mat-list-icon class="icona-sidenavmode">{{iconaCheck}}</mat-icon>
+      <span class="text-sidenavmode">Menu sopra la pagina</span>
     </div>
+    <div class="row" (click)="changeFix()">
+      <mat-icon mat-list-icon class="icona-sidenavmode">{{iconaCheck2}}</mat-icon>
+      <span class="text-sidenavmode">Menu sempre aperto</span>
+    </div>
+  </div> -->
 
-    <div class="col-6 footer-copyright">
-      © Tutti i diritti riservati
-    </div>
+  <div class="col-6 footer-copyright">
+    © Tutti i diritti riservati
+  </div>
 
 
 </mat-toolbar>

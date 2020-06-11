@@ -100,7 +100,7 @@
 }
 
 .icona-sidenavmode{
-  font-size: 14px;
+  font-size: 16px !important;
   padding-top: 8px;
   padding-left: 5px;
   cursor: pointer;
@@ -118,7 +118,11 @@ mat-list-item, .topnavbar, .footernavbar{
   font-family: Titillium Web, sans-serif !important; 
 }
 
-
+.last-item {
+  position: absolute;
+  bottom: 0px;
+  font-size: 12px;
+}
 
   /*
 .sidenav-container {

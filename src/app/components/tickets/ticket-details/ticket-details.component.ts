@@ -24,10 +24,13 @@ export class TicketDetailsComponent implements OnInit {
     this.mticketID = ID;
 
     this.ticketService.getTicket(this.mticketID)
-    .subscribe(
-      res=>   this.objTicket = res as ticket
+    .subscribe( 
+      res=>  {  this.objTicket = res as ticket;
+      console.log (this.objTicket);
+      }
+      
     ); 
-
+      
   }
 
   Back() {
@@ -112,7 +115,7 @@ export class TicketDetailsComponent implements OnInit {
   }
 
 
-
+  
 
 
 }
