@@ -16,6 +16,7 @@ export class TicketDetailsComponent implements OnInit {
 
   mticketID: string;
   objTicket: ticket;
+  panelOpenState = false;
 
   constructor(private snackBar : MatSnackBar,private route: ActivatedRoute, private router: Router, private ticketService: TicketService) { }
 
@@ -24,10 +25,13 @@ export class TicketDetailsComponent implements OnInit {
     this.mticketID = ID;
 
     this.ticketService.getTicket(this.mticketID)
-    .subscribe(
-      res=>   this.objTicket = res as ticket
+    .subscribe( 
+      res=>  {  this.objTicket = res as ticket;
+      console.log (this.objTicket);
+      }
+      
     ); 
-
+      
   }
 
   Back() {
@@ -112,7 +116,7 @@ export class TicketDetailsComponent implements OnInit {
   }
 
 
-
+  
 
 
 }

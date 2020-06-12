@@ -2,38 +2,141 @@
 
 
 <div class="ticket-details">
-    <div class="row intestazione-container">
-        <div class="col-md-12 backtoticket-container">
-            <button mat-flat-button class="backtoticket-button" (click)="Back()">
-                <mat-icon>view_agenda</mat-icon> Lista Ticket
-            </button>
-            <button mat-flat-button class="backtoticket-button" (click)="Confirm()">
-                <mat-icon>check_circle</mat-icon> Conferma
-            </button>
-            <button mat-flat-button class="backtoticket-button" (click)="Print()">
-                <mat-icon>print</mat-icon> Stampa
-            </button>
-        </div>
-
-
+    <div class="topbuttons-container">
+        <button mat-flat-button class="topbutton-button" (click)="Back()">
+            <mat-icon>view_agenda</mat-icon> Lista Ticket
+        </button>
+        <button mat-flat-button class="topbutton-button" (click)="Confirm()">
+            <mat-icon>check_circle</mat-icon> Conferma
+        </button>
+        <button mat-flat-button class="topbutton-button" (click)="Print()">
+            <mat-icon>print</mat-icon> Stampa
+        </button>
     </div>
-     
-    <div class="col-md-6">
-        <h3 class="display-5 details-title text-center">Dettaglio Ticket </h3>
-        {{objTicket|json}} 
-        <table>
-            <tr>            
-                <!--
-                <td>{{objTicket.id}}</td>
-                <td>{{objTicket.n_Ticket}}</td>
-                -->
-              <!--
+    <mat-accordion class="accordion-header">
+        <mat-expansion-panel>
+            <mat-expansion-panel-header>
+                <mat-panel-title>
+                    ...
+                </mat-panel-title>
+                <mat-panel-description>
+                    <h3 class="display-5 details-title text-center">Ticket {{objTicket.n_Ticket}}</h3>
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <div class="col-md-12 row-cards">
+                <div class="row">
+                    <table class="table table-sm table-ticket-header table-borderless">
+                        <thead>
+                            <tr>
+                                <th scope="col">Tipo</th>
+                                <th scope="col">Data1</th>
+                                <th scope="col">Tecnico</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input class="inputmini" value="{{objTicket.tipoTicket}}" disabled></td>
+                                <td><input class="inputmidi" value="{{objTicket.data1 | date: 'dd/mm/yyyy'}}" disabled>
+                                </td>
+                                <td><input class="inputmaxi" value="{{objTicket.badge}}" disabled></td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Stato</th>
+                                <th scope="col">Data2</th>
+                                <th scope="col">Cliente</th>
+                            </tr>
+                            <tr>
+                                <td><input class="inputmini" value="{{objTicket.statoTicket}}" disabled></td>
+                                <td><input class="inputmidi" value="{{objTicket.data1 | date: 'dd/mm/yyyy'}}" disabled>
+                                </td>
+                                <td><input class="inputmaxi" value="{{objTicket.customer}}" disabled></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </mat-expansion-panel>
+
+    </mat-accordion>
+
+
+
+
+
+
+
+
+    <!-- <div class="row">
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-12">
+                        tipo Ticket
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <input class="inputmini" value="{{objTicket.tipoTicket}}" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-12">
+                        stato Ticket
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <input class="inputmini" value="{{objTicket.statoTicket}}" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="row">
+                    <div class="col-12">
+                        Tecnico
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <input class="inputmidi" value="" disabled>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        Data Inizio
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <input class="inputmidi" value="{{objTicket.data1| date: 'dd/MM/yyyy'}}" disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="row">
+                    <div class="col-12">
+                        Data Fine
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <input class="inputmidi" value="" disabled>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+    <!--
                 <td>{{objTicket.customer.ragsoc}}</td>
                 <td>{{objTicket.data1}}</td>
               -->
-            </tr>
-        </table>
-    </div>
+
+
 
     <div class="row no-gutters ">
         <!--  [ngClass]="{'flex-row-reverse' : posinversa}" -->

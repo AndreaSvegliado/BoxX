@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { currentUser } from 'src/app/models/models';
-import { TransitionCheckState } from '@angular/material';
+import { TransitionCheckState, MatSnackBarConfig, MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-sidebar',
@@ -17,7 +17,7 @@ export class SidebarComponent implements OnInit {
   isLoggedIn: boolean;
   currUser: currentUser;
   iconaCheck = "radio_button_unchecked";
-  iconaCheck2 = "radio_button_unchecked";
+  iconaCheck2 = "lock_open";
   //Versione Vasco: observable che si aggiorna in automatico al variare della variabile
   //AS: il dollaro indica che la variabile è un observable
   //isLoggedIn$: Observable<boolean>;
@@ -25,7 +25,7 @@ export class SidebarComponent implements OnInit {
   //pictureUrl$: Observable<string>;
   //UserName$: Observable<string>;
 
-  constructor(private router: Router, private uService: UserService ) {
+  constructor(private snackBar : MatSnackBar, private router: Router, private uService: UserService ) {
     //Ho messo la routine nel constructor perchè ci passa mentre nell'onInit non passa se F5 su login!
     
   }
@@ -77,7 +77,8 @@ export class SidebarComponent implements OnInit {
     console.log("fixnotfix prima di cambiarlo"+this.fix_notfix);
     if (this.fix_notfix == "notfix") {
       this.fix_notfix = "fix";
-      this.iconaCheck2 = "check_circle";
+      //this.iconaCheck2 = "check_circle";
+      this.iconaCheck2 = "lock";
       //quando fisso il menu devo sempre mettere a lato
       this.side_over = "side";
       this.iconaCheck = "radio_button_unchecked";
@@ -86,29 +87,35 @@ export class SidebarComponent implements OnInit {
       console.log("fixnotfix dopo averlo cambiato"+this.fix_notfix);
     } else {
       this.fix_notfix = "notfix";
-      this.iconaCheck2 = "radio_button_unchecked";
+      //this.iconaCheck2 = "radio_button_unchecked";
+      this.iconaCheck2 = "lock_open";
       this.opened = false;
       console.log("fixnotfix dopo averlo cambiato"+this.fix_notfix);
     }
   }
 
   openclose () {
-    console.log("openclose prima di cambiare :"+this.fix_notfix);
-    console.log("opened"+this.opened);
-    if (this.opened == true) {
-      if (this.fix_notfix=="fix") {
-        //non deve fare nulla
-      } else {
-        this.opened = false;
-      }
+    console.log (this.fix_notfix);
+    if (this.fix_notfix =="fix"){
+      this.ShowMessage("Menu bloccato", "Sbloccare il lucchetto");
     } else {
-      if (this.fix_notfix=="fix") {
-        //non dovrebbe mai trovarsi in questa situazione
+      console.log("openclose prima di cambiare :"+this.fix_notfix);
+      console.log("opened"+this.opened);
+      if (this.opened == true) {
+        if (this.fix_notfix=="fix") {
+          //non deve fare nulla
+        } else {
+          this.opened = false;
+        }
       } else {
-        console.log("chiuso e notfix");
-        this.opened = true;
+        if (this.fix_notfix=="fix") {
+          //non dovrebbe mai trovarsi in questa situazione
+        } else {
+          console.log("chiuso e notfix");
+          this.opened = true;
+        }
       }
-    }
+   }
   }
 
   opencloseicon () {
@@ -121,4 +128,22 @@ export class SidebarComponent implements OnInit {
     }
   }
 
+  ShowMessage(msg: string, title?: string, hasErrors: boolean= false ) {
+    let config = new MatSnackBarConfig();
+    config.verticalPosition  = 'bottom';
+    config.horizontalPosition = 'center';
+    config.duration = 2000;
+
+    if(hasErrors){
+      config.panelClass =  ['error-class'];
+      console.log("ShowMessage: hasErrors");
+    }
+    //else
+    //  config.panelClass =  ['ng-deep'];
+
+    if(title != null)
+      this.snackBar.open(msg, title, config);  
+    else
+      this.snackBar.open(msg,null, config);  
+  }
 }
