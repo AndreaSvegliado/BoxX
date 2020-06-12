@@ -25,13 +25,13 @@ import { TicketDetailComponent } from './components/tickets/ticket-detail/ticket
 import { TicketDetailListComponent } from './components/tickets/ticket-detail-list/ticket-detail-list.component';
 import { MatNativeDateModule, MatInputModule} from '@angular/material';
 
-
 import {  DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
 
 @NgModule({
   declarations: [
@@ -42,15 +42,13 @@ import { CalendarComponent } from './components/calendar/calendar.component';
     RegistrationComponent,
     LoginComponent,
     UserDetailsComponent,
-    
     TicketCardComponent,
     TicketDetailsComponent,
     TicketDetailComponent,
     TicketDetailListComponent,
-    
     SnackbarComponent,
-    
     CalendarComponent,
+    
     
   ],
   imports: [
@@ -66,7 +64,8 @@ import { CalendarComponent } from './components/calendar/calendar.component';
     MatInputModule,
     NgxMaterialTimepickerModule,    //AS: TimePicker
     NgxMaterialTimepickerModule.setLocale('it-IT'), NgbModule,
-    DragDropModule
+    DragDropModule,
+    FullCalendarModule
   ],
   exports:[
     //NgbdDatepickerAdapter,

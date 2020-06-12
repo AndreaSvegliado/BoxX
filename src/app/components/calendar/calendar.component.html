@@ -1,1 +1,17 @@
-<p>calendar works!</p>
+
+
+<div class="calendar-container text-center">
+    <full-calendar class="fullcalendar"
+    defaultView="dayGridMonth" 
+    [header]="{
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+      }"
+    [navLinks] = "'true'"
+    [locale]="it"  
+    [plugins]="calendarPlugins"
+    [weekends]="calendarWeekends"
+    
+    ></full-calendar>
+</div>
