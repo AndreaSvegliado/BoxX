@@ -178,7 +178,9 @@ button{
 
 .details-title{
   margin-top:7px;
-  
+  font-size: 20px;
+  font-weight: bold;
+
 }
 /* .input-group-text {
   padding-left:5px;
@@ -268,4 +270,5 @@ table tr:hover{
 .accordion-header{
   margin-left: 5px;
   margin-right: 5px;
+  margin-bottom: 10px;
 }
