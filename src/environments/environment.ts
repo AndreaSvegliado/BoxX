@@ -4,7 +4,32 @@
 
 export const environment = {
   production: false,
-  apiBaseUrl: "http://188.152.211.199/iQWApi/api"
+  
+  apiBaseUrl: "http://188.152.211.199/iQWApi/api",
+
+  fullcalendarConfig : {
+    lang: 'it',
+    buttonText : {
+        today:    'oggi',
+        month:    'mese',
+        week:     'settimana',
+        day:      'giorno',
+        list:     'lista'
+    },
+    navlinks: true,
+    calendarWeekends: false,
+    header : {
+      left: 'prev,next today',
+      center: 'title',
+      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+    },
+    defaultAllDayEventDuration : {
+    days: 1
+    },
+    forceEventDuration: true,
+    nowIndicator : true,
+    weekLabel: ''
+  }
 };
 
 

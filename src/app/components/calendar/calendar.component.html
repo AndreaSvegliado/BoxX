@@ -3,15 +3,17 @@
 <div class="calendar-container text-center">
     <full-calendar class="fullcalendar"
     defaultView="dayGridMonth" 
-    [header]="{
-        left: 'prev,next today',
-        center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-      }"
-    [navLinks] = "'true'"
-    [locale]="it"  
+    [header]="header"
+    [navLinks] = "navlinks"
+    [locale]="lang"  
     [plugins]="calendarPlugins"
-    [weekends]="calendarWeekends"
-    
+    [weekends] = "calendarWeekends"
+    [buttonText] = "buttonText"
+    [defaultAllDayEventDuration] = "defaultAllDayEventDuration"
+    [nowIndicator] ="nowIndicator"
+    [weekLabel] ="weekLabel"
+
+    [events]="calendarEvents"
+    #calendar
     ></full-calendar>
 </div>
