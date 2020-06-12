@@ -16,6 +16,7 @@ export class TicketDetailsComponent implements OnInit {
 
   mticketID: string;
   objTicket: ticket;
+  panelOpenState = false;
 
   constructor(private snackBar : MatSnackBar,private route: ActivatedRoute, private router: Router, private ticketService: TicketService) { }
 
