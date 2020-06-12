@@ -21,7 +21,20 @@ body{
     width: 300px;
 }
 
+.logo-boxx{
+    position: fixed; 
+    top: 15px;
+    margin-left: 50%;
+}
 
+@media screen and (max-width: 600px) {
+    .logo-boxx{
+        position: fixed; 
+        top: 15px;
+        margin-left: 40%;
+        margin-top: -5px;
+    }
+}
 
 footer {
     position: absolute;
