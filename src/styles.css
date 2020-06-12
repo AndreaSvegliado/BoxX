@@ -1,8 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
+/* in teoria non dovrebbe servire importare anche questi...in quanto c'è in angular.json ma senza non funziona*/
 @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
-/*@import '~@fullcalendar/timegrid/main.css';*/
+@import '~@fullcalendar/timegrid/main.css';
+@import '~@fullcalendar/list/main.css'; 
+
 
 html, body { height: 100%; }
 body { margin: 0; 
