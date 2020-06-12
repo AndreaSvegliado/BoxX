@@ -44,7 +44,9 @@
 .ticket-button {
   height: 40px;
   font-size: 20px;
-  background: #1a7ce7;
+  /*background: #1a7ce7;*/
+  background: url('../../../assets/img/backgroundcell.png');
+  background-size: cover;
   color: white;
 }
 

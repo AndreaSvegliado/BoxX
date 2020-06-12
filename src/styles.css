@@ -21,20 +21,104 @@ body{
     width: 300px;
 }
 
+
+/*********************  logo e animazione bagliori *************************/
 .logo-boxx{
     position: fixed; 
     top: 15px;
     margin-left: 50%;
 }
 
-@media screen and (max-width: 600px) {
+.bagliore{
+    position: fixed; 
+    top: 15px;
+    margin-left: 50%;
+}
+
+.bagliore2{
+    position: fixed; 
+    top: 15px;
+    margin-left: 50%;
+}
+
+.bagliore3{
+    position: fixed; 
+    top: 15px;
+    margin-left: 50%;
+}
+
+@media screen and (max-width: 599px) {
     .logo-boxx{
         position: fixed; 
         top: 15px;
         margin-left: 40%;
         margin-top: -5px;
     }
+    .bagliore{
+        position: fixed; 
+        top: 15px;
+        margin-left: 40%;
+        margin-top: -5px;
+    }
+    .bagliore2{
+        position: fixed; 
+        top: 15px;
+        margin-left: 40%;
+        margin-top: -5px;
+    }
+    .bagliore3{
+        position: fixed; 
+        top: 15px;
+        margin-left: 40%;
+        margin-top: -5px;
+    }
+
 }
+
+/*bagliore in alto a sx*/
+.bagliore {
+    animation-name: comparsa;
+    animation-duration: 17s;
+    animation-iteration-count: infinite;
+  }
+  
+@keyframes comparsa {
+    0%   {opacity: 0;}
+    93%  {opacity: 0;}
+    95%  {opacity: 1.0;}
+    100% {opacity: 0;}
+}
+
+/*bagliore in basso a dx*/
+.bagliore2 {
+    animation-name: comparsa2;
+    animation-duration: 26s;
+    animation-iteration-count: infinite;
+  }
+  
+@keyframes comparsa2 {
+    0%   {opacity: 0;}
+    93%  {opacity: 0;}
+    95%  {opacity: 1.0;}
+    100% {opacity: 0;}
+}
+
+/*bagliore in alto a dx*/
+.bagliore3 {
+    animation-name: comparsa3;
+    animation-duration: 21s;
+    animation-iteration-count: infinite;
+  }
+  
+@keyframes comparsa3 {
+    0%   {opacity: 0;}
+    93%  {opacity: 0;}
+    95%  {opacity: 1.0;}
+    100% {opacity: 0;}
+}
+
+/*********************  logo e animazione bagliori *************************/
+
 
 footer {
     position: absolute;
