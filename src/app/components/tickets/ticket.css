@@ -36,13 +36,22 @@
 
 .ticket-tipo {
   /*margin-top: 15px;*/
-  background: lightgrey;
+  /*background: lightgrey;*/
   font-size: 14px;
-  color: grey;
+  /*color: grey;*/
   border: 1px solid grey;
   border-radius: 4px;
   padding: 2px 3px;
   display: inline;
+  font-weight: normal;
+}
+
+.ticket-tipoA {
+  border: 1px solid red;
+}
+
+.ticket-tipoI {
+  border: 1px solid rgb(43, 168, 226);
 }
 
 .ticket-cliente {
@@ -95,7 +104,7 @@
   font-size: 20px;
   background: #1a7ce7;
   background: url('../../../assets/img/backgroundcell.png');
-  background-size: cover;
+  background-size: 200px 100px;
   color: white;
 }
 
@@ -107,7 +116,7 @@
   font-size: 14px;
   background: #1a7ce7;
   background: url('../../../assets/img/backgroundcell.png');
-  background-size: cover;
+  background-size: 180px 100px;
   color: white;
 }
 
@@ -277,3 +286,4 @@ table tr:hover{
   margin-right: 5px;
   margin-bottom: 10px;
 }
+

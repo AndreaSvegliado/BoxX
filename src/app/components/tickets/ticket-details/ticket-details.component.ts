@@ -1,7 +1,7 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CdkDragDrop, moveItemInArray, CdkDragMove, CdkDragEnd } from '@angular/cdk/drag-drop';
-import { MatSnackBarConfig, MatSnackBar } from '@angular/material';
+import { MatSnackBarConfig, MatSnackBar, MatDialog, MatDialogRef } from '@angular/material';
 import { TicketService } from 'src/app/services/ticket.service';
 import { ticket } from 'src/app/models/models';
 
@@ -18,36 +18,37 @@ export class TicketDetailsComponent implements OnInit {
   objTicket: ticket;
   panelOpenState = false;
 
-  constructor(private snackBar : MatSnackBar,private route: ActivatedRoute, private router: Router, private ticketService: TicketService) { }
+  constructor(private snackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    private router: Router,
+    private ticketService: TicketService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
     let ID = this.route.snapshot.params['ID'];
     this.mticketID = ID;
-
     this.ticketService.getTicket(this.mticketID)
-    .subscribe( 
-      res=>  {  this.objTicket = res as ticket;
-      console.log (this.objTicket);
-      }
-      
-    ); 
-      
+      .subscribe(
+        res => {
+          this.objTicket = res as ticket;
+          console.log(this.objTicket);
+        }
+      );
   }
 
   Back() {
     this.router.navigate(['/default']);
-
     // per tornare alla home l'ID del ticket corrente (ed eventualmetne evidenziarlo)
     //let selectID = this.ticket.ID ? this.ticket.ID:null;
     //this.router.navigate(['/home', {id:selectID}]);      
-
   }
 
   Confirm() {
-    //this.router.navigate(['/default']);
-    this.ShowMessage("Sta calma che teo digo", "Che Gusto?", true);
+    //this.ShowMessage("Sta calma che teo digo", "Che Gusto?", true);
+    const dialogRef = this.dialog.open(DialogConferma, {
+      width: '250px',
+    });
   }
-
 
   Print() {
     //this.router.navigate(['/default']);
@@ -59,27 +60,27 @@ export class TicketDetailsComponent implements OnInit {
   //   //console.log (this.position);
   // }
 
-  ShowMessage(msg: string, title?: string, hasErrors: boolean= false ) {
+  ShowMessage(msg: string, title?: string, hasErrors: boolean = false) {
     let config = new MatSnackBarConfig();
-    config.verticalPosition  = 'bottom';
+    config.verticalPosition = 'bottom';
     config.horizontalPosition = 'center';
     config.duration = 2000;
 
-    if(hasErrors){
-      config.panelClass =  ['error-class'];
+    if (hasErrors) {
+      config.panelClass = ['error-class'];
       console.log("ShowMessage: hasErrors");
     }
     //else
     //  config.panelClass =  ['ng-deep'];
 
-    if(title != null)
-      this.snackBar.open(msg, title, config);  
+    if (title != null)
+      this.snackBar.open(msg, title, config);
     else
-      this.snackBar.open(msg,null, config);  
+      this.snackBar.open(msg, null, config);
   }
 
 
-  //**************************SNAP..NON FUNZIONA MOLTO BENE***************************/
+  //*****************DragnDrop: Per attivarlo inserire cdkDrag LO SNAP NON FUNZIONA MOLTO BENE***************************/
   @ViewChild('divdetail') divDetail: ElementRef;
   @ViewChild('divdetaillist') divDetailList: ElementRef;
 
@@ -100,26 +101,34 @@ export class TicketDetailsComponent implements OnInit {
     console.log("------------------");
     event.source._dragRef.reset();
     if (xDetail >= xDetailList) {
-      console.log("swap => perchè xDetail= " + xDetail + " > xDetailist= " + xDetailList);
-      //swap
-
+      console.log("swap a dx => perchè xDetail= " + xDetail + " > xDetailist= " + xDetailList);
       this.tr3dDetail = wDetailList;
       this.tr3dDetailList = - wDetail;
-
     } else {
-      console.log("swap <= perchè xDetail= " + xDetail + " < xDetailist= " + xDetailList);
-      //swap
-
+      console.log("swap a sx <= perchè xDetail= " + xDetail + " < xDetailist= " + xDetailList);
       this.tr3dDetail = 0;
       this.tr3dDetailList = 0;
     }
   }
+}
 
 
-  
+/* Dialog Component */
+@Component({
+  templateUrl: 'dialog-conferma.html',
+})
 
+export class DialogConferma {
+
+  constructor(public dialogRef: MatDialogRef<DialogConferma>) { }
+
+  onNoClick(): void {
+    //click fuori dalla dialog chiude la dialog
+    this.dialogRef.close();
+  }
 
 }
+
 
 /* OLD - Versione con l'injection del ticketService
 

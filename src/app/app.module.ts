@@ -20,10 +20,10 @@ import { UserService } from './services/user.service';
 
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { TicketCardComponent } from './components/tickets/ticket-card/ticket-card.component';
-import { TicketDetailsComponent } from './components/tickets/ticket-details/ticket-details.component';
+import { TicketDetailsComponent, DialogConferma } from './components/tickets/ticket-details/ticket-details.component';
 import { TicketDetailComponent } from './components/tickets/ticket-detail/ticket-detail.component';            //AS: reference per gestione token JWT
 import { TicketDetailListComponent } from './components/tickets/ticket-detail-list/ticket-detail-list.component';
-import { MatNativeDateModule, MatInputModule} from '@angular/material';
+import { MatNativeDateModule, MatInputModule, MatDialogModule} from '@angular/material';
 
 import {  DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
@@ -31,7 +31,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
-import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
@@ -48,8 +48,7 @@ import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
     TicketDetailListComponent,
     SnackbarComponent,
     CalendarComponent,
-    
-    
+    DialogConferma
   ],
   imports: [
 
@@ -65,7 +64,8 @@ import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
     NgxMaterialTimepickerModule,    //AS: TimePicker
     NgxMaterialTimepickerModule.setLocale('it-IT'), NgbModule,
     DragDropModule,
-    FullCalendarModule
+    FullCalendarModule,
+    MatDialogModule
   ],
   exports:[
     //NgbdDatepickerAdapter,
@@ -80,7 +80,8 @@ import { FullCalendarModule } from '@fullcalendar/angular'; // for FullCalendar!
     { 
       provide: MAT_DATE_LOCALE, useValue: 'it-IT' }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogConferma]
 })
 
 export class AppModule { }

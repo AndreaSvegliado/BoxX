@@ -11,6 +11,11 @@
   background: greenyellow;
 }
 
+
+
+
+
+
 .ticket-card .ticket-title {
   font-size: 24px;
   font-weight: bold;
@@ -27,7 +32,7 @@
 
 .ticket-tipo {
   /*margin-top: 15px;*/
-  background: lightgrey;
+  /*background: lightgrey;*/
   font-size: 14px;
   color: grey;
   border: 1px solid grey;
@@ -35,6 +40,8 @@
   padding: 2px 3px;
   display: inline;
 }
+
+
 
 .ticket-cliente {
   margin-bottom: 10px;

@@ -56,5 +56,12 @@ export class TicketCardComponent implements OnInit, AfterViewInit, AfterContentI
     }
   }
 
+  ticketClassTipo(){
+    return  {
+      'ticket-tipoA': this.ticket.tipoTicket=="A",
+      'ticket-tipoI': this.ticket.tipoTicket=="I",
+      'ticket-tipo': true
+    }
+  }
 
 }

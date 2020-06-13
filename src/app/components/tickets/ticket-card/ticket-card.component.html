@@ -30,7 +30,17 @@ onKeyUp(newValue: string) {
 
     <div class="ticket-title">
         <div class="row">
-            <div class="col-4 offset-4">
+            <div class="col-4">
+                <div [ngSwitch]="ticket.tipoTicket" >
+                    <div class="ticket-tipo" *ngSwitchCase="'A'" [ngClass]="ticketClassTipo()">
+                        Assistenza
+                    </div>
+                    <div class="ticket-tipo" *ngSwitchCase="'I'" [ngClass]="ticketClassTipo()">
+                        Installazione
+                    </div>
+                </div>
+            </div>   
+            <div class="col-4">
                 {{ticket.n_Ticket}}
             </div>
             <div class="col-4 container-icona-mappa" *ngIf=ticket.customer.poi>
@@ -45,14 +55,6 @@ onKeyUp(newValue: string) {
         Data: {{ticket.data1| date: 'dd/MM/yyyy'}}
     </div>
 
-    <div [ngSwitch]="ticket.tipoTicket">
-        <div class="ticket-tipo" *ngSwitchCase="'A'">
-            Assistenza
-        </div>
-        <div class="ticket-tipo" *ngSwitchCase="'I'">
-            Installazione
-        </div>
-    </div>
 
     <!-- <img width="300" alt="Logo" *ngIf="ticket.iconURL; else noImage" [src]="ticket.iconURL" > -->
 
