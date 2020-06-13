@@ -24,8 +24,13 @@
   <ng-container *ngIf="isLoggedIn">
     <div class="navbar-container">
       <div class="navbar-dark text-white">
-        <a style="font-size: medium;">{{currUser.fullname}} </a>
-        <a class="navbar-dark text-white"> </a>
+        <!-- <button type="button" class="btn btn-outline-light mr-2" placement="bottom"
+                ngbPopover="<img src='../../../assets/BoxX.svg'>" popoverTitle="ciao">
+                {{currUser.fullname}}
+        </button> -->
+        <button type="button" class="btn btn-outline-light mr-2 buttonUtente" (click) ="apriModalUtente()" #buttonUtente>
+                {{currUser.fullname}}
+        </button>
         <button class="btn btn-danger my-2 my-sm-0 exit-button" (click)="onLogout()" title="Logout">
           <mat-icon mat-list-icon>exit_to_app</mat-icon>
         </button>

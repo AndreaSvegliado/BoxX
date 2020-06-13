@@ -137,6 +137,19 @@ div.form-group.required>label:first-child:after {
   width: 300px;
 }
 
+.info-utente {
+  font-size: 12px;
+}
+
+
+.triangolino {
+    position: absolute;
+    top: 50px;
+    right: 120px;
+    z-index:100;
+    width: 20px;
+  }
+
 /*********************   logo e animazione bagliori    ***********************/
 .logo-boxx {
   position: fixed;
@@ -401,4 +414,5 @@ footer {
 .button-confirm-yes {
   background: green;
 }
+
 /************************       FINE Dialog Conferma       *******************/
