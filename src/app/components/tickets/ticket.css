@@ -1,3 +1,4 @@
+/*******************    IMPOSTAZIONI pagina TICKET CARD    *******************/
 .ticket-card {
   max-width: 360px;
   margin-bottom: 40px;
@@ -35,10 +36,7 @@
 }
 
 .ticket-tipo {
-  /*margin-top: 15px;*/
-  /*background: lightgrey;*/
   font-size: 14px;
-  /*color: grey;*/
   border: 1px solid grey;
   border-radius: 4px;
   padding: 2px 3px;
@@ -59,43 +57,9 @@
   margin-top: 10px;
 }
 
-
 .ticket-data {
   margin-bottom: 10px;
 }
-
-
-/* ----------------------------------------*/
-.ticket-details {
-  margin-bottom: 40px;
-  text-align: center;
-
-}
-
-.ticket-detail {
-  background-color: white;
-
-  border-radius: 4px;
-  padding: 20px 0;
-  box-shadow: 0 1px 16px 0 rgba(0, 0, 0, .2), 0 2px 8px 0 rgba(0, 0, 0, .14), 0 4px 8px -1px rgba(0, 0, 0, .12);
-
-  margin-right: 5px;
-  margin-left: 5px;
-  margin-top: 5px;
-}
-
-
-.ticket-detail-list {
-  margin-right: 5px;
-  margin-left: 5px;
-  margin-top: 5px;
-  background-color: white;
-  border-radius: 4px;
-  padding: 20px 10px;
-  box-shadow: 0 1px 16px 0 rgba(0, 0, 0, .2), 0 2px 8px 0 rgba(0, 0, 0, .14), 0 4px 8px -1px rgba(0, 0, 0, .12);
-  min-height: 432px;
-}
-
 
 .ticket-button {
   margin-top: 20px;
@@ -106,6 +70,13 @@
   background: url('../../../assets/img/backgroundcell.png');
   background-size: 200px 100px;
   color: white;
+}
+
+/*******************    IMPOSTAZIONI pagina TICKET DETAILS    ****************/
+/*   è la pagina "contenitore" di header/collapsible , detail e detail-list  */
+.ticket-details {
+  margin-bottom: 40px;
+  text-align: center;
 }
 
 .topbutton-button {
@@ -125,34 +96,49 @@
   margin-right: 5px;
 }
 
+.details-title{
+  margin-top:7px;
+  font-size: 20px;
+  font-weight: bold;
+}
 
-.input-group {
+.accordion-header{
+  margin-left: 5px;
+  margin-right: 5px;
   margin-bottom: 10px;
 }
 
-.jumbotron {
-  padding-top: 10px;
+.row-cards {
+  max-width: 500px;
+  border-radius: 4px;
 }
 
-.IDtext {
-  font-size: 16px;
-}
-
-.ora-inizio {
-  margin-right: 10px;
-}
-
-.group-data{
+.inputmini {
+  width: 40px;
   text-align: center;
 }
 
-.icona-griglia {
-  color: rgb(100,100,100);
-  margin-right: 10px;
+.inputmidi {
+  width: 100px;
+  text-align: center;
 }
 
-.time-input{
-  background-color: transparent;
+.inputmaxi {
+  width: 300px;
+  text-align: center;
+}
+
+
+/*******************    IMPOSTAZIONI pagina TICKET DETAIL    *****************/
+/*   è il form sulla sinistra con i vari campi e pulsanti salva e nuovo      */
+.ticket-detail {
+  background-color: white;
+  border-radius: 4px;
+  padding: 20px 0;
+  box-shadow: 0 1px 16px 0 rgba(0, 0, 0, .2), 0 2px 8px 0 rgba(0, 0, 0, .14), 0 4px 8px -1px rgba(0, 0, 0, .12);
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-top: 5px;
 }
 
 .time-picker {
@@ -163,10 +149,6 @@
   border-width: 1px;
   border-radius: 0px 4px 4px 0px;
   padding-left: 5px;
-}
-
-button{
-  padding-top: 0px!important;
 }
 
 .date-input{
@@ -186,51 +168,8 @@ button{
   border-color: rgb(201, 201, 201) !important;
 }
 
-
-
-
-.details-title{
-  margin-top:7px;
-  font-size: 20px;
-  font-weight: bold;
-
-}
-
-/* .input-group-text {
-  padding-left:5px;
-  padding-right: 5px;
-} */
-
- 
-/* You can add global styles to this file, and also import other style files */
-/*
-input.ng-touched.ng-invalid{
-  border-color: #dc3545;
-}
-
-input.ng-valid{
-  border-color: #28a745;
-}
-
-.green-icon{
-  color: #28a745;
-}
-.red-icon{
-  color: #dc3545;
-}
-
-#toast-container > div {
-  opacity:1;
-}
-
-table tr:hover{
-  cursor: pointer;
-} */
-
-
-/*.btn .btn-link .ng-star-inserted"><span class="chevron ngb-tp-chevron bottom"></span><span class="sr-only">Decrement hours</span></button>*/
-.btn-group-lg {
-  padding: 0px!important;
+button{
+  padding-top: 0px!important; /*utile per allineamento icone nei button*/
 }
 
 .btn-title {
@@ -241,49 +180,33 @@ table tr:hover{
   height: 40px;
 }
 
-
-.inputmini {
-  width: 40px;
-  text-align: center;
-}
-
-.inputmidi {
-  width: 100px;
-  text-align: center;
-}
-
-.inputmaxi {
-  width: 300px;
-  text-align: center;
-}
-
-.center {
-  text-align: center !important;
-}
-
-
-
-.row-cards {
-  max-width: 500px;
-  /*margin: auto;*/
-  /*border: 1px solid rgb(201, 201, 201);*/
+/****************    IMPOSTAZIONI pagina TICKET DETAIL LIST   ****************/
+/*                         è la tabella sulla destra                         */
+.ticket-detail-list {
+  margin-right: 5px;
+  margin-left: 5px;
+  margin-top: 5px;
+  background-color: white;
   border-radius: 4px;
-}
-
-.card1, .card2 {
-
-  border: 1px solid grey;
-  border-radius: 4px; 
-
+  padding: 20px 10px;
+  box-shadow: 0 1px 16px 0 rgba(0, 0, 0, .2), 0 2px 8px 0 rgba(0, 0, 0, .14), 0 4px 8px -1px rgba(0, 0, 0, .12);
+  min-height: 432px;
 }
 
 .icona-list {
   font-size: 13px;
 }
 
-.accordion-header{
-  margin-left: 5px;
-  margin-right: 5px;
+
+
+
+
+
+.input-group {
   margin-bottom: 10px;
 }
+
+
+
+
 
