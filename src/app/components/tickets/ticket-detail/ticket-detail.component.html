@@ -1,7 +1,8 @@
 <div class="ticket-detail" >
     <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
         <input type="hidden" name="id" [value]="serviceDetails.formData.id">
-        <input type="hidden" name="TicketID" [value]="serviceDetails.formData.ticketID">
+        <input type="number" name="TicketID" [value]="serviceDetails.formData.ticketID"  >
+<!-- (ngModelChange)="TicketID_toNumber()" -->
 
         <!--************************** COMBO CAUSALE ************************** -->
         <div class="form-group">
@@ -11,7 +12,7 @@
                         <mat-icon>list</mat-icon>
                     </div>
                 </div>
-                <select class="form-control combo-causale" name="causaleID" placeholder="--Selezionare--" #Causale="ngModel" required
+                <select  class="form-control combo-causale" name="causaleID" placeholder="--Selezionare--" #Causale="ngModel" required
                     [(ngModel)]="serviceDetails.formData.causaleID"   
                     (ngModelChange)="CausaleID_toNumber()">
 
