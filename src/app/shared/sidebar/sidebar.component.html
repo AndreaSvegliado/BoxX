@@ -8,13 +8,29 @@
     </button>
     <div class="filler"></div>
   </div>
-
+  <div class="logo-boxx">
+    <img src="../../../assets/BoxX.svg" width="40" height="40" alt="BoxX Logo" title="Benvenuti su BoxX"  >
+  </div>
+  <div class="bagliore">
+    <img src="../../../assets/bagliore.svg" width="40" height="40" title="Benvenuti su BoxX" >
+  </div>
+  <div class="bagliore2">
+    <img src="../../../assets/bagliore2.svg" width="40" height="40" title="Benvenuti su BoxX" >
+  </div>
+  <div class="bagliore3">
+    <img src="../../../assets/bagliore3.svg" width="40" height="40" title="Benvenuti su BoxX" >
+  </div>
   <!-- Nome utente loggato e bottone logout-->
   <ng-container *ngIf="isLoggedIn">
     <div class="navbar-container">
       <div class="navbar-dark text-white">
-        <a style="font-size: medium;">{{currUser.fullname}} </a>
-        <a class="navbar-dark text-white"> </a>
+        <!-- <button type="button" class="btn btn-outline-light mr-2" placement="bottom"
+                ngbPopover="<img src='../../../assets/BoxX.svg'>" popoverTitle="ciao">
+                {{currUser.fullname}}
+        </button> -->
+        <button type="button" class="btn btn-outline-light mr-2 buttonUtente" (click) ="apriModalUtente()" #buttonUtente>
+                {{currUser.fullname}}
+        </button>
         <button class="btn btn-danger my-2 my-sm-0 exit-button" (click)="onLogout()" title="Logout">
           <mat-icon mat-list-icon>exit_to_app</mat-icon>
         </button>
@@ -57,7 +73,7 @@
       </mat-list-item>
 
       <!-- <mat-list-item (click)= "sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/calendario']">-->
-      <mat-list-item [routerLink]="['/calendario']">
+      <mat-list-item [routerLink]="['/calendar']">
         <div class="item" (click)="opencloseicon()">
           <button mat-icon-button>
             <mat-icon mat-list-icon>event</mat-icon>

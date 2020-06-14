@@ -2,64 +2,68 @@
 
 
 <div class="ticket-details">
-    <div class="topbuttons-container">
-        <button mat-flat-button class="topbutton-button" (click)="Back()">
-            <mat-icon>view_agenda</mat-icon> Lista Ticket
-        </button>
-        <button mat-flat-button class="topbutton-button" (click)="Confirm()">
-            <mat-icon>check_circle</mat-icon> Conferma
-        </button>
-        <button mat-flat-button class="topbutton-button" (click)="Print()">
-            <mat-icon>print</mat-icon> Stampa
-        </button>
-    </div>
-    <mat-accordion >
-        <mat-expansion-panel class="accordion-header">
-            <mat-expansion-panel-header>
-                <mat-panel-title>
-                    ...
-                </mat-panel-title>
-                <mat-panel-description>
-                    <h3 class="display-5 details-title text-center">Ticket {{objTicket.n_Ticket}}</h3>
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <div class="col-md-12 row-cards">
-                <div class="row">
-                    <table class="table table-sm table-ticket-header table-borderless">
-                        <thead>
-                            <tr>
-                                <th scope="col">Tipo</th>
-                                <th scope="col">Data1</th>
-                                <th scope="col">Tecnico</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><input class="inputmini" value="{{objTicket.tipoTicket}}" disabled></td>
-                                <td><input class="inputmidi" value="{{objTicket.data1 | date: 'dd/mm/yyyy'}}" disabled>
-                                </td>
-                                <td><input class="inputmaxi" value="{{objTicket.badge}}" disabled></td>
-                            </tr>
-                            <tr>
-                                <th scope="col">Stato</th>
-                                <th scope="col">Data2</th>
-                                <th scope="col">Cliente</th>
-                            </tr>
-                            <tr>
-                                <td><input class="inputmini" value="{{objTicket.statoTicket}}" disabled></td>
-                                <td><input class="inputmidi" value="{{objTicket.data1 | date: 'dd/mm/yyyy'}}" disabled>
-                                </td>
-                                <td><input class="inputmaxi" value="{{objTicket.customer}}" disabled></td>
-                            </tr>
-                        </tbody>
-                    </table>
+    <div class="fixed-header">
+        <div class="topbuttons-container">
+            <button mat-flat-button class="topbutton-button" (click)="Back()">
+                <mat-icon>view_agenda</mat-icon> Lista Ticket
+            </button>
+            <button mat-flat-button class="topbutton-button" (click)="Confirm()">
+                <mat-icon>check_circle</mat-icon> Conferma
+            </button>
+            <button mat-flat-button class="topbutton-button" (click)="Print()">
+                <mat-icon>print</mat-icon> Stampa
+            </button>
+        </div>
+
+        <mat-accordion>
+            <mat-expansion-panel class="accordion-header">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <div class="details-title">Ticket {{objTicket.n_Ticket}}</div>
+                    </mat-panel-title>
+                    <mat-panel-description>
+
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <div class="col-md-12 row-cards">
+                    <div class="row">
+                        <table class="table table-sm table-ticket-header table-borderless">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col">Data1</th>
+                                    <th scope="col">Tecnico</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><input class="inputmini" value="{{objTicket.tipoTicket}}" disabled></td>
+                                    <td><input class="inputmidi" value="{{objTicket.data1 | date: 'dd/mm/yyyy'}}"
+                                            disabled>
+                                    </td>
+                                    <td><input class="inputmaxi" value="{{objTicket.badge}}" disabled></td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">Stato</th>
+                                    <th scope="col">Data2</th>
+                                    <th scope="col">Cliente</th>
+                                </tr>
+                                <tr>
+                                    <td><input class="inputmini" value="{{objTicket.statoTicket}}" disabled></td>
+                                    <td><input class="inputmidi" value="{{objTicket.data1 | date: 'dd/mm/yyyy'}}"
+                                            disabled>
+                                    </td>
+                                    <td><input class="inputmaxi" value="{{objTicket.customer}}" disabled></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
-        </mat-expansion-panel>
+            </mat-expansion-panel>
 
-    </mat-accordion>
+        </mat-accordion>
 
-
+    </div>
 
 
 
@@ -137,14 +141,14 @@
               -->
 
 
-
-    <div class="row no-gutters ">
-        <!--  [ngClass]="{'flex-row-reverse' : posinversa}" -->
-        <div class="col-lg-3 col-md-12" cdkDrag1 cdkDragLockAxis="x"
-            [ngStyle]="{'transform': 'translate3d(' + tr3dDetail + 'px, 0px, 0px)'}"
-            (cdkDragEnded)="dragEndedDetail($event)" #divdetail>
-            <!-- (cdkDragMoved)="dragMoved($event)" -->
-            <!--
+    <div class="scrolling">
+        <div class="row no-gutters ">
+            <!--  [ngClass]="{'flex-row-reverse' : posinversa}" -->
+            <div class="col-lg-3 col-md-12" cdkDrag1 cdkDragLockAxis="x"
+                [ngStyle]="{'transform': 'translate3d(' + tr3dDetail + 'px, 0px, 0px)'}"
+                (cdkDragEnded)="dragEndedDetail($event)" #divdetail>
+                <!-- (cdkDragMoved)="dragMoved($event)" -->
+                <!--
             <div class="example-handle" cdkDragHandle>
                 <svg width="24px" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M10 9h4V6h3l-5-5-5 5h3v3zm-1 1H6V7l-5 5 5 5v-3h3v-4zm14 2l-5-5v3h-3v4h3v3l5-5zm-9 3h-4v3H7l5 5 5-5h-3v-3z"></path>
@@ -152,98 +156,18 @@
                 </svg>
             </div>
         -->
-            <app-ticket-detail></app-ticket-detail>
-        </div>
-        <div class="col-lg-9 col-md-12 test" cdkDrag1 cdkDragLockAxis="x"
-            [ngStyle]="{'transform': 'translate3d(' + tr3dDetailList + 'px, 0px, 0px)'}"
-            (cdkDragEnded)="dragEndedDetail($event)" #divdetaillist>
-            <app-ticket-detail-list></app-ticket-detail-list>
-        </div>
-    </div>
-
-</div>
-
-
-
-<!-- DA QUI IN POI E' LA VERSIONE VECCHIA -->
-
-<!--
-<div>
-    <button  (click)="BackToHome()">Torna a Lista ticket</button>
-</div>
--->
-<!--
-<table class="table table-bordered">
-    <tr>
-        <th>ID</th> 
-        <td> {{ticket.ID}}</td>
-        <th>Ticket</th>
-        <td> {{ticket.N_Ticket}}</td>
-        <th>Cliente</th>
-        <td> {{ticket.Ragsoc}}</td>
-        <th>Indirizzo</th>
-        <td> {{ticket.Indirizzo}}</td>
-        <th>Città</th>
-        <td> {{ticket.Citta}}</td>
-        <th>Stato</th>
-        <td> {{ticket.StatoTicket}}</td>
-    </tr>
-</table>
-
-<div class="card m-5" style="width:22rem">
-    <ul class="list-group">
-        <li class="list-group-item"><strong>ID: </strong>{{ticket.ID}}</li> 
-        <li class="list-group-item"><strong>Ticket: </strong>{{ticket.N_Ticket}}</li>
-        <li class="list-group-item"><strong>Cliente: </strong>{{ticket.Ragsoc}}</li>
-        <li class="list-group-item"><strong>Indirizzo: </strong>{{ticket.Indirizzo}}</li>
-        <li class="list-group-item"><strong>Città: </strong>{{ticket.Citta}}</li>
-        <li class="list-group-item"><strong>StatoTicket: </strong>{{ticket.StatoTicket}}</li>
-    </ul>
-</div>
- 
-<div class="jumbotron">
-
-    <blockquote class="blockquote ml-5">
-        <h2 class="display-4 text-center">Dettaglio Ore Ticket</h2>
-        <footer class="blockquote-footer">
-            Inserire il dettaglio delle attività
-        </footer>
-    
-    </blockquote>
-
-    <div class="grid-table">
-        <div class="thead">
-            <div class="tr">
-                <div class="td">ID</div>
-                <div class="td">TicketID</div>
-                <div class="td">Data</div>
-                <div class="td">Mattino Start</div>
-                <div class="td">Mattino End</div>
+                <app-ticket-detail></app-ticket-detail>
+            </div>
+            <div class="col-lg-9 col-md-12 test" cdkDrag1 cdkDragLockAxis="x"
+                [ngStyle]="{'transform': 'translate3d(' + tr3dDetailList + 'px, 0px, 0px)'}"
+                (cdkDragEnded)="dragEndedDetail($event)" #divdetaillist>
+                <app-ticket-detail-list></app-ticket-detail-list>
             </div>
         </div>
-        <div class="tbody">
-            <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of timesheetForms.controls; let i=index;">
-                <div class="td">
-                    <input   class="form-control" formControlName="ID">
-                </div>
-                 <div class="td">
-                    <input   class="form-control" formControlName="TicketID">
-                </div>
-                <div class="td">
-                    <input   class="form-control" formControlName="Data">
-                </div> 
-                <div class="td">
-                    <input   class="form-control" formControlName="Mattino_Start">
-                </div>                 
-            </form> 
-        </div>
     </div>
 
-    <button class="btn btn-outline-dark" (click)="addRowForm()">
-        <mat-icon>add</mat-icon> 
-        Nuova riga
-    </button>   
--->
+</div>
+
 
 
 <!--  

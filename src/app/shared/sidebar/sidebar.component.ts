@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { currentUser } from 'src/app/models/models';
-import { TransitionCheckState, MatSnackBarConfig, MatSnackBar } from '@angular/material';
+import { TransitionCheckState, MatSnackBarConfig, MatSnackBar, MatDialogRef, MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-sidebar',
@@ -18,6 +18,7 @@ export class SidebarComponent implements OnInit {
   currUser: currentUser;
   iconaCheck = "radio_button_unchecked";
   iconaCheck2 = "lock_open";
+  
   //Versione Vasco: observable che si aggiorna in automatico al variare della variabile
   //AS: il dollaro indica che la variabile è un observable
   //isLoggedIn$: Observable<boolean>;
@@ -25,9 +26,11 @@ export class SidebarComponent implements OnInit {
   //pictureUrl$: Observable<string>;
   //UserName$: Observable<string>;
 
-  constructor(private snackBar : MatSnackBar, private router: Router, private uService: UserService ) {
+  constructor(private snackBar : MatSnackBar,
+    private router: Router,
+    private uService: UserService,
+    public dialog: MatDialog) {
     //Ho messo la routine nel constructor perchè ci passa mentre nell'onInit non passa se F5 su login!
-    
   }
 
   ngOnInit() {
@@ -146,4 +149,33 @@ export class SidebarComponent implements OnInit {
     else
       this.snackBar.open(msg,null, config);  
   }
+
+  @ViewChild('buttonUtente') buttonutente: ElementRef;
+  apriModalUtente() {
+    const dialogRef = this.dialog.open(DialogUtente, {
+
+      width: '250px',
+    });
+    let buttonx = this.buttonutente.nativeElement.getBoundingClientRect().x;
+    let buttonw = this.buttonutente.nativeElement.offsetWidth;
+    let buttony = this.buttonutente.nativeElement.getBoundingClientRect().y;
+    let modalx = buttonx + (buttonw/2) - 125;
+    let modaly = buttony + 45;
+    dialogRef.updatePosition({ left: modalx+'px', top: modaly+'px'  });
+  }
+}
+
+@Component({
+  templateUrl: 'dialog-utente.html',
+})
+
+export class DialogUtente {
+
+  constructor(public dialogRef: MatDialogRef<DialogUtente>) { }
+
+  onNoClick(): void {
+    //click fuori dalla dialog chiude la dialog
+    this.dialogRef.close();
+  }
+
 }

@@ -1,181 +1,418 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; 
-    /*font-family: Roboto, "Helvetica Neue", sans-serif;*/
-    font-family: Titillium Web, sans-serif;
+/* in teoria non dovrebbe servire importare anche questi...in quanto c'è in angular.json ma senza non funziona correttamente*/
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+@import '~@fullcalendar/timegrid/main.css';
+@import '~@fullcalendar/list/main.css';
+
+/*********************    IMPOSTAZIONI CSS GENERALI    ***********************/
+html,
+body {
+  height: 100%;
+  margin: 0;
+  /*font-family: Roboto, "Helvetica Neue", sans-serif;*/
+  font-family: Titillium Web, sans-serif;
+  background-color: white;
 }
 
-body{
-    background-color: white;
+form {
+  margin: 0px 16px;
 }
 
-#sidenav {
-    width: 300px;
+div.form-group input.invalid {
+  border: 1px solid #dc3545;
 }
 
-
-
-footer {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    font-size: 10px;
+div.form-group label:first-child {
+  text-transform: uppercase;
+  font-size: 0.9rem;
 }
 
-
-
-/*  Login   */ 
-
-input.form-control:focus{
-    box-shadow: none;
+.thead {
+  display: table-header-group;
+  font-weight: bold;
+  border-bottom: 1px solid black;
+  text-align: center;
+  background-color: #6bb7fa;
 }
 
-button[type=submit].btn{
-    /*border-radius: 20px;*/
-    background-color: #04c582;
-    color: #fff;
-}
-button[type=submit].btn-outline-dark{
-    /*border-radius: 20px;*/
-    background-color: #fff;
-    color: #2e3137 ;
+.tbody {
+  display: table-row-group;
 }
 
-
-div.form-group label:not(.text-danger){
-    color: #545d6a;
-    font-weight: 700;
+.tr {
+  display: table-row;
 }
 
-div.form-group.required>label:first-child:after{
-    content:'*';
-    color: #fff;
-    padding-left: 5px;
+.td {
+  display: table-cell;
+  padding: 10px 1px 1px 5px;
 }
 
-#toast-container > div {
-    opacity:1;
+.thead div.tr div.td:last-child {
+  background-color: rgb(126, 174, 219);
 }
 
-.wrapper {
-    display: flex;
-    align-items: center;
-    flex-direction: column; 
-    justify-content: center;
-    width: 100%;
-    padding: 20px;
-  }
-
-  .wrapped-div {
-    -webkit-border-radius: 10px 10px 10px 10px;
-    border-radius: 10px 10px 10px 10px;
-    background: #2e3137;
-    padding: 30px;
-    width: 90%;
-    max-width: 450px;
-    position: relative;
-    padding: 0px;
-    -webkit-box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-    box-shadow: 0 30px 60px 0 rgba(0,0,0,0.3);
-  }
-
-  /* Tabs */
-.tab-header{
-    text-align: center;
+i:hover {
+  cursor: pointer;
 }
 
-  .tab-header h2.active {
-    color: #fff;
-    border-bottom: 4px solid #fff;
-  }
-
-  .tab-header h2 {
-    text-align: center;
-    font-size: 18px;
-    font-weight: 600;
-    display:inline-block;
-    padding: 30px 40px 10px 40px;
-    cursor: pointer;
-    color: #545d6a;
-    border-bottom: 2px solid #545d6a;
-  }
-
-  .tab-header h2:focus {
-      outline: none;
-  }
-
-  form{
-      margin: 0px 16px;
-  }
-
- div.form-group input.invalid{
-    border: 1px solid #dc3545; 
- }
- div.form-group label:first-child{
-    text-transform: uppercase;
-    font-size: 0.9rem;
- }
-
-
-
-
-
-/*  bank-account    */
-
-.grid-table
-{
-	display:table;
+input.ng-invalid.ng-touched,
+select.ng-invalid.ng-touched {
+  border-color: #dc3545;
 }
-.thead
-{
-	display:table-header-group;
-	font-weight:bold;
-	border-bottom: 1px solid black;
-    text-align: center;
-    background-color: #6bb7fa;
-}
-.tbody
-{
-	display:table-row-group;
-}
-.tr
-{
-	display:table-row;
-}
-
-.td
-{
-	display:table-cell;
-	padding: 10px 1px 1px 5px;
-}
-.thead div.tr div.td:last-child{
-    background-color: rgb(126, 174, 219);
-}
-i:hover{
-	cursor: pointer;
-}
-
-input.ng-invalid.ng-touched,select.ng-invalid.ng-touched{
-	border-color: #dc3545;
-}
-
 
 .elementToFadeInAndOut {
-    -webkit-animation: fadeinout 2s linear forwards;
-    animation: fadeinout 2s linear forwards;
-    opacity: 0;
+  -webkit-animation: fadeinout 2s linear forwards;
+  animation: fadeinout 2s linear forwards;
+  opacity: 0;
 }
 
 @-webkit-keyframes fadeinout {
-  50% { opacity: 1; }
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes fadeinout {
-  50% { opacity: 1; }
+  50% {
+    opacity: 1;
+  }
+}
+
+input.form-control:focus {
+  box-shadow: none;
+}
+
+button[type=submit].btn {
+  background-color: #04c582;
+  color: #fff;
+}
+
+button[type=submit].btn-outline-dark {
+  background-color: #fff;
+  color: #2e3137;
+}
+
+div.form-group label:not(.text-danger) {
+  color: #545d6a;
+  font-weight: 700;
+}
+
+div.form-group.required>label:first-child:after {
+  content: '*';
+  color: #fff;
+  padding-left: 5px;
+}
+
+#toast-container>div {
+  opacity: 1;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 20px;
+}
+
+.wrapped-div {
+  -webkit-border-radius: 10px 10px 10px 10px;
+  border-radius: 10px 10px 10px 10px;
+  background: #2e3137;
+  padding: 30px;
+  width: 90%;
+  max-width: 450px;
+  position: relative;
+  padding: 0px;
+  -webkit-box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
+}
+
+/*********************    SIDENAV FOOTER e HEADER    *************************/
+#sidenav {
+  width: 300px;
+}
+
+.info-utente {
+  font-size: 12px;
 }
 
 
-.ngb-tp-input{
-    border: none !important;
+.triangolino {
+    position: absolute;
+    top: 50px;
+    right: 120px;
+    z-index:100;
+    width: 20px;
   }
+
+/*********************   logo e animazione bagliori    ***********************/
+.logo-boxx {
+  position: fixed;
+  top: 15px;
+  margin-left: 50%;
+}
+
+.bagliore {
+  position: fixed;
+  top: 15px;
+  margin-left: 50%;
+}
+
+.bagliore2 {
+  position: fixed;
+  top: 15px;
+  margin-left: 50%;
+}
+
+.bagliore3 {
+  position: fixed;
+  top: 15px;
+  margin-left: 50%;
+}
+
+@media screen and (max-width: 599px) {
+  .logo-boxx {
+    position: fixed;
+    top: 15px;
+    margin-left: 40%;
+    margin-top: -5px;
+  }
+
+  .bagliore {
+    position: fixed;
+    top: 15px;
+    margin-left: 40%;
+    margin-top: -5px;
+  }
+
+  .bagliore2 {
+    position: fixed;
+    top: 15px;
+    margin-left: 40%;
+    margin-top: -5px;
+  }
+
+  .bagliore3 {
+    position: fixed;
+    top: 15px;
+    margin-left: 40%;
+    margin-top: -5px;
+  }
+}
+
+/*bagliore in alto a sx*/
+.bagliore {
+  animation-name: comparsa;
+  animation-duration: 17s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes comparsa {
+  0% {
+    opacity: 0;
+  }
+
+  93% {
+    opacity: 0;
+  }
+
+  95% {
+    opacity: 1.0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/*bagliore in basso a dx*/
+.bagliore2 {
+  animation-name: comparsa2;
+  animation-duration: 26s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes comparsa2 {
+  0% {
+    opacity: 0;
+  }
+
+  93% {
+    opacity: 0;
+  }
+
+  95% {
+    opacity: 1.0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/*bagliore in alto a dx*/
+.bagliore3 {
+  animation-name: comparsa3;
+  animation-duration: 21s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes comparsa3 {
+  0% {
+    opacity: 0;
+  }
+
+  93% {
+    opacity: 0;
+  }
+
+  95% {
+    opacity: 1.0;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+/*********************  fine logo e animazione bagliori  *********************/
+
+
+footer {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  font-size: 10px;
+}
+
+/*************************   fine SIDENAV FOOTER HEADER  *********************/
+
+
+/*************************        tabs pagina INPUT       ********************/
+.tab-header {
+  text-align: center;
+}
+
+.tab-header h2.active {
+  color: #fff;
+  border-bottom: 4px solid #fff;
+}
+
+.tab-header h2 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  display: inline-block;
+  padding: 30px 40px 10px 40px;
+  cursor: pointer;
+  color: #545d6a;
+  border-bottom: 2px solid #545d6a;
+}
+
+.tab-header h2:focus {
+  outline: none;
+}
+
+/*************************     FINE  tabs pagina INPUT     ********************/
+
+
+/*************************          ngb TimePicker         ********************/
+.ngb-tp-input {
+  border: none !important;
+}
+
+/*************************          FULL CALENDAR          ********************/
+/*la seguente media query è per Fullcalendar: mettendola nel file css del component di fullcalendar non funziona*/
+@media screen and (max-width: 768px) {
+
+  .fc-prev-button {
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+  }
+
+  .fc-next-button {
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+  }
+
+  .fc-dayGridMonth-button {
+    background: url('./assets/month.svg');
+    background-repeat: no-repeat;
+    color: transparent !important;
+    width: 30px;
+    height: 30px;
+  }
+
+  .fc-timeGridWeek-button {
+    background: url('./assets/week.svg');
+    background-repeat: no-repeat;
+    color: transparent !important;
+    width: 30px;
+    height: 30px;
+  }
+
+  .fc-timeGridDay-button {
+    background: url('./assets/day.svg');
+    background-repeat: no-repeat;
+    color: transparent !important;
+    width: 30px;
+    height: 30px;
+  }
+
+  .fc-listWeek-button {
+    background: url('./assets/list.svg');
+    background-repeat: no-repeat;
+    color: transparent !important;
+    width: 30px;
+    height: 30px;
+  }
+
+  .fc-today-button {
+    background: url('./assets/today.svg');
+    background-repeat: no-repeat;
+    color: transparent !important;
+    width: 30px;
+    height: 30px;
+  }
+
+  .fc-button-primary {
+    background-color: #2C3E50;
+  }
+
+  .fc-center {
+    font-size: 10px;
+  }
+
+  .mat-h2,
+  .mat-title,
+  .mat-typography h2 {
+
+    font-size: 14px !important;
+  }
+}
+
+
+/************************          Dialog Conferma         *******************/
+.button-confirm {
+  margin-top: 8px !important;
+  margin-left: 10px !important;
+  font-size: 14px;
+  color: white;
+}
+
+.button-confirm-no {
+  background: red;
+}
+
+.button-confirm-yes {
+  background: green;
+}
+
+/************************       FINE Dialog Conferma       *******************/

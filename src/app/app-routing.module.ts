@@ -12,6 +12,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 
 import { TicketCardComponent } from './components/tickets/ticket-card/ticket-card.component';
 import { TicketDetailsComponent } from './components/tickets/ticket-details/ticket-details.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
 
 const routes: Routes = [
   
@@ -19,11 +20,13 @@ const routes: Routes = [
   
   
   { path:'default', component: DefaultComponent, canActivate:[AuthGuard]  },
+
   //{ path:'home', component: DefaultComponent, canActivate:[AuthGuard]  },
   { path:'userDetails', component: UserDetailsComponent, canActivate:[AuthGuard]  },
 
   { path:'ticket-card', component: TicketCardComponent, canActivate:[AuthGuard]  },
   { path:'ticket-details/:ID', component: TicketDetailsComponent, canActivate:[AuthGuard]},
+  { path:'calendar', component: CalendarComponent, canActivate:[AuthGuard]  },
   //...
   //{path: '**', component: PageNotFoundComponent}
 
