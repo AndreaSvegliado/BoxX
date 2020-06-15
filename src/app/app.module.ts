@@ -26,7 +26,7 @@ import { TicketDetailListComponent } from './components/tickets/ticket-detail-li
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule} from '@angular/material/dialog';
 import { MatInputModule} from '@angular/material/input';
-import {  DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import { MAT_DATE_LOCALE} from '@angular/material/core';
 import { NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DragDropModule } from '@angular/cdk/drag-drop';
