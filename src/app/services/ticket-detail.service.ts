@@ -29,7 +29,7 @@ export class TicketDetailService {
   }
 
   postTicketDetail(){
-    console.log("POST"+ this.formData.ticketID);
+    console.log("POST: "+ this.formData.ticketID);
     console.log(this.formData);
     
     return this.http.post( environment.apiBaseUrl   + '/TicketDetails',this.formData)  

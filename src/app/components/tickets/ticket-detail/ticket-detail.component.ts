@@ -165,7 +165,7 @@ export class TicketDetailComponent implements OnInit {
   }
 
   resetForm( form?:NgForm  ){
-    if(form!= null)
+    if(form != null)
       form.resetForm();
       
     this.serviceDetails.formData ={
@@ -200,7 +200,7 @@ export class TicketDetailComponent implements OnInit {
   }
 
   InsertRecord(form:NgForm){
-    
+
     this.serviceDetails.postTicketDetail().subscribe(
       res => { 
         this.serviceDetails.refreshList(this.serviceDetails.formData.ticketID);
@@ -234,6 +234,11 @@ export class TicketDetailComponent implements OnInit {
   CausaleID_toNumber(){
     this.serviceDetails.formData.causaleID = + this.serviceDetails.formData.causaleID;
   } 
+  TicketID_toNumber(){
+
+    console.log ("ticket_ID_toNumber");
+    this.serviceDetails.formData.ticketID = + this.serviceDetails.formData.ticketID;
+  }
 
   // snackbar
   ShowMessage(msg: string, title?: string, hasErrors: boolean= false ) {
