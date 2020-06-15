@@ -41,7 +41,7 @@ export class TicketDetailsComponent implements OnInit {
     this.router.navigate(['/default']);
     // per tornare alla home l'ID del ticket corrente (ed eventualmetne evidenziarlo)
     //let selectID = this.ticket.ID ? this.ticket.ID:null;
-    //this.router.navigate(['/home', {id:selectID}]);      
+    //this.router.navigate(['/home', {id:selectID}]);
   }
 
   Confirm() {
@@ -111,6 +111,16 @@ export class TicketDetailsComponent implements OnInit {
       this.tr3dDetailList = 0;
     }
   }
+
+  ticketClassTipo(){
+    return  {
+      'ticket-tipoA': this.objTicket.tipoTicket=="A",
+      'ticket-tipoI': this.objTicket.tipoTicket=="I",
+      'ticket-tipo': true
+    }
+  }
+
+
 }
 
 
