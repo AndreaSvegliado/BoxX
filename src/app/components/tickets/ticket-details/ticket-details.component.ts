@@ -1,7 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CdkDragDrop, moveItemInArray, CdkDragMove, CdkDragEnd } from '@angular/cdk/drag-drop';
-import { MatSnackBarConfig, MatSnackBar, MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import { TicketService } from 'src/app/services/ticket.service';
 import { ticket } from 'src/app/models/models';
 

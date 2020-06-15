@@ -7,7 +7,7 @@ import { TicketCausaliService } from 'src/app/services/ticket-causali.service';
 import { NgbDateAdapter, NgbDateStruct, NgbDateParserFormatter, NgbCalendar, NgbTimeAdapter, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe, NumberSymbol } from '@angular/common';
 import { stringify } from 'querystring';
-import { DateAdapter, MatSnackBarConfig, MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import { isNull } from 'util';
 
 
