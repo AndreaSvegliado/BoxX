@@ -1,7 +1,8 @@
 <div class="ticket-detail" >
     <form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
         <input type="hidden" name="id" [value]="serviceDetails.formData.id">
-        <input type="hidden" name="TicketID" [value]="serviceDetails.formData.ticketID | number">
+        <!-- <input type="hidden" name="TicketID" [value]="serviceDetails.formData.ticketID | number"> -->
+        <input type="hidden" name="TicketID" [ngModel]="serviceDetails.formData.ticketID | number">
 
         <!--************************** COMBO CAUSALE ************************** -->
         <div class="form-group">
