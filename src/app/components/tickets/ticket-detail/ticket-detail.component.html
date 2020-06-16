@@ -49,11 +49,15 @@
                     (ngModelChange)="fireOnChange($event)">
                     [spinners]="spinners" >
                 </ngb-timepicker> -->
-                <ngb-timepicker class="time-picker" name="h_Ini"
+                <ngb-timepicker [formControl]="StartTime" class="time-picker" name="h_Ini"
                     [(ngModel)]="serviceDetails.formData.h_Ini"
-                    [spinners]="spinners" >
+                    [spinners]="spinners" required>
                 </ngb-timepicker>
-
+                <div *ngIf="StartTime.valid" class="small form-text text-success">OK</div>
+                <div *ngIf="StartTime.errors" class="small form-text text-danger">
+                  <div *ngIf="StartTime.errors['required']">Impostare Ora inizio</div>
+                  <div *ngIf="StartTime.errors['start_end']">Valore successivo all'ora di fine</div>
+                </div>
             </div>
         </div>
         <!--**************************   ORA FINE  ************************** -->
@@ -65,10 +69,15 @@
                         <mat-icon (click)="toggleSpinners()">timer_off</mat-icon>
                     </div>
                 </div>
-                <ngb-timepicker class="time-picker" name="h_End"
+                <ngb-timepicker [formControl]="EndTime" class="time-picker" name="h_End"
                     [(ngModel)]="serviceDetails.formData.h_End"
-                    [spinners]="spinners" >
+                    [spinners]="spinners" required>
                 </ngb-timepicker>
+                <div *ngIf="EndTime.valid" class="small form-text text-success">OK</div>
+                <div *ngIf="EndTime.errors" class="small form-text text-danger">
+                  <div *ngIf="EndTime.errors['required']">Impostare Ora inizio</div>
+                  <div *ngIf="EndTime.errors['start_end']">Valore precedente all'ora di inizio</div>
+                </div>
             </div>
         </div>
 
