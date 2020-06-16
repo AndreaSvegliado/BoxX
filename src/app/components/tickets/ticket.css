@@ -223,6 +223,12 @@ button{
   margin-bottom: 10px;
 }
 
+.min100 {
+  min-width: 100px;
+}
 
+.min110 {
+  min-width: 110px;
+}
 
 

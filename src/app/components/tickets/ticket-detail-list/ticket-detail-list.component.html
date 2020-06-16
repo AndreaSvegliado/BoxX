@@ -1,11 +1,11 @@
-    
-<div class="ticket-detail-list" > 
-  <div class="table-responsive">  
+
+<div class="ticket-detail-list" >
+  <div class="table-responsive">
     <table  class="table table-hover">
     <!--  {{ticketDetails|json}} -->
       <thead>
         <tr>
-          <th>ID</th> 
+          <th>ID</th>
           <th><mat-icon class="icona-list">list</mat-icon>Causale</th>
           <th><mat-icon class="icona-list">event</mat-icon>Data</th>
           <th><mat-icon class="icona-list">alarm</mat-icon>Ora Inizio</th>
@@ -14,21 +14,21 @@
           <th></th>
         </tr>
       </thead>
-      
+
       <tbody>
-        <tr *ngFor="let objTicketDetail of ticketDetailService.ticketList">            
+        <tr *ngFor="let objTicketDetail of ticketDetailService.ticketList">
           <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.id}} </td>
-          <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.causale.causaleDesc}} </td>
-          <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.dt | date: 'dd/MM/yyyy'}} </td>
-          <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.h_Ini | date:'HH:mm'}} </td>
-          <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.h_End| date:'HH:mm'}} </td>
+          <td class="min100" (click)="populateForm(objTicketDetail)">{{objTicketDetail.causale.causaleDesc}} </td>
+          <td class="min100" (click)="populateForm(objTicketDetail)">{{objTicketDetail.dt | date: 'dd/MM/yyyy'}} </td>
+          <td class="min110" (click)="populateForm(objTicketDetail)">{{objTicketDetail.h_Ini | date:'HH:mm'}} </td>
+          <td class="min110" (click)="populateForm(objTicketDetail)">{{objTicketDetail.h_End| date:'HH:mm'}} </td>
           <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.note}} </td>
-    
+
           <td>
-              <mat-icon (click)="onDelete(objTicketDetail.id)" color="warn" style="cursor: pointer;">delete</mat-icon>        
+              <mat-icon (click)="onDelete(objTicketDetail.id)" color="warn" style="cursor: pointer;">delete</mat-icon>
           </td>
         </tr>
-      </tbody>  
+      </tbody>
     </table>
-  </div>  
-</div>  
+  </div>
+</div>
