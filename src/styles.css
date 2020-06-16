@@ -1,10 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* in teoria non dovrebbe servire importare anche questi...in quanto c'è in angular.json ma senza non funziona correttamente*/
-@import '~@fullcalendar/core/main.css';
-@import '~@fullcalendar/daygrid/main.css';
-@import '~@fullcalendar/timegrid/main.css';
-@import '~@fullcalendar/list/main.css';
+@import "~@fullcalendar/core/main.css";
+@import "~@fullcalendar/daygrid/main.css";
+@import "~@fullcalendar/timegrid/main.css";
+@import "~@fullcalendar/list/main.css";
 
 /*********************    IMPOSTAZIONI CSS GENERALI    ***********************/
 html,
@@ -85,12 +85,12 @@ input.form-control:focus {
   box-shadow: none;
 }
 
-button[type=submit].btn {
+button[type="submit"].btn {
   background-color: #04c582;
   color: #fff;
 }
 
-button[type=submit].btn-outline-dark {
+button[type="submit"].btn-outline-dark {
   background-color: #fff;
   color: #2e3137;
 }
@@ -100,13 +100,13 @@ div.form-group label:not(.text-danger) {
   font-weight: 700;
 }
 
-div.form-group.required>label:first-child:after {
-  content: '*';
+div.form-group.required > label:first-child:after {
+  content: "*";
   color: #fff;
   padding-left: 5px;
 }
 
-#toast-container>div {
+#toast-container > div {
   opacity: 1;
 }
 
@@ -141,14 +141,13 @@ div.form-group.required>label:first-child:after {
   font-size: 12px;
 }
 
-
 .triangolino {
-    position: absolute;
-    top: 50px;
-    right: 120px;
-    z-index:100;
-    width: 20px;
-  }
+  position: absolute;
+  top: 50px;
+  right: 120px;
+  z-index: 100;
+  width: 20px;
+}
 
 /*********************   logo e animazione bagliori    ***********************/
 .logo-boxx {
@@ -222,7 +221,7 @@ div.form-group.required>label:first-child:after {
   }
 
   95% {
-    opacity: 1.0;
+    opacity: 1;
   }
 
   100% {
@@ -247,7 +246,7 @@ div.form-group.required>label:first-child:after {
   }
 
   95% {
-    opacity: 1.0;
+    opacity: 1;
   }
 
   100% {
@@ -272,7 +271,7 @@ div.form-group.required>label:first-child:after {
   }
 
   95% {
-    opacity: 1.0;
+    opacity: 1;
   }
 
   100% {
@@ -282,7 +281,6 @@ div.form-group.required>label:first-child:after {
 
 /*********************  fine logo e animazione bagliori  *********************/
 
-
 footer {
   position: absolute;
   bottom: 10px;
@@ -291,7 +289,6 @@ footer {
 }
 
 /*************************   fine SIDENAV FOOTER HEADER  *********************/
-
 
 /*************************        tabs pagina INPUT       ********************/
 .tab-header {
@@ -320,7 +317,6 @@ footer {
 
 /*************************     FINE  tabs pagina INPUT     ********************/
 
-
 /*************************          ngb TimePicker         ********************/
 .ngb-tp-input {
   border: none !important;
@@ -329,7 +325,6 @@ footer {
 /*************************          FULL CALENDAR          ********************/
 /*la seguente media query è per Fullcalendar: mettendola nel file css del component di fullcalendar non funziona*/
 @media screen and (max-width: 768px) {
-
   .fc-prev-button {
     width: 30px;
     height: 30px;
@@ -343,7 +338,7 @@ footer {
   }
 
   .fc-dayGridMonth-button {
-    background: url('./assets/month.svg');
+    background: url("./assets/month.svg");
     background-repeat: no-repeat;
     color: transparent !important;
     width: 30px;
@@ -351,7 +346,7 @@ footer {
   }
 
   .fc-timeGridWeek-button {
-    background: url('./assets/week.svg');
+    background: url("./assets/week.svg");
     background-repeat: no-repeat;
     color: transparent !important;
     width: 30px;
@@ -359,7 +354,7 @@ footer {
   }
 
   .fc-timeGridDay-button {
-    background: url('./assets/day.svg');
+    background: url("./assets/day.svg");
     background-repeat: no-repeat;
     color: transparent !important;
     width: 30px;
@@ -367,7 +362,7 @@ footer {
   }
 
   .fc-listWeek-button {
-    background: url('./assets/list.svg');
+    background: url("./assets/list.svg");
     background-repeat: no-repeat;
     color: transparent !important;
     width: 30px;
@@ -375,7 +370,7 @@ footer {
   }
 
   .fc-today-button {
-    background: url('./assets/today.svg');
+    background: url("./assets/today.svg");
     background-repeat: no-repeat;
     color: transparent !important;
     width: 30px;
@@ -383,7 +378,7 @@ footer {
   }
 
   .fc-button-primary {
-    background-color: #2C3E50;
+    background-color: #2c3e50;
   }
 
   .fc-center {
@@ -393,11 +388,9 @@ footer {
   .mat-h2,
   .mat-title,
   .mat-typography h2 {
-
     font-size: 14px !important;
   }
 }
-
 
 /************************          Dialog Conferma         *******************/
 .button-confirm {
@@ -416,3 +409,12 @@ footer {
 }
 
 /************************       FINE Dialog Conferma       *******************/
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

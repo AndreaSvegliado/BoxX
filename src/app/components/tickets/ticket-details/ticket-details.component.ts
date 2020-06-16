@@ -1,7 +1,8 @@
 import { Component, OnInit, ElementRef, ViewChild, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CdkDragDrop, moveItemInArray, CdkDragMove, CdkDragEnd } from '@angular/cdk/drag-drop';
-import { MatSnackBarConfig, MatSnackBar, MatDialog, MatDialogRef } from '@angular/material';
+import { MatDialog, MatDialogRef} from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import { TicketService } from 'src/app/services/ticket.service';
 import { ticket } from 'src/app/models/models';
 
@@ -40,7 +41,7 @@ export class TicketDetailsComponent implements OnInit {
     this.router.navigate(['/default']);
     // per tornare alla home l'ID del ticket corrente (ed eventualmetne evidenziarlo)
     //let selectID = this.ticket.ID ? this.ticket.ID:null;
-    //this.router.navigate(['/home', {id:selectID}]);      
+    //this.router.navigate(['/home', {id:selectID}]);
   }
 
   Confirm() {
@@ -110,6 +111,16 @@ export class TicketDetailsComponent implements OnInit {
       this.tr3dDetailList = 0;
     }
   }
+
+  ticketClassTipo(){
+    return  {
+      'ticket-tipoA': this.objTicket.tipoTicket=="A",
+      'ticket-tipoI': this.objTicket.tipoTicket=="I",
+      'ticket-tipo': true
+    }
+  }
+
+
 }
 
 

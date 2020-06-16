@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable, ViewEncapsulation } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormControl } from '@angular/forms';
 
 import { TicketDetailService } from 'src/app/services/ticket-detail.service';
 import { ticketCausale, ticketDetail } from 'src/app/models/models';
@@ -7,7 +7,7 @@ import { TicketCausaliService } from 'src/app/services/ticket-causali.service';
 import { NgbDateAdapter, NgbDateStruct, NgbDateParserFormatter, NgbCalendar, NgbTimeAdapter, NgbTimeStruct} from '@ng-bootstrap/ng-bootstrap';
 import { DatePipe, NumberSymbol } from '@angular/common';
 import { stringify } from 'querystring';
-import { DateAdapter, MatSnackBarConfig, MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import { isNull } from 'util';
 
 
@@ -87,7 +87,7 @@ function equal(t1: TimeStructure, t2: TimeStructure): boolean {
   return (!t1 && !t2) || (t1 && t2 && t1.hour === t2.hour && t1.minute === t2.minute);
 }
 /* *******************************    FINE FUNZIONI ACCESSORIE  *********************/
- 
+
 
 /* *******************************         TIME ADAPTER        *********************/
 
@@ -97,7 +97,7 @@ function equal(t1: TimeStructure, t2: TimeStructure): boolean {
     readonly DELIMITER = ':';
 
     fromModel(value: string| null): NgbTimeStruct | null {
-      
+
       if (!value) {
         return null;
       }
@@ -105,7 +105,7 @@ function equal(t1: TimeStructure, t2: TimeStructure): boolean {
       //1900-02-01T07:02:00 --> split per ottenere l'ora dalla data
       const split1 = value.split("T");
       const split = split1[1].split(this.DELIMITER);
-      
+
       return {
         hour: parseInt(split[0], 10),
         minute: parseInt(split[1], 10),
@@ -152,12 +152,12 @@ export class TicketDetailComponent implements OnInit {
   ticketCausali:ticketCausale[];
   ticketDetails:ticketDetail[];
 
-  constructor(  private snackBar : MatSnackBar, public serviceDetails: TicketDetailService, public serviceCausali: TicketCausaliService) { 
+  constructor(  private snackBar : MatSnackBar, public serviceDetails: TicketDetailService, public serviceCausali: TicketCausaliService) {
 
     this.serviceCausali.getCausaliList()
     .subscribe(
       res=> this.ticketCausali = res as ticketCausale[]
-      );  
+      );
   }
 
   ngOnInit() {
@@ -167,7 +167,7 @@ export class TicketDetailComponent implements OnInit {
   resetForm( form?:NgForm  ){
     if(form != null)
       form.resetForm();
-      
+
     this.serviceDetails.formData ={
       id: 0,
       ticketID: this.serviceDetails.ticketID ,
@@ -202,30 +202,30 @@ export class TicketDetailComponent implements OnInit {
   InsertRecord(form:NgForm){
 
     this.serviceDetails.postTicketDetail().subscribe(
-      res => { 
+      res => {
         this.serviceDetails.refreshList(this.serviceDetails.formData.ticketID);
         this.resetForm(form);
 
         this.ShowMessage("Record inserito");
       },
       err => {
-        console.log(err); 
+        console.log(err);
         this.ShowMessage("Errore nel salvataggio", "", true);
        }
     )
   }
 
   UpdateRecord(form:NgForm){
-    
+
     this.serviceDetails.putTicketDetail().subscribe(
-      res => { 
+      res => {
         this.serviceDetails.refreshList(this.serviceDetails.formData.ticketID);
         this.resetForm(form);
-        
+
         this.ShowMessage("Record aggiornato");
       },
       err => {
-        console.log(err); 
+        console.log(err);
         this.ShowMessage("Errore nel salvataggio", "Bravo merlo", true);
       }
     )
@@ -233,7 +233,7 @@ export class TicketDetailComponent implements OnInit {
 
   CausaleID_toNumber(){
     this.serviceDetails.formData.causaleID = + this.serviceDetails.formData.causaleID;
-  } 
+  }
   TicketID_toNumber(){
 
     console.log ("ticket_ID_toNumber");
@@ -255,13 +255,40 @@ export class TicketDetailComponent implements OnInit {
     //  config.panelClass =  ['ng-deep'];
 
     if(title != null)
-      this.snackBar.open(msg, title, config);  
+      this.snackBar.open(msg, title, config);
     else
-      this.snackBar.open(msg,null, config);  
+      this.snackBar.open(msg,null, config);
   }
+
+
+  valueStart;
+  valueEnd;
+  StartTime = new FormControl('', (controlStart: FormControl) => {
+    this.valueStart = controlStart.value;
+    console.log("valuestart_START"+this.valueStart);
+    console.log("valueend_START"+this.valueEnd);
+    if (!this.valueStart) {return null;}
+    if (this.valueStart>=this.valueEnd) {return {start_end: true};}
+    //if (value.getTime < 12) {return {tooEarly: true};}
+    //if (value.hour > 13) {return {tooLate: true};}
+    return null;
+  });
+
+  EndTime = new FormControl('', (control: FormControl) => {
+
+    this.valueEnd = control.value;
+    console.log("valuestart_END"+this.valueStart);
+    console.log("valueend_END"+this.valueEnd);
+    console.log (this.valueEnd);
+    if (!this.valueEnd) {return null;}
+    if (this.valueStart>=this.valueEnd) {return {start_end: true};}
+    //if (value.getTime < 12) {return {tooEarly: true};}
+    //if (value.hour > 13) {return {tooLate: true};}
+    return null;
+  });
+
 }
 
 
 
 
- 

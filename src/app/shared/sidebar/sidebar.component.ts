@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { UserService } from '../../services/user.service';
 import { Router } from '@angular/router';
 import { currentUser } from 'src/app/models/models';
-import { TransitionCheckState, MatSnackBarConfig, MatSnackBar, MatDialogRef, MatDialog } from '@angular/material';
-
+import { MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+import { MatDialog, MatDialogRef} from '@angular/material/dialog';
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',

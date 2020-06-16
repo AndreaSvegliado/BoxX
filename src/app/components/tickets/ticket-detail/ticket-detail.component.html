@@ -13,7 +13,7 @@
                     </div>
                 </div>
                 <select  class="form-control combo-causale" name="causaleID" placeholder="--Selezionare--" #Causale="ngModel" required
-                    [(ngModel)]="serviceDetails.formData.causaleID"   
+                    [(ngModel)]="serviceDetails.formData.causaleID"
                     (ngModelChange)="CausaleID_toNumber()">
 
                     <option value=0>--Selezionare--</option>
@@ -52,13 +52,17 @@
                 </ngb-timepicker> -->
                 <ngb-timepicker class="time-picker" name="h_Ini" required
                     [(ngModel)]="serviceDetails.formData.h_Ini"
-                    [spinners]="spinners" >
+                    [spinners]="spinners" required>
                 </ngb-timepicker>
-                
+                <div *ngIf="StartTime.valid" class="small form-text text-success"></div>
+                <div *ngIf="StartTime.errors" class="small form-text text-danger">
+                  <div *ngIf="StartTime.errors['required']"></div>
+                  <div *ngIf="StartTime.errors['start_end']">Valore successivo all'ora di fine</div>
+                </div>
             </div>
         </div>
         <!--**************************   ORA FINE  ************************** -->
-       
+
         <div class="form-group">
             <div class="input-group">
                 <div class="input-group-prepend">
@@ -68,11 +72,16 @@
                 </div>
                 <ngb-timepicker class="time-picker" name="h_End" required
                     [(ngModel)]="serviceDetails.formData.h_End"
-                    [spinners]="spinners" >
+                    [spinners]="spinners" required>
                 </ngb-timepicker>
+                <div *ngIf="EndTime.valid" class="small form-text text-success"></div>
+                <div *ngIf="EndTime.errors" class="small form-text text-danger">
+                  <div *ngIf="EndTime.errors['required']"></div>
+                  <div *ngIf="EndTime.errors['start_end']">Valore precedente all'ora di inizio</div>
+                </div>
             </div>
         </div>
-    
+
         <!--**************************      NOTE     ************************** -->
         <div class="input-group">
             <div class="input-group-prepend">
@@ -112,8 +121,8 @@
 </div>
 
 
-<!-- 
-*********INPUT DATA STILE MATERIAL**********    
+<!--
+*********INPUT DATA STILE MATERIAL**********
 <div class="form-group">
     <div class="input-group">
         <mat-form-field class="input-group-prepend" appearance="standard">

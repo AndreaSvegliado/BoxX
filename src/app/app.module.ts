@@ -23,10 +23,11 @@ import { TicketCardComponent } from './components/tickets/ticket-card/ticket-car
 import { TicketDetailsComponent, DialogConferma } from './components/tickets/ticket-details/ticket-details.component';
 import { TicketDetailComponent } from './components/tickets/ticket-detail/ticket-detail.component';            //AS: reference per gestione token JWT
 import { TicketDetailListComponent } from './components/tickets/ticket-detail-list/ticket-detail-list.component';
-import { MatNativeDateModule, MatInputModule, MatDialogModule} from '@angular/material';
-
-import {  DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material';
-import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDialogModule} from '@angular/material/dialog';
+import { MatInputModule} from '@angular/material/input';
+import { MAT_DATE_LOCALE} from '@angular/material/core';
+import { NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
