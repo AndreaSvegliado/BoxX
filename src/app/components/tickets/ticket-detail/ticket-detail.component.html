@@ -30,7 +30,7 @@
                         <mat-icon (click)="d2.toggle()">event</mat-icon>
                     </div>
                 </div>
-                <input class="date-input" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel"
+                <input class="date-input" placeholder="dd/mm/yyyy" name="d2" #c2="ngModel" required  
                     [(ngModel)]="serviceDetails.formData.dt " 
                     ngbDatepicker #d2="ngbDatepicker">
             </div>
@@ -50,7 +50,7 @@
                     (ngModelChange)="fireOnChange($event)">
                     [spinners]="spinners" >
                 </ngb-timepicker> -->
-                <ngb-timepicker class="time-picker" name="h_Ini"
+                <ngb-timepicker class="time-picker" name="h_Ini" required
                     [(ngModel)]="serviceDetails.formData.h_Ini"
                     [spinners]="spinners" >
                 </ngb-timepicker>
@@ -66,7 +66,7 @@
                         <mat-icon (click)="toggleSpinners()">timer_off</mat-icon>
                     </div>
                 </div>
-                <ngb-timepicker class="time-picker" name="h_End"
+                <ngb-timepicker class="time-picker" name="h_End" required
                     [(ngModel)]="serviceDetails.formData.h_End"
                     [spinners]="spinners" >
                 </ngb-timepicker>
@@ -97,7 +97,7 @@
             </button>
         </div>
         <div class="input-group">
-            <button class="btn btn-success btn-lg btn-block" (click)="resetForm(form)" [disabled]="form.invalid" >
+            <button class="btn btn-success btn-lg btn-block" (click)="resetForm(form)" >
                 <div class="row btn-title">
                     <div class="col-1">
                         <mat-icon>playlist_add</mat-icon>
