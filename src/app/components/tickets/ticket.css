@@ -1,3 +1,5 @@
+
+
 /*******************    IMPOSTAZIONI pagina TICKET CARD    *******************/
 .ticket-card {
   max-width: 360px;
@@ -77,6 +79,9 @@
 .ticket-details {
   margin-bottom: 40px;
   text-align: center;
+
+  /*font-family: Roboto, "Helvetica Neue", sans-serif;*/
+  font-family: Titillium Web, sans-serif;
 }
 
 .topbutton-button {
@@ -116,34 +121,34 @@
 }
 
 .inputmini {
-  width: 40px;
+  width: 20%;
   text-align: center;
 }
 
 .inputmidi {
-  width: 100px;
+  width: 60%;
   text-align: center;
 }
 
 .inputmaxi {
-  width: 270px;
+  width: 90%;
   text-align: center;
 }
 
-.accordion-row {
-  margin-top: 10px;
-  height: 30px;
-}
-.my-card-accordion {
-  border: 1px solid rgb(201, 201, 201);
-  border-radius: 4px;
-  padding-bottom: 10px;
+.input100 {
+  width: 100%;
+  text-align: center;
 }
 
 .mytextright {
   text-align: right!important;
 }
 
+.mycard {
+  border: 1px solid rgb(201, 201, 201);
+  border-radius: 4px;
+  padding: 5px;
+}
 
 /*******************    IMPOSTAZIONI pagina TICKET DETAIL    *****************/
 /*   è il form sulla sinistra con i vari campi e pulsanti salva e nuovo      */
