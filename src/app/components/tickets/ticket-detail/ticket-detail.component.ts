@@ -268,7 +268,7 @@ export class TicketDetailComponent implements OnInit {
     console.log("valuestart_START"+this.valueStart);
     console.log("valueend_START"+this.valueEnd);
     if (!this.valueStart) {return null;}
-    if (this.valueStart>this.valueEnd) {return {start_end: true};}
+    if (this.valueStart>=this.valueEnd) {return {start_end: true};}
     //if (value.getTime < 12) {return {tooEarly: true};}
     //if (value.hour > 13) {return {tooLate: true};}
     return null;
@@ -281,7 +281,7 @@ export class TicketDetailComponent implements OnInit {
     console.log("valueend_END"+this.valueEnd);
     console.log (this.valueEnd);
     if (!this.valueEnd) {return null;}
-    if (this.valueStart>this.valueEnd) {return {start_end: true};}
+    if (this.valueStart>=this.valueEnd) {return {start_end: true};}
     //if (value.getTime < 12) {return {tooEarly: true};}
     //if (value.hour > 13) {return {tooLate: true};}
     return null;
