@@ -249,12 +249,16 @@
 	.st243{fill:#FFFFFF;}
 	.st244{opacity:0.3;}
 	.st245{fill:url(#SVGID_4_);}
-	.st246{fill:url(#SVGID_5_);}
-	.st247{display:inline;fill:#FAA31F;}
-	.st248{display:inline;fill:#F36C4A;}
-	.st249{display:inline;opacity:0.6;}
-	.st250{display:inline;fill:#A31D2F;}
-	.st251{opacity:0.8;}
+	.st246{opacity:0.1;}
+	.st247{fill:url(#SVGID_5_);}
+	.st248{fill:url(#SVGID_6_);}
+	.st249{opacity:0.7;}
+	.st250{clip-path:url(#SVGID_8_);fill:url(#SVGID_9_);}
+	.st251{display:inline;fill:#FAA31F;}
+	.st252{display:inline;fill:#F36C4A;}
+	.st253{display:inline;opacity:0.6;}
+	.st254{display:inline;fill:#A31D2F;}
+	.st255{opacity:0.8;}
 </style>
 <g id="Layer_2">
 	<g>
@@ -806,7 +810,7 @@
 			C546.7,192.8,426.6,72.6,278.4,72.6z M278.4,391.5c-57.7,0-106.8-67.8-106.8-167.4s106.8-101,106.8-101s106.8,1.4,106.8,101
 			S336,391.5,278.4,391.5z"/>
 	</g>
-	<g class="st244">
+	<g class="st246">
 		<linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="149.7262" y1="289.4826" x2="686.4456" y2="289.4826">
 			<stop  offset="1.035466e-02" style="stop-color:#FFFFFF"/>
 			<stop  offset="0.112" style="stop-color:#FFF9ED"/>
@@ -815,14 +819,42 @@
 			<stop  offset="0.8977" style="stop-color:#FFD155"/>
 			<stop  offset="1" style="stop-color:#FFCE47"/>
 		</linearGradient>
-		<path class="st246" d="M278.4,72.6C130.1,72.6,10,192.8,10,341c0,62.4,21.3,119.8,57,165.3c3.5-30.6,22.8-110,126.4-128.7
+		<path class="st247" d="M278.4,72.6C130.1,72.6,10,192.8,10,341c0,62.4,21.3,119.8,57,165.3c3.5-30.6,22.8-110,126.4-128.7
 			c1.8,26.9,39.2,48.5,85,48.5s83.2-21.5,85-48.5c103.6,18.7,122.8,98,126.4,128.7c35.7-45.6,57-103,57-165.3
 			C546.7,192.8,426.6,72.6,278.4,72.6z M278.4,391.5c-57.7,0-106.8-67.8-106.8-167.4s106.8-101,106.8-101s106.8,1.4,106.8,101
 			S336,391.5,278.4,391.5z"/>
 	</g>
 </g>
+<g id="Layer_1_copy">
+	<g class="st244">
+		<linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="10" y1="289.4826" x2="546.7193" y2="289.4826">
+			<stop  offset="0" style="stop-color:#FFF43D"/>
+			<stop  offset="1" style="stop-color:#E98800"/>
+		</linearGradient>
+		<path class="st248" d="M278.4,72.6C130.1,72.6,10,192.8,10,341c0,62.4,21.3,119.8,57,165.3c3.5-30.6,22.8-110,126.4-128.7
+			c1.8,26.9,39.2,48.5,85,48.5s83.2-21.5,85-48.5c103.6,18.7,122.8,98,126.4,128.7c35.7-45.6,57-103,57-165.3
+			C546.7,192.8,426.6,72.6,278.4,72.6z M278.4,391.5c-57.7,0-106.8-67.8-106.8-167.4s106.8-101,106.8-101s106.8,1.4,106.8,101
+			S336,391.5,278.4,391.5z"/>
+	</g>
+	<g class="st249">
+		<defs>
+			<path id="SVGID_7_" class="st249" d="M278.4,72.6C130.1,72.6,10,192.8,10,341c0,62.4,21.3,119.8,57,165.3
+				c3.5-30.6,22.8-110,126.4-128.7c1.8,26.9,39.2,48.5,85,48.5s83.2-21.5,85-48.5c103.6,18.7,122.8,98,126.4,128.7
+				c35.7-45.6,57-103,57-165.3C546.7,192.8,426.6,72.6,278.4,72.6z M278.4,391.5c-57.7,0-106.8-67.8-106.8-167.4
+				s106.8-101,106.8-101s106.8,1.4,106.8,101S336,391.5,278.4,391.5z"/>
+		</defs>
+		<clipPath id="SVGID_8_">
+			<use xlink:href="#SVGID_7_"  style="overflow:visible;"/>
+		</clipPath>
+		<radialGradient id="SVGID_9_" cx="160.2645" cy="235.1548" r="396.4548" gradientUnits="userSpaceOnUse">
+			<stop  offset="0.155" style="stop-color:#FFFFFF;stop-opacity:0.9688"/>
+			<stop  offset="0.5177" style="stop-color:#FFFFFF;stop-opacity:0"/>
+		</radialGradient>
+		<circle class="st250" cx="160.3" cy="235.2" r="396.5"/>
+	</g>
+</g>
 <g id="logo" class="st241">
-	<path class="st247" d="M379.5,103.8L379.5,103.8L379.5,103.8z"/>
+	<path class="st251" d="M379.5,103.8L379.5,103.8L379.5,103.8z"/>
 	<g class="st242">
 		<g>
 			<path class="st243" d="M462.7,330L462.7,330L462.7,330z"/>
@@ -835,8 +867,8 @@
 			<polygon class="st243" points="398,357.2 452.7,400.1 425.4,348 			"/>
 		</g>
 	</g>
-	<path class="st248" d="M462.9,158.3L462.9,158.3L462.9,158.3z"/>
-	<g class="st249">
+	<path class="st252" d="M462.9,158.3L462.9,158.3L462.9,158.3z"/>
+	<g class="st253">
 		<g>
 			<polygon class="st243" points="472.8,400.1 527.5,357.2 500.1,348 			"/>
 			<polygon class="st243" points="490.2,344.7 462.8,335.5 462.8,396.7 			"/>
@@ -846,14 +878,14 @@
 			<polygon class="st243" points="505,338.7 532.4,347.9 532.4,286.6 			"/>
 		</g>
 	</g>
-	<path class="st250" d="M462.9,49.3L462.9,49.3L462.9,49.3z"/>
+	<path class="st254" d="M462.9,49.3L462.9,49.3L462.9,49.3z"/>
 	<g class="st242">
-		<g class="st251">
+		<g class="st255">
 			<path class="st243" d="M532.4,275.5L532.4,275.5L532.4,275.5z"/>
 			<polygon class="st243" points="468,280.7 468,326 525.8,280.7 			"/>
 			<polygon class="st243" points="525.8,270.3 468,225.1 468,270.3 			"/>
 		</g>
-		<g class="st251">
+		<g class="st255">
 			<polygon class="st243" points="457.6,270.3 457.6,225.1 399.9,270.3 			"/>
 			<polygon class="st243" points="399.9,280.7 457.6,326 457.6,280.7 			"/>
 			<path class="st243" d="M393.3,275.5L393.3,275.5L393.3,275.5z"/>
