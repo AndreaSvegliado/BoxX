@@ -132,6 +132,18 @@ div.form-group.required > label:first-child:after {
   box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
 }
 
+
+.myspinner {
+  margin: auto;
+}
+
+.myspinner-space {
+  margin-top: 10px;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: white;
+}
 /*********************    SIDENAV FOOTER e HEADER    *************************/
 #sidenav {
   width: 300px;

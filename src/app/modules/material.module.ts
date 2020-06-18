@@ -11,6 +11,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 const  MaterialComponents = [
 MatButtonModule,
@@ -24,7 +25,8 @@ MatDatepickerModule,
 MatFormFieldModule,
 MatExpansionModule,
 MatDialogModule,
-MatChipsModule
+MatChipsModule,
+MatProgressSpinnerModule
 ]
 
 @NgModule({
