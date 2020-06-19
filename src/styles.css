@@ -7,18 +7,26 @@
 @import "~@fullcalendar/list/main.css";
 
 /*********************    IMPOSTAZIONI CSS GENERALI    ***********************/
+*:not(mat-icon){
+  font-family: Titillium Web, sans-serif !important
+}
+
 html,
 body {
   height: 100%;
   margin: 0;
   /*font-family: Roboto, "Helvetica Neue", sans-serif;*/
-  font-family: Titillium Web, sans-serif;
+  font-family: Titillium Web, sans-serif !important;
   background-color: white;
 }
 
+
+
+
+
+
 form {
   margin: 0px 16px;
-
 }
 
 div.form-group input.invalid {
