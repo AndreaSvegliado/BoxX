@@ -6,6 +6,10 @@ import interactionPlugin from '@fullcalendar/interaction';    //fullcalendar
 //import it from '@fullcalendar/core/locales/it';             //sarebbe per la lingua ma sembra funzionare anche senza
 import { environment } from 'src/environments/environment';   //serve per importare variabili ambiente di fullcalendar
 import { FullCalendarComponent } from '@fullcalendar/angular';
+import { Observable, BehaviorSubject } from 'rxjs';
+import { ticketDetail, ticket } from 'src/app/models/models';
+import { TicketDetailService } from 'src/app/services/ticket-detail.service';
+import { TicketService } from 'src/app/services/ticket.service';
 
 @Component({
   selector: 'app-calendar',
@@ -29,8 +33,8 @@ export class CalendarComponent implements OnInit {
   //ecco un evento
   impostaData1 = new Date('Wed Jun 02 2020 00:01:00 GMT+0100');
   impostaData2 = new Date('Wed Jun 02 2020 00:02:00 GMT+0100');
-  impostaData3 = new Date('Wed Jun 17 2020 00:01:00 GMT+0100');
-  impostaData4 = new Date('Wed Jun 17 2020 00:02:00 GMT+0100');
+  impostaData3 = new Date('2020-06-17T08:00:00');
+  impostaData4 = new Date('2020-06-18T18:00:00');
   impostaData5 = new Date('Wed Jun 29 2020 00:01:00 GMT+0100');
   impostaData6 = new Date('Wed Jun 29 2020 00:02:00 GMT+0100');
   calendarEvents= 
@@ -46,12 +50,12 @@ export class CalendarComponent implements OnInit {
         title: 'qui devono vedersi i ticket'
       },
       {
-        allDay: true,
+        allDay: false,
         color: '#ffcc00',
         date: '2020-06-17',
-        end: this.impostaData3,
+        end: this.impostaData4,
         id: "1",
-        start: this.impostaData4,
+        start: this.impostaData3,
         textColor: "#555",
         title: 'in vari colori e draggabili'
       },
@@ -73,11 +77,32 @@ export class CalendarComponent implements OnInit {
 
   @ViewChild('calendar') calendario: FullCalendarComponent;
   //@HostListener('window:resize', ['$event']) //non sembra funzionare
-  constructor() {
+
+  allEvents$: Observable<ticketDetail[]>;
+  
+  //_events = new BehaviorSubject<ticket[]>(EVENTS);
+  //events$ = this._events.asObservable();
+
+  constructor(private eventsService: TicketService) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
    }
 
+   ngOnInit() {
+  }
+  onCalendarInit(e:boolean) {
+   /*
+    if(e) {
+      this.events$.subscribe((events) => {
+        this.calendario.fullCalendar('removeEvents');
+        this.calendario.fullCalendar('addEventSource', events);
+      });
+    }
+    */
+  }
+
+
+   
   //passo al calendario alcune opzioni "dinamiche"
   //nello stesso modo potevo passargli anche quelle di base
   ngAfterViewInit(){
@@ -90,9 +115,7 @@ export class CalendarComponent implements OnInit {
 
 
 
-  ngOnInit(): void {
-  }
-
+  
   
 
 }
