@@ -1,15 +1,17 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import dayGridPlugin from '@fullcalendar/daygrid';            //fullcalendar
 import timeGridPlugin from '@fullcalendar/timegrid';          //fullcalendar
-import listWeekPlugin  from '@fullcalendar/list';             //fullcalendar
+import listWeekPlugin from '@fullcalendar/list';             //fullcalendar
 import interactionPlugin from '@fullcalendar/interaction';    //fullcalendar
 //import it from '@fullcalendar/core/locales/it';             //sarebbe per la lingua ma sembra funzionare anche senza
 import { environment } from 'src/environments/environment';   //serve per importare variabili ambiente di fullcalendar
 import { FullCalendarComponent } from '@fullcalendar/angular';
+
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { ticketEvent, ticket } from 'src/app/models/models';
 import { TicketService } from 'src/app/services/ticket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-calendar',
@@ -17,6 +19,7 @@ import { TicketService } from 'src/app/services/ticket.service';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
+
 
   //estraggo un po' di variabili da assegnare all'oggetto fullcalendar
   header = environment.fullcalendarConfig.header;
@@ -31,62 +34,36 @@ export class CalendarComponent implements OnInit {
   weekLabel = environment.fullcalendarConfig.weekLabel;
 
   //ecco un evento
-  impostaData1 = new Date('Wed Jun 02 2020 00:01:00 GMT+0100');
-  impostaData2 = new Date('Wed Jun 02 2020 00:02:00 GMT+0100');
-  impostaData3 = new Date('2020-06-17T08:00:00');
-  impostaData4 = new Date('2020-06-18T18:00:00');
-  impostaData5 = new Date('Wed Jun 29 2020 00:01:00 GMT+0100');
-  impostaData6 = new Date('Wed Jun 29 2020 00:02:00 GMT+0100');
-  calendarEvents=
-  [
-      {
-        allDay: true,
-        color: '#00bb99',
-        date: '2020-06-02',
-        end: this.impostaData2,
-        id: "1",
-        start: this.impostaData1,
-        textColor: "#fff",
-        title: 'qui devono vedersi i ticket'
-      },
-      {
-        allDay: false,
-        color: '#ffcc00',
-        date: '2020-06-17',
-        end: this.impostaData4,
-        id: "2",
-        start: this.impostaData3,
-        textColor: "#555",
-        title: 'in vari colori e draggabili'
-      },
-      {
-        allDay: true,
-        color: '#ff5500',
-        date: '2020-06-29',
-        end: this.impostaData5,
-        id: "TK000001",
-        start: this.impostaData6,
-        textColor: "#fff",
-        title: 'anche editabili? se sì serve modalform'
-      },
-  ];
+  // impostaData1 = new Date('Wed Jun 02 2020 00:01:00 GMT+0100');
+  // impostaData2 = new Date('Wed Jun 02 2020 00:02:00 GMT+0100');
+  // calendarEvents =
+  //   [
+  //     {
+  //       allDay: true,
+  //       color: '#00bb99',
+  //       date: '2020-06-02',
+  //       end: this.impostaData2,
+  //       id: "1",
+  //       start: this.impostaData1,
+  //       textColor: "#fff",
+  //       title: 'qui devono vedersi i ticket'
+  //     },
+  //   ];
 
   screenHeight: number;
   screenWidth: number;
 
 
   @ViewChild('DOMcalendario') calendario: FullCalendarComponent;
+
   //@HostListener('window:resize', ['$event']) //non sembra funzionare
 
   //allEvents$: Observable<ticketDetail[]>;
 
-  //_events = new BehaviorSubject<ticket[]>(EVENTS);
-  //events$ = this._events.asObservable();
-
-  constructor(private tService: TicketService) {
-    //constructor(private eventsService: TicketService) {
+  constructor(private tService: TicketService, private router: Router) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
+
   }
 
   tickets;
@@ -95,45 +72,54 @@ export class CalendarComponent implements OnInit {
   ngOnInit() {
 
     this.tService.getTicketList()
-    .subscribe(
-      res=>  {
-        this.tickets = res as ticket[];
-        this.LoadCalendar();
-      }
-    );
-
+      .subscribe(
+        res => {
+          this.tickets = res as ticket[];
+          this.LoadCalendar();
+        }
+      );
   }
 
-
-
-  //_ticketEvent: ticketEvent;
-
-  LoadCalendar(){
+  LoadCalendar() {
     this.ticketEvents = [];
-
-    //var event:  ticketEvent;
-
-    this.tickets.forEach (element => {
+    this.tickets.forEach(element => {
       //AS: modificando il model ticketEvent da interface a class FUNZIONA!
-      let _event: ticketEvent  = new ticketEvent ();
+      let _event: ticketEvent = new ticketEvent();
 
-      _event.title = element.n_Ticket;
+      _event.title = element.tipoTicket + '-' + element.n_Ticket + "-" + element.customer.ragsoc;
       _event.id = element.id;
       _event.allDay = true;
-      _event.start =  element.data1;
-      _event.end =  element.data1;
+      _event.start = element.data1;
+      _event.end = element.data1;
       //_event.start =  new Date('2020-06-17T08:00:00');
       //_event.end =  new Date('2020-06-17T09:00:00');
-
-      _event.color = '#00bb99';
+      if (element.tipoTicket == "A")
+        _event.color = '#3cb3f7';
+      else {
+        _event.color = '#ff7843';
+      }
       _event.textColor = "#fff";
-
-
       this.ticketEvents.push(_event as ticketEvent);
     });
+  }
 
+  //passo al calendario alcune opzioni "dinamiche"
+  //nello stesso modo potevo passargli anche quelle di base
+  ngAfterViewInit() {
+    const api = this.calendario.getApi();
+    api.setOption('height', (this.screenHeight - 90));
+    api.setOption('themeSystem', 'bootstrap');          //non so a cosa serva
+    if (this.screenWidth > 1000) { api.setOption('weekNumbers', true) } else { api.setOption('weekNumbers', false) }
+
+    api.render();
 
   }
+
+  clickEvent(event){
+    console.log(event.event.id);
+    this.router.navigate(['/ticket-details', event.event.id]);
+  }
+
   /*
   onCalendarInit(e:boolean) {
        if(e) {
@@ -142,24 +128,8 @@ export class CalendarComponent implements OnInit {
         this.calendario.fullCalendar('addEventSource', events);
       });
     }
-  }
+  }*/
 
-
-
-  //passo al calendario alcune opzioni "dinamiche"
-  //nello stesso modo potevo passargli anche quelle di base
-  ngAfterViewInit(){
-    const api = this.calendario.getApi();
-    api.setOption('height', (this.screenHeight - 90));
-    api.setOption('themeSystem', 'bootstrap');          //non so a cosa serva
-    if (this.screenWidth > 1000 ) {api.setOption('weekNumbers', true)} else {api.setOption('weekNumbers', false)}
-    api.render();
-
-  }
-
-
-
-  */
 
 
 }
