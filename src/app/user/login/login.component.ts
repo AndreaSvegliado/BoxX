@@ -12,14 +12,14 @@ import { SidebarComponent } from '../../shared/sidebar/sidebar.component'
 })
 
 export class LoginComponent implements OnInit {
-  
+  loading = false;
   formModel={
     UserName:'',
     Password:''
   };
 
-  constructor(private uService: UserService, private router:Router, private snackBar : MatSnackBar, private sidebar: SidebarComponent) { 
-  //constructor(private uService: UserService, private router:Router, private snackBar : ToasterComponent, private sidebar: SidebarComponent) { 
+  constructor(private uService: UserService, private router:Router, private snackBar : MatSnackBar, private sidebar: SidebarComponent) {
+  //constructor(private uService: UserService, private router:Router, private snackBar : ToasterComponent, private sidebar: SidebarComponent) {
   }
 
   ngOnInit() {
@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form:NgForm){
-
+    this.loading = true;
     console.log("Login: " + this.formModel.UserName);
 
     this.uService.Login(form.value).subscribe(
@@ -38,14 +38,14 @@ export class LoginComponent implements OnInit {
 
         this.uService.changeLoggedIn(true);
         this.ShowMessage("Login Corretta", "Benvenuto " + this.uService.currUser.fullname, false);
-        
+
         //Forse fa schifo ma funziona
         this.sidebar.ngOnInit();
-        
+
         this.router.navigateByUrl('/default');
       },
       err=> {
-        
+        this.loading = false;
 
         this.uService.changeLoggedIn(false);
         if(err.status== 400) {
@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
     );
   }
 
-  
+
   ShowMessage(msg: string, title?: string, hasErrors: boolean= false ) {
     let config = new MatSnackBarConfig();
     config.verticalPosition  = 'bottom';
@@ -75,10 +75,10 @@ export class LoginComponent implements OnInit {
     //  config.panelClass =  ['ng-deep'];
 
     if(title != null)
-      this.snackBar.open(msg, title, config);  
+      this.snackBar.open(msg, title, config);
     else
-      this.snackBar.open(msg,null, config);  
+      this.snackBar.open(msg,null, config);
   }
-  
+
 }
 

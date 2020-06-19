@@ -42,7 +42,7 @@
   border: 1px solid grey;
   border-radius: 4px;
   padding: 2px 3px;
-  display: inline;
+  margin-left: 10px;
   font-weight: normal;
 }
 

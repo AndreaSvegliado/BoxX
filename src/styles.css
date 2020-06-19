@@ -7,14 +7,23 @@
 @import "~@fullcalendar/list/main.css";
 
 /*********************    IMPOSTAZIONI CSS GENERALI    ***********************/
+*:not(mat-icon){
+  font-family: Titillium Web, sans-serif !important
+}
+
 html,
 body {
   height: 100%;
   margin: 0;
   /*font-family: Roboto, "Helvetica Neue", sans-serif;*/
-  font-family: Titillium Web, sans-serif;
+  font-family: Titillium Web, sans-serif !important;
   background-color: white;
 }
+
+
+
+
+
 
 form {
   margin: 0px 16px;
@@ -122,7 +131,9 @@ div.form-group.required > label:first-child:after {
 .wrapped-div {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
-  background: #2e3137;
+  /*background: #2e3137;*/
+   background: url('./assets/img/backgrounddark.jpg');
+  background-size: cover;
   padding: 30px;
   width: 90%;
   max-width: 450px;
@@ -132,6 +143,23 @@ div.form-group.required > label:first-child:after {
   box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
 }
 
+
+.myspinner {
+  margin: auto;
+}
+
+.myspinner-space {
+  margin-top: 10px;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: white;
+}
+
+
+.usericon{
+  width: 150px;
+}
 /*********************    SIDENAV FOOTER e HEADER    *************************/
 #sidenav {
   width: 300px;
