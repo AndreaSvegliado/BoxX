@@ -29,7 +29,7 @@ import { MatInputModule} from '@angular/material/input';
 import { MAT_DATE_LOCALE} from '@angular/material/core';
 import { NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { DragDropModule } from '@angular/cdk/drag-drop';
+//import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -64,7 +64,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     MatInputModule,
     NgxMaterialTimepickerModule,    //AS: TimePicker
     NgxMaterialTimepickerModule.setLocale('it-IT'), NgbModule,
-    DragDropModule,
+    //DragDropModule,
     FullCalendarModule,
     MatDialogModule
   ],
