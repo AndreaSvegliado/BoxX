@@ -7,8 +7,8 @@ import interactionPlugin from '@fullcalendar/interaction';    //fullcalendar
 import { environment } from 'src/environments/environment';   //serve per importare variabili ambiente di fullcalendar
 import { FullCalendarComponent } from '@fullcalendar/angular';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { ticketDetail, ticket } from 'src/app/models/models';
-import { TicketDetailService } from 'src/app/services/ticket-detail.service';
+
+import { ticketEvent, ticket } from 'src/app/models/models';
 import { TicketService } from 'src/app/services/ticket.service';
 
 @Component({
@@ -54,7 +54,7 @@ export class CalendarComponent implements OnInit {
         color: '#ffcc00',
         date: '2020-06-17',
         end: this.impostaData4,
-        id: "1",
+        id: "2",
         start: this.impostaData3,
         textColor: "#555",
         title: 'in vari colori e draggabili'
@@ -64,7 +64,7 @@ export class CalendarComponent implements OnInit {
         color: '#ff5500',
         date: '2020-06-29',
         end: this.impostaData5,
-        id: "1",
+        id: "TK000001",
         start: this.impostaData6,
         textColor: "#fff",
         title: 'anche editabili? se sì serve modalform'
@@ -75,30 +75,73 @@ export class CalendarComponent implements OnInit {
   screenWidth: number;
 
 
-  @ViewChild('calendar') calendario: FullCalendarComponent;
+  @ViewChild('DOMcalendario') calendario: FullCalendarComponent;
   //@HostListener('window:resize', ['$event']) //non sembra funzionare
 
-  allEvents$: Observable<ticketDetail[]>;
+  //allEvents$: Observable<ticketDetail[]>;
   
   //_events = new BehaviorSubject<ticket[]>(EVENTS);
   //events$ = this._events.asObservable();
 
-  constructor(private eventsService: TicketService) {
+  constructor(private tService: TicketService) {
+    //constructor(private eventsService: TicketService) {
     this.screenHeight = window.innerHeight;
     this.screenWidth = window.innerWidth;
-   }
-
-   ngOnInit() {
   }
+
+  tickets;
+  ticketEvents: ticketEvent[];
+
+  ngOnInit() {
+     
+    this.tService.getTicketList()
+    .subscribe(
+      res=>  { 
+        this.tickets = res as ticket[];
+        this.LoadCalendar();
+      }
+    );   
+
+  }
+  
+
+
+  //_ticketEvent: ticketEvent;
+
+  LoadCalendar(){
+    this.ticketEvents = [];
+
+    //var event:  ticketEvent;
+    
+    this.tickets.forEach (element => {
+      //AS: modificando il model ticketEvent da interface a class FUNZIONA!      
+      let _event: ticketEvent  = new ticketEvent ();
+
+      _event.title = element.n_Ticket;
+      _event.id = element.id;
+      _event.allDay = true;
+      _event.start =  element.data1;
+      _event.end =  element.data1;
+      //_event.start =  new Date('2020-06-17T08:00:00');
+      //_event.end =  new Date('2020-06-17T09:00:00');
+      
+      _event.color = '#00bb99';
+      _event.textColor = "#fff";
+
+
+      this.ticketEvents.push(_event as ticketEvent);
+    });
+
+
+  }
+  /*
   onCalendarInit(e:boolean) {
-   /*
-    if(e) {
+       if(e) {
       this.events$.subscribe((events) => {
         this.calendario.fullCalendar('removeEvents');
         this.calendario.fullCalendar('addEventSource', events);
       });
     }
-    */
   }
 
 
@@ -115,7 +158,7 @@ export class CalendarComponent implements OnInit {
 
 
 
-  
+  */
   
 
 }

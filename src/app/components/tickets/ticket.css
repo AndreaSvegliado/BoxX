@@ -39,7 +39,9 @@
 
 .ticket-tipo {
   font-size: 14px;
-  border: 1px solid grey;
+  /* border: 1px solid grey; */
+  color: white;
+
   border-radius: 4px;
   padding: 2px 3px;
   margin-left: 10px;
@@ -47,11 +49,11 @@
 }
 
 .ticket-tipoA {
-  border: 1px solid red;
+  background-color:green;
 }
 
 .ticket-tipoI {
-  border: 1px solid rgb(43, 168, 226);
+  background-color: rgb(43, 168, 226);
 }
 
 .ticket-cliente {

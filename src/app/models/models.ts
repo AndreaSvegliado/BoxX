@@ -52,3 +52,15 @@ export interface Customer {
 
 }
 
+export class ticketEvent{
+    allDay: boolean;
+    color: string;
+    date: string;
+    end: Date;
+    endTime?: string;
+    id: string;
+    start: Date;
+    startTime?: string;
+    textColor: string;
+    title: string;    
+}
