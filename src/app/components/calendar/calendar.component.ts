@@ -6,6 +6,7 @@ import interactionPlugin from '@fullcalendar/interaction';    //fullcalendar
 //import it from '@fullcalendar/core/locales/it';             //sarebbe per la lingua ma sembra funzionare anche senza
 import { environment } from 'src/environments/environment';   //serve per importare variabili ambiente di fullcalendar
 import { FullCalendarComponent } from '@fullcalendar/angular';
+import { AotCompiler } from '@angular/compiler';
 
 @Component({
   selector: 'app-calendar',
@@ -33,7 +34,7 @@ export class CalendarComponent implements OnInit {
   impostaData4 = new Date('Wed Jun 17 2020 00:02:00 GMT+0100');
   impostaData5 = new Date('Wed Jun 29 2020 00:01:00 GMT+0100');
   impostaData6 = new Date('Wed Jun 29 2020 00:02:00 GMT+0100');
-  calendarEvents= 
+  calendarEvents=
   [
       {
         allDay: true,
@@ -86,6 +87,7 @@ export class CalendarComponent implements OnInit {
     api.setOption('themeSystem', 'bootstrap');          //non so a cosa serva
     if (this.screenWidth > 1000 ) {api.setOption('weekNumbers', true)} else {api.setOption('weekNumbers', false)}
     api.render();
+
   }
 
 
@@ -93,7 +95,7 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  
+
 
 }
 
