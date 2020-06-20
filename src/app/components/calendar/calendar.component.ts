@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import dayGridPlugin from '@fullcalendar/daygrid';            //fullcalendar
 import timeGridPlugin from '@fullcalendar/timegrid';          //fullcalendar
-import listWeekPlugin  from '@fullcalendar/list';             //fullcalendar
+import listWeekPlugin from '@fullcalendar/list';             //fullcalendar
 import interactionPlugin from '@fullcalendar/interaction';    //fullcalendar
 //import it from '@fullcalendar/core/locales/it';             //sarebbe per la lingua ma sembra funzionare anche senza
 import { environment } from 'src/environments/environment';   //serve per importare variabili ambiente di fullcalendar
 import { FullCalendarComponent } from '@fullcalendar/angular';
+
 import { Observable, BehaviorSubject } from 'rxjs';
 
 import { ticketEvent, ticket } from 'src/app/models/models';
@@ -18,6 +19,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./calendar.component.css']
 })
 export class CalendarComponent implements OnInit {
+
 
   //estraggo un po' di variabili da assegnare all'oggetto fullcalendar
   header = environment.fullcalendarConfig.header;
@@ -76,6 +78,7 @@ export class CalendarComponent implements OnInit {
 
 
   @ViewChild('DOMcalendario') calendario: FullCalendarComponent;
+
   //@HostListener('window:resize', ['$event']) //non sembra funzionare
 
   constructor(private router : Router, private tService: TicketService) {
@@ -94,6 +97,13 @@ export class CalendarComponent implements OnInit {
       }
     );   
 
+    this.tService.getTicketList()
+      .subscribe(
+        res => {
+          this.tickets = res as ticket[];
+          this.LoadCalendar();
+        }
+      );
   }
   
   LoadCalendar(){
@@ -117,9 +127,20 @@ export class CalendarComponent implements OnInit {
 
       this.ticketEvents.push(_event as ticketEvent);
     });
+  }
 
+  //passo al calendario alcune opzioni "dinamiche"
+  //nello stesso modo potevo passargli anche quelle di base
+  ngAfterViewInit() {
+    const api = this.calendario.getApi();
+    api.setOption('height', (this.screenHeight - 90));
+    api.setOption('themeSystem', 'bootstrap');          //non so a cosa serva
+    if (this.screenWidth > 1000) { api.setOption('weekNumbers', true) } else { api.setOption('weekNumbers', false) }
+
+    api.render();
 
   }
+
   eventClick(model) {
     this.router.navigate(['/ticket-details', model.event.id]);
   }
@@ -132,24 +153,9 @@ export class CalendarComponent implements OnInit {
         this.calendario.fullCalendar('addEventSource', events);
       });
     }
-  }
+  }*/
 
 
-   
-  //passo al calendario alcune opzioni "dinamiche"
-  //nello stesso modo potevo passargli anche quelle di base
-  ngAfterViewInit(){
-    const api = this.calendario.getApi();
-    api.setOption('height', (this.screenHeight - 90));
-    api.setOption('themeSystem', 'bootstrap');          //non so a cosa serva
-    if (this.screenWidth > 1000 ) {api.setOption('weekNumbers', true)} else {api.setOption('weekNumbers', false)}
-    api.render();
-  }
-
-
-
-  */
-  
 
 }
 

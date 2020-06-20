@@ -1,7 +1,7 @@
-<div mat-dialog-content>
+<div mat-dialog-content (window:resize)="onResize()">
     <img class="triangolino" src="../../../assets/triangolino.svg">
     <div>
-        Utente: Nome Cognome
+        Utente: Nome cognome
     </div>
     <div class="info-utente">
         Ultimo accesso: 24/09/2020

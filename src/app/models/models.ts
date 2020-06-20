@@ -16,7 +16,6 @@ export interface ticket {
     tipoTicket: string;
     statoTicket: string;
     badge: string;
-    
     data1: Date;
     customerID: number;
     customer: Customer;
@@ -62,5 +61,5 @@ export class ticketEvent{
     start: Date;
     startTime?: string;
     textColor: string;
-    title: string;    
+    title: string;
 }

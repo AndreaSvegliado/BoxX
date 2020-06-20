@@ -121,6 +121,16 @@ mat-list-item,
   font-size: 12px;
 }
 
+.user-avatar {
+  width: 40px;
+  border-radius: 30px;
+}
+
+.buttonUtente{
+  padding: 0px;
+  border-radius: 30px;
+}
+
 /*
 .sidenav-container {
     height: 100%;

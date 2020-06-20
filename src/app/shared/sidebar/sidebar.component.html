@@ -1,4 +1,4 @@
-<mat-toolbar class="topnavbar" color="primary">
+<mat-toolbar class="topnavbar" color="primary"  >
 
   <!-- Bottone apertura menu-->
   <div class="toolbar-tools" *ngIf="isLoggedIn">
@@ -29,7 +29,8 @@
                 {{currUser.fullname}}
         </button> -->
         <button type="button" class="btn btn-outline-light mr-2 buttonUtente" (click) ="apriModalUtente()" #buttonUtente>
-                {{currUser.fullname}}
+                <!-- {{currUser.fullname}} -->
+                <img class="user-avatar" src="../../../assets/img/userimage.png">
         </button>
         <button class="btn btn-danger my-2 my-sm-0 exit-button" (click)="onLogout()" title="Logout">
           <mat-icon mat-list-icon>exit_to_app</mat-icon>
@@ -191,7 +192,7 @@
     </mat-nav-list>
   </mat-sidenav>
 
-  <!-- 
+  <!--
       <router-outlet></router-outlet>
   -->
 
@@ -203,11 +204,11 @@
 
 </mat-sidenav-container>
 
-<!-- OK quando autenticati, ma il login appare sotto  
+<!-- OK quando autenticati, ma il login appare sotto
   <router-outlet></router-outlet>
   -->
 
-<!-- 
+<!--
 <mat-toolbar class="footernavbar row" color="grey">
 
  <div class="col-6">
@@ -219,7 +220,7 @@
       <mat-icon mat-list-icon class="icona-sidenavmode">{{iconaCheck2}}</mat-icon>
       <span class="text-sidenavmode">Menu sempre aperto</span>
     </div>
-  </div> 
+  </div>
 
   <div class="col-12 footer-copyright">
     © Tutti i diritti riservati

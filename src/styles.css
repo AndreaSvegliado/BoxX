@@ -172,7 +172,7 @@ div.form-group.required > label:first-child:after {
 .triangolino {
   position: absolute;
   top: 50px;
-  right: 120px;
+  right: 73px;
   z-index: 100;
   width: 20px;
 }
@@ -371,6 +371,7 @@ footer {
     color: transparent !important;
     width: 30px;
     height: 30px;
+    padding: 0px;
   }
 
   .fc-timeGridWeek-button {
@@ -379,6 +380,9 @@ footer {
     color: transparent !important;
     width: 30px;
     height: 30px;
+    padding:0px;
+
+
   }
 
   .fc-timeGridDay-button {
@@ -387,6 +391,9 @@ footer {
     color: transparent !important;
     width: 30px;
     height: 30px;
+    padding:0px;
+    z-index: 2;
+    /*inspiegabilmente per solo questo button serve altrimenti non va quando quello a sx è attivo (e assume z-index: 1 in quanto tale*/
   }
 
   .fc-listWeek-button {
@@ -395,6 +402,7 @@ footer {
     color: transparent !important;
     width: 30px;
     height: 30px;
+    padding: 0px;
   }
 
   .fc-today-button {
