@@ -82,12 +82,12 @@
         </div>
       </mat-list-item>
 
-      <mat-list-item [routerLink]="['/assistenza']">
+      <mat-list-item [routerLink]="['/ticket-list']">
         <div class="item" (click)="opencloseicon()">
           <button mat-icon-button>
             <mat-icon mat-list-icon>build</mat-icon>
           </button>
-          <a *ngIf="opened">Assistenza</a>
+          <a *ngIf="opened">Ticket</a>
         </div>
       </mat-list-item>
 

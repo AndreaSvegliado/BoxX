@@ -1,26 +1,28 @@
-
-
-
-
-
 <!-- AS: per DEBUG
 <p>JSON </p>
 {{tickets | json}} 
 -->
 
 <p></p>
-<div class="ticket-card">
 
-    <app-ticket-card *ngFor="let ticket of tickets" [ticket]="ticket">
+<div class="row">
+<div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
 
-    </app-ticket-card>
-    <!--
-    <ticket-card *ngFor="let ticket of tickets" [ticket]="ticket">
-    </ticket-card>
--->
+    <div class="ticket-card">
+        <app-ticket-card *ngFor="let ticket of tickets" [ticket]="ticket">
+        </app-ticket-card>
+        <!--
+        <ticket-card *ngFor="let ticket of tickets" [ticket]="ticket">
+        </ticket-card>
+    -->
+    </div>
+</div>
+<div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
+    <div>
+        <app-calendar></app-calendar>
+    </div>
+</div>
 </div>
 
-
 <router-outlet></router-outlet>
-
 <app-snackbar></app-snackbar>

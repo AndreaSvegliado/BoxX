@@ -10,6 +10,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 import { ticketEvent, ticket } from 'src/app/models/models';
 import { TicketService } from 'src/app/services/ticket.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-calendar',
@@ -30,22 +31,17 @@ export class CalendarComponent implements OnInit {
   forceEventDuration = environment.fullcalendarConfig.forceEventDuration;
   weekLabel = environment.fullcalendarConfig.weekLabel;
 
-  //ecco un evento
-  impostaData1 = new Date('Wed Jun 02 2020 00:01:00 GMT+0100');
-  impostaData2 = new Date('Wed Jun 02 2020 00:02:00 GMT+0100');
-  impostaData3 = new Date('2020-06-17T08:00:00');
-  impostaData4 = new Date('2020-06-18T18:00:00');
-  impostaData5 = new Date('Wed Jun 29 2020 00:01:00 GMT+0100');
-  impostaData6 = new Date('Wed Jun 29 2020 00:02:00 GMT+0100');
+  // eventi di test (statici)
+  /*
   calendarEvents= 
   [
       {
         allDay: true,
         color: '#00bb99',
         date: '2020-06-02',
-        end: this.impostaData2,
+        end: new Date('Wed Jun 02 2020 00:02:00 GMT+0100'),
         id: "1",
-        start: this.impostaData1,
+        start:  new Date('Wed Jun 02 2020 00:01:00 GMT+0100'),
         textColor: "#fff",
         title: 'qui devono vedersi i ticket'
       },
@@ -53,9 +49,9 @@ export class CalendarComponent implements OnInit {
         allDay: false,
         color: '#ffcc00',
         date: '2020-06-17',
-        end: this.impostaData4,
+        end:  new Date('2020-06-18T18:00:00'),
         id: "2",
-        start: this.impostaData3,
+        start:  new Date('2020-06-17T08:00:00'),
         textColor: "#555",
         title: 'in vari colori e draggabili'
       },
@@ -63,13 +59,17 @@ export class CalendarComponent implements OnInit {
         allDay: true,
         color: '#ff5500',
         date: '2020-06-29',
-        end: this.impostaData5,
+        end: new Date('Wed Jun 29 2020 00:01:00 GMT+0100'),
         id: "TK000001",
-        start: this.impostaData6,
+        start:  new Date('Wed Jun 29 2020 00:02:00 GMT+0100'),
         textColor: "#fff",
         title: 'anche editabili? se sì serve modalform'
       },
   ];
+*/
+
+  tickets;
+  ticketEvents: ticketEvent[];
 
   screenHeight: number;
   screenWidth: number;
@@ -78,22 +78,14 @@ export class CalendarComponent implements OnInit {
   @ViewChild('DOMcalendario') calendario: FullCalendarComponent;
   //@HostListener('window:resize', ['$event']) //non sembra funzionare
 
-  //allEvents$: Observable<ticketDetail[]>;
-  
-  //_events = new BehaviorSubject<ticket[]>(EVENTS);
-  //events$ = this._events.asObservable();
-
-  constructor(private tService: TicketService) {
-    //constructor(private eventsService: TicketService) {
-    this.screenHeight = window.innerHeight;
+  constructor(private router : Router, private tService: TicketService) {
+    this.screenHeight = window.innerHeight;        //AS: ????
     this.screenWidth = window.innerWidth;
+
+    
   }
 
-  tickets;
-  ticketEvents: ticketEvent[];
-
-  ngOnInit() {
-     
+  ngOnInit() {     
     this.tService.getTicketList()
     .subscribe(
       res=>  { 
@@ -104,36 +96,34 @@ export class CalendarComponent implements OnInit {
 
   }
   
-
-
-  //_ticketEvent: ticketEvent;
-
   LoadCalendar(){
     this.ticketEvents = [];
 
-    //var event:  ticketEvent;
-    
     this.tickets.forEach (element => {
       //AS: modificando il model ticketEvent da interface a class FUNZIONA!      
-      let _event: ticketEvent  = new ticketEvent ();
+      let _event: ticketEvent  = new ticketEvent();
 
-      _event.title = element.n_Ticket;
+      _event.title = element.n_Ticket + " - " + element.customer.ragsoc;
       _event.id = element.id;
       _event.allDay = true;
       _event.start =  element.data1;
-      _event.end =  element.data1;
-      //_event.start =  new Date('2020-06-17T08:00:00');
-      //_event.end =  new Date('2020-06-17T09:00:00');
+      if(element.data2 != null)
+        _event.end =  element.data2;
+      else
+        _event.end =  element.data1;
       
       _event.color = '#00bb99';
       _event.textColor = "#fff";
-
 
       this.ticketEvents.push(_event as ticketEvent);
     });
 
 
   }
+  eventClick(model) {
+    this.router.navigate(['/ticket-details', model.event.id]);
+  }
+
   /*
   onCalendarInit(e:boolean) {
        if(e) {

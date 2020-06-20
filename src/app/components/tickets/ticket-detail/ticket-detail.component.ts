@@ -275,7 +275,6 @@ export class TicketDetailComponent implements OnInit {
   });
 
   EndTime = new FormControl('', (control: FormControl) => {
-
     this.valueEnd = control.value;
     console.log("valuestart_END"+this.valueStart);
     console.log("valueend_END"+this.valueEnd);

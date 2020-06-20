@@ -3,9 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import{ ticket } from '../../models/models';
 import { TicketService } from 'src/app/services/ticket.service';
 
-
-
-
 @Component({
   selector: 'app-default',
   templateUrl: './default.component.html',

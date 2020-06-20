@@ -13,7 +13,9 @@
     [nowIndicator] ="nowIndicator"
     [weekLabel] ="weekLabel"
 
+    [editable]="true"
     [events]="ticketEvents"
+    (eventClick)="eventClick($event)"
 
     #DOMcalendario
     ></full-calendar>

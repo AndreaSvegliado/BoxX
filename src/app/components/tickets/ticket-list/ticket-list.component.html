@@ -1,0 +1,18 @@
+<!-- AS: per DEBUG
+<p>JSON </p>
+{{tickets | json}} 
+-->
+
+<p></p>
+
+<div class="ticket-card">
+    <app-ticket-card *ngFor="let ticket of tickets" [ticket]="ticket">
+    </app-ticket-card>
+    <!--
+    <ticket-card *ngFor="let ticket of tickets" [ticket]="ticket">
+    </ticket-card>
+-->
+</div>
+
+<router-outlet></router-outlet>
+<app-snackbar></app-snackbar>

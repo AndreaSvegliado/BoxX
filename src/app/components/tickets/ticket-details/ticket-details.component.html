@@ -4,8 +4,11 @@
 <div class="ticket-details">
   <div class="fixed-header">
     <div class="topbuttons-container">
-      <button mat-flat-button class="topbutton-button" (click)="Back()">
+      <button mat-flat-button class="topbutton-button" (click)="BackToList()">
         <mat-icon>view_agenda</mat-icon> Lista Ticket
+      </button>
+      <button mat-flat-button class="topbutton-button" (click)="BackToCalendar()">
+        <mat-icon>event</mat-icon> Calendario
       </button>
       <button mat-flat-button class="topbutton-button" (click)="Confirm()">
         <mat-icon>check_circle</mat-icon> Conferma

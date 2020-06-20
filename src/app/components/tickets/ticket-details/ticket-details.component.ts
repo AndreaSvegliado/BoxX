@@ -37,15 +37,17 @@ export class TicketDetailsComponent implements OnInit {
       );
   }
 
-  Back() {
+  BackToList() {
     this.router.navigate(['/default']);
     // per tornare alla home l'ID del ticket corrente (ed eventualmetne evidenziarlo)
     //let selectID = this.ticket.ID ? this.ticket.ID:null;
     //this.router.navigate(['/home', {id:selectID}]);
   }
+  BackToCalendar() {
+    this.router.navigate(['/calendar']);
+  }
 
   Confirm() {
-    //this.ShowMessage("Sta calma che teo digo", "Che Gusto?", true);
     const dialogRef = this.dialog.open(DialogConferma, {
       width: '250px',
     });

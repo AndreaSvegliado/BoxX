@@ -1,4 +1,3 @@
-
 <div class="ticket-detail-list" >
   <div class="table-responsive">
     <table  class="table table-hover">
@@ -22,7 +21,7 @@
           <td class="min100" (click)="populateForm(objTicketDetail)">{{objTicketDetail.dt | date: 'dd/MM/yyyy'}} </td>
           <td class="min110" (click)="populateForm(objTicketDetail)">{{objTicketDetail.h_Ini | date:'HH:mm'}} </td>
           <td class="min110" (click)="populateForm(objTicketDetail)">{{objTicketDetail.h_End| date:'HH:mm'}} </td>
-          <td (click)="populateForm(objTicketDetail)">{{objTicketDetail.note}} </td>
+          <td (click)="populateForm(objTicketDetail)" style="text-align:left">{{objTicketDetail.note}} </td>
 
           <td>
               <mat-icon (click)="onDelete(objTicketDetail.id)" color="warn" style="cursor: pointer;">delete</mat-icon>
