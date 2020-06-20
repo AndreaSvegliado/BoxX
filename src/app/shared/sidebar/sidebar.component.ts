@@ -10,7 +10,7 @@ import { MatDialog, MatDialogRef} from '@angular/material/dialog';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-  
+
   opened = false;
   side_over = "side";
   fix_notfix ="notfix";
@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
   currUser: currentUser;
   iconaCheck = "radio_button_unchecked";
   iconaCheck2 = "lock_open";
-  
+
   //Versione Vasco: observable che si aggiorna in automatico al variare della variabile
   //AS: il dollaro indica che la variabile è un observable
   //isLoggedIn$: Observable<boolean>;
@@ -40,7 +40,7 @@ export class SidebarComponent implements OnInit {
 
     if(localStorage.getItem('currentUser') != null){
       //console.log("DEBUG: check currentUser sidebar ngOnInit");
-      
+
       /*
       this.userDetails = JSON.parse(localStorage.getItem('currentUser'));
 
@@ -145,9 +145,9 @@ export class SidebarComponent implements OnInit {
     //  config.panelClass =  ['ng-deep'];
 
     if(title != null)
-      this.snackBar.open(msg, title, config);  
+      this.snackBar.open(msg, title, config);
     else
-      this.snackBar.open(msg,null, config);  
+      this.snackBar.open(msg,null, config);
   }
 
   @ViewChild('buttonUtente') buttonutente: ElementRef;
@@ -163,6 +163,8 @@ export class SidebarComponent implements OnInit {
     let modaly = buttony + 45;
     dialogRef.updatePosition({ left: modalx+'px', top: modaly+'px'  });
   }
+
+
 }
 
 @Component({
@@ -175,6 +177,10 @@ export class DialogUtente {
 
   onNoClick(): void {
     //click fuori dalla dialog chiude la dialog
+    this.dialogRef.close();
+  }
+
+  onResize(){
     this.dialogRef.close();
   }
 
