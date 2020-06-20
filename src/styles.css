@@ -172,7 +172,7 @@ div.form-group.required > label:first-child:after {
 .triangolino {
   position: absolute;
   top: 50px;
-  right: 120px;
+  right: 73px;
   z-index: 100;
   width: 20px;
 }
