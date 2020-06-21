@@ -3,7 +3,7 @@
   <!-- Bottone apertura menu-->
   <div class="toolbar-tools" *ngIf="isLoggedIn">
     <!-- <button mat-icon-button (click)="sidenav.open()" (click)="opened = !opened"  style="cursor: pointer;" > -->
-    <button mat-icon-button (click)="openclose()" style="cursor: pointer;">
+    <button mat-icon-button class="btn-openclose-sidenav" (click)="openclose()" style="cursor: pointer;">
       <mat-icon>menu</mat-icon>
     </button>
     <div class="filler"></div>
@@ -61,53 +61,52 @@
           <mat-divider class="navigation-divider"></mat-divider>
         -->
 
-
-
-      <!-- <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/home']">-->
-      <mat-list-item [routerLink]="['/default']">
+      <mat-list-item [routerLink]="['/default']" routerLinkActive="active-list-item">
         <div class="item" (click)="opencloseicon()">
-          <button mat-icon-button>
-            <mat-icon mat-list-icon>view_agenda</mat-icon>
+          <button class="btn-sidenav" mat-icon-button>
+            <mat-icon class="material-icons-outlined mat-icon-sidenav" mat-list-icon >
+              home
+            </mat-icon>
           </button>
-          <a class="a-sidenav" *ngIf="opened">Home</a>
+          <a class="a-sidenav" *ngIf="opened" >Home</a>
         </div>
       </mat-list-item>
 
       <!-- <mat-list-item (click)= "sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/calendario']">-->
-      <mat-list-item [routerLink]="['/calendar']">
+      <mat-list-item [routerLink]="['/calendar']" routerLinkActive="active-list-item">
         <div class="item" (click)="opencloseicon()">
-          <button mat-icon-button>
-            <mat-icon mat-list-icon>event</mat-icon>
+          <button class="btn-sidenav" mat-icon-button>
+            <mat-icon class="material-icons-outlined mat-icon-sidenav"  mat-list-icon>event</mat-icon>
           </button>
-          <a *ngIf="opened">Calendario</a>
+          <a class="a-sidenav" *ngIf="opened">Calendario</a>
         </div>
       </mat-list-item>
 
-      <mat-list-item [routerLink]="['/ticket-list']">
+      <mat-list-item [routerLink]="['/ticket-list']" routerLinkActive="active-list-item">
         <div class="item" (click)="opencloseicon()">
-          <button mat-icon-button>
-            <mat-icon mat-list-icon>build</mat-icon>
+          <button class="btn-sidenav" mat-icon-button>
+            <mat-icon class="material-icons-outlined mat-icon-sidenav" mat-list-icon>view_agenda</mat-icon>
           </button>
-          <a *ngIf="opened">Ticket</a>
+          <a class="a-sidenav" *ngIf="opened">Ticket</a>
         </div>
       </mat-list-item>
 
-      <mat-list-item [routerLink]="['/todoevents-list']">
+      <mat-list-item [routerLink]="['/todoevents-list']" routerLinkActive="active-list-item">
         <div class="item" (click)="opencloseicon()">
-          <button mat-icon-button>
-            <mat-icon mat-list-icon>accessible</mat-icon>
+          <button class="btn-sidenav" mat-icon-button>
+            <mat-icon class="material-icons-outlined mat-icon-sidenav" mat-list-icon>assignment</mat-icon>
           </button>
-          <a *ngIf="opened">Todo</a>
+          <a class="a-sidenav" *ngIf="opened">Todo</a>
         </div>
       </mat-list-item>
 
       <!-- <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/userDetails']"></mat-list-item>-->
-      <mat-list-item [routerLink]="['/userDetails']">
+      <mat-list-item [routerLink]="['/userDetails']" routerLinkActive="active-list-item">
         <div class="item" (click)="opencloseicon()">
-          <button mat-icon-button>
-            <mat-icon mat-list-icon>people_alt</mat-icon>
+          <button class="btn-sidenav" mat-icon-button>
+            <mat-icon class="material-icons-outlined mat-icon-sidenav" mat-list-icon>people_alt</mat-icon>
           </button>
-          <a *ngIf="opened">Dettaglio Utente</a>
+          <a class="a-sidenav" *ngIf="opened">Dettaglio Utente</a>
         </div>
       </mat-list-item>
 
@@ -127,10 +126,10 @@
       <a href="http://www.steinerwaldorfpadova.it" target="_blank">
         <mat-list-item>
           <div class="item" (click)="opencloseicon()">
-            <button mat-icon-button>
-              <mat-icon matListIcon>language</mat-icon>
+            <button class="btn-sidenav" mat-icon-button>
+              <mat-icon class="mat-icon-sidenav" matListIcon>language</mat-icon>
             </button>
-            <a *ngIf="opened">SITO WEB DEL MENGA</a>
+            <a *ngIf="opened" class="a-sidenav" >SITO WEB DEL MENGA</a>
           </div>
         </mat-list-item>
       </a>
@@ -139,10 +138,10 @@
         target="_blank">
         <mat-list-item>
           <div class="item" (click)="opencloseicon()">
-            <button mat-icon-button>
-              <mat-icon matListIcon>language</mat-icon>
+            <button class="btn-sidenav" mat-icon-button>
+              <mat-icon class="mat-icon-sidenav" matListIcon>language</mat-icon>
             </button>
-            <a *ngIf="opened">Jason Watmore</a>
+            <a *ngIf="opened" class="a-sidenav" >Jason Watmore</a>
             <!-- <h3 matLine>Jason Watmore</h3>-->
           </div>
         </mat-list-item>
@@ -152,19 +151,19 @@
 
       <mat-list-item (click)="onLogout()" *ngIf="!isLoggedIn" [routerLink]="['/login']">
         <div class="item" (click)="opencloseicon()">
-          <button mat-icon-button>
+          <button class="btn-sidenav" mat-icon-button>
             <mat-icon mat-list-icon>fingerprint</mat-icon>
           </button>
-          <a *ngIf="opened">Login</a>
+          <a *ngIf="opened" class="a-sidenav" >Login</a>
         </div>
       </mat-list-item>
 
       <mat-list-item (click)="onLogout()" *ngIf="isLoggedIn" [routerLink]="['/login']">
         <div class="item" (click)="opencloseicon()">
-          <button mat-icon-button>
-            <mat-icon mat-list-icon>exit_to_app</mat-icon>
+          <button class="btn-sidenav" mat-icon-button>
+            <mat-icon class="mat-icon-sidenav" mat-list-icon>exit_to_app</mat-icon>
           </button>
-          <a *ngIf="opened">Logout</a>
+          <a class="a-sidenav" *ngIf="opened">Logout</a>
         </div>
       </mat-list-item>
 

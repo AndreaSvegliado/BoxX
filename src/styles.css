@@ -5,7 +5,7 @@
 @import "~@fullcalendar/daygrid/main.css";
 @import "~@fullcalendar/timegrid/main.css";
 @import "~@fullcalendar/list/main.css";
-
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
 /*********************    IMPOSTAZIONI CSS GENERALI    ***********************/
 *:not(mat-icon){
   font-family: Titillium Web, sans-serif !important
@@ -173,6 +173,38 @@ div.form-group.required > label:first-child:after {
   width: 20px;
 }
 
+.a-sidenav{
+  color: grey!important;
+}
+
+
+.active-list-item mat-icon{
+  color: white;
+}
+
+
+.active-list-item .a-sidenav{
+  color: white!important;
+}
+
+.mat-icon-sidenav{
+  color: grey;
+}
+
+.mat-icon-sidenav {
+  color: grey;
+}
+.mat-icon-sidenav:hover{
+  color:white;
+}
+
+.btn-sidenav:focus {
+  color: transparent!important;
+}
+
+.btn-openclose-sidenav:focus {
+  background-color: none;
+}
 /*********************   logo e animazione bagliori    ***********************/
 .logo-boxx {
   position: fixed;
