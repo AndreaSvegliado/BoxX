@@ -15,6 +15,7 @@ import { TicketCardComponent } from './components/tickets/ticket-card/ticket-car
 import { TicketDetailsComponent } from './components/tickets/ticket-details/ticket-details.component';
 
 import { CalendarComponent } from './components/calendar/calendar.component';
+import { TodoEventsListComponent } from './components/todoevents/todoevents-list/todoevents-list.component';
 
 
 const routes: Routes = [
@@ -29,6 +30,9 @@ const routes: Routes = [
   { path:'ticket-list', component: TicketListComponent, canActivate:[AuthGuard]},
 
   { path:'calendar', component: CalendarComponent, canActivate:[AuthGuard]  },
+
+  { path:'todoevents-list', component: TodoEventsListComponent, canActivate:[AuthGuard]},
+
   //...
   //{path: '**', component: PageNotFoundComponent}
 

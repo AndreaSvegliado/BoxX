@@ -21,7 +21,6 @@ export class TicketListComponent implements OnInit {
      .subscribe(
        res=>   this.tickets = res as ticket[]
      );   
- 
    }
 }
 

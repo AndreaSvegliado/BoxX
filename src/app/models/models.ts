@@ -63,3 +63,17 @@ export class ticketEvent{
     textColor: string;
     title: string;
 }
+
+export class todoEvent{
+    id: number;
+    userID: string;
+
+    causaleID: number;
+    ticketID: number;
+
+    titolo: string;
+    dettagli: string;
+
+    dt: Date;
+    h_Ini: Date;
+}

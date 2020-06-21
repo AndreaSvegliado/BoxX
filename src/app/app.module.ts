@@ -26,6 +26,8 @@ import { TicketDetailComponent } from './components/tickets/ticket-detail/ticket
 import { TicketDetailListComponent } from './components/tickets/ticket-detail-list/ticket-detail-list.component';
 import { TicketListComponent } from './components/tickets/ticket-list/ticket-list.component';
 
+import { TodoEventsListComponent } from './components/todoevents/todoevents-list/todoevents-list.component';
+
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDialogModule} from '@angular/material/dialog';
 import { MatInputModule} from '@angular/material/input';
@@ -37,6 +39,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
+
 
 
 @NgModule({
@@ -52,10 +55,13 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     TicketDetailsComponent,
     TicketDetailComponent,
     TicketDetailListComponent,
+    TicketListComponent,
+    TodoEventsListComponent,
+
     SnackbarComponent,
     CalendarComponent,
     DialogConferma,
-    TicketListComponent
+
   ],
   imports: [
 
