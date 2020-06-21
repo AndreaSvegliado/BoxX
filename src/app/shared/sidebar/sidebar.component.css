@@ -91,7 +91,8 @@ mat-divider {
 }
 
 .exit-button {
-  padding: 7px 7px 0px 6px;
+  padding: 8px 8px 2px 7px;
+  border-radius: 40px;
 }
 
 .icona-sidenavmode {
@@ -121,14 +122,14 @@ mat-list-item,
   font-size: 12px;
 }
 
-.user-avatar {
-  width: 40px;
-  border-radius: 30px;
-}
+
 
 .buttonUtente{
-  padding: 0px;
-  border-radius: 30px;
+  padding-top: 5px;
+  padding-bottom: 2px;
+  padding-left:7px;
+  padding-right:7px;
+  border-radius: 50px;
 }
 
 /*
