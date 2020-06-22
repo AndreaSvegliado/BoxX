@@ -18,8 +18,12 @@
       </button>
     </div>
 
-    <mat-accordion >
-      <mat-expansion-panel class="accordion-header" [expanded]="false">
+
+
+    <div [@.disabled]="true">
+
+
+      <mat-expansion-panel class="accordion-header">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div class="details-title">Ticket {{objTicket.n_Ticket}}</div>
@@ -126,48 +130,8 @@
             </div>
           </div>
         </div>
-
-        <!-- <div class="col-md-12 row-cards">
-                    <div class="row">
-                      <div class="col-md-6 col-sm-12">
-                        <table class="table table-ticket-header table-borderless">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Tipo</th>
-                                    <th scope="col">Data1</th>
-                                    <th scope="col">Tecnico</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input class="inputmini" value="{{objTicket.tipoTicket}}" disabled></td>
-                                    <td><input class="inputmidi" value="{{objTicket.data1 | date: 'dd/mm/yyyy'}}"
-                                            disabled>
-                                    </td>
-                                    <td><input class="inputmaxi" value="{{objTicket.badge}}" disabled></td>
-                                </tr>
-                                <tr>
-                                    <th scope="col">Stato</th>
-                                    <th scope="col">Data2</th>
-                                    <th scope="col">Cliente</th>
-                                </tr>
-                                <tr>
-                                    <td><input class="inputmini" value="{{objTicket.statoTicket}}" disabled></td>
-                                    <td><input class="inputmidi" value="{{objTicket.data1 | date: 'dd/mm/yyyy'}}"
-                                            disabled>
-                                    </td>
-                                    <td><input class="inputmaxi" value="{{objTicket.customer.ragsoc}}" disabled></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                      </div>
-
-                    </div>
-                </div> -->
       </mat-expansion-panel>
-
-    </mat-accordion>
-
+    </div>
   </div>
 
 

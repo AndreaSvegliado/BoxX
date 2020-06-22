@@ -19,8 +19,9 @@ export class TicketDetailsComponent implements OnInit {
   mticketID: string;
   objTicket: ticket;
   panelOpenState = false;
-  //@ViewChild('accordion',{static:true}) Accordion: MatAccordion
 
+  //@ViewChild('accordion',{static:true}) Accordion: MatAccordion
+  disableAnimation = true;
   constructor(private snackBar: MatSnackBar,
     private route: ActivatedRoute,
     private router: Router,
@@ -29,11 +30,13 @@ export class TicketDetailsComponent implements OnInit {
 
      }
 
-  // disableAnimation = true;
+  // Workaround for angular component issue #13870
+
   // ngAfterViewInit(): void {
   //   // timeout required to avoid the dreaded 'ExpressionChangedAfterItHasBeenCheckedError'
   //   setTimeout(() => this.disableAnimation = false);
   // }
+
 
 
   ngOnInit() {
@@ -44,7 +47,7 @@ export class TicketDetailsComponent implements OnInit {
       .subscribe(
         res => {
           this.objTicket = res as ticket;
-          console.log(this.objTicket);
+          //console.log(this.objTicket);
         }
       );
   }
