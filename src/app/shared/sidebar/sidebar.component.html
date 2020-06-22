@@ -53,15 +53,13 @@
   <!-- <mat-sidenav  *ngIf="isLoggedIn"  #sidenav mode="side" [opened]="opened" [class.close]="!opened" id="sidenav" > -->
   <mat-sidenav *ngIf="isLoggedIn" #sidenav [mode]="side_over" [opened]="opened" id="sidenav" disableClose>
     <mat-nav-list>
-
       <!--
           <a class="home-button" routerLink="/">
             <img class="app-logo" src="https://bulma.io/images/bulma-logo.png" />
           </a>
           <mat-divider class="navigation-divider"></mat-divider>
         -->
-
-      <mat-list-item [routerLink]="['/default']" routerLinkActive="active-list-item">
+      <mat-list-item [routerLink]="['/default']" routerLinkActive="active-list-item" matRipple [matRippleColor]="'rgba(255,255,255,0.2)'">
         <div class="item" (click)="opencloseicon()">
           <button class="btn-sidenav" mat-icon-button>
             <mat-icon class="material-icons-outlined mat-icon-sidenav" mat-list-icon >
@@ -73,7 +71,7 @@
       </mat-list-item>
 
       <!-- <mat-list-item (click)= "sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/calendario']">-->
-      <mat-list-item [routerLink]="['/calendar']" routerLinkActive="active-list-item">
+      <mat-list-item [routerLink]="['/calendar']" routerLinkActive="active-list-item" matRipple [matRippleColor]="'rgba(255,255,255,0.2)'">
         <div class="item" (click)="opencloseicon()">
           <button class="btn-sidenav" mat-icon-button>
             <mat-icon class="material-icons-outlined mat-icon-sidenav"  mat-list-icon>event</mat-icon>
@@ -82,7 +80,7 @@
         </div>
       </mat-list-item>
 
-      <mat-list-item [routerLink]="['/ticket-list']" routerLinkActive="active-list-item">
+      <mat-list-item [routerLink]="['/ticket-list']" routerLinkActive="active-list-item" matRipple [matRippleColor]="'rgba(255,255,255,0.2)'">
         <div class="item" (click)="opencloseicon()">
           <button class="btn-sidenav" mat-icon-button>
             <mat-icon class="material-icons-outlined mat-icon-sidenav" mat-list-icon>view_agenda</mat-icon>
@@ -91,7 +89,7 @@
         </div>
       </mat-list-item>
 
-      <mat-list-item [routerLink]="['/todoevents-list']" routerLinkActive="active-list-item">
+      <mat-list-item [routerLink]="['/todoevents-list']" routerLinkActive="active-list-item" matRipple [matRippleColor]="'rgba(255,255,255,0.2)'">
         <div class="item" (click)="opencloseicon()">
           <button class="btn-sidenav" mat-icon-button>
             <mat-icon class="material-icons-outlined mat-icon-sidenav" mat-list-icon>assignment</mat-icon>
@@ -101,7 +99,7 @@
       </mat-list-item>
 
       <!-- <mat-list-item (click)="sidenav.close()" *ngIf="isLoggedIn" [routerLink]="['/userDetails']"></mat-list-item>-->
-      <mat-list-item [routerLink]="['/userDetails']" routerLinkActive="active-list-item">
+      <mat-list-item [routerLink]="['/userDetails']" routerLinkActive="active-list-item" matRipple [matRippleColor]="'rgba(255,255,255,0.2)'">
         <div class="item" (click)="opencloseicon()">
           <button class="btn-sidenav" mat-icon-button>
             <mat-icon class="material-icons-outlined mat-icon-sidenav" mat-list-icon>people_alt</mat-icon>
@@ -124,7 +122,7 @@
       <a class="nav-item nav-link">Link esterni</a>
 
       <a href="http://www.steinerwaldorfpadova.it" target="_blank">
-        <mat-list-item>
+        <mat-list-item matRipple [matRippleColor]="'rgba(255,255,255,0.2)'">
           <div class="item" (click)="opencloseicon()">
             <button class="btn-sidenav" mat-icon-button>
               <mat-icon class="mat-icon-sidenav" matListIcon>language</mat-icon>
@@ -136,7 +134,7 @@
 
       <a href="https://jasonwatmore.com/post/2020/04/28/angular-9-user-registration-and-login-example-tutorial#app-module-ts"
         target="_blank">
-        <mat-list-item>
+        <mat-list-item matRipple [matRippleColor]="'rgba(255,255,255,0.2)'">
           <div class="item" (click)="opencloseicon()">
             <button class="btn-sidenav" mat-icon-button>
               <mat-icon class="mat-icon-sidenav" matListIcon>language</mat-icon>
@@ -149,7 +147,7 @@
 
       <mat-divider class="navigation-divider"></mat-divider>
 
-      <mat-list-item (click)="onLogout()" *ngIf="!isLoggedIn" [routerLink]="['/login']">
+      <mat-list-item (click)="onLogout()" *ngIf="!isLoggedIn" [routerLink]="['/login']" matRipple [matRippleColor]="'rgba(255,255,255,0.2)'">
         <div class="item" (click)="opencloseicon()">
           <button class="btn-sidenav" mat-icon-button>
             <mat-icon mat-list-icon>fingerprint</mat-icon>
@@ -158,7 +156,7 @@
         </div>
       </mat-list-item>
 
-      <mat-list-item (click)="onLogout()" *ngIf="isLoggedIn" [routerLink]="['/login']">
+      <mat-list-item (click)="onLogout()" *ngIf="isLoggedIn" [routerLink]="['/login']" matRipple [matRippleColor]="'rgba(255,255,255,0.2)'">
         <div class="item" (click)="opencloseicon()">
           <button class="btn-sidenav" mat-icon-button>
             <mat-icon class="mat-icon-sidenav" mat-list-icon>exit_to_app</mat-icon>
@@ -178,7 +176,7 @@
         </div>
       </mat-list-item>
       -->
-      <mat-list-item class="last-item"(click)="changeFix()">
+      <mat-list-item class="last-item"(click)="changeFix()" matRipple [matRippleColor]="'rgba(255,255,255,0.2)'">
         <div class="item" (click)="opencloseicon()">
           <button mat-icon-button>
             <mat-icon mat-list-icon class="icona-sidenavmode">{{iconaCheck2}}</mat-icon>

@@ -205,6 +205,12 @@ div.form-group.required > label:first-child:after {
 .btn-openclose-sidenav:focus {
   background-color: none;
 }
+
+.last-item {
+  position: absolute!important;
+  bottom: 0px;
+  font-size: 12px;
+}
 /*********************   logo e animazione bagliori    ***********************/
 .logo-boxx {
   position: fixed;
