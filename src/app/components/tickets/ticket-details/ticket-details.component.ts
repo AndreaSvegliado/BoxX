@@ -5,6 +5,7 @@ import { MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import { TicketService } from 'src/app/services/ticket.service';
 import { ticket } from 'src/app/models/models';
+//import {MatAccordion} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-ticket-details',
@@ -18,14 +19,25 @@ export class TicketDetailsComponent implements OnInit {
   mticketID: string;
   objTicket: ticket;
   panelOpenState = false;
+  //@ViewChild('accordion',{static:true}) Accordion: MatAccordion
 
   constructor(private snackBar: MatSnackBar,
     private route: ActivatedRoute,
     private router: Router,
     private ticketService: TicketService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog) {
+
+     }
+
+  // disableAnimation = true;
+  // ngAfterViewInit(): void {
+  //   // timeout required to avoid the dreaded 'ExpressionChangedAfterItHasBeenCheckedError'
+  //   setTimeout(() => this.disableAnimation = false);
+  // }
+
 
   ngOnInit() {
+
     let ID = this.route.snapshot.params['ID'];
     this.mticketID = ID;
     this.ticketService.getTicket(this.mticketID)
@@ -81,6 +93,7 @@ export class TicketDetailsComponent implements OnInit {
     else
       this.snackBar.open(msg, null, config);
   }
+
 
 
   //*****************DragnDrop: Per attivarlo inserire cdkDrag LO SNAP NON FUNZIONA MOLTO BENE***************************/
