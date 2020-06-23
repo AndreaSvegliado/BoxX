@@ -91,7 +91,8 @@ mat-divider {
 }
 
 .exit-button {
-  padding: 8px 8px 2px 7px;
+  width: 40px;
+  padding: 7px 8px 1px 7px;
   border-radius: 40px;
 }
 
@@ -118,9 +119,10 @@ mat-list-item,
 
 
 .buttonUtente{
-  padding-top: 5px;
-  padding-bottom: 2px;
-  padding-left:7px;
+  width:35px;
+  padding-top: 3px;
+  padding-bottom: 0px;
+  padding-left:4px;
   padding-right:7px;
   border-radius: 50px;
 }

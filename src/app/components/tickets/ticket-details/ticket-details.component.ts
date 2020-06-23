@@ -7,6 +7,7 @@ import { GoogleMapsModule } from '@angular/google-maps'
 
 import { TicketService } from 'src/app/services/ticket.service';
 import { ticket } from 'src/app/models/models';
+//import {MatAccordion} from '@angular/material/expansion';
 
 @Component({
   selector: 'app-ticket-details',
@@ -21,13 +22,27 @@ export class TicketDetailsComponent implements OnInit {
   objTicket: ticket;
   panelOpenState = false;
 
+  //@ViewChild('accordion',{static:true}) Accordion: MatAccordion
+  disableAnimation = true;
   constructor(private snackBar: MatSnackBar,
     private route: ActivatedRoute,
     private router: Router,
     private ticketService: TicketService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog) {
+
+     }
+
+  // Workaround for angular component issue #13870
+
+  // ngAfterViewInit(): void {
+  //   // timeout required to avoid the dreaded 'ExpressionChangedAfterItHasBeenCheckedError'
+  //   setTimeout(() => this.disableAnimation = false);
+  // }
+
+
 
   ngOnInit() {
+
     let ID = this.route.snapshot.params['ID'];
     this.mticketID = ID;
     this.ticketService.getTicket(this.mticketID)
@@ -83,6 +98,7 @@ export class TicketDetailsComponent implements OnInit {
     else
       this.snackBar.open(msg, null, config);
   }
+
 
 
   //*****************DragnDrop: Per attivarlo inserire cdkDrag LO SNAP NON FUNZIONA MOLTO BENE***************************/
