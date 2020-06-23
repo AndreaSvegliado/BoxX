@@ -21,10 +21,12 @@ export class TodoEventsService {
   {
     if(localStorage.getItem('currentUser') != null)
       this.currUser = JSON.parse(localStorage.getItem('currentUser'));
-    
-    //return this.http.get<todoEvent[]>(environment.apiBaseUrl + '/TodoEvents/GetByBadge/' + this.currUser.badge);     
-//http://188.152.211.199/iQWApi/api/TodoEvents/GetByBadge/666
 
+    //http://188.152.211.199/iQWApi/api/TodoEvents/GetByBadge/666
+    //return this.http.get<todoEvent[]>(environment.apiBaseUrl + '/TodoEvents/GetByBadge/' + this.currUser.badge);     
+    //return this.http.get<todoEvent[]>(environment.apiBaseUrl + '/TodoEvents/GetByUserID/' + this.currUser.userID);     
+
+    //TEMPORANEO (niente filtro per utente):
     return this.http.get<todoEvent[]>(environment.apiBaseUrl + '/TodoEvents/');     
 
   }

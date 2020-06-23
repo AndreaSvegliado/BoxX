@@ -23,6 +23,7 @@
         <mat-expansion-panel-header>
           <mat-panel-title>
             <div class="details-title">Ticket {{objTicket.n_Ticket}}</div>
+            <div class="details-title"> - del {{objTicket.data1 | date: 'dd/MM/yyyy'}}</div>
             <div [ngSwitch]="objTicket.tipoTicket">
               <div class="ticket-tipo align-middle ml-2" *ngSwitchCase="'A'" [ngClass]="ticketClassTipo()">
                 Assistenza
@@ -67,7 +68,7 @@
             </div>
           </div>
 
-          <div class="col-lg-8 col-md-8 col-sm-12 col-12 mt-2">
+          <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-2">
             <div class="row">
               <div class="col-12">
                 <div class="mycard">
@@ -125,7 +126,13 @@
               </div>
             </div>
           </div>
+
+          <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-2">
+            <google-map class="map" height="200px" width="100%"></google-map>    
+          </div>
         </div>
+
+        
 
         <!-- <div class="col-md-12 row-cards">
                     <div class="row">

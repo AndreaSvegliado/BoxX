@@ -1,5 +1,10 @@
 
+/*******************   GOOGLEMAP    ***********************/
 
+#map {
+  height: 200px;
+  width: 100%;
+ }
 
 /*******************    IMPOSTAZIONI pagina TICKET CARD    *******************/
 .ticket-card {

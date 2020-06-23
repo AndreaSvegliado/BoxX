@@ -4,6 +4,7 @@ import { MaterialModule} from './modules/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';            //AS: reference per chiamata a WS
 import { HTTP_INTERCEPTORS} from '@angular/common/http';
@@ -39,7 +40,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
-
+import { GoogleMapsModule } from '@angular/google-maps'
 
 
 @NgModule({
@@ -78,7 +79,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     NgxMaterialTimepickerModule.setLocale('it-IT'), NgbModule,
     //DragDropModule,
     FullCalendarModule,
-    MatDialogModule
+    MatDialogModule,
+    GoogleMapsModule
   ],
   exports:[
     //NgbdDatepickerAdapter,

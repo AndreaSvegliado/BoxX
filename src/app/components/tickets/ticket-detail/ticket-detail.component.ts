@@ -186,17 +186,10 @@ export class TicketDetailComponent implements OnInit {
   onSubmit(form:NgForm){
     //form.value        //AS: oggetto in formato JSON contenente i campi del form
 
-    /*
-    console.log("Submit");
-    console.log(this.serviceDetails.formData.id);
-    */
-    //if(form.value.PMid==0){
-    if(this.serviceDetails.formData.id ==0){
+    if(this.serviceDetails.formData.id ==0)
       this.InsertRecord(form);
-    }
-    else{
+    else
       this.UpdateRecord(form);
-    }
   }
 
   InsertRecord(form:NgForm){
@@ -235,8 +228,7 @@ export class TicketDetailComponent implements OnInit {
     this.serviceDetails.formData.causaleID = + this.serviceDetails.formData.causaleID;
   }
   TicketID_toNumber(){
-
-    console.log ("ticket_ID_toNumber");
+    //console.log ("ticket_ID_toNumber");
     this.serviceDetails.formData.ticketID = + this.serviceDetails.formData.ticketID;
   }
 
@@ -265,8 +257,8 @@ export class TicketDetailComponent implements OnInit {
   valueEnd;
   StartTime = new FormControl('', (controlStart: FormControl) => {
     this.valueStart = controlStart.value;
-    console.log("valuestart_START"+this.valueStart);
-    console.log("valueend_START"+this.valueEnd);
+    //console.log("valuestart_START"+this.valueStart);
+    //console.log("valueend_START"+this.valueEnd);
     if (!this.valueStart) {return null;}
     if (this.valueStart>=this.valueEnd) {return {start_end: true};}
     //if (value.getTime < 12) {return {tooEarly: true};}
@@ -276,9 +268,9 @@ export class TicketDetailComponent implements OnInit {
 
   EndTime = new FormControl('', (control: FormControl) => {
     this.valueEnd = control.value;
-    console.log("valuestart_END"+this.valueStart);
-    console.log("valueend_END"+this.valueEnd);
-    console.log (this.valueEnd);
+    //console.log("valuestart_END"+this.valueStart);
+    //console.log("valueend_END"+this.valueEnd);
+    //console.log (this.valueEnd);
     if (!this.valueEnd) {return null;}
     if (this.valueStart>=this.valueEnd) {return {start_end: true};}
     //if (value.getTime < 12) {return {tooEarly: true};}

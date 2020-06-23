@@ -3,6 +3,8 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CdkDragDrop, moveItemInArray, CdkDragMove, CdkDragEnd } from '@angular/cdk/drag-drop';
 import { MatDialog, MatDialogRef} from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
+import { GoogleMapsModule } from '@angular/google-maps'
+
 import { TicketService } from 'src/app/services/ticket.service';
 import { ticket } from 'src/app/models/models';
 
@@ -32,7 +34,7 @@ export class TicketDetailsComponent implements OnInit {
       .subscribe(
         res => {
           this.objTicket = res as ticket;
-          console.log(this.objTicket);
+          //console.log(this.objTicket);
         }
       );
   }

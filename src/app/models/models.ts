@@ -31,25 +31,13 @@ export interface ticketDetail {
     h_Ini: Date;
     h_End: Date;
     note;
-    //public Nullable<TimeSpan> H_Ini { get; set; }
-    //public Nullable<TimeSpan> H_End { get; set; }
 }
 
 export interface ticketCausale {
     id: number;
     causaleDesc: string;
 }
-export interface Customer {
-    id:number;
-    codice: string;
-    ragsoc: string;
-    indirizzo: string;
-    citta: string;
-    prov: string;
-    nazione: string;
-    poi: string;
 
-}
 
 export class ticketEvent{
     allDay: boolean;
@@ -67,13 +55,24 @@ export class ticketEvent{
 export class todoEvent{
     id: number;
     userID: string;
-
     causaleID: number;
+    
     ticketID: number;
+    objTicket: ticket;
 
     titolo: string;
     dettagli: string;
-
     dt: Date;
     h_Ini: Date;
+}
+
+export interface Customer {
+    id:number;
+    codice: string;
+    ragsoc: string;
+    indirizzo: string;
+    citta: string;
+    prov: string;
+    nazione: string;
+    poi: string;
 }

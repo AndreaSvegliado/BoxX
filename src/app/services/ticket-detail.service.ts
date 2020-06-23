@@ -44,7 +44,7 @@ export class TicketDetailService {
 
   refreshList(ticketID)
   {
-    console.log("RefreshList");
+    //console.log("RefreshList");
 
     this.ticketID = ticketID;
     this.http.get(environment.apiBaseUrl+ '/TicketDetails/GetByTicketID/' + ticketID)

@@ -1,10 +1,10 @@
 
-<h1>Todo Events ! </h1>
-<p>(Omino che caga)</p>
+<h1>Todo List</h1>
 
 <!-- AS: per DEBUG -->
 <p>JSON </p>
 {{todoEvents | json}}
+<p></p>
 
 
 <table  class="table table-hover">
@@ -12,8 +12,12 @@
       <tr>
         <th><mat-icon class="icona-list">list</mat-icon>id</th>
         <th><mat-icon class="icona-list">event</mat-icon>UserID</th>
-        <th><mat-icon class="icona-list">alarm</mat-icon>Titolo</th>
+        <th><mat-icon class="icona-list">alarm</mat-icon>CausaleID</th>
+        <th><mat-icon class="icona-list">timer_off</mat-icon>TicketID</th>
+        <th><mat-icon class="icona-list">timer_off</mat-icon>Titolo</th>
         <th><mat-icon class="icona-list">timer_off</mat-icon>Dettagli</th>
+        <th><mat-icon class="icona-list">timer_off</mat-icon>Dt</th>
+        <th><mat-icon class="icona-list">timer_off</mat-icon>H_ini</th>
         <th></th>
       </tr>
     </thead>
@@ -22,8 +26,12 @@
       <tr  *ngFor="let objTodo of todoEvents">
         <td >{{objTodo.id}}</td>
         <td >{{objTodo.userID}}</td>
-        <td >{{objTodo.titolo}} </td>
-        <td >{{objTodo.dettagli}} </td>
+        <td >{{objTodo.causaleID}}</td>
+        <td >{{objTodo.ticketID}} </td>
+        <td  class="min100">{{objTodo.titolo}} </td>
+        <td  class="min100">{{objTodo.dettagli}} </td>
+        <td  class="min100">{{objTodo.dt  | date: 'dd/MM/yyyy'}} </td>
+        <td  class="min100">{{objTodo.h_Ini | date:'HH:mm'}} </td>
       </tr>
     </tbody>
   </table>
