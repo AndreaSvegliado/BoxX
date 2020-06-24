@@ -18,8 +18,6 @@ export class DefaultComponent implements OnInit {
 
   ngOnInit() {
 
-
-
     this.tService.getTicketList()
 
     .subscribe(

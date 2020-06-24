@@ -12,6 +12,7 @@ import { TicketService } from 'src/app/services/ticket.service';
 export class TicketListComponent implements OnInit {
 
   tickets;
+  loading = true;
    //ticketList$ : Observable<Ticket[]>;
 
    constructor( private tService: TicketService) { }
@@ -19,8 +20,10 @@ export class TicketListComponent implements OnInit {
    ngOnInit() {
      this.tService.getTicketList()
      .subscribe(
-       res=>   this.tickets = res as ticket[]
-     );   
+       res=>   { this.tickets = res as ticket[];
+      this.loading = false;
+      }
+     );
    }
 }
 

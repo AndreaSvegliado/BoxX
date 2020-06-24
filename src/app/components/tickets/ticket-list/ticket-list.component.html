@@ -6,7 +6,7 @@
 
 <div class="row">
   <div class="col-12 mt-2">
-
+    <mat-spinner class="nickspinner" diameter="30" *ngIf="loading"></mat-spinner>
     <app-ticket-card *ngFor="let ticket of tickets" [ticket]="ticket">
     </app-ticket-card>
   </div>
