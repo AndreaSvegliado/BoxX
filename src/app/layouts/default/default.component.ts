@@ -13,16 +13,20 @@ export class DefaultComponent implements OnInit {
   currDate = new Date(Date());
   tickets;
   //ticketList$ : Observable<Ticket[]>;
-
+  loading = true;
   constructor( private tService: TicketService) { }
 
   ngOnInit() {
 
-    
+
+
     this.tService.getTicketList()
+
     .subscribe(
-      res=>   this.tickets = res as ticket[]
-    );   
+      res=>   {this.tickets = res as ticket[]
+      this.loading =  false;
+      }
+    );
 
   }
 

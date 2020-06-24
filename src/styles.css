@@ -493,3 +493,16 @@ body {
 .icona-list {
   font-size: 13px;
 }
+
+.nickspinner {
+  margin: auto!important;
+  position: absolute!important;
+  top: 0!important;
+  left: 0!important;
+  right: 0px!important;
+
+}
+
+.nickspinner-container {
+  width: 40px;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import dayGridPlugin from '@fullcalendar/daygrid';            //fullcalendar
 import timeGridPlugin from '@fullcalendar/timegrid';          //fullcalendar
 import listWeekPlugin from '@fullcalendar/list';             //fullcalendar
@@ -20,8 +20,10 @@ import { Router } from '@angular/router';
 })
 export class CalendarComponent implements OnInit {
 
+  @Input() pagina: string;
 
   //estraggo un po' di variabili da assegnare all'oggetto fullcalendar
+
   header = environment.fullcalendarConfig.header;
   navlinks = environment.fullcalendarConfig.navlinks;
   lang = environment.fullcalendarConfig.lang;
@@ -32,10 +34,10 @@ export class CalendarComponent implements OnInit {
   nowIndicator = environment.fullcalendarConfig.nowIndicator;
   forceEventDuration = environment.fullcalendarConfig.forceEventDuration;
   weekLabel = environment.fullcalendarConfig.weekLabel;
-
+  defaultView = environment.fullcalendarConfig.defaultView;
   // eventi di test (statici)
   /*
-  calendarEvents= 
+  calendarEvents=
   [
       {
         allDay: true,
@@ -85,17 +87,22 @@ export class CalendarComponent implements OnInit {
     this.screenHeight = window.innerHeight;        //AS: ????
     this.screenWidth = window.innerWidth;
 
-    
+
   }
 
-  ngOnInit() {     
+  ngOnInit() {
+    if (this.pagina == 'home') {
+      this.header = environment.fullcalendarConfig.header_home;
+      this.defaultView = environment.fullcalendarConfig.defaultView_home;
+    }
+
     this.tService.getTicketList()
     .subscribe(
-      res=>  { 
+      res=>  {
         this.tickets = res as ticket[];
         this.LoadCalendar();
       }
-    );   
+    );
 
     this.tService.getTicketList()
       .subscribe(
@@ -105,12 +112,12 @@ export class CalendarComponent implements OnInit {
         }
       );
   }
-  
+
   LoadCalendar(){
     this.ticketEvents = [];
 
     this.tickets.forEach (element => {
-      //AS: modificando il model ticketEvent da interface a class FUNZIONA!      
+      //AS: modificando il model ticketEvent da interface a class FUNZIONA!
       let _event: ticketEvent  = new ticketEvent();
 
       _event.title = element.n_Ticket + " - " + element.customer.ragsoc;
@@ -121,7 +128,7 @@ export class CalendarComponent implements OnInit {
         _event.end =  element.data2;
       else
         _event.end =  element.data1;
-      
+
       _event.color = '#00bb99';
       _event.textColor = "#fff";
 

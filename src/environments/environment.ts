@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  
+
   apiBaseUrl: "http://188.152.211.199/iQWApi/api",
 
   fullcalendarConfig : {
@@ -23,12 +23,19 @@ export const environment = {
       center: 'title',
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
+    header_home : {
+      left: '',
+      center: 'title',
+      right: ''
+    },
     defaultAllDayEventDuration : {
     days: 1
     },
     forceEventDuration: true,
     nowIndicator : true,
-    weekLabel: ''
+    weekLabel: '',
+    defaultView: 'dayGridMonth',
+    defaultView_home : 'listWeek'
   }
 };
 
