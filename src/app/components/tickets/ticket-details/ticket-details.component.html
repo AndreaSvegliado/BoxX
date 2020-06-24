@@ -5,10 +5,10 @@
   <div class="fixed-header">
     <div class="topbuttons-container">
       <button mat-flat-button class="topbutton-button" (click)="BackToList()">
-        <mat-icon>view_agenda</mat-icon> Lista Ticket
+        <mat-icon class="material-icons-outlined">view_agenda</mat-icon> Lista Ticket
       </button>
       <button mat-flat-button class="topbutton-button" (click)="BackToCalendar()">
-        <mat-icon>event</mat-icon> Calendario
+        <mat-icon class="material-icons-outlined">event</mat-icon> Calendario
       </button>
       <button mat-flat-button class="topbutton-button" (click)="Confirm()">
         <mat-icon>check_circle</mat-icon> Conferma
@@ -26,41 +26,44 @@
       <mat-expansion-panel class="accordion-header">
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <div class="details-title">Ticket {{objTicket.n_Ticket}}</div>
-            <div class="details-title"> - del {{objTicket.data1 | date: 'dd/MM/yyyy'}}</div>
-            <div [ngSwitch]="objTicket.tipoTicket">
-              <div class="ticket-tipo align-middle ml-2" *ngSwitchCase="'A'" [ngClass]="ticketClassTipo()">
-                Assistenza
+
+              <div class="details-title">Ticket {{objTicket.n_Ticket}}</div>
+
+              <div class="details-subtitle ml-2"> [{{objTicket.data1 | date: 'dd/MM/yyyy'}}]</div>
+
+              <div [ngSwitch]="objTicket.tipoTicket">
+                <div class="ticket-tipo align-middle ml-4" *ngSwitchCase="'A'" [ngClass]="ticketClassTipo()">
+                  Assistenza
+                </div>
+                <div class="ticket-tipo align-middle ml-4" *ngSwitchCase="'I'" [ngClass]="ticketClassTipo()">
+                  Installazione
+                </div>
               </div>
-              <div class="ticket-tipo align-middle ml-2" *ngSwitchCase="'I'" [ngClass]="ticketClassTipo()">
-                Installazione
-              </div>
+
+
+            <div class="ticket-tipo ticket-tipo-status align-middle ml-2 pr-1 pl-1 pt-1 pb-0" [ngClass]="ticketClassTipo()">
+              {{objTicket.statoTicket}}
             </div>
+
+
+
+
+
           </mat-panel-title>
 
-          <mat-panel-description>
+          <mat-panel-description style="position: absolute; right: 50px;">
 
           </mat-panel-description>
         </mat-expansion-panel-header>
         <mat-divider></mat-divider>
 
         <div class="row">
-          <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-2">
+          <!-- <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-2">
             <div class="row">
               <div class="col-12">
                 <div class="mycard">
-                  <div class="text-center ">
-                    Stato Ticket
-                  </div>
-                  <div class="text-center">
-                    <input class="inputmini" value="{{objTicket.statoTicket}}" disabled>
-                  </div>
-                  <div class="text-center mt-2">
-                    Data1
-                  </div>
-                  <div class="text-center">
-                    <input class="inputmidi" value="{{objTicket.data1| date: 'dd/mm/yyyy'}}" disabled>
-                  </div>
+
+
                   <div class="text-center mt-2">
                     Tecnico
                   </div>
@@ -70,12 +73,12 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
-          <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-2">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
             <div class="row">
               <div class="col-12">
-                <div class="mycard">
+                <div class="mycard pt-3 pb-4 mt-1">
                   <div class="row">
                     <div class="col-9">
                       <div class="text-center">
@@ -131,12 +134,12 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-2">
-            <google-map class="map" height="200px" width="100%"></google-map>    
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
+            <google-map class="map" height="200px" width="100%"></google-map>
           </div>
         </div>
 
-        
+
 
         <!-- <div class="col-md-12 row-cards">
                     <div class="row">

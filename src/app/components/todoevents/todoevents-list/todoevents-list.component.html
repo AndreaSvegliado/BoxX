@@ -2,26 +2,26 @@
 <h1>Todo List</h1>
 
 <!-- AS: per DEBUG -->
-<p>JSON </p>
+<!-- <p>JSON </p>
 {{todoEvents | json}}
-<p></p>
+<p></p> -->
 
 
 <table  class="table table-hover">
     <thead>
       <tr>
         <th><mat-icon class="icona-list">list</mat-icon>id</th>
-        <th><mat-icon class="icona-list">event</mat-icon>UserID</th>
-        <th><mat-icon class="icona-list">alarm</mat-icon>CausaleID</th>
-        <th><mat-icon class="icona-list">timer_off</mat-icon>TicketID</th>
-        <th><mat-icon class="icona-list">timer_off</mat-icon>Titolo</th>
-        <th><mat-icon class="icona-list">timer_off</mat-icon>Dettagli</th>
-        <th><mat-icon class="icona-list">timer_off</mat-icon>Dt</th>
-        <th><mat-icon class="icona-list">timer_off</mat-icon>H_ini</th>
+        <th><mat-icon class="icona-list">perm_identity</mat-icon>UserID</th>
+        <th><mat-icon class="icona-list">list</mat-icon>CausaleID</th>
+        <th><mat-icon class="icona-list">note</mat-icon>TicketID</th>
+        <th><mat-icon class="icona-list">class</mat-icon>Titolo</th>
+        <th><mat-icon class="icona-list">reorder</mat-icon>Dettagli</th>
+        <th><mat-icon class="icona-list">event</mat-icon>Dt</th>
+        <th><mat-icon class="icona-list">alarm</mat-icon>H_ini</th>
         <th></th>
       </tr>
     </thead>
-  
+
     <tbody>
       <tr  *ngFor="let objTodo of todoEvents">
         <td >{{objTodo.id}}</td>

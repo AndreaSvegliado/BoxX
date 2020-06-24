@@ -62,6 +62,12 @@
   background-color: #ff7843;
 }
 
+.ticket-tipo-status {
+  background-color:rgb(61, 129, 255);
+  /*border: 2px rgb(174, 0, 255) solid;*/
+  color: white;
+}
+
 .ticket-cliente {
   margin-bottom: 10px;
   margin-top: 10px;
@@ -115,6 +121,12 @@
   font-weight: bold;
 }
 
+.details-subtitle{
+  margin-top:7px;
+  font-size: 14px;
+  font-weight: bold;
+  color: grey;
+}
 
 
 .accordion-header{
@@ -222,9 +234,7 @@ button{
   min-height: 432px;
 }
 
-.icona-list {
-  font-size: 13px;
-}
+
 
 
 .input-group {
