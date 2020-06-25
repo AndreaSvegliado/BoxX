@@ -23,7 +23,7 @@ export class TicketDetailsComponent implements OnInit {
   panelOpenState = false;
 
   //@ViewChild('accordion',{static:true}) Accordion: MatAccordion
-  disableAnimation = true;
+  //disableAnimation = false;
   constructor(private snackBar: MatSnackBar,
     private route: ActivatedRoute,
     private router: Router,
@@ -36,7 +36,7 @@ export class TicketDetailsComponent implements OnInit {
 
   // ngAfterViewInit(): void {
   //   // timeout required to avoid the dreaded 'ExpressionChangedAfterItHasBeenCheckedError'
-  //   setTimeout(() => this.disableAnimation = false);
+  //   setTimeout(() => this.disableAnimation = true);
   // }
 
 
