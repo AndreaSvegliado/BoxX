@@ -147,10 +147,8 @@ export class CalendarComponent implements OnInit {
     api.setOption('height', (this.screenHeight - 90));
     api.setOption('themeSystem', 'bootstrap');          //non so a cosa serva
     if (this.screenWidth > 1000) { api.setOption('weekNumbers', true) } else { api.setOption('weekNumbers', false) }
-
     api.render();
-
-    api.gotoDate ('2020-10-10');
+    api.gotoDate ('2020-10-10'); //funziona! quindi basta che qui arrivi la data dalla pagina ticket-details
 
   }
 
