@@ -3,34 +3,129 @@
 
 <div class="ticket-details">
   <div class="fixed-header">
-    <div class="topbuttons-container">
-      <button mat-flat-button class="topbutton-button" (click)="BackToList()">
-        <mat-icon class="material-icons-outlined">view_agenda</mat-icon> Lista Ticket
-      </button>
-      <button mat-flat-button class="topbutton-button" (click)="BackToCalendar()">
-        <mat-icon class="material-icons-outlined">event</mat-icon> Calendario
-      </button>
-      <button mat-flat-button class="topbutton-button" (click)="Confirm()">
-        <mat-icon>check_circle</mat-icon> Conferma
-      </button>
-      <button mat-flat-button class="topbutton-button" (click)="Print()">
-        <mat-icon>print</mat-icon> Stampa
-      </button>
+
+    <div class="row">
+      <div class="col-md-6 col-sm-12 mt-3 text-left pl-4 pb-3 order-md-1 order-sm-12">
+        <span class="details-title">Ticket {{objTicket.n_Ticket}}</span>
+        <span class="details-subtitle"> [{{objTicket.data1 | date: 'dd/MM/yyyy'}}]</span>
+        <span class="" [ngSwitch]="objTicket.tipoTicket">
+          <span class="ticket-tipo" *ngSwitchCase="'A'" [ngClass]="ticketClassTipo()">
+            Assistenza
+          </span>
+          <span class="ticket-tipo" *ngSwitchCase="'I'" [ngClass]="ticketClassTipo()">
+            Installazione
+          </span>
+          <span class="ticket-tipo-status" [ngClass]="ticketClassTipo()">
+            {{objTicket.statoTicket}}
+          </span>
+        </span>
+      </div>
+
+
+
+      <div class="col-md-6 col-sm-12 topbuttons-container order-md-12 order-sm-1 pr-3">
+        <button mat-flat-button class="topbutton-button" (click)="BackToList()">
+          <mat-icon class="material-icons-outlined">view_agenda</mat-icon> Lista Ticket
+        </button>
+        <button mat-flat-button class="topbutton-button" (click)="BackToCalendar()">
+          <mat-icon class="material-icons-outlined">event</mat-icon> Calendario
+        </button>
+        <button mat-flat-button class="topbutton-button" (click)="Confirm()">
+          <mat-icon>check_circle</mat-icon> Conferma
+        </button>
+        <button mat-flat-button class="topbutton-button" (click)="Print()">
+          <mat-icon>print</mat-icon> Stampa
+        </button>
+      </div>
+
     </div>
 
+    <div class="text-left ml-1">
+      <div class="col-lg-3 col-md-12 pl-0 pr-2">
+        <button type="button" class="btn btn-outline-primary" style="width: 100%" (click)="isCollapsed = !isCollapsed"
+          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+          {{objTicket.customer.ragsoc}}
+        </button>
+      </div>
+
+      <div id="collapseExample" class="mt-2 mr-1" [ngbCollapse]="isCollapsed">
+        <div class="card">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="mycard pt-3 pb-4 mt-1">
+                      <div class="row">
+                        <div class="col-9">
+                          <div class="text-center">
+                            Ragione Sociale Cliente
+                          </div>
+                          <div class="text-center">
+                            <input class="input100" value="{{objTicket.customer.ragsoc}}" disabled>
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="text-center">
+                            Codice
+                          </div>
+                          <div class="text-center">
+                            <input class="input100" value="{{objTicket.customer.codice}}" disabled>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="text-center mt-2">
+                        Indirizzo
+                      </div>
+                      <div class="text-center">
+                        <input class="input100" value="{{objTicket.customer.indirizzo}}" disabled>
+                      </div>
+                      <div class="row">
+                        <div class="col-6">
+                          <div class="text-center mt-2">
+                            Città
+                          </div>
+                          <div class="text-center">
+                            <input class="input100" value="{{objTicket.customer.citta}}" disabled>
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="text-center mt-2">
+                            Prov
+                          </div>
+                          <div class="text-center">
+                            <input class="input100" value="{{objTicket.customer.prov}}" disabled>
+                          </div>
+                        </div>
+                        <div class="col-3">
+                          <div class="text-center mt-2">
+                            Stato
+                          </div>
+                          <div class="text-center">
+                            <input class="input100" value="{{objTicket.customer.nazione}}" disabled>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
+                <google-map class="map" height="200px" width="100%"></google-map>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
-    <div>
-
-      <mat-accordion>
-        <mat-expansion-panel>
+      <!-- <mat-accordion>
+        <mat-expansion-panel class="accordion-header">
           <mat-expansion-panel-header>
             <mat-panel-title>
-
               <div class="details-title">Ticket {{objTicket.n_Ticket}}</div>
-
               <div class="details-subtitle ml-2"> [{{objTicket.data1 | date: 'dd/MM/yyyy'}}]</div>
-
               <div [ngSwitch]="objTicket.tipoTicket">
                 <div class="ticket-tipo align-middle ml-4" *ngSwitchCase="'A'" [ngClass]="ticketClassTipo()">
                   Assistenza
@@ -39,42 +134,16 @@
                   Installazione
                 </div>
               </div>
-
-
               <div class="ticket-tipo-status" [ngClass]="ticketClassTipo()">
                 {{objTicket.statoTicket}}
               </div>
-
-
-
-
-
             </mat-panel-title>
-
             <mat-panel-description style="position: absolute; right: 50px;">
-
             </mat-panel-description>
           </mat-expansion-panel-header>
           <mat-divider></mat-divider>
 
           <div class="row">
-            <!-- <div class="col-lg-4 col-md-4 col-sm-12 col-12 mt-2">
-            <div class="row">
-              <div class="col-12">
-                <div class="mycard">
-
-
-                  <div class="text-center mt-2">
-                    Tecnico
-                  </div>
-                  <div class="text-center">
-                    <input class="input100" value="{{objTicket.badge}}" disabled>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div> -->
-
             <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
               <div class="row">
                 <div class="col-12">
@@ -138,48 +207,8 @@
               <google-map class="map" height="200px" width="100%"></google-map>
             </div>
           </div>
-
-
-
-          <!-- <div class="col-md-12 row-cards">
-                    <div class="row">
-                      <div class="col-md-6 col-sm-12">
-                        <table class="table table-ticket-header table-borderless">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Tipo</th>
-                                    <th scope="col">Data1</th>
-                                    <th scope="col">Tecnico</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input class="inputmini" value="{{objTicket.tipoTicket}}" disabled></td>
-                                    <td><input class="inputmidi" value="{{objTicket.data1 | date: 'dd/mm/yyyy'}}"
-                                            disabled>
-                                    </td>
-                                    <td><input class="inputmaxi" value="{{objTicket.badge}}" disabled></td>
-                                </tr>
-                                <tr>
-                                    <th scope="col">Stato</th>
-                                    <th scope="col">Data2</th>
-                                    <th scope="col">Cliente</th>
-                                </tr>
-                                <tr>
-                                    <td><input class="inputmini" value="{{objTicket.statoTicket}}" disabled></td>
-                                    <td><input class="inputmidi" value="{{objTicket.data1 | date: 'dd/mm/yyyy'}}"
-                                            disabled>
-                                    </td>
-                                    <td><input class="inputmaxi" value="{{objTicket.customer.ragsoc}}" disabled></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                      </div>
-
-                    </div>
-                </div> -->
         </mat-expansion-panel>
-      </mat-accordion>
+      </mat-accordion> -->
     </div>
   </div>
 

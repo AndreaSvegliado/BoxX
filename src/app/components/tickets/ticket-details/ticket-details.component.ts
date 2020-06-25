@@ -21,7 +21,7 @@ export class TicketDetailsComponent implements OnInit {
   mticketID: string;
   objTicket: ticket;
   panelOpenState = false;
-
+  public isCollapsed = true;
   //@ViewChild('accordion',{static:true}) Accordion: MatAccordion
   //disableAnimation = false;
   constructor(private snackBar: MatSnackBar,
