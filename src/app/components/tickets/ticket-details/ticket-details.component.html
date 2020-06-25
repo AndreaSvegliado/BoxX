@@ -19,11 +19,12 @@
             {{objTicket.statoTicket}}
           </span>
         </span>
+
       </div>
 
 
 
-      <div class="col-xl-6 col-lg-12 topbuttons-container order-xl-12 order-lg-1 order-1 pr-3">
+      <div class="col-xl-6 col-lg-12 topbuttons-container order-xl-12 order-lg-1 order-1 pr-4">
         <button mat-flat-button class="topbutton-button" (click)="BackToList()">
           <mat-icon class="material-icons-outlined">view_agenda</mat-icon><span class="text-topbutton-button">Lista Ticket</span>
         </button>
@@ -36,183 +37,183 @@
         <button mat-flat-button class="topbutton-button" (click)="Print()">
           <mat-icon>print</mat-icon><span class="text-topbutton-button">Stampa</span>
         </button>
-      </div>
-
-    </div>
-
-    <div class="text-left ml-1">
-      <div class="col-lg-3 col-md-12 pl-0 pr-2">
-        <button type="button" class="btn btn-outline-primary" style="width: 100%" (click)="isCollapsed = !isCollapsed"
-          [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-          {{objTicket.customer.ragsoc}}
+        <button mat-stroked-button class="ml-1" (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+        <mat-icon>emoji_people</mat-icon> <span>Cliente</span>
         </button>
-      </div>
 
-      <div id="collapseExample" class="mt-2 mr-1" [ngbCollapse]="isCollapsed">
-        <div class="card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-                <div class="row">
-                  <div class="col-12">
-                    <div class="mycard pt-3 pb-4 mt-1">
-                      <div class="row">
-                        <div class="col-9">
-                          <div class="text-center">
-                            Ragione Sociale Cliente
+
+
+
+
+
+
+          <!-- <mat-accordion>
+            <mat-expansion-panel class="accordion-header">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <div class="details-title">Ticket {{objTicket.n_Ticket}}</div>
+                  <div class="details-subtitle ml-2"> [{{objTicket.data1 | date: 'dd/MM/yyyy'}}]</div>
+                  <div [ngSwitch]="objTicket.tipoTicket">
+                    <div class="ticket-tipo align-middle ml-4" *ngSwitchCase="'A'" [ngClass]="ticketClassTipo()">
+                      Assistenza
+                    </div>
+                    <div class="ticket-tipo align-middle ml-4" *ngSwitchCase="'I'" [ngClass]="ticketClassTipo()">
+                      Installazione
+                    </div>
+                  </div>
+                  <div class="ticket-tipo-status" [ngClass]="ticketClassTipo()">
+                    {{objTicket.statoTicket}}
+                  </div>
+                </mat-panel-title>
+                <mat-panel-description style="position: absolute; right: 50px;">
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <mat-divider></mat-divider>
+
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="mycard pt-3 pb-4 mt-1">
+                        <div class="row">
+                          <div class="col-9">
+                            <div class="text-center">
+                              Ragione Sociale Cliente
+                            </div>
+                            <div class="text-center">
+                              <input class="input100" value="{{objTicket.customer.ragsoc}}" disabled>
+                            </div>
                           </div>
-                          <div class="text-center">
-                            <input class="input100" value="{{objTicket.customer.ragsoc}}" disabled>
+                          <div class="col-3">
+                            <div class="text-center">
+                              Codice
+                            </div>
+                            <div class="text-center">
+                              <input class="input100" value="{{objTicket.customer.codice}}" disabled>
+                            </div>
                           </div>
                         </div>
-                        <div class="col-3">
-                          <div class="text-center">
-                            Codice
-                          </div>
-                          <div class="text-center">
-                            <input class="input100" value="{{objTicket.customer.codice}}" disabled>
-                          </div>
+                        <div class="text-center mt-2">
+                          Indirizzo
                         </div>
-                      </div>
-                      <div class="text-center mt-2">
-                        Indirizzo
-                      </div>
-                      <div class="text-center">
-                        <input class="input100" value="{{objTicket.customer.indirizzo}}" disabled>
-                      </div>
-                      <div class="row">
-                        <div class="col-6">
-                          <div class="text-center mt-2">
-                            Città
-                          </div>
-                          <div class="text-center">
-                            <input class="input100" value="{{objTicket.customer.citta}}" disabled>
-                          </div>
+                        <div class="text-center">
+                          <input class="input100" value="{{objTicket.customer.indirizzo}}" disabled>
                         </div>
-                        <div class="col-3">
-                          <div class="text-center mt-2">
-                            Prov
+                        <div class="row">
+                          <div class="col-6">
+                            <div class="text-center mt-2">
+                              Città
+                            </div>
+                            <div class="text-center">
+                              <input class="input100" value="{{objTicket.customer.citta}}" disabled>
+                            </div>
                           </div>
-                          <div class="text-center">
-                            <input class="input100" value="{{objTicket.customer.prov}}" disabled>
+                          <div class="col-3">
+                            <div class="text-center mt-2">
+                              Prov
+                            </div>
+                            <div class="text-center">
+                              <input class="input100" value="{{objTicket.customer.prov}}" disabled>
+                            </div>
                           </div>
-                        </div>
-                        <div class="col-3">
-                          <div class="text-center mt-2">
-                            Stato
-                          </div>
-                          <div class="text-center">
-                            <input class="input100" value="{{objTicket.customer.nazione}}" disabled>
+                          <div class="col-3">
+                            <div class="text-center mt-2">
+                              Stato
+                            </div>
+                            <div class="text-center">
+                              <input class="input100" value="{{objTicket.customer.nazione}}" disabled>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-                <google-map class="map" height="200px" width="100%"></google-map>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
+                  <google-map class="map" height="200px" width="100%"></google-map>
+                </div>
+              </div>
+            </mat-expansion-panel>
+          </mat-accordion> -->
+
+      </div>
+    </div>
+
+
+  </div>
+
+  <div id="collapseExample" class="mt-2 mr-1 ml-1" [ngbCollapse]="isCollapsed">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-1">
+            <div class="row">
+              <div class="col-12">
+                <div class="mycard pt-3 pb-4 mt-1">
+                  <div class="row">
+                    <div class="col-9">
+                      <div class="text-center">
+                        Ragione Sociale Cliente
+                      </div>
+                      <div class="text-center">
+                        <input class="input100" value="{{objTicket.customer.ragsoc}}" disabled>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="text-center">
+                        Codice
+                      </div>
+                      <div class="text-center">
+                        <input class="input100" value="{{objTicket.customer.codice}}" disabled>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center mt-2">
+                    Indirizzo
+                  </div>
+                  <div class="text-center">
+                    <input class="input100" value="{{objTicket.customer.indirizzo}}" disabled>
+                  </div>
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="text-center mt-2">
+                        Città
+                      </div>
+                      <div class="text-center">
+                        <input class="input100" value="{{objTicket.customer.citta}}" disabled>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="text-center mt-2">
+                        Prov
+                      </div>
+                      <div class="text-center">
+                        <input class="input100" value="{{objTicket.customer.prov}}" disabled>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="text-center mt-2">
+                        Stato
+                      </div>
+                      <div class="text-center">
+                        <input class="input100" value="{{objTicket.customer.nazione}}" disabled>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
+            <google-map class="map" height="200px" width="100%"></google-map>
           </div>
         </div>
       </div>
-
-
-      <!-- <mat-accordion>
-        <mat-expansion-panel class="accordion-header">
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <div class="details-title">Ticket {{objTicket.n_Ticket}}</div>
-              <div class="details-subtitle ml-2"> [{{objTicket.data1 | date: 'dd/MM/yyyy'}}]</div>
-              <div [ngSwitch]="objTicket.tipoTicket">
-                <div class="ticket-tipo align-middle ml-4" *ngSwitchCase="'A'" [ngClass]="ticketClassTipo()">
-                  Assistenza
-                </div>
-                <div class="ticket-tipo align-middle ml-4" *ngSwitchCase="'I'" [ngClass]="ticketClassTipo()">
-                  Installazione
-                </div>
-              </div>
-              <div class="ticket-tipo-status" [ngClass]="ticketClassTipo()">
-                {{objTicket.statoTicket}}
-              </div>
-            </mat-panel-title>
-            <mat-panel-description style="position: absolute; right: 50px;">
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-          <mat-divider></mat-divider>
-
-          <div class="row">
-            <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-              <div class="row">
-                <div class="col-12">
-                  <div class="mycard pt-3 pb-4 mt-1">
-                    <div class="row">
-                      <div class="col-9">
-                        <div class="text-center">
-                          Ragione Sociale Cliente
-                        </div>
-                        <div class="text-center">
-                          <input class="input100" value="{{objTicket.customer.ragsoc}}" disabled>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="text-center">
-                          Codice
-                        </div>
-                        <div class="text-center">
-                          <input class="input100" value="{{objTicket.customer.codice}}" disabled>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="text-center mt-2">
-                      Indirizzo
-                    </div>
-                    <div class="text-center">
-                      <input class="input100" value="{{objTicket.customer.indirizzo}}" disabled>
-                    </div>
-                    <div class="row">
-                      <div class="col-6">
-                        <div class="text-center mt-2">
-                          Città
-                        </div>
-                        <div class="text-center">
-                          <input class="input100" value="{{objTicket.customer.citta}}" disabled>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="text-center mt-2">
-                          Prov
-                        </div>
-                        <div class="text-center">
-                          <input class="input100" value="{{objTicket.customer.prov}}" disabled>
-                        </div>
-                      </div>
-                      <div class="col-3">
-                        <div class="text-center mt-2">
-                          Stato
-                        </div>
-                        <div class="text-center">
-                          <input class="input100" value="{{objTicket.customer.nazione}}" disabled>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6 col-sm-12 col-12 mt-2">
-              <google-map class="map" height="200px" width="100%"></google-map>
-            </div>
-          </div>
-        </mat-expansion-panel>
-      </mat-accordion> -->
     </div>
   </div>
-
-
 
 
 
