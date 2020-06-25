@@ -96,6 +96,10 @@ export class CalendarComponent implements OnInit {
       this.defaultView = environment.fullcalendarConfig.defaultView_home;
     }
 
+
+
+
+
     this.tService.getTicketList()
     .subscribe(
       res=>  {
@@ -145,6 +149,8 @@ export class CalendarComponent implements OnInit {
     if (this.screenWidth > 1000) { api.setOption('weekNumbers', true) } else { api.setOption('weekNumbers', false) }
 
     api.render();
+
+    api.gotoDate ('2020-10-10');
 
   }
 
