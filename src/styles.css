@@ -7,8 +7,8 @@
 @import "~@fullcalendar/list/main.css";
 @import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
 /*********************    IMPOSTAZIONI CSS GENERALI    ***********************/
-*:not(mat-icon){
-  font-family: Titillium Web, sans-serif !important
+*:not(mat-icon) {
+  font-family: Titillium Web, sans-serif !important;
 }
 
 html,
@@ -19,7 +19,6 @@ body {
   font-family: Titillium Web, sans-serif !important;
   background-color: white;
 }
-
 
 form {
   margin: 0px 16px;
@@ -128,7 +127,7 @@ div.form-group.required > label:first-child:after {
   -webkit-border-radius: 10px 10px 10px 10px;
   border-radius: 10px 10px 10px 10px;
   /*background: #2e3137;*/
-   background: url('./assets/img/backgrounddark.jpg');
+  background: url("./assets/img/backgrounddark.jpg");
   background-size: cover;
   padding: 30px;
   width: 90%;
@@ -139,7 +138,6 @@ div.form-group.required > label:first-child:after {
   box-shadow: 0 30px 60px 0 rgba(0, 0, 0, 0.3);
 }
 
-
 .myspinner {
   margin: auto;
 }
@@ -148,12 +146,12 @@ div.form-group.required > label:first-child:after {
   margin-top: 10px;
 }
 
-.mat-progress-spinner circle, .mat-spinner circle {
+.mat-progress-spinner circle,
+.mat-spinner circle {
   stroke: white;
 }
 
-
-.usericon{
+.usericon {
   width: 150px;
 }
 /*********************    SIDENAV FOOTER e HEADER    *************************/
@@ -173,33 +171,31 @@ div.form-group.required > label:first-child:after {
   width: 20px;
 }
 
-.a-sidenav{
-  color: grey!important;
+.a-sidenav {
+  color: grey !important;
 }
 
-
-.active-list-item mat-icon{
+.active-list-item mat-icon {
   color: white;
 }
 
-
-.active-list-item .a-sidenav{
-  color: white!important;
+.active-list-item .a-sidenav {
+  color: white !important;
 }
 
-.mat-icon-sidenav{
+.mat-icon-sidenav {
   color: grey;
 }
 
 .mat-icon-sidenav {
   color: grey;
 }
-.mat-icon-sidenav:hover{
-  color:white;
+.mat-icon-sidenav:hover {
+  color: white;
 }
 
 .btn-sidenav:focus {
-  color: transparent!important;
+  color: transparent !important;
 }
 
 .btn-openclose-sidenav:focus {
@@ -207,7 +203,7 @@ div.form-group.required > label:first-child:after {
 }
 
 .last-item {
-  position: absolute!important;
+  position: absolute !important;
   bottom: 0px;
   font-size: 12px;
 }
@@ -414,9 +410,7 @@ footer {
     color: transparent !important;
     width: 30px;
     height: 30px;
-    padding:0px;
-
-
+    padding: 0px;
   }
 
   .fc-timeGridDay-button {
@@ -425,7 +419,7 @@ footer {
     color: transparent !important;
     width: 30px;
     height: 30px;
-    padding:0px;
+    padding: 0px;
     z-index: 2;
     /*inspiegabilmente per solo questo button serve altrimenti non va quando quello a sx è attivo (e assume z-index: 1 in quanto tale*/
   }
@@ -489,19 +483,17 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-
 .icona-list {
   font-size: 13px;
 }
 
 .nickspinner {
-  margin: auto!important;
-  position: absolute!important;
-  top: 0!important;
-  left: 0!important;
-  right: 0px!important;
+  margin: auto !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0px !important;
   stroke: grey;
-
 }
 
 .nickspinner-container {
@@ -510,4 +502,14 @@ body {
 
 .nickspinner circle {
   stroke: #545d6a;
+}
+
+.details-header {
+  text-align: left !important;
+}
+
+@media screen and (max-width: 1199px) {
+  .details-header {
+    text-align: center !important;
+  }
 }

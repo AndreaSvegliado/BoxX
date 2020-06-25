@@ -5,7 +5,7 @@
   <div class="fixed-header">
 
     <div class="row">
-      <div class="col-md-6 col-sm-12 mt-3 text-left pl-4 pb-3 order-md-1 order-sm-12">
+      <div class=" details-header col-xl-6 col-lg-12 mt-3 text-left pl-4 pb-3 order-xl-1 order-lg-12 order-12">
         <span class="details-title">Ticket {{objTicket.n_Ticket}}</span>
         <span class="details-subtitle"> [{{objTicket.data1 | date: 'dd/MM/yyyy'}}]</span>
         <span class="" [ngSwitch]="objTicket.tipoTicket">
@@ -23,18 +23,18 @@
 
 
 
-      <div class="col-md-6 col-sm-12 topbuttons-container order-md-12 order-sm-1 pr-3">
+      <div class="col-xl-6 col-lg-12 topbuttons-container order-xl-12 order-lg-1 order-1 pr-3">
         <button mat-flat-button class="topbutton-button" (click)="BackToList()">
-          <mat-icon class="material-icons-outlined">view_agenda</mat-icon> Lista Ticket
+          <mat-icon class="material-icons-outlined">view_agenda</mat-icon><span class="text-topbutton-button">Lista Ticket</span>
         </button>
         <button mat-flat-button class="topbutton-button" (click)="BackToCalendar()">
-          <mat-icon class="material-icons-outlined">event</mat-icon> Calendario
+          <mat-icon class="material-icons-outlined">event</mat-icon><span class="text-topbutton-button">Calendario</span>
         </button>
         <button mat-flat-button class="topbutton-button" (click)="Confirm()">
-          <mat-icon>check_circle</mat-icon> Conferma
+          <mat-icon>check_circle</mat-icon> <span class="text-topbutton-button">Conferma</span>
         </button>
         <button mat-flat-button class="topbutton-button" (click)="Print()">
-          <mat-icon>print</mat-icon> Stampa
+          <mat-icon>print</mat-icon><span class="text-topbutton-button">Stampa</span>
         </button>
       </div>
 
