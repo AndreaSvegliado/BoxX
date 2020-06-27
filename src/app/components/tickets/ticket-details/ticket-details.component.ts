@@ -61,7 +61,11 @@ export class TicketDetailsComponent implements OnInit {
     //this.router.navigate(['/home', {id:selectID}]);
   }
   BackToCalendar() {
-    this.router.navigate(['/calendar']);
+
+    //this.router.navigate(['/calendar']);
+    //devo beccare la data
+    this.router.navigate(['/calendar', this.objTicket.data1]);
+
   }
 
   Confirm() {

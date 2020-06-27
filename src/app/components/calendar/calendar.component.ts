@@ -11,7 +11,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 
 import { ticketEvent, ticket } from 'src/app/models/models';
 import { TicketService } from 'src/app/services/ticket.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-calendar',
@@ -83,7 +83,7 @@ export class CalendarComponent implements OnInit {
 
   //@HostListener('window:resize', ['$event']) //non sembra funzionare
 
-  constructor(private router : Router, private tService: TicketService) {
+  constructor(private router : Router, private tService: TicketService, private route: ActivatedRoute,) {
     this.screenHeight = window.innerHeight;        //AS: ????
     this.screenWidth = window.innerWidth;
 
@@ -148,7 +148,9 @@ export class CalendarComponent implements OnInit {
     api.setOption('themeSystem', 'bootstrap');          //non so a cosa serva
     if (this.screenWidth > 1000) { api.setOption('weekNumbers', true) } else { api.setOption('weekNumbers', false) }
     api.render();
-    api.gotoDate ('2020-10-10'); //funziona! quindi basta che qui arrivi la data dalla pagina ticket-details
+
+    let dateToGo = this.route.snapshot.params['dateToGo'];
+    api.gotoDate (dateToGo); //funziona! quindi basta che qui arrivi la data dalla pagina ticket-details
 
   }
 

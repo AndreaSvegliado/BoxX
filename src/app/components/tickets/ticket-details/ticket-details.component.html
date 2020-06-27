@@ -25,6 +25,10 @@
 
 
       <div class="col-xl-6 col-lg-12 topbuttons-container order-xl-12 order-lg-1 order-1 pr-4">
+        <button mat-stroked-button class="ml-1" (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
+        <span>Cliente</span>
+        </button>
         <button mat-flat-button class="topbutton-button" (click)="BackToList()">
           <mat-icon class="material-icons-outlined">view_agenda</mat-icon><span class="text-topbutton-button">Lista Ticket</span>
         </button>
@@ -37,10 +41,7 @@
         <button mat-flat-button class="topbutton-button" (click)="Print()">
           <mat-icon>print</mat-icon><span class="text-topbutton-button">Stampa</span>
         </button>
-        <button mat-stroked-button class="ml-1" (click)="isCollapsed = !isCollapsed"
-        [attr.aria-expanded]="!isCollapsed" aria-controls="collapseExample">
-        <span>Cliente</span>
-        </button>
+
 
 
 
