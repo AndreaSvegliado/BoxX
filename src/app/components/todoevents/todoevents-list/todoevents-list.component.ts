@@ -17,13 +17,13 @@ export class TodoEventsListComponent implements OnInit {
   todoEventsForms: FormArray = this.fb.array([]);
   todoEvents: todoEvent[];
 
-
   constructor(private fb: FormBuilder, private todoEventsService: TodoEventsService) { 
 
-    this.todoEventsService.getTodoList()
+    //Grid List
+    this.todoEventsService.getTodoEventList()
       .subscribe(res=> this.todoEvents = res as todoEvent[]); 
 
-    this.todoEventsService.getTodoList().subscribe(
+    this.todoEventsService.getTodoEventList().subscribe(
       res => { 
         if (res==[])
           this.addTodoEventsForm();
@@ -36,6 +36,14 @@ export class TodoEventsListComponent implements OnInit {
               titolo : [todo.titolo],
               dettagli: [todo.dettagli]
 
+              //dt: Date;
+              //h_Ini: Date;
+          
+              //userID: string;
+              //causaleID: number;
+              //ticketID: number;
+              //objTicket: ticket;
+
               //accountNumber :[bankAccount.AccountNumber, Validators.required],
               //accountHolder :[bankAccount.AccountHolder, Validators.required],
               //bankID : [bankAccount.BankID, Validators.min(1)],
@@ -47,20 +55,7 @@ export class TodoEventsListComponent implements OnInit {
       }
     );
   }
-/*
-    id: number;
-    userID: string;
-    causaleID: number;
-    
-    ticketID: number;
-    objTicket: ticket;
 
-    titolo: string;
-    dettagli: string;
-    dt: Date;
-    h_Ini: Date;
-
-*/
   ngOnInit() {
     
     
@@ -79,4 +74,38 @@ export class TodoEventsListComponent implements OnInit {
       //h_Ini : ['', Validators.required]
     }))
   }
+
+  recordSubmit(fg:FormGroup)  {
+    
+    console.log("DEBUG - " + fg.value);
+      if(fg.value.id == 0){
+        //Insert
+        this.todoEventsService.postTodoEvent(fg.value).subscribe(
+          (res: any) => {
+            fg.patchValue ({ id: res.id });     ///riporto l'id generato dall'insert
+            //this.showNotification('insert');
+          });
+      }
+      else{
+        //Update
+        this.todoEventsService.putTodoEvent( fg.value).subscribe(
+          (res: any) => {
+            //this.showNotification('update');
+          
+          });
+      }
+    }
+  
+    onDelete(id, i) {
+      if (id == 0)
+        this.todoEventsForms.removeAt(i);
+      else if (confirm('Si conferma la cancellazione del record ?'))
+        this.todoEventsService.deleteTodoEvent(id).subscribe(
+          res => {
+            this.todoEventsForms.removeAt(i);
+            //this.showNotification('delete');
+          });
+    }
+
+
 }

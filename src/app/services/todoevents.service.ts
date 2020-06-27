@@ -17,7 +17,7 @@ export class TodoEventsService {
     
   }
 
-  getTodoList(): Observable<todoEvent[]>
+  getTodoEventList(): Observable<todoEvent[]>
   {
     if(localStorage.getItem('currentUser') != null)
       this.currUser = JSON.parse(localStorage.getItem('currentUser'));
@@ -34,4 +34,23 @@ export class TodoEventsService {
   getTodoEvent(todoEvent: number){
     return this.http.get(environment.apiBaseUrl  + '/TodoEvents/' + todoEvent );
   }
+
+
+  //AS: metodo di passaggio dati come parametro (in alternativa ad avere una variabile formData sul servizio -->  vedi TicketDetailService)
+  postTodoEvent(formData){
+    formData.ticketID = +formData.ticketID;
+    return this.http.post( environment.apiBaseUrl   + '/TodoEvents',formData)  
+  }  
+  
+  putTodoEvent(formData){
+console.log("putTodoEvent");
+
+    formData.ticketID = +formData.ticketID;
+    return this.http.put( environment.apiBaseUrl  + '/TodoEvents/' + formData.id , formData)    
+  }
+
+  deleteTodoEvent(  id  ){
+    return this.http.delete(  environment.apiBaseUrl  + '/TodoEvents/' + id ) ;
+  }
+
 }

@@ -10,14 +10,14 @@
   <table  class="table table-hover">
     <thead>
       <tr>
-        <th><mat-icon class="icona-list">list</mat-icon>id</th>
-        <th><mat-icon class="icona-list">perm_identity</mat-icon>UserID</th>
-        <th><mat-icon class="icona-list">list</mat-icon>CausaleID</th>
-        <th><mat-icon class="icona-list">note</mat-icon>TicketID</th>
-        <th><mat-icon class="icona-list">class</mat-icon>Titolo</th>
-        <th><mat-icon class="icona-list">reorder</mat-icon>Dettagli</th>
-        <th><mat-icon class="icona-list">event</mat-icon>Dt</th>
-        <th><mat-icon class="icona-list">alarm</mat-icon>H_ini</th>
+        <th>id</th>
+        <th>UserID</th>
+        <th>CausaleID</th>
+        <th>TicketID</th>
+        <th>Titolo</th>
+        <th>Dettagli</th>
+        <th>Dt</th>
+        <th>H_ini</th>
         <th></th>
       </tr>
     </thead>
@@ -43,8 +43,7 @@
               <div class="td">Titolo</div>
               <div class="td">Dettaglio</div>
               <div class="td">
-                 <!-- <button class="btn btn-outline-dark" (click)="addBankAccountForm()"> -->
-                   <button class="btn btn-outline-dark" > 
+                 <button class="btn btn-outline-dark" (click)="addTodoEventsForm()">
                   <mat-icon>add</mat-icon> 
                     Nuova riga
                   </button>        
@@ -62,7 +61,8 @@
           </div>
       </div>
       <div class="tbody">
-        <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of todoEventsForms.controls; let i=index;">
+        <!-- <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of todoEventsForms.controls; let i=index;">-->
+        <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of todoEventsForms.controls; let i=index;" (submit)="recordSubmit(fgroup)">
           <div class="td">
             <input   class="form-control" formControlName="id">
           </div>  
@@ -99,13 +99,12 @@
           <div class="td">
             
             <button type="submit" class="btn btn-success" [disabled]="fgroup.invalid"
-                [ngClass]="fgroup.get('id').value==0?'btn-success':'btn-outline-dark'">
+                [ngClass]="fgroup.get('id').value==0 ?'btn-success':'btn-outline-dark'">
                 <mat-icon>save_alt</mat-icon>
-                {{fgroup.get('id').value==0?'Submit':'Update'}}
+             <!--   {{fgroup.get('id').value==0 ? 'Submit':'Update'}} -->
             </button>
-            <button class="btn btn-light ml-1" >
+            <button class="btn btn-light ml-1"  (click)="onDelete(fgroup.get('id').value,i)">
                 <mat-icon>delete</mat-icon>
-              {{fgroup.get('id').value==0?'Submit':'Update'}}
             </button>
           
         </div>                     
