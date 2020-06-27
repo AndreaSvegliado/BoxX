@@ -77,14 +77,17 @@ export class TodoEventsListComponent implements OnInit {
 
   recordSubmit(fg:FormGroup)  {
     
-    console.log("DEBUG - " + fg.value);
       if(fg.value.id == 0){
         //Insert
         this.todoEventsService.postTodoEvent(fg.value).subscribe(
           (res: any) => {
+            //console.log("OK INSERT");
             fg.patchValue ({ id: res.id });     ///riporto l'id generato dall'insert
             //this.showNotification('insert');
-          });
+          },
+          err => {
+            console.log(err);
+           });
       }
       else{
         //Update

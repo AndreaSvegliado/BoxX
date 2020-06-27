@@ -38,12 +38,14 @@ export class TodoEventsService {
 
   //AS: metodo di passaggio dati come parametro (in alternativa ad avere una variabile formData sul servizio -->  vedi TicketDetailService)
   postTodoEvent(formData){
+    //console.log("postTodoEvent");
+
     formData.ticketID = +formData.ticketID;
     return this.http.post( environment.apiBaseUrl   + '/TodoEvents',formData)  
   }  
   
   putTodoEvent(formData){
-console.log("putTodoEvent");
+    //console.log("putTodoEvent");
 
     formData.ticketID = +formData.ticketID;
     return this.http.put( environment.apiBaseUrl  + '/TodoEvents/' + formData.id , formData)    
