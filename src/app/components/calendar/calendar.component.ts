@@ -150,7 +150,9 @@ export class CalendarComponent implements OnInit {
     api.render();
 
     let dateToGo = this.route.snapshot.params['dateToGo'];
-    api.gotoDate (dateToGo); //funziona! quindi basta che qui arrivi la data dalla pagina ticket-details
+    if (dateToGo) {
+    api.gotoDate (dateToGo);
+    }
 
   }
 

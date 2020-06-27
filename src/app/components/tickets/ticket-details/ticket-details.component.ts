@@ -64,6 +64,7 @@ export class TicketDetailsComponent implements OnInit {
 
     //this.router.navigate(['/calendar']);
     //devo beccare la data
+
     this.router.navigate(['/calendar', this.objTicket.data1]);
 
   }
