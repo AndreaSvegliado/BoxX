@@ -62,8 +62,9 @@ export class TicketDetailsComponent implements OnInit {
   }
   BackToCalendar() {
 
-    this.router.navigate(['/calendar']);
-    //this.router.navigate(['/calendar', '2020-10-10']);
+    //this.router.navigate(['/calendar']);
+    //devo beccare la data
+    this.router.navigate(['/calendar', this.objTicket.data1]);
 
   }
 

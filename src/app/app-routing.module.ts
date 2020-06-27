@@ -19,7 +19,7 @@ import { TodoEventsListComponent } from './components/todoevents/todoevents-list
 
 
 const routes: Routes = [
-  
+
   { path:'default', component: DefaultComponent, canActivate:[AuthGuard]  },
   //{ path:'home', component: DefaultComponent, canActivate:[AuthGuard]  },
 
@@ -30,7 +30,7 @@ const routes: Routes = [
   { path:'ticket-list', component: TicketListComponent, canActivate:[AuthGuard]},
 
   { path:'calendar', component: CalendarComponent, canActivate:[AuthGuard]  },
-
+  { path:'calendar/:dateToGo', component: CalendarComponent, canActivate:[AuthGuard]  },
   { path:'todoevents-list', component: TodoEventsListComponent, canActivate:[AuthGuard]},
 
   //...
@@ -38,10 +38,10 @@ const routes: Routes = [
 
 
   { path:'' , redirectTo: 'user/login', pathMatch: 'full' },
-  { path:'user', component: UserComponent, 
+  { path:'user', component: UserComponent,
     children:[
     {path:'registration', component: RegistrationComponent },
-    {path:'login', component: LoginComponent }     
+    {path:'login', component: LoginComponent }
     ]
   },
 
