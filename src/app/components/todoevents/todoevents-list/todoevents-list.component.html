@@ -7,7 +7,7 @@
 <p></p> -->
 
 
-<table  class="table table-hover">
+  <table  class="table table-hover">
     <thead>
       <tr>
         <th><mat-icon class="icona-list">list</mat-icon>id</th>
@@ -35,6 +35,81 @@
       </tr>
     </tbody>
   </table>
+
+    <div class="grid-table">
+      <div class="thead">
+          <div class="tr">
+              <div class="td">ID</div>
+              <div class="td">Titolo</div>
+              <div class="td">Dettaglio</div>
+              <div class="td">
+                 <!-- <button class="btn btn-outline-dark" (click)="addBankAccountForm()"> -->
+                   <button class="btn btn-outline-dark" > 
+                  <mat-icon>add</mat-icon> 
+                    Nuova riga
+                  </button>        
+              </div>
+              
+              <!--
+              <div class="td">
+                  <span *ngIf="notification" class="elementToFadeInAndOut">
+                      <i class="fas fa-check-circle {{notification.class}}"></i>
+                      
+                      {{notification.message}}
+                  </span>
+              </div>
+            -->
+          </div>
+      </div>
+      <div class="tbody">
+        <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of todoEventsForms.controls; let i=index;">
+          <div class="td">
+            <input   class="form-control" formControlName="id">
+          </div>  
+          <div class="td">
+              <input   class="form-control" formControlName="titolo">
+          </div>
+          <div class="td">
+              <input   class="form-control" formControlName="dettagli">
+          </div>
+          <!--
+            <div class="td">
+                <input   class="form-control" formControlName="bankID">
+                <select   class="form-control" formControlName="bankID">  
+                    <option value="0">Select</option>
+                    <option *ngFor="let item of bankList" value="{{item.bankID}}">{{item.bankName}}</option>
+                </select>
+            </div>                                
+            <div class="td">
+                <input   class="form-control" formControlName="IFSC">  
+            </div>  
+          
+            <div class="td">
+                <button type="submit" class="btn btn-success" [disabled]="fgroup.invalid"
+                    [ngClass]="fgroup.get('bankAccountID').value==0?'btn-success':'btn-outline-dark'">
+                    <mat-icon>save_alt</mat-icon>
+                    {{fgroup.get('bankAccountID').value==0?'Submit':'Update'}}
+                </button>
+                <button class="btn btn-light ml-1" (click)="onDelete(fgroup.get('bankAccountID').value,i)">
+                    <mat-icon>delete</mat-icon>
+                  {{fgroup.get('bankAccountID').value==0?'Submit':'Update'}}
+                </button>
+            </div>   
+          -->        
+          <div class="td">
+            <button type="submit" class="btn btn-success" [disabled]="fgroup.invalid"
+                [ngClass]="fgroup.get('bankAccountID').value==0?'btn-success':'btn-outline-dark'">
+                <mat-icon>save_alt</mat-icon>
+                {{fgroup.get('id').value==0?'Submit':'Update'}}
+            </button>
+            <button class="btn btn-light ml-1" >
+                <mat-icon>delete</mat-icon>
+              {{fgroup.get('id').value==0?'Submit':'Update'}}
+            </button>
+        </div>                     
+        </form>
+    </div>
+  </div>
 
   <router-outlet></router-outlet>
   <app-snackbar></app-snackbar>
