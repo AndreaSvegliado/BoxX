@@ -24,10 +24,12 @@ export class TodoEventsService {
 
     //http://188.152.211.199/iQWApi/api/TodoEvents/GetByBadge/666
     //return this.http.get<todoEvent[]>(environment.apiBaseUrl + '/TodoEvents/GetByBadge/' + this.currUser.badge);     
-    //return this.http.get<todoEvent[]>(environment.apiBaseUrl + '/TodoEvents/GetByUserID/' + this.currUser.userID);     
 
-    //TEMPORANEO (niente filtro per utente):
-    return this.http.get<todoEvent[]>(environment.apiBaseUrl + '/TodoEvents/');     
+    //http://188.152.211.199/iQWApi/api/TodoEvents/GetByUserID/75b01815-1282-4459-bbf5-61bc877a9100
+    return this.http.get<todoEvent[]>(environment.apiBaseUrl + '/TodoEvents/GetByUserID/' + this.currUser.userID);
+
+    //TEMPORANEO niente filtro per utente):
+    //return this.http.get<todoEvent[]>(environment.apiBaseUrl + '/TodoEvents/');     
 
   }
 
@@ -38,15 +40,14 @@ export class TodoEventsService {
 
   //AS: metodo di passaggio dati come parametro (in alternativa ad avere una variabile formData sul servizio -->  vedi TicketDetailService)
   postTodoEvent(formData){
-    //console.log("postTodoEvent");
+    this.currUser = JSON.parse(localStorage.getItem('currentUser'));
+    formData.userID = this.currUser.userID;
+    formData.ticketID = +formData.ticketID;       //forzo la conversione su tipo number
 
-    formData.ticketID = +formData.ticketID;
     return this.http.post( environment.apiBaseUrl   + '/TodoEvents',formData)  
   }  
   
   putTodoEvent(formData){
-    //console.log("putTodoEvent");
-
     formData.ticketID = +formData.ticketID;
     return this.http.put( environment.apiBaseUrl  + '/TodoEvents/' + formData.id , formData)    
   }

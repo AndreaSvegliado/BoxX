@@ -3,6 +3,7 @@ import { Time } from '@angular/common';
 import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
 
 export interface currentUser {
+    userID: string;
     fullname: string;
     email: string;
     username: string;
@@ -60,6 +61,7 @@ export class todoEvent{
     ticketID: number;
     objTicket: ticket;
 
+    isClosed: boolean;
     titolo: string;
     dettagli: string;
     dt: Date;

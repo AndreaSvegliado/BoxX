@@ -37,39 +37,30 @@
   </table> -->
   <mat-spinner class="nickspinner" diameter="30" *ngIf="loading"></mat-spinner>
     <div class="grid-table">
-      <div class="thead">
-          <div class="tr">
-              <div class="td">ID</div>
-              <div class="td">Titolo</div>
-              <div class="td">Dettaglio</div>
-              <div class="td">
-                 <button class="btn btn-outline-dark" (click)="addTodoEventsForm()">
-                  <mat-icon>add</mat-icon>
-                  </button>
-              </div>
-              <div class="td"></div>
-              <!--
-              <div class="td">
-                  <span *ngIf="notification" class="elementToFadeInAndOut">
-                      <i class="fas fa-check-circle {{notification.class}}"></i>
-                      {{notification.message}}
-                  </span>
-              </div>
-            -->
+      <div >
+          <div class="tr" >
+            <div class="td">
+                <button class="btn btn-outline-dark" (click)="addTodoEventsForm()">
+                <mat-icon>add</mat-icon>
+                Aggiungi un'attività
+                </button>
+            </div>
           </div>
       </div>
+
       <div class="tbody">
         <!-- <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of todoEventsForms.controls; let i=index;">-->
         <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of todoEventsForms.controls; let i=index;" (submit)="recordSubmit(fgroup)">
-          <div class="td  tdID">
-            <input   class="form-control tdInput" formControlName="id">
+          <div class="td">
+            <mat-checkbox  #Chiuso  class="form-control" formControlName="isClosed" (change)="onChange(fgroup)"></mat-checkbox>
           </div>
           <div class="td">
-              <input   class="form-control" formControlName="titolo">
+            <input class="form-control" formControlName="titolo" [ngStyle]="{'text-decoration': Chiuso.checked === true ?'line-through': 'none'}"  (focusout)="onChange(fgroup)"> 
           </div>
           <div class="td">
-              <input   class="form-control" formControlName="dettagli">
+              <input class="form-control" formControlName="dettagli" [ngStyle]="{'text-decoration': Chiuso.checked === true ?'line-through': 'none'}"  (focusout)="onChange(fgroup)">
           </div>
+
           <!--
             <div class="td">
                 <input   class="form-control" formControlName="bankID">
@@ -78,30 +69,20 @@
                     <option *ngFor="let item of bankList" value="{{item.bankID}}">{{item.bankName}}</option>
                 </select>
             </div>
-            <div class="td">
-                <button type="submit" class="btn btn-success" [disabled]="fgroup.invalid"
-                    [ngClass]="fgroup.get('bankAccountID').value==0?'btn-success':'btn-outline-dark'">
-                    <mat-icon>save_alt</mat-icon>
-                    {{fgroup.get('bankAccountID').value==0?'Submit':'Update'}}
-                </button>
-                <button class="btn btn-light ml-1" (click)="onDelete(fgroup.get('bankAccountID').value,i)">
-                    <mat-icon>delete</mat-icon>
-                  {{fgroup.get('bankAccountID').value==0?'Submit':'Update'}}
-                </button>
-            </div>
           -->
+          <!--
           <div class="td">
             <button type="submit" class="btn btn-success" [disabled]="fgroup.invalid"
                 [ngClass]="fgroup.get('id').value==0 ?'btn-success':'btn-outline-dark'">
                 <mat-icon>save_alt</mat-icon>
-             <!--   {{fgroup.get('id').value==0 ? 'Submit':'Update'}} -->
             </button>
           </div>
+          -->
           <div class="td">
-            <button class="btn btn-light ml-1"  (click)="onDelete(fgroup.get('id').value,i)">
+
+            <button class="btn btn-light ml-1" [ngStyle]="{'visibility': Chiuso.checked === true ? 'visible' : 'hidden'}"  (click)="onDelete(fgroup.get('id').value,i)">
                 <mat-icon color="warn">delete</mat-icon>
             </button>
-
         </div>
         </form>
     </div>

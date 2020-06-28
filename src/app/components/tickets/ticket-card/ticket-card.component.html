@@ -40,9 +40,11 @@ onKeyUp(newValue: string) {
                     </div>
                 </div>
             </div>   
+            <!--
             <div class="col-4">
                 {{ticket.n_Ticket}}
             </div>
+        -->
             <div class="col-4 container-icona-mappa" *ngIf=ticket.customer.poi>
                 <a href="{{'http://www.google.com/maps/place/' + ticket.customer.poi}}" target="_blank">
                     <img class="icona-mappa" src="../../../../assets/img/icona-mappa-maxi.png">

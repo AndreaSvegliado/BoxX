@@ -6,7 +6,7 @@
 
     <div class="row">
       <div class=" details-header col-xl-6 col-lg-12 mt-3 text-left pl-4 pb-3 order-xl-1 order-lg-12 order-12">
-        <span class="details-title">Ticket {{objTicket.n_Ticket}}</span>
+        <span class="details-title">Ticket {{objTicket.n_Ticket }}</span>
         <span class="details-subtitle"> [{{objTicket.data1 | date: 'dd/MM/yyyy'}}]</span>
         <span class="" [ngSwitch]="objTicket.tipoTicket">
           <span class="ticket-tipo" *ngSwitchCase="'A'" [ngClass]="ticketClassTipo()">

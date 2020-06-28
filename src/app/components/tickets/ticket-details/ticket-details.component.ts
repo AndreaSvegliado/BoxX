@@ -22,6 +22,7 @@ export class TicketDetailsComponent implements OnInit {
   objTicket: ticket;
   panelOpenState = false;
   public isCollapsed = true;
+
   //@ViewChild('accordion',{static:true}) Accordion: MatAccordion
   //disableAnimation = false;
   constructor(private snackBar: MatSnackBar,
@@ -45,13 +46,17 @@ export class TicketDetailsComponent implements OnInit {
 
     let ID = this.route.snapshot.params['ID'];
     this.mticketID = ID;
+  
     this.ticketService.getTicket(this.mticketID)
       .subscribe(
         res => {
           this.objTicket = res as ticket;
-          //console.log(this.objTicket);
         }
       );
+  
+    //this.objTicket =
+    //var tmp =    this.ticketService.getTicket(this.mticketID);
+    //this.objTicket = tmp;
   }
 
   BackToList() {

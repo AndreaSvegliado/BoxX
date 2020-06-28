@@ -14,6 +14,7 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatRippleModule} from '@angular/material/core';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import  {MatCheckboxModule} from '@angular/material/checkbox';
 
 const  MaterialComponents = [
 MatButtonModule,
@@ -30,7 +31,8 @@ MatDialogModule,
 MatChipsModule,
 MatProgressSpinnerModule,
 MatRippleModule,
-MatButtonToggleModule
+MatButtonToggleModule,
+MatCheckboxModule
 ]
 
 @NgModule({

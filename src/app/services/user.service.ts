@@ -50,8 +50,6 @@ export class UserService {
 
   //Login(userName: string, userPwd: string) {
   Login(formData) {
-
-    //console.log("DEBUG: User.service/Login");
     return this.http.post<currentUser>(this.BaseURI  +'/ApplicationUser/Login', formData )
       .pipe(map(user => {
         if (user && user.token) {
