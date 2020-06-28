@@ -44,16 +44,16 @@
               <div class="td">Dettaglio</div>
               <div class="td">
                  <button class="btn btn-outline-dark" (click)="addTodoEventsForm()">
-                  <mat-icon>add</mat-icon> 
+                  <mat-icon>add</mat-icon>
                     Nuova riga
-                  </button>        
+                  </button>
               </div>
-              
+
               <!--
               <div class="td">
                   <span *ngIf="notification" class="elementToFadeInAndOut">
                       <i class="fas fa-check-circle {{notification.class}}"></i>
-                      
+
                       {{notification.message}}
                   </span>
               </div>
@@ -63,9 +63,9 @@
       <div class="tbody">
         <!-- <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of todoEventsForms.controls; let i=index;">-->
         <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of todoEventsForms.controls; let i=index;" (submit)="recordSubmit(fgroup)">
-          <div class="td">
-            <input   class="form-control" formControlName="id">
-          </div>  
+          <div class="td  tdID">
+            <input   class="form-control tdInput" formControlName="id">
+          </div>
           <div class="td">
               <input   class="form-control" formControlName="titolo">
           </div>
@@ -75,11 +75,11 @@
           <!--
             <div class="td">
                 <input   class="form-control" formControlName="bankID">
-                <select   class="form-control" formControlName="bankID">  
+                <select   class="form-control" formControlName="bankID">
                     <option value="0">Select</option>
                     <option *ngFor="let item of bankList" value="{{item.bankID}}">{{item.bankName}}</option>
                 </select>
-            </div>                                
+            </div>
             <div class="td">
                 <button type="submit" class="btn btn-success" [disabled]="fgroup.invalid"
                     [ngClass]="fgroup.get('bankAccountID').value==0?'btn-success':'btn-outline-dark'">
@@ -90,8 +90,8 @@
                     <mat-icon>delete</mat-icon>
                   {{fgroup.get('bankAccountID').value==0?'Submit':'Update'}}
                 </button>
-            </div>   
-          -->        
+            </div>
+          -->
           <div class="td">
             <button type="submit" class="btn btn-success" [disabled]="fgroup.invalid"
                 [ngClass]="fgroup.get('id').value==0 ?'btn-success':'btn-outline-dark'">
@@ -99,10 +99,10 @@
              <!--   {{fgroup.get('id').value==0 ? 'Submit':'Update'}} -->
             </button>
             <button class="btn btn-light ml-1"  (click)="onDelete(fgroup.get('id').value,i)">
-                <mat-icon>delete</mat-icon>
+                <mat-icon color="warn">delete</mat-icon>
             </button>
-          
-        </div>                     
+
+        </div>
         </form>
     </div>
   </div>

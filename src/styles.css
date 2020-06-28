@@ -513,3 +513,16 @@ body {
     text-align: center !important;
   }
 }
+
+
+/*******************************       TODO List       ***********************/
+
+.tdID {
+ width: 50px;
+}
+
+.tdInput {
+  text-align: center;
+  border: transparent;
+  background-color: transparent;
+}
