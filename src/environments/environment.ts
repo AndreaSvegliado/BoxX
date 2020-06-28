@@ -35,7 +35,7 @@ export const environment = {
     nowIndicator : true,
     weekLabel: '',
     defaultView: 'dayGridMonth',
-    defaultView_home : 'listWeek'
+    defaultView_home : 'dayGridMonth'
   }
 };
 

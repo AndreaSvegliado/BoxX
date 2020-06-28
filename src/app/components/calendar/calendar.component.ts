@@ -144,15 +144,20 @@ export class CalendarComponent implements OnInit {
   //nello stesso modo potevo passargli anche quelle di base
   ngAfterViewInit() {
     const api = this.calendario.getApi();
-    api.setOption('height', (this.screenHeight - 90));
+    if (this.pagina != 'home') {
+      api.setOption('height', (this.screenHeight - 90));
+    } else {
+      api.setOption('height', 450);
+    }
     api.setOption('themeSystem', 'bootstrap');          //non so a cosa serva
-    if (this.screenWidth > 1000) { api.setOption('weekNumbers', true) } else { api.setOption('weekNumbers', false) }
+    if ((this.screenWidth > 1000) && (this.pagina != 'home')) { api.setOption('weekNumbers', true) } else { api.setOption('weekNumbers', false) }
     api.render();
 
     let dateToGo = this.route.snapshot.params['dateToGo'];
     if (dateToGo) {
     api.gotoDate (dateToGo);
     }
+    api.gotoDate ('2019-12-09');
 
   }
 

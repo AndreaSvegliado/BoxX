@@ -54,9 +54,9 @@ div.form-group label:first-child {
   padding: 10px 1px 1px 5px;
 }
 
-.thead div.tr div.td:last-child {
+/* .thead div.tr div.td:last-child {
   background-color: rgb(126, 174, 219);
-}
+} */
 
 i:hover {
   cursor: pointer;

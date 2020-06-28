@@ -10,7 +10,7 @@ import { MatDialog, MatDialogRef} from '@angular/material/dialog';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent implements OnInit {
-
+  openedRight = false;
   opened = false;
   side_over = "side";
   fix_notfix ="notfix";
@@ -119,6 +119,14 @@ export class SidebarComponent implements OnInit {
         }
       }
    }
+  }
+
+  opencloseRight () {
+    if (this.openedRight == true) {
+      this.openedRight = false;
+    } else {
+      this.openedRight = true;
+    }
   }
 
   opencloseicon () {

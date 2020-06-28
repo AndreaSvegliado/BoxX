@@ -35,6 +35,7 @@
         <button class="btn btn-outline-light my-2 exit-button" (click)="onLogout()" title="Logout">
           <mat-icon mat-list-icon>exit_to_app</mat-icon>
         </button>
+
       </div>
     </div>
   </ng-container>
@@ -47,6 +48,7 @@
     -->
 
 </mat-toolbar>
+
 
 
 <mat-sidenav-container [hasBackdrop]="false">
@@ -189,6 +191,13 @@
     </mat-nav-list>
   </mat-sidenav>
 
+  <mat-sidenav class="menu-right" [opened]="openedRight" mode="side" position="end" [mode]="'over'">
+    menu destro
+    mettiamo qui la todolist!
+    <br>
+    Come Google
+  </mat-sidenav>
+
   <!--
       <router-outlet></router-outlet>
   -->
@@ -199,7 +208,13 @@
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 
+
+
 </mat-sidenav-container>
+
+<button class="btn btn-outline-light my-2 right-menu-toggle" title="Todo" (click)="opencloseRight()">
+  <mat-icon>assignment</mat-icon>
+</button>
 
 <!-- OK quando autenticati, ma il login appare sotto
   <router-outlet></router-outlet>

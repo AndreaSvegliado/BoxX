@@ -16,19 +16,20 @@ export class TodoEventsListComponent implements OnInit {
 
   todoEventsForms: FormArray = this.fb.array([]);
   todoEvents: todoEvent[];
+  loading = true;
 
-  constructor(private fb: FormBuilder, private todoEventsService: TodoEventsService) { 
+  constructor(private fb: FormBuilder, private todoEventsService: TodoEventsService) {
 
     //Grid List
     this.todoEventsService.getTodoEventList()
-      .subscribe(res=> this.todoEvents = res as todoEvent[]); 
+      .subscribe(res=> this.todoEvents = res as todoEvent[]);
 
     this.todoEventsService.getTodoEventList().subscribe(
-      res => { 
+      res => {
         if (res==[])
           this.addTodoEventsForm();
         else{
-          // form array per contenere i dati restituiti dalla tabella todoEvent 
+          // form array per contenere i dati restituiti dalla tabella todoEvent
           (res as []).forEach((todo:todoEvent)=> {
             this.todoEventsForms.push(this.fb.group({
 
@@ -38,7 +39,7 @@ export class TodoEventsListComponent implements OnInit {
 
               //dt: Date;
               //h_Ini: Date;
-          
+
               //userID: string;
               //causaleID: number;
               //ticketID: number;
@@ -50,6 +51,7 @@ export class TodoEventsListComponent implements OnInit {
               //IFSC : [bankAccount.IFSC, Validators.required]
 
             }));
+            this.loading = false;
           });
         }
       }
@@ -57,8 +59,8 @@ export class TodoEventsListComponent implements OnInit {
   }
 
   ngOnInit() {
-    
-    
+
+
   }
 
   addTodoEventsForm(){
@@ -76,7 +78,7 @@ export class TodoEventsListComponent implements OnInit {
   }
 
   recordSubmit(fg:FormGroup)  {
-    
+      this.loading = true;
       if(fg.value.id == 0){
         //Insert
         this.todoEventsService.postTodoEvent(fg.value).subscribe(
@@ -84,9 +86,11 @@ export class TodoEventsListComponent implements OnInit {
             //console.log("OK INSERT");
             fg.patchValue ({ id: res.id });     ///riporto l'id generato dall'insert
             //this.showNotification('insert');
+            this.loading = false;
           },
           err => {
             console.log(err);
+            this.loading = false;
            });
       }
       else{
@@ -94,11 +98,13 @@ export class TodoEventsListComponent implements OnInit {
         this.todoEventsService.putTodoEvent( fg.value).subscribe(
           (res: any) => {
             //this.showNotification('update');
-          
+            this.loading = false;
+
           });
       }
+
     }
-  
+
     onDelete(id, i) {
       if (id == 0)
         this.todoEventsForms.removeAt(i);
