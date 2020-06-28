@@ -1,5 +1,5 @@
 
-<h1>Todo List</h1>
+
 
 <!-- AS: per DEBUG -->
 <!-- <p>JSON </p>
@@ -35,6 +35,8 @@
       </tr>
     </tbody>
   </table> -->
+<div class="todo-container">
+  <!-- <h1>Todo List</h1> -->
   <mat-spinner class="nickspinner" diameter="30" *ngIf="loading"></mat-spinner>
     <div class="grid-table">
       <div >
@@ -52,10 +54,10 @@
         <!-- <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of todoEventsForms.controls; let i=index;">-->
         <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of todoEventsForms.controls; let i=index;" (submit)="recordSubmit(fgroup)">
           <div class="td">
-            <mat-checkbox  #Chiuso  class="form-control" formControlName="isClosed" (change)="onChange(fgroup)"></mat-checkbox>
+            <mat-checkbox  #Chiuso  class="form-control check-todo" formControlName="isClosed" color="primary" (change)="onChange(fgroup)"></mat-checkbox>
           </div>
           <div class="td">
-            <input class="form-control" formControlName="titolo" [ngStyle]="{'text-decoration': Chiuso.checked === true ?'line-through': 'none'}"  (focusout)="onChange(fgroup)"> 
+            <input class="form-control" formControlName="titolo" [ngStyle]="{'text-decoration': Chiuso.checked === true ?'line-through': 'none'}"  (focusout)="onChange(fgroup)">
           </div>
           <div class="td">
               <input class="form-control" formControlName="dettagli" [ngStyle]="{'text-decoration': Chiuso.checked === true ?'line-through': 'none'}"  (focusout)="onChange(fgroup)">
@@ -90,3 +92,4 @@
 
   <router-outlet></router-outlet>
   <app-snackbar></app-snackbar>
+</div>

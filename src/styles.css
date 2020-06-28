@@ -54,6 +54,11 @@ div.form-group label:first-child {
   padding: 10px 1px 1px 5px;
 }
 
+.check-todo{
+  border: transparent!important;
+  background-color: transparent!important;
+}
+
 /* .thead div.tr div.td:last-child {
   background-color: rgb(126, 174, 219);
 } */
@@ -456,6 +461,16 @@ footer {
   }
 }
 
+
+
+
+
+
+
+
+
+
+
 /************************          Dialog Conferma         *******************/
 .button-confirm {
   margin-top: 8px !important;
@@ -525,4 +540,27 @@ body {
   text-align: center;
   border: transparent;
   background-color: transparent;
+}
+
+.calendar-container {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding-bottom: 10px;
+
+}
+
+.todo-container {
+  margin-top: 10px;
+  padding-bottom: 10px;
+
+}
+
+.home-calendar-container {
+
+  box-shadow:  0 2px 5px 0 rgba(0, 0, 0, .2);
+}
+
+.home-todo-container {
+  box-shadow:  0 2px 5px 0 rgba(0, 0, 0, .2);
 }

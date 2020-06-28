@@ -46,14 +46,14 @@ export class TicketDetailsComponent implements OnInit {
 
     let ID = this.route.snapshot.params['ID'];
     this.mticketID = ID;
-  
+
     this.ticketService.getTicket(this.mticketID)
       .subscribe(
         res => {
           this.objTicket = res as ticket;
         }
       );
-  
+
     //this.objTicket =
     //var tmp =    this.ticketService.getTicket(this.mticketID);
     //this.objTicket = tmp;
@@ -65,11 +65,10 @@ export class TicketDetailsComponent implements OnInit {
     //let selectID = this.ticket.ID ? this.ticket.ID:null;
     //this.router.navigate(['/home', {id:selectID}]);
   }
-  BackToCalendar() {
 
+  BackToCalendar() {
     //this.router.navigate(['/calendar']);
     //devo beccare la data
-
     this.router.navigate(['/calendar', this.objTicket.data1]);
 
   }

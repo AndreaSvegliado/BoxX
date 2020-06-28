@@ -157,7 +157,7 @@ export class CalendarComponent implements OnInit {
     if (dateToGo) {
     api.gotoDate (dateToGo);
     }
-    api.gotoDate ('2019-12-09');
+    //api.gotoDate ('2019-12-09');
 
   }
 
