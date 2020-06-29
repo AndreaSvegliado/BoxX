@@ -23,16 +23,18 @@ export class TodoEventsListComponent implements OnInit {
   constructor(private fb: FormBuilder, private todoEventsService: TodoEventsService) {
 
     //Grid List
-    this.todoEventsService.getTodoEventList()
-      .subscribe(res=> this.todoEvents = res as todoEvent[]);
+    //this.todoEventsService.getTodoEventList()
+    //  .subscribe(res=> this.todoEvents = res as todoEvent[]);
 
     this.todoEventsService.getTodoEventList().subscribe(
       res => {
         if (res==[])
           this.addTodoEventsForm();
         else{
-          // form array per contenere i dati restituiti dalla tabella todoEvent
-          (res as []).forEach((todo:todoEvent)=> {
+          //sort per far comparire i todo chiusi sotto
+          res.sort((a, b) => a.isClosed < b.isClosed ? -1 : a.isClosed > b.isClosed ? 1 : 0);
+
+          (res as []).forEach((todo:todoEvent) =>      {  
             this.todoEventsForms.push(this.fb.group({
 
               id : [todo.id],
@@ -49,10 +51,7 @@ export class TodoEventsListComponent implements OnInit {
               //objTicket: ticket;
 
               //accountNumber :[bankAccount.AccountNumber, Validators.required],
-              //accountHolder :[bankAccount.AccountHolder, Validators.required],
               //bankID : [bankAccount.BankID, Validators.min(1)],
-              //IFSC : [bankAccount.IFSC, Validators.required]
-
             }));
             this.loading = false;
           });
@@ -82,30 +81,7 @@ export class TodoEventsListComponent implements OnInit {
     }))
   }
 
-  ///--------------- NON USATA ------------------
-  recordSubmit(fg:FormGroup)  {
-      this.loading = true;
-      if(fg.value.id == 0){
-        //Insert
-        this.todoEventsService.postTodoEvent(fg.value).subscribe(
-          (res: any) => {
-            fg.patchValue ({ id: res.id });     ///riporto l'id generato dall'insert
-            //this.showNotification('insert');
-          },
-          err => {
-            console.log(err);
-           });
-      }
-      else{
-        //Update
-        this.todoEventsService.putTodoEvent( fg.value).subscribe(
-          (res: any) => {
-            //this.showNotification('update');
-          });
-      }
-      this.loading = false;
 
-    }
 
     onDelete(id, i) {
       if (id == 0)
@@ -119,33 +95,65 @@ export class TodoEventsListComponent implements OnInit {
     }
     onChange(fg:FormGroup) {
       
+      //console.log(fg.controls['titolo'].dirty );
+      /*
       if(fg.controls['titolo'].value == '' && fg.controls['dettagli'].value == '' ){
         //Se record vuoto non salvo
-        //ATTENZIONE: se record esistente, pulisco i campi --> non salva
+        //AS: (TODO!) ATTENZIONE: se record esistente, pulisco i campi --> non salva
         return;
       }
+      */
+      if(fg.controls['isClosed'].dirty ||
+         fg.controls['titolo'].dirty || 
+         fg.controls['dettagli'].dirty){
 
-      this.loading = true;
-      if(fg.value.id == 0){
-        //Insert
-        this.todoEventsService.postTodoEvent(fg.value).subscribe(
-          (res: any) => {
-            //console.log("OK INSERT");
-            fg.patchValue ({ id: res.id });     ///riporto l'id generato dall'insert
-            //this.showNotification('insert');
-          },
-          err => {
-            console.log(err);
-           });
+        this.loading = true;
+        if(fg.value.id == 0){
+          //Insert
+          this.todoEventsService.postTodoEvent(fg.value).subscribe(
+            (res: any) => {
+              console.log("OK INSERT");
+              fg.patchValue ({ id: res.id });     ///riporto l'id generato dall'insert
+              //this.showNotification('insert');
+            },
+            err => {
+              console.log(err);
+            });
+        }
+        else{
+          //Update
+          this.todoEventsService.putTodoEvent( fg.value).subscribe(
+            (res: any) => {
+              console.log("OK UPDATE");
+              //this.showNotification('update');
+            });
+        }
+        this.loading = false;
       }
-      else{
-        //Update
-        this.todoEventsService.putTodoEvent( fg.value).subscribe(
-          (res: any) => {
-            //this.showNotification('update');
-          });
-      }
-      this.loading = false;
     }
 
+  ///--------------- NON USATA ------------------
+  recordSubmit(fg:FormGroup)  {
+    this.loading = true;
+    if(fg.value.id == 0){
+      //Insert
+      this.todoEventsService.postTodoEvent(fg.value).subscribe(
+        (res: any) => {
+          fg.patchValue ({ id: res.id });     ///riporto l'id generato dall'insert
+          //this.showNotification('insert');
+        },
+        err => {
+          console.log(err);
+         });
+    }
+    else{
+      //Update
+      this.todoEventsService.putTodoEvent( fg.value).subscribe(
+        (res: any) => {
+          //this.showNotification('update');
+        });
+    }
+    this.loading = false;
+
+  }
 }

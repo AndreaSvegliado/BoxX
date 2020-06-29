@@ -1,40 +1,8 @@
-
-
-
 <!-- AS: per DEBUG -->
 <!-- <p>JSON </p>
 {{todoEvents | json}}
 <p></p> -->
 
-
-  <!-- <table  class="table table-hover">
-    <thead>
-      <tr>
-        <th>id</th>
-        <th>UserID</th>
-        <th>CausaleID</th>
-        <th>TicketID</th>
-        <th>Titolo</th>
-        <th>Dettagli</th>
-        <th>Dt</th>
-        <th>H_ini</th>
-        <th></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr  *ngFor="let objTodo of todoEvents">
-        <td >{{objTodo.id}}</td>
-        <td >{{objTodo.userID}}</td>
-        <td >{{objTodo.causaleID}}</td>
-        <td >{{objTodo.ticketID}} </td>
-        <td  class="min100">{{objTodo.titolo}} </td>
-        <td  class="min100">{{objTodo.dettagli}} </td>
-        <td  class="min100">{{objTodo.dt  | date: 'dd/MM/yyyy'}} </td>
-        <td  class="min100">{{objTodo.h_Ini | date:'HH:mm'}} </td>
-      </tr>
-    </tbody>
-  </table> -->
 <div class="todo-container">
   <!-- <h1>Todo List</h1> -->
   <mat-spinner class="nickspinner" diameter="30" *ngIf="loading"></mat-spinner>
@@ -51,7 +19,6 @@
       </div>
 
       <div class="tbody">
-        <!-- <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of todoEventsForms.controls; let i=index;">-->
         <form class="tr" [formGroup]="fgroup" *ngFor="let fgroup of todoEventsForms.controls; let i=index;" (submit)="recordSubmit(fgroup)">
           <div class="td">
             <mat-checkbox  #Chiuso  class="form-control check-todo" formControlName="isClosed" color="primary" (change)="onChange(fgroup)"></mat-checkbox>
@@ -72,16 +39,8 @@
                 </select>
             </div>
           -->
-          <!--
-          <div class="td">
-            <button type="submit" class="btn btn-success" [disabled]="fgroup.invalid"
-                [ngClass]="fgroup.get('id').value==0 ?'btn-success':'btn-outline-dark'">
-                <mat-icon>save_alt</mat-icon>
-            </button>
-          </div>
-          -->
-          <div class="td">
 
+          <div class="td">
             <button class="btn btn-light ml-1" [ngStyle]="{'visibility': Chiuso.checked === true ? 'visible' : 'hidden'}"  (click)="onDelete(fgroup.get('id').value,i)">
                 <mat-icon color="warn">delete</mat-icon>
             </button>

@@ -1,0 +1,12 @@
+.todo-container {
+    margin-top: 10px;
+    padding-bottom: 10px;
+    
+    background: white;
+    box-shadow:  0 2px 5px 0 rgba(0, 0, 0, .2);
+  }
+
+.home-todo-container {
+    
+    box-shadow:  0 2px 5px 0 rgba(0, 0, 0, .2);
+  }
