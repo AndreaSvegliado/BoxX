@@ -14,18 +14,16 @@ export class DefaultComponent implements OnInit {
   tickets;
   //ticketList$ : Observable<Ticket[]>;
   loading = true;
+  
   constructor( private tService: TicketService) { }
 
   ngOnInit() {
-
     this.tService.getTicketList()
-
     .subscribe(
       res=>   {this.tickets = res as ticket[]
       this.loading =  false;
       }
     );
-
   }
 
 }

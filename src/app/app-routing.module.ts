@@ -13,6 +13,7 @@ import { UserDetailsComponent } from './components/user-details/user-details.com
 import { TicketListComponent } from './components/tickets/ticket-list/ticket-list.component';
 import { TicketCardComponent } from './components/tickets/ticket-card/ticket-card.component';
 import { TicketDetailsComponent } from './components/tickets/ticket-details/ticket-details.component';
+import { TicketHistoryComponent } from './components/tickets/ticket-history/ticket-history.component';
 
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { TodoEventsListComponent } from './components/todoevents/todoevents-list/todoevents-list.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path:'ticket-card', component: TicketCardComponent, canActivate:[AuthGuard]  },
   { path:'ticket-details/:ID', component: TicketDetailsComponent, canActivate:[AuthGuard]},
   { path:'ticket-list', component: TicketListComponent, canActivate:[AuthGuard]},
+  { path:'ticket-history', component: TicketHistoryComponent, canActivate:[AuthGuard]},
 
   { path:'calendar', component: CalendarComponent, canActivate:[AuthGuard]  },
   { path:'calendar/:dateToGo', component: CalendarComponent, canActivate:[AuthGuard]  },

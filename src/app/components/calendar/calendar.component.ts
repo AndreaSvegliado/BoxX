@@ -22,55 +22,7 @@ export class CalendarComponent implements OnInit {
 
   @Input() pagina: string;
 
-  //estraggo un po' di variabili da assegnare all'oggetto fullcalendar
 
-  header = environment.fullcalendarConfig.header;
-  navlinks = environment.fullcalendarConfig.navlinks;
-  lang = environment.fullcalendarConfig.lang;
-  calendarPlugins = [dayGridPlugin, timeGridPlugin, listWeekPlugin, interactionPlugin];
-  calendarWeekends = environment.fullcalendarConfig.calendarWeekends;
-  buttonText = environment.fullcalendarConfig.buttonText;
-  defaultAllDayEventDuration = environment.fullcalendarConfig.defaultAllDayEventDuration;
-  nowIndicator = environment.fullcalendarConfig.nowIndicator;
-  forceEventDuration = environment.fullcalendarConfig.forceEventDuration;
-  weekLabel = environment.fullcalendarConfig.weekLabel;
-  defaultView = environment.fullcalendarConfig.defaultView;
-  // eventi di test (statici)
-  /*
-  calendarEvents=
-  [
-      {
-        allDay: true,
-        color: '#00bb99',
-        date: '2020-06-02',
-        end: new Date('Wed Jun 02 2020 00:02:00 GMT+0100'),
-        id: "1",
-        start:  new Date('Wed Jun 02 2020 00:01:00 GMT+0100'),
-        textColor: "#fff",
-        title: 'qui devono vedersi i ticket'
-      },
-      {
-        allDay: false,
-        color: '#ffcc00',
-        date: '2020-06-17',
-        end:  new Date('2020-06-18T18:00:00'),
-        id: "2",
-        start:  new Date('2020-06-17T08:00:00'),
-        textColor: "#555",
-        title: 'in vari colori e draggabili'
-      },
-      {
-        allDay: true,
-        color: '#ff5500',
-        date: '2020-06-29',
-        end: new Date('Wed Jun 29 2020 00:01:00 GMT+0100'),
-        id: "TK000001",
-        start:  new Date('Wed Jun 29 2020 00:02:00 GMT+0100'),
-        textColor: "#fff",
-        title: 'anche editabili? se sì serve modalform'
-      },
-  ];
-*/
 
   tickets;
   ticketEvents: ticketEvent[];
@@ -86,18 +38,14 @@ export class CalendarComponent implements OnInit {
   constructor(private router : Router, private tService: TicketService, private route: ActivatedRoute,) {
     this.screenHeight = window.innerHeight;        //AS: ????
     this.screenWidth = window.innerWidth;
-
-
   }
 
   ngOnInit() {
+    
     if (this.pagina == 'home') {
       this.header = environment.fullcalendarConfig.header_home;
       this.defaultView = environment.fullcalendarConfig.defaultView_home;
     }
-
-
-
 
 
     this.tService.getTicketList()
@@ -108,13 +56,48 @@ export class CalendarComponent implements OnInit {
       }
     );
 
-    this.tService.getTicketList()
-      .subscribe(
-        res => {
-          this.tickets = res as ticket[];
-          this.LoadCalendar();
-        }
-      );
+    
+  }
+
+  ngAfterViewInit() {
+    this.InitCalendar();
+  }
+
+  //variabili da assegnare all'oggetto fullcalendar lato html
+  header = environment.fullcalendarConfig.header;
+  navlinks = environment.fullcalendarConfig.navlinks;
+  lang = environment.fullcalendarConfig.lang;
+  calendarPlugins = [dayGridPlugin, timeGridPlugin, listWeekPlugin, interactionPlugin];
+  calendarWeekends = environment.fullcalendarConfig.calendarWeekends;
+  buttonText = environment.fullcalendarConfig.buttonText;
+  defaultAllDayEventDuration = environment.fullcalendarConfig.defaultAllDayEventDuration;
+  nowIndicator = environment.fullcalendarConfig.nowIndicator;
+  forceEventDuration = environment.fullcalendarConfig.forceEventDuration;
+  weekLabel = environment.fullcalendarConfig.weekLabel;
+  defaultView = environment.fullcalendarConfig.defaultView;
+
+  InitCalendar(){
+    
+
+    const api = this.calendario.getApi();
+    api.setOption('themeSystem', 'bootstrap');          //non so a cosa serva
+
+    if (this.pagina != 'home') 
+      api.setOption('height', (this.screenHeight - 90));
+    else 
+      api.setOption('height', 450);
+    
+    if ((this.screenWidth > 1000) && (this.pagina != 'home')) 
+       api.setOption('weekNumbers', true) 
+    else 
+      api.setOption('weekNumbers', false) 
+    
+    api.render();
+
+    let dateToGo = this.route.snapshot.params['dateToGo'];
+    if (dateToGo) {
+      api.gotoDate (dateToGo);
+    }
   }
 
   LoadCalendar(){
@@ -140,28 +123,7 @@ export class CalendarComponent implements OnInit {
     });
   }
 
-  //passo al calendario alcune opzioni "dinamiche"
-  //nello stesso modo potevo passargli anche quelle di base
-  ngAfterViewInit() {
-    const api = this.calendario.getApi();
-    if (this.pagina != 'home') {
-      api.setOption('height', (this.screenHeight - 90));
-    } else {
-      api.setOption('height', 450);
-    }
-    api.setOption('themeSystem', 'bootstrap');          //non so a cosa serva
-    if ((this.screenWidth > 1000) && (this.pagina != 'home')) { api.setOption('weekNumbers', true) } else { api.setOption('weekNumbers', false) }
-    api.render();
-
-    let dateToGo = this.route.snapshot.params['dateToGo'];
-    if (dateToGo) {
-    api.gotoDate (dateToGo);
-    }
-    //api.gotoDate ('2019-12-09');
-
-  }
-
-  eventClick(model) {
+  calendarEventClick(model) {
     this.router.navigate(['/ticket-details', model.event.id]);
   }
 
@@ -174,9 +136,6 @@ export class CalendarComponent implements OnInit {
       });
     }
   }*/
-
-
-
 }
 
 

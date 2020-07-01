@@ -26,6 +26,7 @@ import { TicketDetailsComponent, DialogConferma } from './components/tickets/tic
 import { TicketDetailComponent } from './components/tickets/ticket-detail/ticket-detail.component';            //AS: reference per gestione token JWT
 import { TicketDetailListComponent } from './components/tickets/ticket-detail-list/ticket-detail-list.component';
 import { TicketListComponent } from './components/tickets/ticket-list/ticket-list.component';
+import { TicketHistoryComponent } from './components/tickets/ticket-history/ticket-history.component'
 
 import { TodoEventsListComponent } from './components/todoevents/todoevents-list/todoevents-list.component';
 
@@ -40,7 +41,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { FullCalendarModule } from '@fullcalendar/angular';
-import { GoogleMapsModule } from '@angular/google-maps'
+import { GoogleMapsModule } from '@angular/google-maps';
+
 
 
 @NgModule({
@@ -62,6 +64,7 @@ import { GoogleMapsModule } from '@angular/google-maps'
     SnackbarComponent,
     CalendarComponent,
     DialogConferma,
+    TicketHistoryComponent,
 
   ],
   imports: [

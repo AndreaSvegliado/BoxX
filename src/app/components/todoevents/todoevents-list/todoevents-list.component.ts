@@ -95,7 +95,6 @@ export class TodoEventsListComponent implements OnInit {
     }
     onChange(fg:FormGroup) {
       
-      //console.log(fg.controls['titolo'].dirty );
       /*
       if(fg.controls['titolo'].value == '' && fg.controls['dettagli'].value == '' ){
         //Se record vuoto non salvo
@@ -106,14 +105,17 @@ export class TodoEventsListComponent implements OnInit {
       if(fg.controls['isClosed'].dirty ||
          fg.controls['titolo'].dirty || 
          fg.controls['dettagli'].dirty){
+        
+        
 
         this.loading = true;
         if(fg.value.id == 0){
           //Insert
           this.todoEventsService.postTodoEvent(fg.value).subscribe(
             (res: any) => {
-              console.log("OK INSERT");
+              //console.log("OK INSERT");
               fg.patchValue ({ id: res.id });     ///riporto l'id generato dall'insert
+              fg.reset(fg.value);
               //this.showNotification('insert');
             },
             err => {
@@ -124,7 +126,7 @@ export class TodoEventsListComponent implements OnInit {
           //Update
           this.todoEventsService.putTodoEvent( fg.value).subscribe(
             (res: any) => {
-              console.log("OK UPDATE");
+              fg.reset(fg.value);
               //this.showNotification('update');
             });
         }

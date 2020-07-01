@@ -24,7 +24,7 @@ export const environment = {
       right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
     },
     header_home : {
-      left: '',
+      left: 'prev,next today',
       center: 'title',
       right: ''
     },
