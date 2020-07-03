@@ -3,7 +3,7 @@
 {{tickets | json}}
 -->
 
-
+<!--
 <div class="row">
   <div class="col-12 mt-2">
     <mat-spinner class="nickspinner" diameter="30" *ngIf="loading"></mat-spinner>
@@ -11,6 +11,26 @@
     </app-ticket-card>
   </div>
 </div>
+-->
+
+
+<div class="row pr-2" style="width: 100%; ">
+  <div class="col-lg-4 col-md-6 col-sm-12 col-12 mt-2 text-center">
+    <p>Ticket Aperti</p>
+    <mat-spinner class="nickspinner" diameter="30" *ngIf="loading"></mat-spinner>
+    <app-ticket-card *ngFor="let ticket of tickets" [ticket]="ticket">
+    </app-ticket-card>
+  </div>
+  
+  <div class="col-lg-8 col-md-6 col-sm-12 col-12">
+    <p>Storico Ticket</p>
+    <div class="ticket-history-container">
+      <app-ticket-history></app-ticket-history>
+    </div>
+  </div>
+</div>
 
 <router-outlet></router-outlet>
 <app-snackbar></app-snackbar>
+
+

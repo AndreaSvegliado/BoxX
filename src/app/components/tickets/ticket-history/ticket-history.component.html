@@ -1,1 +1,29 @@
-<p>ticket-history works!</p>
+<div class="ticket-detail-list" >
+    <div class="table-responsive">
+      <table  class="table table-hover">
+      <!--  {{ticketDetails|json}} -->
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Ticket</th>
+            <th>Tipo</th>
+            <th>Stato</th>
+            <th>Cliente</th>
+            <th></th>
+          </tr>
+        </thead>
+  
+        <tbody>
+          <tr *ngFor="let objTicket of tickets">
+            <td>{{objTicket.id}} </td>
+            <td>{{objTicket.n_Ticket}} </td>
+            <td>{{objTicket.tipoTicket}} </td>
+            <td>{{objTicket.statoTicket}} </td>
+            <td>{{objTicket.customer.ragsoc}} </td>
+  
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

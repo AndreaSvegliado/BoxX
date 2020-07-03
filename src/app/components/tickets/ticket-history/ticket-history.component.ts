@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TicketService } from 'src/app/services/ticket.service';
+import { ticket } from 'src/app/models/models';
 
 @Component({
   selector: 'app-ticket-history',
@@ -7,11 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TicketHistoryComponent implements OnInit {
 
-  constructor() { }
+  tickets: ticket[];
+  loading = true;
+  
+  constructor(public ticketService: TicketService) {
 
-  ngOnInit(): void {
+   }
 
-    
+   ngOnInit() {
+    this.ticketService.getTicketHistory()
+    .subscribe(
+      res=>   { this.tickets = res as ticket[];
+     this.loading = false;
+     }
+    );
   }
 
 }
