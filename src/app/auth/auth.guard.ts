@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-//import { CanActivate, CanActivateChild, CanLoad, Route, UrlSegment, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { CanActivate,  ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 
@@ -16,16 +15,16 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot):  boolean  {
 
       //console.log("DEBUG: auth.guard");
-
+      debugger
       if(localStorage.getItem('token') != null){
         //console.log ("Auth.guard/canActivate: True");
-        
+
         this.uService.changeLoggedIn(true);
-        return true; 
+        return true;
       }
       else{
-        //Not logged: redirect to Login        
-        this.router.navigate(['user/login']);  
+        //Not logged: redirect to Login
+        this.router.navigate(['user/login']);
         this.uService.changeLoggedIn(false);
         return false;
       }

@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material/snack-bar';
 import { SidebarComponent } from '../../shared/sidebar/sidebar.component'
 
+
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -30,6 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form:NgForm){
+    debugger
     this.loading = true;
     //console.log("Login: " + this.formModel.UserName);
 
