@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(form:NgForm){
-    debugger
+
     this.loading = true;
     //console.log("Login: " + this.formModel.UserName);
 

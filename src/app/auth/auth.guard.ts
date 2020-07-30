@@ -15,7 +15,6 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot):  boolean  {
 
       //console.log("DEBUG: auth.guard");
-      debugger
       if(localStorage.getItem('token') != null){
         //console.log ("Auth.guard/canActivate: True");
 

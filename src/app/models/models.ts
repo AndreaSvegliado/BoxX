@@ -1,7 +1,3 @@
-import { Timestamp } from 'rxjs/internal/operators/timestamp';
-import { Time } from '@angular/common';
-import { TimeInterval } from 'rxjs/internal/operators/timeInterval';
-
 export interface currentUser {
     userID: string;
     fullname: string;
@@ -57,7 +53,7 @@ export class todoEvent{
     id: number;
     userID: string;
     causaleID: number;
-    
+
     ticketID: number;
     objTicket: ticket;
 
